@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* TEMPORARY HOME PAGE */
+.container {
+  background: #efefef;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcomeContainer {
+  background: #FFF;
+  padding: 32px;
+  border-radius: 16px;
+  border: solid 3px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.welcomeTitle {
+  font-size: 64px;
+  margin-bottom: 32px;
+}
+
+.userContainer {
+  background: #e8e8e8;
+  padding: 16px;
+  border-radius: 16px;
+  width: 70%;
+}
+
+.userText {
+  font-size: 32px;
+  text-align: center;
+}
