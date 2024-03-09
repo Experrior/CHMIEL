@@ -1,0 +1,12 @@
+frontend-1  | 
+frontend-1  | > chmiel_app@0.1.0 start
+frontend-1  | > react-scripts start
+frontend-1  | 
+frontend-1  | sh: 1: react-scripts: not found
+frontend-1  | 
+frontend-1  | > chmiel_app@0.1.0 start
+frontend-1  | > react-scripts start
+frontend-1  | 
+frontend-1  | sh: 1: react-scripts: not found
+backend-1   | Error: Unable to access jarfile target/your-application-name.jar
+backend-1   | Error: Unable to access jarfile target/your-application-name.jar

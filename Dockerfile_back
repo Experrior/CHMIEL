@@ -1,0 +1,20 @@
+FROM openjdk:19
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the entire project directory into the container
+COPY ./chmiel/ .
+
+# Grant executable permissions to mvnw
+RUN chmod +x mvnw
+
+# Run Maven to build the project (assuming you're using Maven)
+RUN ./mvnw clean package -DskipTests
+RUN javac 
+
+# Expose the port your application runs on
+EXPOSE 8080
+
+# Run the application
+CMD ["java", "-jar", "target/Chmiel"]

@@ -1,0 +1,7 @@
+FROM node:slim
+
+WORKDIR /front
+
+COPY ./chmiel_app .
+
+CMD npm start
