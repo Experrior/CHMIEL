@@ -1,0 +1,1503 @@
+frontend-1  | 
+frontend-1  | > chmiel_app@0.1.0 start
+frontend-1  | > react-scripts start
+frontend-1  | 
+frontend-1  | sh: 1: react-scripts: not found
+backend-1   | 2024-03-30T19:04:31.666Z  INFO 7 --- [           main] com.backend.chmiel.ChmielApplication     : Starting ChmielApplication v0.0.1-SNAPSHOT using Java 17.0.10 with PID 7 (/app/runner.jar started by root in /)
+backend-1   | 2024-03-30T19:04:31.674Z  INFO 7 --- [           main] com.backend.chmiel.ChmielApplication     : No active profile set, falling back to 1 default profile: "default"
+backend-1   | 2024-03-30T19:04:31.674Z DEBUG 7 --- [           main] o.s.boot.SpringApplication               : Loading source class com.backend.chmiel.ChmielApplication
+backend-1   | 2024-03-30T19:04:31.755Z DEBUG 7 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7f284218
+backend-1   | 2024-03-30T19:04:32.267Z  INFO 7 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+backend-1   | 2024-03-30T19:04:32.281Z DEBUG 7 --- [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.backend.chmiel'. Automatic @Repository and @Entity scanning is enabled.
+backend-1   | 2024-03-30T19:04:32.323Z  INFO 7 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 1 JPA repository interface.
+backend-1   | 2024-03-30T19:04:32.777Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: /app/runner.jar
+backend-1   | 2024-03-30T19:04:32.778Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: /app/runner.jar
+backend-1   | 2024-03-30T19:04:32.778Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+backend-1   | 2024-03-30T19:04:32.792Z  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+backend-1   | 2024-03-30T19:04:32.801Z  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+backend-1   | 2024-03-30T19:04:32.801Z  INFO 7 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+backend-1   | 2024-03-30T19:04:32.828Z  INFO 7 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+backend-1   | 2024-03-30T19:04:32.828Z DEBUG 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+backend-1   | 2024-03-30T19:04:32.829Z  INFO 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1073 ms
+backend-1   | 2024-03-30T19:04:32.840Z DEBUG 7 --- [           main] ySourcesPropertyResolver$DefaultResolver : Found key 'ENCRYPTION_KEY' in PropertySource 'env' with value of type String
+backend-1   | 2024-03-30T19:04:32.883Z  INFO 7 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+backend-1   | 2024-03-30T19:04:33.919Z ERROR 7 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+backend-1   | 
+backend-1   | org.postgresql.util.PSQLException: Connection to 172.22.0.1:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+backend-1   | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:342) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:52) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:108) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyDataScripts(AbstractScriptDatabaseInitializer.java:102) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:77) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:66) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:685) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1685) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1434) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4866) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:845) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:240) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:921) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:105) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:499) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:218) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:618) ~[spring-context-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at com.backend.chmiel.ChmielApplication.main(ChmielApplication.java:10) ~[!/:0.0.1-SNAPSHOT]
+backend-1   | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+backend-1   | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+backend-1   | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[runner.jar:0.0.1-SNAPSHOT]
+backend-1   | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[runner.jar:0.0.1-SNAPSHOT]
+backend-1   | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[runner.jar:0.0.1-SNAPSHOT]
+backend-1   | Caused by: java.net.ConnectException: Connection refused
+backend-1   | 	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+backend-1   | 	at java.base/sun.nio.ch.Net.pollConnectNow(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/sun.nio.ch.NioSocketImpl.connect(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/java.net.SocksSocketImpl.connect(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/java.net.Socket.connect(Unknown Source) ~[na:na]
+backend-1   | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	... 142 common frames omitted
+backend-1   | 
+backend-1   | 2024-03-30T19:04:33.944Z ERROR 7 --- [           main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'applicationConfig' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/ApplicationConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+backend-1   | 2024-03-30T19:04:34.016Z  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+backend-1   | 2024-03-30T19:04:34.026Z  WARN 7 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+backend-1   | 2024-03-30T19:04:34.091Z DEBUG 7 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+backend-1   | 
+backend-1   | 
+backend-1   | ============================
+backend-1   | CONDITIONS EVALUATION REPORT
+backend-1   | ============================
+backend-1   | 
+backend-1   | 
+backend-1   | Positive matches:
+backend-1   | -----------------
+backend-1   | 
+backend-1   |    AopAutoConfiguration matched:
+backend-1   |       - @ConditionalOnProperty (spring.aop.auto=true) matched (OnPropertyCondition)
+backend-1   | 
+backend-1   |    AopAutoConfiguration.AspectJAutoProxyingConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.aspectj.weaver.Advice' (OnClassCondition)
+backend-1   | 
+backend-1   |    AopAutoConfiguration.AspectJAutoProxyingConfiguration.CglibAutoProxyConfiguration matched:
+backend-1   |       - @ConditionalOnProperty (spring.aop.proxy-target-class=true) matched (OnPropertyCondition)
+backend-1   | 
+backend-1   |    ApplicationAvailabilityAutoConfiguration#applicationAvailability matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.availability.ApplicationAvailability; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    DataSourceAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: io.r2dbc.spi.ConnectionFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    DataSourceAutoConfiguration.PooledDataSourceConfiguration matched:
+backend-1   |       - AnyNestedCondition 1 matched 1 did not; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.PooledDataSourceAvailable PooledDataSource found supported DataSource; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.ExplicitType @ConditionalOnProperty (spring.datasource.type) did not find property 'type' (DataSourceAutoConfiguration.PooledDataSourceCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: javax.sql.DataSource,javax.sql.XADataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    DataSourceAutoConfiguration.PooledDataSourceConfiguration#jdbcConnectionDetails matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.jdbc.JdbcConnectionDetails; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    DataSourceConfiguration.Hikari matched:
+backend-1   |       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+backend-1   |       - @ConditionalOnProperty (spring.datasource.type=com.zaxxer.hikari.HikariDataSource) matched (OnPropertyCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: javax.sql.DataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    DataSourceInitializationConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.jdbc.datasource.init.DatabasePopulator' (OnClassCondition)
+backend-1   |       - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.sql.init.SqlDataSourceScriptDatabaseInitializer,org.springframework.boot.autoconfigure.sql.init.SqlR2dbcScriptDatabaseInitializer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    DataSourceJmxConfiguration matched:
+backend-1   |       - @ConditionalOnProperty (spring.jmx.enabled=true) matched (OnPropertyCondition)
+backend-1   | 
+backend-1   |    DataSourceJmxConfiguration.Hikari matched:
+backend-1   |       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+backend-1   |       - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+backend-1   | 
+backend-1   |    DataSourcePoolMetadataProvidersConfiguration.HikariPoolDataSourceMetadataProviderConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceTransactionManagerAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'org.springframework.jdbc.core.JdbcTemplate', 'org.springframework.transaction.TransactionManager' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration matched:
+backend-1   |       - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+backend-1   | 
+backend-1   |    DispatcherServletAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    DispatcherServletAutoConfiguration.DispatcherServletConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
+backend-1   |       - Default DispatcherServlet did not find dispatcher servlet beans (DispatcherServletAutoConfiguration.DefaultDispatcherServletCondition)
+backend-1   | 
+backend-1   |    DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'jakarta.servlet.ServletRegistration' (OnClassCondition)
+backend-1   |       - DispatcherServlet Registration did not find servlet registration bean (DispatcherServletAutoConfiguration.DispatcherServletRegistrationCondition)
+backend-1   | 
+backend-1   |    DispatcherServletAutoConfiguration.DispatcherServletRegistrationConfiguration#dispatcherServletRegistration matched:
+backend-1   |       - @ConditionalOnBean (names: dispatcherServlet types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found bean 'dispatcherServlet' (OnBeanCondition)
+backend-1   | 
+backend-1   |    EmbeddedWebServerFactoryCustomizerAutoConfiguration matched:
+backend-1   |       - @ConditionalOnWebApplication (required) found 'session' scope (OnWebApplicationCondition)
+backend-1   |       - @ConditionalOnWarDeployment the application is not deployed as a WAR file. (OnWarDeploymentCondition)
+backend-1   | 
+backend-1   |    EmbeddedWebServerFactoryCustomizerAutoConfiguration.TomcatWebServerFactoryCustomizerConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'org.apache.catalina.startup.Tomcat', 'org.apache.coyote.UpgradeProtocol' (OnClassCondition)
+backend-1   | 
+backend-1   |    ErrorMvcAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    ErrorMvcAutoConfiguration#basicErrorController matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.web.servlet.error.ErrorController; SearchStrategy: current) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    ErrorMvcAutoConfiguration#errorAttributes matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.web.servlet.error.ErrorAttributes; SearchStrategy: current) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    ErrorMvcAutoConfiguration.DefaultErrorViewResolverConfiguration#conventionErrorViewResolver matched:
+backend-1   |       - @ConditionalOnBean (types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found bean 'dispatcherServlet'; @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration matched:
+backend-1   |       - @ConditionalOnProperty (server.error.whitelabel.enabled) matched (OnPropertyCondition)
+backend-1   |       - ErrorTemplate Missing did not find error template view (ErrorMvcAutoConfiguration.ErrorTemplateMissingCondition)
+backend-1   | 
+backend-1   |    ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration#beanNameViewResolver matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.BeanNameViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    ErrorMvcAutoConfiguration.WhitelabelErrorViewConfiguration#defaultErrorView matched:
+backend-1   |       - @ConditionalOnMissingBean (names: error; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    GenericCacheConfiguration matched:
+backend-1   |       - Cache org.springframework.boot.autoconfigure.cache.GenericCacheConfiguration automatic cache type (CacheCondition)
+backend-1   | 
+backend-1   |    HibernateJpaAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean', 'jakarta.persistence.EntityManager', 'org.hibernate.engine.spi.SessionImplementor' (OnClassCondition)
+backend-1   | 
+backend-1   |    HibernateJpaConfiguration matched:
+backend-1   |       - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+backend-1   | 
+backend-1   |    HttpEncodingAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.web.filter.CharacterEncodingFilter' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   |       - @ConditionalOnProperty (server.servlet.encoding.enabled) matched (OnPropertyCondition)
+backend-1   | 
+backend-1   |    HttpEncodingAutoConfiguration#characterEncodingFilter matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.filter.CharacterEncodingFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    HttpMessageConvertersAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.http.converter.HttpMessageConverter' (OnClassCondition)
+backend-1   |       - NoneNestedConditions 0 matched 1 did not; NestedCondition on HttpMessageConvertersAutoConfiguration.NotReactiveWebApplicationCondition.ReactiveWebApplication did not find reactive web application classes (HttpMessageConvertersAutoConfiguration.NotReactiveWebApplicationCondition)
+backend-1   | 
+backend-1   |    HttpMessageConvertersAutoConfiguration#messageConverters matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.http.HttpMessageConverters; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    HttpMessageConvertersAutoConfiguration.StringHttpMessageConverterConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.http.converter.StringHttpMessageConverter' (OnClassCondition)
+backend-1   | 
+backend-1   |    HttpMessageConvertersAutoConfiguration.StringHttpMessageConverterConfiguration#stringHttpMessageConverter matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.http.converter.StringHttpMessageConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'com.fasterxml.jackson.databind.ObjectMapper' (OnClassCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration.Jackson2ObjectMapperBuilderCustomizerConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.http.converter.json.Jackson2ObjectMapperBuilder' (OnClassCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration.JacksonObjectMapperBuilderConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.http.converter.json.Jackson2ObjectMapperBuilder' (OnClassCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration.JacksonObjectMapperBuilderConfiguration#jacksonObjectMapperBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.http.converter.json.Jackson2ObjectMapperBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration.JacksonObjectMapperConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.http.converter.json.Jackson2ObjectMapperBuilder' (OnClassCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration.JacksonObjectMapperConfiguration#jacksonObjectMapper matched:
+backend-1   |       - @ConditionalOnMissingBean (types: com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration.ParameterNamesModuleConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'com.fasterxml.jackson.module.paramnames.ParameterNamesModule' (OnClassCondition)
+backend-1   | 
+backend-1   |    JacksonAutoConfiguration.ParameterNamesModuleConfiguration#parameterNamesModule matched:
+backend-1   |       - @ConditionalOnMissingBean (types: com.fasterxml.jackson.module.paramnames.ParameterNamesModule; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JacksonHttpMessageConvertersConfiguration.MappingJackson2HttpMessageConverterConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'com.fasterxml.jackson.databind.ObjectMapper' (OnClassCondition)
+backend-1   |       - @ConditionalOnProperty (spring.mvc.converters.preferred-json-mapper=jackson) matched (OnPropertyCondition)
+backend-1   |       - @ConditionalOnBean (types: com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) found bean 'jacksonObjectMapper' (OnBeanCondition)
+backend-1   | 
+backend-1   |    JacksonHttpMessageConvertersConfiguration.MappingJackson2HttpMessageConverterConfiguration#mappingJackson2HttpMessageConverter matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.http.converter.json.MappingJackson2HttpMessageConverter ignored: org.springframework.hateoas.server.mvc.TypeConstrainedMappingJackson2HttpMessageConverter,org.springframework.data.rest.webmvc.alps.AlpsJsonHttpMessageConverter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JdbcClientAutoConfiguration matched:
+backend-1   |       - @ConditionalOnSingleCandidate (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate; SearchStrategy: all) found a single bean 'namedParameterJdbcTemplate'; @ConditionalOnMissingBean (types: org.springframework.jdbc.core.simple.JdbcClient; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JdbcTemplateAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.core.JdbcTemplate' (OnClassCondition)
+backend-1   |       - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
+backend-1   | 
+backend-1   |    JdbcTemplateConfiguration matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.jdbc.core.JdbcOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaBaseConfiguration#entityManagerFactory matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,jakarta.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaBaseConfiguration#entityManagerFactoryBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaBaseConfiguration#jpaVendorAdapter matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.JpaVendorAdapter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaBaseConfiguration#transactionManager matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaBaseConfiguration.JpaWebConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   |       - @ConditionalOnProperty (spring.jpa.open-in-view=true) matched (OnPropertyCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor,org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaBaseConfiguration.PersistenceManagedTypesConfiguration matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean,jakarta.persistence.EntityManagerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaBaseConfiguration.PersistenceManagedTypesConfiguration#persistenceManagedTypes matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.orm.jpa.persistenceunit.PersistenceManagedTypes; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JpaRepositoriesAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.data.jpa.repository.JpaRepository' (OnClassCondition)
+backend-1   |       - @ConditionalOnProperty (spring.data.jpa.repositories.enabled=true) matched (OnPropertyCondition)
+backend-1   |       - @ConditionalOnBean (types: javax.sql.DataSource; SearchStrategy: all) found bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean,org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    JtaAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'jakarta.transaction.Transaction' (OnClassCondition)
+backend-1   |       - @ConditionalOnProperty (spring.jta.enabled) matched (OnPropertyCondition)
+backend-1   | 
+backend-1   |    LifecycleAutoConfiguration#defaultLifecycleProcessor matched:
+backend-1   |       - @ConditionalOnMissingBean (names: lifecycleProcessor; SearchStrategy: current) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    MultipartAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'jakarta.servlet.MultipartConfigElement' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   |       - @ConditionalOnProperty (spring.servlet.multipart.enabled) matched (OnPropertyCondition)
+backend-1   | 
+backend-1   |    MultipartAutoConfiguration#multipartConfigElement matched:
+backend-1   |       - @ConditionalOnMissingBean (types: jakarta.servlet.MultipartConfigElement; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    MultipartAutoConfiguration#multipartResolver matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    NamedParameterJdbcTemplateConfiguration matched:
+backend-1   |       - @ConditionalOnSingleCandidate (types: org.springframework.jdbc.core.JdbcTemplate; SearchStrategy: all) found a single bean 'jdbcTemplate'; @ConditionalOnMissingBean (types: org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    NoOpCacheConfiguration matched:
+backend-1   |       - Cache org.springframework.boot.autoconfigure.cache.NoOpCacheConfiguration automatic cache type (CacheCondition)
+backend-1   | 
+backend-1   |    PersistenceExceptionTranslationAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor' (OnClassCondition)
+backend-1   | 
+backend-1   |    PersistenceExceptionTranslationAutoConfiguration#persistenceExceptionTranslationPostProcessor matched:
+backend-1   |       - @ConditionalOnProperty (spring.dao.exceptiontranslation.enabled) matched (OnPropertyCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    PropertyPlaceholderAutoConfiguration#propertySourcesPlaceholderConfigurer matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.context.support.PropertySourcesPlaceholderConfigurer; SearchStrategy: current) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    RestClientAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.web.client.RestClient' (OnClassCondition)
+backend-1   |       - NoneNestedConditions 0 matched 1 did not; NestedCondition on NotReactiveWebApplicationCondition.ReactiveWebApplication did not find reactive web application classes (NotReactiveWebApplicationCondition)
+backend-1   | 
+backend-1   |    RestClientAutoConfiguration#httpMessageConvertersRestClientCustomizer matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.web.client.HttpMessageConvertersRestClientCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    RestClientAutoConfiguration#restClientBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.client.RestClient$Builder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    RestClientAutoConfiguration#restClientBuilderConfigurer matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.web.client.RestClientBuilderConfigurer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    RestClientAutoConfiguration#restClientSsl matched:
+backend-1   |       - @ConditionalOnBean (types: org.springframework.boot.ssl.SslBundles; SearchStrategy: all) found bean 'sslBundleRegistry'; @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.web.client.RestClientSsl; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    RestTemplateAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.web.client.RestTemplate' (OnClassCondition)
+backend-1   |       - NoneNestedConditions 0 matched 1 did not; NestedCondition on NotReactiveWebApplicationCondition.ReactiveWebApplication did not find reactive web application classes (NotReactiveWebApplicationCondition)
+backend-1   | 
+backend-1   |    RestTemplateAutoConfiguration#restTemplateBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.web.client.RestTemplateBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    SecurityAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.security.authentication.DefaultAuthenticationEventPublisher' (OnClassCondition)
+backend-1   | 
+backend-1   |    SecurityAutoConfiguration#authenticationEventPublisher matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationEventPublisher; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    SecurityFilterAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer', 'org.springframework.security.config.http.SessionCreationPolicy' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    SecurityFilterAutoConfiguration#securityFilterChainRegistration matched:
+backend-1   |       - @ConditionalOnBean (names: springSecurityFilterChain; SearchStrategy: all) found bean 'springSecurityFilterChain' (OnBeanCondition)
+backend-1   | 
+backend-1   |    ServletWebServerFactoryAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'jakarta.servlet.ServletRequest' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    ServletWebServerFactoryAutoConfiguration#tomcatServletWebServerFactoryCustomizer matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.apache.catalina.startup.Tomcat' (OnClassCondition)
+backend-1   | 
+backend-1   |    ServletWebServerFactoryConfiguration.EmbeddedTomcat matched:
+backend-1   |       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.apache.catalina.startup.Tomcat', 'org.apache.coyote.UpgradeProtocol' (OnClassCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.web.servlet.server.ServletWebServerFactory; SearchStrategy: current) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    SimpleCacheConfiguration matched:
+backend-1   |       - Cache org.springframework.boot.autoconfigure.cache.SimpleCacheConfiguration automatic cache type (CacheCondition)
+backend-1   | 
+backend-1   |    SpringBootWebSecurityConfiguration matched:
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    SpringDataWebAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'org.springframework.data.web.PageableHandlerMethodArgumentResolver', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.data.web.PageableHandlerMethodArgumentResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    SpringDataWebAutoConfiguration#pageableCustomizer matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    SpringDataWebAutoConfiguration#sortCustomizer matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.data.web.config.SortHandlerMethodArgumentResolverCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    SqlInitializationAutoConfiguration matched:
+backend-1   |       - @ConditionalOnProperty (spring.sql.init.enabled) matched (OnPropertyCondition)
+backend-1   |       - NoneNestedConditions 0 matched 1 did not; NestedCondition on SqlInitializationAutoConfiguration.SqlInitializationModeCondition.ModeIsNever @ConditionalOnProperty (spring.sql.init.mode=never) found different value in property 'mode' (SqlInitializationAutoConfiguration.SqlInitializationModeCondition)
+backend-1   | 
+backend-1   |    SslAutoConfiguration#sslBundleRegistry matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.ssl.SslBundleRegistry,org.springframework.boot.ssl.SslBundles; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskExecutionAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor' (OnClassCondition)
+backend-1   | 
+backend-1   |    TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   |       - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+backend-1   | 
+backend-1   |    TaskExecutorConfigurations.TaskExecutorBuilderConfiguration#taskExecutorBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.task.TaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskExecutorConfigurations.TaskExecutorConfiguration matched:
+backend-1   |       - @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutor matched:
+backend-1   |       - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+backend-1   | 
+backend-1   |    TaskExecutorConfigurations.ThreadPoolTaskExecutorBuilderConfiguration#threadPoolTaskExecutorBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.task.TaskExecutorBuilder,org.springframework.boot.task.ThreadPoolTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskSchedulingAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler' (OnClassCondition)
+backend-1   | 
+backend-1   |    TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   |       - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+backend-1   | 
+backend-1   |    TaskSchedulingConfigurations.TaskSchedulerBuilderConfiguration#taskSchedulerBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.task.TaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskSchedulingConfigurations.ThreadPoolTaskSchedulerBuilderConfiguration#threadPoolTaskSchedulerBuilder matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.task.TaskSchedulerBuilder,org.springframework.boot.task.ThreadPoolTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration.EnableTransactionManagementConfiguration matched:
+backend-1   |       - @ConditionalOnBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) found bean 'transactionManager'; @ConditionalOnMissingBean (types: org.springframework.transaction.annotation.AbstractTransactionManagementConfiguration; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration.EnableTransactionManagementConfiguration.CglibAutoProxyConfiguration matched:
+backend-1   |       - @ConditionalOnProperty (spring.aop.proxy-target-class=true) matched (OnPropertyCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration.TransactionTemplateConfiguration matched:
+backend-1   |       - @ConditionalOnSingleCandidate (types: org.springframework.transaction.PlatformTransactionManager; SearchStrategy: all) found a single bean 'transactionManager' (OnBeanCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration.TransactionTemplateConfiguration#transactionTemplate matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.transaction.support.TransactionOperations; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TransactionManagerCustomizationAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required class 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
+backend-1   | 
+backend-1   |    TransactionManagerCustomizationAutoConfiguration#platformTransactionManagerCustomizers matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration#formContentFilter matched:
+backend-1   |       - @ConditionalOnProperty (spring.mvc.formcontent.filter.enabled) matched (OnPropertyCondition)
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.filter.FormContentFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.EnableWebMvcConfiguration#flashMapManager matched:
+backend-1   |       - @ConditionalOnMissingBean (names: flashMapManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.EnableWebMvcConfiguration#localeResolver matched:
+backend-1   |       - @ConditionalOnMissingBean (names: localeResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.EnableWebMvcConfiguration#themeResolver matched:
+backend-1   |       - @ConditionalOnMissingBean (names: themeResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#defaultViewResolver matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.InternalResourceViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#requestContextFilter matched:
+backend-1   |       - @ConditionalOnMissingBean (types: org.springframework.web.context.request.RequestContextListener,org.springframework.web.filter.RequestContextFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#viewResolver matched:
+backend-1   |       - @ConditionalOnBean (types: org.springframework.web.servlet.ViewResolver; SearchStrategy: all) found beans 'defaultViewResolver', 'beanNameViewResolver', 'mvcViewResolver'; @ConditionalOnMissingBean (names: viewResolver types: org.springframework.web.servlet.view.ContentNegotiatingViewResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebSocketServletAutoConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'jakarta.websocket.server.ServerContainer' (OnClassCondition)
+backend-1   |       - found 'session' scope (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    WebSocketServletAutoConfiguration.TomcatWebSocketConfiguration matched:
+backend-1   |       - @ConditionalOnClass found required classes 'org.apache.catalina.startup.Tomcat', 'org.apache.tomcat.websocket.server.WsSci' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebSocketServletAutoConfiguration.TomcatWebSocketConfiguration#websocketServletWebServerCustomizer matched:
+backend-1   |       - @ConditionalOnMissingBean (names: websocketServletWebServerCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   | 
+backend-1   | Negative matches:
+backend-1   | -----------------
+backend-1   | 
+backend-1   |    ActiveMQAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'jakarta.jms.ConnectionFactory' (OnClassCondition)
+backend-1   | 
+backend-1   |    AopAutoConfiguration.AspectJAutoProxyingConfiguration.JdkDynamicAutoProxyConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.aop.proxy-target-class=false) did not find property 'proxy-target-class' (OnPropertyCondition)
+backend-1   | 
+backend-1   |    AopAutoConfiguration.ClassProxyingConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnMissingClass found unwanted class 'org.aspectj.weaver.Advice' (OnClassCondition)
+backend-1   | 
+backend-1   |    ArtemisAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'jakarta.jms.ConnectionFactory' (OnClassCondition)
+backend-1   | 
+backend-1   |    BatchAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.batch.core.launch.JobLauncher' (OnClassCondition)
+backend-1   | 
+backend-1   |    Cache2kCacheConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.cache2k.Cache2kBuilder' (OnClassCondition)
+backend-1   | 
+backend-1   |    CacheAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnBean (types: org.springframework.cache.interceptor.CacheAspectSupport; SearchStrategy: all) did not find any beans of type org.springframework.cache.interceptor.CacheAspectSupport (OnBeanCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required class 'org.springframework.cache.CacheManager' (OnClassCondition)
+backend-1   | 
+backend-1   |    CacheAutoConfiguration.CacheManagerEntityManagerFactoryDependsOnPostProcessor:
+backend-1   |       Did not match:
+backend-1   |          - Ancestor org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration did not match (ConditionEvaluationReport.AncestorsMatchedCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required class 'org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean' (OnClassCondition)
+backend-1   | 
+backend-1   |    CaffeineCacheConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.github.benmanes.caffeine.cache.Caffeine' (OnClassCondition)
+backend-1   | 
+backend-1   |    CassandraAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.datastax.oss.driver.api.core.CqlSession' (OnClassCondition)
+backend-1   | 
+backend-1   |    CassandraDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.datastax.oss.driver.api.core.CqlSession' (OnClassCondition)
+backend-1   | 
+backend-1   |    CassandraReactiveDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.datastax.oss.driver.api.core.CqlSession' (OnClassCondition)
+backend-1   | 
+backend-1   |    CassandraReactiveRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.cassandra.ReactiveSession' (OnClassCondition)
+backend-1   | 
+backend-1   |    CassandraRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.datastax.oss.driver.api.core.CqlSession' (OnClassCondition)
+backend-1   | 
+backend-1   |    ClientHttpConnectorAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.function.client.WebClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    CodecsAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.function.client.WebClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    CouchbaseAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.couchbase.client.java.Cluster' (OnClassCondition)
+backend-1   | 
+backend-1   |    CouchbaseCacheConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.couchbase.client.java.Cluster' (OnClassCondition)
+backend-1   | 
+backend-1   |    CouchbaseDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.couchbase.client.java.Bucket' (OnClassCondition)
+backend-1   | 
+backend-1   |    CouchbaseReactiveDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.couchbase.client.java.Cluster' (OnClassCondition)
+backend-1   | 
+backend-1   |    CouchbaseReactiveRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.couchbase.client.java.Cluster' (OnClassCondition)
+backend-1   | 
+backend-1   |    CouchbaseRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.couchbase.client.java.Bucket' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceAutoConfiguration.EmbeddedDatabaseConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - EmbeddedDataSource spring.datasource.url is set (DataSourceAutoConfiguration.EmbeddedDatabaseCondition)
+backend-1   | 
+backend-1   |    DataSourceCheckpointRestoreConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.crac.Resource' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceConfiguration.Dbcp2:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.apache.commons.dbcp2.BasicDataSource' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceConfiguration.Generic:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.datasource.type) did not find property 'spring.datasource.type' (OnPropertyCondition)
+backend-1   | 
+backend-1   |    DataSourceConfiguration.OracleUcp:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required classes 'oracle.ucp.jdbc.PoolDataSourceImpl', 'oracle.jdbc.OracleConnection' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceConfiguration.Tomcat:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.apache.tomcat.jdbc.pool.DataSource' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceJmxConfiguration.TomcatDataSourceJmxConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.apache.tomcat.jdbc.pool.DataSourceProxy' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourcePoolMetadataProvidersConfiguration.CommonsDbcp2PoolDataSourceMetadataProviderConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.apache.commons.dbcp2.BasicDataSource' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourcePoolMetadataProvidersConfiguration.OracleUcpPoolDataSourceMetadataProviderConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required classes 'oracle.ucp.jdbc.PoolDataSource', 'oracle.jdbc.OracleConnection' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourcePoolMetadataProvidersConfiguration.TomcatDataSourcePoolMetadataProviderConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.apache.tomcat.jdbc.pool.DataSource' (OnClassCondition)
+backend-1   | 
+backend-1   |    DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration#transactionManager:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnMissingBean (types: org.springframework.transaction.TransactionManager; SearchStrategy: all) found beans of type 'org.springframework.transaction.TransactionManager' transactionManager (OnBeanCondition)
+backend-1   | 
+backend-1   |    DispatcherServletAutoConfiguration.DispatcherServletConfiguration#multipartResolver:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans of type org.springframework.web.multipart.MultipartResolver (OnBeanCondition)
+backend-1   | 
+backend-1   |    ElasticsearchClientAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'co.elastic.clients.elasticsearch.ElasticsearchClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    ElasticsearchDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate' (OnClassCondition)
+backend-1   | 
+backend-1   |    ElasticsearchRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.elasticsearch.repository.ElasticsearchRepository' (OnClassCondition)
+backend-1   | 
+backend-1   |    ElasticsearchRestClientAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.elasticsearch.client.RestClientBuilder' (OnClassCondition)
+backend-1   | 
+backend-1   |    EmbeddedLdapAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.unboundid.ldap.listener.InMemoryDirectoryServer' (OnClassCondition)
+backend-1   | 
+backend-1   |    EmbeddedWebServerFactoryCustomizerAutoConfiguration.JettyWebServerFactoryCustomizerConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required classes 'org.eclipse.jetty.server.Server', 'org.eclipse.jetty.util.Loader', 'org.eclipse.jetty.ee10.webapp.WebAppContext' (OnClassCondition)
+backend-1   | 
+backend-1   |    EmbeddedWebServerFactoryCustomizerAutoConfiguration.NettyWebServerFactoryCustomizerConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'reactor.netty.http.server.HttpServer' (OnClassCondition)
+backend-1   | 
+backend-1   |    EmbeddedWebServerFactoryCustomizerAutoConfiguration.TomcatWebServerFactoryCustomizerConfiguration#tomcatVirtualThreadsProtocolHandlerCustomizer:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
+backend-1   | 
+backend-1   |    EmbeddedWebServerFactoryCustomizerAutoConfiguration.UndertowWebServerFactoryCustomizerConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required classes 'io.undertow.Undertow', 'org.xnio.SslClientAuthMode' (OnClassCondition)
+backend-1   | 
+backend-1   |    ErrorWebFluxAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.config.WebFluxConfigurer' (OnClassCondition)
+backend-1   | 
+backend-1   |    FlywayAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.flywaydb.core.Flyway' (OnClassCondition)
+backend-1   | 
+backend-1   |    FreeMarkerAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'freemarker.template.Configuration' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlQueryByExampleAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlQuerydslAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.querydsl.core.Query' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlRSocketAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlReactiveQueryByExampleAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlReactiveQuerydslAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.querydsl.core.Query' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlWebFluxAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlWebFluxSecurityAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlWebMvcAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GraphQlWebMvcSecurityAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    GroovyTemplateAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'groovy.text.markup.MarkupTemplateEngine' (OnClassCondition)
+backend-1   | 
+backend-1   |    GsonAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.google.gson.Gson' (OnClassCondition)
+backend-1   | 
+backend-1   |    GsonHttpMessageConvertersConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.google.gson.Gson' (OnClassCondition)
+backend-1   | 
+backend-1   |    H2ConsoleAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.h2.server.web.JakartaWebServlet' (OnClassCondition)
+backend-1   | 
+backend-1   |    HazelcastAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.hazelcast.core.HazelcastInstance' (OnClassCondition)
+backend-1   | 
+backend-1   |    HazelcastCacheConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.hazelcast.core.HazelcastInstance' (OnClassCondition)
+backend-1   | 
+backend-1   |    HazelcastJpaDependencyAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.hazelcast.core.HazelcastInstance' (OnClassCondition)
+backend-1   | 
+backend-1   |    HttpHandlerAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.DispatcherHandler' (OnClassCondition)
+backend-1   | 
+backend-1   |    HypermediaAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.hateoas.EntityModel' (OnClassCondition)
+backend-1   | 
+backend-1   |    InfinispanCacheConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.infinispan.spring.embedded.provider.SpringEmbeddedCacheManager' (OnClassCondition)
+backend-1   | 
+backend-1   |    InfluxDbAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.influxdb.InfluxDB' (OnClassCondition)
+backend-1   | 
+backend-1   |    IntegrationAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.integration.config.EnableIntegration' (OnClassCondition)
+backend-1   | 
+backend-1   |    JCacheCacheConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'javax.cache.Caching' (OnClassCondition)
+backend-1   | 
+backend-1   |    JacksonHttpMessageConvertersConfiguration.MappingJackson2XmlHttpMessageConverterConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.fasterxml.jackson.dataformat.xml.XmlMapper' (OnClassCondition)
+backend-1   | 
+backend-1   |    JdbcRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration' (OnClassCondition)
+backend-1   | 
+backend-1   |    JerseyAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.glassfish.jersey.server.spring.SpringComponentProvider' (OnClassCondition)
+backend-1   | 
+backend-1   |    JmsAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'jakarta.jms.Message' (OnClassCondition)
+backend-1   | 
+backend-1   |    JmxAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.jmx.enabled=true) did not find property 'enabled' (OnPropertyCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required class 'org.springframework.jmx.export.MBeanExporter' (OnClassCondition)
+backend-1   | 
+backend-1   |    JndiConnectionFactoryAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.jms.core.JmsTemplate' (OnClassCondition)
+backend-1   | 
+backend-1   |    JndiDataSourceAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.datasource.jndi-name) did not find property 'jndi-name' (OnPropertyCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+backend-1   | 
+backend-1   |    JndiJtaConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnJndi JNDI environment is not available (OnJndiCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required class 'org.springframework.transaction.jta.JtaTransactionManager' (OnClassCondition)
+backend-1   | 
+backend-1   |    JooqAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.jooq.DSLContext' (OnClassCondition)
+backend-1   | 
+backend-1   |    JpaRepositoriesAutoConfiguration#entityManagerFactoryBootstrapExecutorCustomizer:
+backend-1   |       Did not match:
+backend-1   |          - AnyNestedCondition 0 matched 2 did not; NestedCondition on JpaRepositoriesAutoConfiguration.BootstrapExecutorCondition.LazyBootstrapMode @ConditionalOnProperty (spring.data.jpa.repositories.bootstrap-mode=lazy) did not find property 'bootstrap-mode'; NestedCondition on JpaRepositoriesAutoConfiguration.BootstrapExecutorCondition.DeferredBootstrapMode @ConditionalOnProperty (spring.data.jpa.repositories.bootstrap-mode=deferred) did not find property 'bootstrap-mode' (JpaRepositoriesAutoConfiguration.BootstrapExecutorCondition)
+backend-1   | 
+backend-1   |    JsonbAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'jakarta.json.bind.Jsonb' (OnClassCondition)
+backend-1   | 
+backend-1   |    JsonbHttpMessageConvertersConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'jakarta.json.bind.Jsonb' (OnClassCondition)
+backend-1   | 
+backend-1   |    KafkaAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.kafka.core.KafkaTemplate' (OnClassCondition)
+backend-1   | 
+backend-1   |    LdapAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.ldap.core.ContextSource' (OnClassCondition)
+backend-1   | 
+backend-1   |    LdapRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.ldap.repository.LdapRepository' (OnClassCondition)
+backend-1   | 
+backend-1   |    LiquibaseAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'liquibase.change.DatabaseChange' (OnClassCondition)
+backend-1   | 
+backend-1   |    MailSenderAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'jakarta.mail.internet.MimeMessage' (OnClassCondition)
+backend-1   | 
+backend-1   |    MailSenderValidatorAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnSingleCandidate did not find required type 'org.springframework.mail.javamail.JavaMailSenderImpl' (OnBeanCondition)
+backend-1   | 
+backend-1   |    MessageSourceAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - ResourceBundle did not find bundle with basename messages (MessageSourceAutoConfiguration.ResourceBundleCondition)
+backend-1   | 
+backend-1   |    MongoAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.mongodb.client.MongoClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    MongoDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.mongodb.client.MongoClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    MongoReactiveAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.mongodb.reactivestreams.client.MongoClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    MongoReactiveDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.mongodb.reactivestreams.client.MongoClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    MongoReactiveRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.mongodb.reactivestreams.client.MongoClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    MongoRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.mongodb.client.MongoClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    MustacheAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.samskivert.mustache.Mustache' (OnClassCondition)
+backend-1   | 
+backend-1   |    Neo4jAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.neo4j.driver.Driver' (OnClassCondition)
+backend-1   | 
+backend-1   |    Neo4jDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.neo4j.driver.Driver' (OnClassCondition)
+backend-1   | 
+backend-1   |    Neo4jReactiveDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.neo4j.driver.Driver' (OnClassCondition)
+backend-1   | 
+backend-1   |    Neo4jReactiveRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.neo4j.driver.Driver' (OnClassCondition)
+backend-1   | 
+backend-1   |    Neo4jRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.neo4j.driver.Driver' (OnClassCondition)
+backend-1   | 
+backend-1   |    NettyAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.netty.util.NettyRuntime' (OnClassCondition)
+backend-1   | 
+backend-1   |    OAuth2AuthorizationServerAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.security.oauth2.server.authorization.OAuth2Authorization' (OnClassCondition)
+backend-1   | 
+backend-1   |    OAuth2AuthorizationServerJwtAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.security.oauth2.server.authorization.OAuth2Authorization' (OnClassCondition)
+backend-1   | 
+backend-1   |    OAuth2ClientAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.security.oauth2.client.registration.ClientRegistration' (OnClassCondition)
+backend-1   | 
+backend-1   |    OAuth2ResourceServerAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthenticationToken' (OnClassCondition)
+backend-1   | 
+backend-1   |    ProjectInfoAutoConfiguration#buildProperties:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnResource did not find resource '${spring.info.build.location:classpath:META-INF/build-info.properties}' (OnResourceCondition)
+backend-1   | 
+backend-1   |    ProjectInfoAutoConfiguration#gitProperties:
+backend-1   |       Did not match:
+backend-1   |          - GitResource did not find git info at classpath:git.properties (ProjectInfoAutoConfiguration.GitResourceAvailableCondition)
+backend-1   | 
+backend-1   |    PulsarAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.apache.pulsar.client.api.PulsarClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    PulsarReactiveAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.apache.pulsar.client.api.PulsarClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    QuartzAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.quartz.Scheduler' (OnClassCondition)
+backend-1   | 
+backend-1   |    R2dbcAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.r2dbc.spi.ConnectionFactory' (OnClassCondition)
+backend-1   | 
+backend-1   |    R2dbcDataAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.r2dbc.core.R2dbcEntityTemplate' (OnClassCondition)
+backend-1   | 
+backend-1   |    R2dbcInitializationConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required classes 'io.r2dbc.spi.ConnectionFactory', 'org.springframework.r2dbc.connection.init.DatabasePopulator' (OnClassCondition)
+backend-1   | 
+backend-1   |    R2dbcRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.r2dbc.spi.ConnectionFactory' (OnClassCondition)
+backend-1   | 
+backend-1   |    R2dbcTransactionManagerAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.r2dbc.connection.R2dbcTransactionManager' (OnClassCondition)
+backend-1   | 
+backend-1   |    RSocketGraphQlClientAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'graphql.GraphQL' (OnClassCondition)
+backend-1   | 
+backend-1   |    RSocketMessagingAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.rsocket.RSocket' (OnClassCondition)
+backend-1   | 
+backend-1   |    RSocketRequesterAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.rsocket.RSocket' (OnClassCondition)
+backend-1   | 
+backend-1   |    RSocketSecurityAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.security.rsocket.core.SecuritySocketAcceptorInterceptor' (OnClassCondition)
+backend-1   | 
+backend-1   |    RSocketServerAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.rsocket.core.RSocketServer' (OnClassCondition)
+backend-1   | 
+backend-1   |    RSocketStrategiesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.netty.buffer.PooledByteBufAllocator' (OnClassCondition)
+backend-1   | 
+backend-1   |    RabbitAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.rabbitmq.client.Channel' (OnClassCondition)
+backend-1   | 
+backend-1   |    ReactiveElasticsearchClientAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'co.elastic.clients.transport.ElasticsearchTransport' (OnClassCondition)
+backend-1   | 
+backend-1   |    ReactiveElasticsearchRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.elasticsearch.client.elc.ReactiveElasticsearchClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    ReactiveMultipartAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.config.WebFluxConfigurer' (OnClassCondition)
+backend-1   | 
+backend-1   |    ReactiveOAuth2ClientAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'reactor.core.publisher.Flux' (OnClassCondition)
+backend-1   | 
+backend-1   |    ReactiveOAuth2ResourceServerAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnWebApplication did not find reactive web application classes (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    ReactiveSecurityAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'reactor.core.publisher.Flux' (OnClassCondition)
+backend-1   | 
+backend-1   |    ReactiveUserDetailsServiceAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - AnyNestedCondition 0 matched 2 did not; NestedCondition on ReactiveUserDetailsServiceAutoConfiguration.RSocketEnabledOrReactiveWebApplication.ReactiveWebApplicationCondition did not find reactive web application classes; NestedCondition on ReactiveUserDetailsServiceAutoConfiguration.RSocketEnabledOrReactiveWebApplication.RSocketSecurityEnabledCondition @ConditionalOnBean (types: org.springframework.messaging.rsocket.annotation.support.RSocketMessageHandler; SearchStrategy: all) did not find any beans of type org.springframework.messaging.rsocket.annotation.support.RSocketMessageHandler (ReactiveUserDetailsServiceAutoConfiguration.RSocketEnabledOrReactiveWebApplication)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required class 'org.springframework.security.authentication.ReactiveAuthenticationManager' (OnClassCondition)
+backend-1   |          - AnyNestedCondition 1 matched 2 did not; NestedCondition on ReactiveUserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.PasswordConfigured @ConditionalOnProperty (spring.security.user.password) did not find property 'password'; NestedCondition on ReactiveUserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.NameConfigured @ConditionalOnProperty (spring.security.user.name) did not find property 'name'; NestedCondition on ReactiveUserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.MissingAlternative @ConditionalOnMissingClass did not find unwanted classes 'org.springframework.security.oauth2.client.registration.ClientRegistrationRepository', 'org.springframework.security.oauth2.server.resource.introspection.ReactiveOpaqueTokenIntrospector' (ReactiveUserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured)
+backend-1   | 
+backend-1   |    ReactiveWebServerFactoryAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnWebApplication did not find reactive web application classes (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    ReactorAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'reactor.core.publisher.Hooks' (OnClassCondition)
+backend-1   | 
+backend-1   |    RedisAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.redis.core.RedisOperations' (OnClassCondition)
+backend-1   | 
+backend-1   |    RedisCacheConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.redis.connection.RedisConnectionFactory' (OnClassCondition)
+backend-1   | 
+backend-1   |    RedisReactiveAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'reactor.core.publisher.Flux' (OnClassCondition)
+backend-1   | 
+backend-1   |    RedisRepositoriesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.redis.repository.configuration.EnableRedisRepositories' (OnClassCondition)
+backend-1   | 
+backend-1   |    RepositoryRestMvcAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration' (OnClassCondition)
+backend-1   | 
+backend-1   |    Saml2RelyingPartyAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository' (OnClassCondition)
+backend-1   | 
+backend-1   |    SecurityDataConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.security.data.repository.query.SecurityEvaluationContextExtension' (OnClassCondition)
+backend-1   | 
+backend-1   |    SendGridAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'com.sendgrid.SendGrid' (OnClassCondition)
+backend-1   | 
+backend-1   |    ServletWebServerFactoryAutoConfiguration.ForwardedHeaderFilterConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (server.forward-headers-strategy=framework) did not find property 'server.forward-headers-strategy' (OnPropertyCondition)
+backend-1   | 
+backend-1   |    ServletWebServerFactoryConfiguration.EmbeddedJetty:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required classes 'org.eclipse.jetty.server.Server', 'org.eclipse.jetty.util.Loader', 'org.eclipse.jetty.ee10.webapp.WebAppContext' (OnClassCondition)
+backend-1   | 
+backend-1   |    ServletWebServerFactoryConfiguration.EmbeddedUndertow:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required classes 'io.undertow.Undertow', 'org.xnio.SslClientAuthMode' (OnClassCondition)
+backend-1   | 
+backend-1   |    SessionAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.session.Session' (OnClassCondition)
+backend-1   | 
+backend-1   |    SpringApplicationAdminJmxAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.application.admin.enabled=true) did not find property 'enabled' (OnPropertyCondition)
+backend-1   | 
+backend-1   |    SpringBootWebSecurityConfiguration.SecurityFilterChainConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.web.SecurityFilterChain' securityFilterChain; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+backend-1   | 
+backend-1   |    SpringBootWebSecurityConfiguration.WebSecurityEnablerConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+backend-1   | 
+backend-1   |    TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilderVirtualThreads:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder' simpleAsyncTaskExecutorBuilder (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutorVirtualThreads:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
+backend-1   | 
+backend-1   |    TaskSchedulingAutoConfiguration#scheduledBeanLazyInitializationExcludeFilter:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnBean (names: org.springframework.context.annotation.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.context.annotation.internalScheduledAnnotationProcessor (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilderVirtualThreads:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder' simpleAsyncTaskSchedulerBuilder (OnBeanCondition)
+backend-1   | 
+backend-1   |    TaskSchedulingConfigurations.TaskSchedulerConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnBean (names: org.springframework.context.annotation.internalScheduledAnnotationProcessor; SearchStrategy: all) did not find any beans named org.springframework.context.annotation.internalScheduledAnnotationProcessor (OnBeanCondition)
+backend-1   | 
+backend-1   |    ThymeleafAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.thymeleaf.spring6.SpringTemplateEngine' (OnClassCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration#transactionalOperator:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnSingleCandidate (types: org.springframework.transaction.ReactiveTransactionManager; SearchStrategy: all) did not find any beans (OnBeanCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration.AspectJTransactionManagementConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnBean (types: org.springframework.transaction.aspectj.AbstractTransactionAspect; SearchStrategy: all) did not find any beans of type org.springframework.transaction.aspectj.AbstractTransactionAspect (OnBeanCondition)
+backend-1   | 
+backend-1   |    TransactionAutoConfiguration.EnableTransactionManagementConfiguration.JdkDynamicAutoProxyConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.aop.proxy-target-class=false) did not find property 'proxy-target-class' (OnPropertyCondition)
+backend-1   | 
+backend-1   |    UserDetailsServiceAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.authentication.AuthenticationManagerResolver,org.springframework.security.oauth2.jwt.JwtDecoder; SearchStrategy: all) found beans of type 'org.springframework.security.authentication.AuthenticationManager' authenticationManager and found beans of type 'org.springframework.security.core.userdetails.UserDetailsService' userDetailsService and found beans of type 'org.springframework.security.authentication.AuthenticationProvider' authenticationProvider (OnBeanCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+backend-1   |          - AnyNestedCondition 1 matched 2 did not; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.PasswordConfigured @ConditionalOnProperty (spring.security.user.password) did not find property 'password'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.NameConfigured @ConditionalOnProperty (spring.security.user.name) did not find property 'name'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.MissingAlternative @ConditionalOnMissingClass did not find unwanted classes 'org.springframework.security.oauth2.client.registration.ClientRegistrationRepository', 'org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector', 'org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository' (UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured)
+backend-1   | 
+backend-1   |    ValidationAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'jakarta.validation.executable.ExecutableValidator' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebClientAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.function.client.WebClient' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebFluxAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.config.WebFluxConfigurer' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration#hiddenHttpMethodFilter:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.mvc.hiddenmethod.filter.enabled) did not find property 'enabled' (OnPropertyCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.ProblemDetailsErrorHandlingConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnProperty (spring.mvc.problemdetails.enabled=true) did not find property 'enabled' (OnPropertyCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.ResourceChainCustomizerConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnEnabledResourceChain did not find class org.webjars.WebJarAssetLocator (OnEnabledResourceChainCondition)
+backend-1   | 
+backend-1   |    WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter#beanNameViewResolver:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnMissingBean (types: org.springframework.web.servlet.view.BeanNameViewResolver; SearchStrategy: all) found beans of type 'org.springframework.web.servlet.view.BeanNameViewResolver' beanNameViewResolver (OnBeanCondition)
+backend-1   | 
+backend-1   |    WebServiceTemplateAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.oxm.Marshaller' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebServicesAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.ws.transport.http.MessageDispatcherServlet' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebSessionIdResolverAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'reactor.core.publisher.Mono' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebSocketMessagingAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebSocketReactiveAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnWebApplication did not find reactive web application classes (OnWebApplicationCondition)
+backend-1   | 
+backend-1   |    WebSocketServletAutoConfiguration.JettyWebSocketConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'org.eclipse.jetty.ee10.websocket.jakarta.server.config.JakartaWebSocketServletContainerInitializer' (OnClassCondition)
+backend-1   | 
+backend-1   |    WebSocketServletAutoConfiguration.UndertowWebSocketConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnClass did not find required class 'io.undertow.websockets.jsr.Bootstrap' (OnClassCondition)
+backend-1   | 
+backend-1   |    XADataSourceAutoConfiguration:
+backend-1   |       Did not match:
+backend-1   |          - @ConditionalOnBean (types: org.springframework.boot.jdbc.XADataSourceWrapper; SearchStrategy: all) did not find any beans of type org.springframework.boot.jdbc.XADataSourceWrapper (OnBeanCondition)
+backend-1   |       Matched:
+backend-1   |          - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'jakarta.transaction.TransactionManager', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
+backend-1   | 
+backend-1   | 
+backend-1   | Exclusions:
+backend-1   | -----------
+backend-1   | 
+backend-1   |     None
+backend-1   | 
+backend-1   | 
+backend-1   | Unconditional classes:
+backend-1   | ----------------------
+backend-1   | 
+backend-1   |     org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+backend-1   | 
+backend-1   |     org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration
+backend-1   | 
+backend-1   |     org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
+backend-1   | 
+backend-1   |     org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+backend-1   | 
+backend-1   |     org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration
+backend-1   | 
+backend-1   |     org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration
+backend-1   | 
+backend-1   | 
+backend-1   | 
+backend-1   | 2024-03-30T19:04:34.137Z ERROR 7 --- [           main] o.s.boot.SpringApplication               : Application run failed
+backend-1   | 
+backend-1   | org.springframework.context.ApplicationContextException: Unable to start web server
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:618) ~[spring-context-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at com.backend.chmiel.ChmielApplication.main(ChmielApplication.java:10) ~[!/:0.0.1-SNAPSHOT]
+backend-1   | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+backend-1   | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+backend-1   | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[runner.jar:0.0.1-SNAPSHOT]
+backend-1   | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[runner.jar:0.0.1-SNAPSHOT]
+backend-1   | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[runner.jar:0.0.1-SNAPSHOT]
+backend-1   | Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:145) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:105) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:499) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:218) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	... 15 common frames omitted
+backend-1   | Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'applicationConfig' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/ApplicationConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4866) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:845) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source) ~[na:na]
+backend-1   | 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:240) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:921) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.19.jar!/:na]
+backend-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	... 20 common frames omitted
+backend-1   | Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'applicationConfig' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/ApplicationConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	... 61 common frames omitted
+backend-1   | Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1685) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1434) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	... 84 common frames omitted
+backend-1   | Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:685) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	... 98 common frames omitted
+backend-1   | Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute database script
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	... 110 common frames omitted
+backend-1   | Caused by: org.springframework.jdbc.datasource.init.UncategorizedScriptException: Failed to execute database script
+backend-1   | 	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:67) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:108) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyDataScripts(AbstractScriptDatabaseInitializer.java:102) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:77) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:66) ~[spring-boot-3.2.3.jar!/:3.2.3]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
+backend-1   | 	... 119 common frames omitted
+backend-1   | Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+backend-1   | 	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:52) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	... 127 common frames omitted
+backend-1   | Caused by: org.postgresql.util.PSQLException: Connection to 172.22.0.1:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+backend-1   | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:342) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar!/:na]
+backend-1   | 	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
+backend-1   | 	... 128 common frames omitted
+backend-1   | Caused by: java.net.ConnectException: Connection refused
+backend-1   | 	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+backend-1   | 	at java.base/sun.nio.ch.Net.pollConnectNow(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/sun.nio.ch.NioSocketImpl.connect(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/java.net.SocksSocketImpl.connect(Unknown Source) ~[na:na]
+backend-1   | 	at java.base/java.net.Socket.connect(Unknown Source) ~[na:na]
+backend-1   | 	at org.postgresql.core.PGStream.createSocket(PGStream.java:243) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.PGStream.<init>(PGStream.java:98) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.1.jar!/:42.6.1]
+backend-1   | 	... 142 common frames omitted
+backend-1   | 
