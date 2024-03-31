@@ -1,7 +1,29 @@
-FROM node:slim
+FROM node:slim AS build
 
-WORKDIR /front
+WORKDIR /app
 
+# Copy package.json and package-lock.json files separately
+COPY ./chmiel_app/package.json ./chmiel_app/package-lock.json ./
+
+# Install dependencies
+RUN npm install
+RUN apt update && apt install -y curl
+
+# Copy the rest of the application files
 COPY ./chmiel_app .
 
-CMD npm start
+RUN npm run build
+
+FROM nginx:1.25.4
+
+# Copy the built React app from the build stage to the nginx container
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+# Start the application
+#CMD npm start
+
+
+
