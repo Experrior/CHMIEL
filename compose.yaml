@@ -1,20 +1,54 @@
-services:
-  backend:
-    image: chmiel_back
-    ports:
-      - "8000:8000"
-    networks:
-      - my-network
+version: '3'
 
-  frontend:
+services:
+  chmiel_db:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ChmielDB
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: test
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "ChmielDB"]
+      interval: 30s
+      timeout: 60s
+      retries: 3
+      start_period: 80s
+    networks:
+      - my_network
+
+
+  chmiel_back:
+    build:
+      context: .
+      dockerfile: Dockerfile_back
+    ports:
+      - "8084:8084"
+    depends_on:
+      chmiel_db:
+        condition: service_healthy
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://chmiel_db:5432/ChmielDB
+      DATASOURCE_USERNAME: admin
+      DATASOURCE_PASSWORD: test
+    networks:
+      - my_network
+
+
+  chmiel_front:
     image: chmiel_front
     ports:
-      - "8083:8083"
-    networks:
-      - my-network
+      - "3000:80"
     depends_on:
-      - backend
+      - chmiel_back
+    networks:
+      - my_network
 
 networks:
-  my-network:
+  my_network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
