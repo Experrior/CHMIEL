@@ -1,0 +1,113 @@
+/* GENERAL STYLES FOR CUSTOM TOP NAVIGATION */
+.navbar-brand {
+    color: #FF6B35 !important;
+    text-transform: uppercase;
+    font-weight: 800;
+    height: auto;
+    padding: 0;
+    font-size: 32px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+
+/* TABS */
+.tabs-container {
+    display: flex;
+    gap: 16px;
+}
+
+.tabs-container > a {
+    padding: 0;
+}
+
+/* SETTINGS AND ACCOUNT */
+.account-links-container {
+    flex-direction: row !important;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-text {
+    margin: 0;
+}
+
+.account-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.account-link:hover {
+    color: #132F45 !important;
+}
+
+
+/* SMALL SCREEN CUSTOMIZATION */
+.navbar-toggler {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler:hover {
+    color: #132F45;
+}
+
+
+/* HIDE LARGE LOGO AND LINKS */
+.link-text {
+    display: none;
+}
+
+.brand-name-large {
+    display: none;
+}
+
+/* DISPLAY SMALL SCREEN LOGO*/
+.brand-name-small {
+    display: block;
+}
+
+.collapsable-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    width: 100%;
+    box-shadow: 0 50px 59px -49px rgba(0, 0, 0, 0.35);
+}
+
+.tabs-container {
+    flex-direction: column;
+}
+
+
+/* FOR LARGE SCREEN */
+@media only screen and (min-width: 768px) {
+    /* HIDE LARGE LOGO AND LINKS */
+    .link-text {
+        display: block;
+    }
+
+    .brand-name-large {
+        display: block;
+    }
+
+    /* DISPLAY SMALL SCREEN LOGO*/
+    .brand-name-small {
+        display: none;
+    }
+
+    .collapsable-menu {
+        position: relative;
+    }
+
+    .tabs-container {
+        flex-direction: row;
+        margin-left: 32px;
+    }
+
+}
