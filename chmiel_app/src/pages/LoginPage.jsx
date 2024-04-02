@@ -13,6 +13,11 @@ export const LoginPage = () => {
     const [success, setSuccess] = useState(false)
     const [cookies, setCookie] = useCookies(['token']);
 
+    useEffect(() => {
+        if (cookies.token){
+            setSuccess(true)
+        }
+    }, [])
 
     useEffect(() => {
         setErrorMsg("");

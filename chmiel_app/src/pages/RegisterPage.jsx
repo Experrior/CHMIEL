@@ -16,6 +16,12 @@ export const RegisterPage = () => {
     const [cookies, setCookie] = useCookies(['token']);
 
     useEffect(() => {
+        if (cookies.token){
+            setSuccess(true)
+        }
+    }, [])
+
+    useEffect(() => {
         setErrorMsg("");
     }, [firstName, lastName, email, password])
 
