@@ -5,6 +5,7 @@
     justify-content: center;
 }
 
+/* LEFT SIDE OF THE SCREEN*/
 .authenticationTextContainer {
     width: 50%;
     height: 100%;
@@ -45,22 +46,12 @@
     color: #FFB59A;
 }
 
-.imageCover {
+/* RIGHT SIDE OF THE SCREEN*/
+.authFormNavContainer {
     width: 50%;
     height: 100%;
-    padding: 32px 64px;
-
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.imageCover > img {
-    object-fit: cover;
-    width: 100%;
-    height:100%;
-    border-radius: 16px;
-
+    flex-direction: column;
 }
 
 .formContainer {
@@ -77,31 +68,12 @@
     max-width: 600px;
 }
 
-.btn-custom-primary {
-    background-color: #369ED1 !important;
-    color: #FFFFFF !important;
-    text-transform: uppercase;
-    font-size: 24px !important;
-    font-weight: 600 !important;
-    letter-spacing: 2px;
-}
+@media screen and (max-width: 768px){
+    .authenticationTextContainer {
+        display: none;
+    }
 
-.btn-custom-primary:hover {
-    background-color: #132F45 !important;
-}
-
-.btn-custom-secondary{
-    display: inline-block;
-    outline: 0;
-    border: none;
-    border-radius: 16px;
-}
-
-.btn-custom-secondary:hover{
-    font-weight: 400;
-    font-size: 16px;
-    background: #fff;
-    color: #696969;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+    .authFormNavContainer{
+        width: 100%
+    }
 }

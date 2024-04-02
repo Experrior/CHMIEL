@@ -13,6 +13,7 @@ export const LoginPage = () => {
     const [success, setSuccess] = useState(false)
     const [cookies, setCookie] = useCookies(['token']);
 
+
     useEffect(() => {
         setErrorMsg("");
     }, [email, password])
@@ -56,7 +57,7 @@ export const LoginPage = () => {
                             <p>you can <a href={"/register"}>register here</a>.</p>
                         </div>
                     </div>
-                    <div style={{width: "50%", height: "100%", display: "flex", flexDirection: "column"}}>
+                    <div className={"authFormNavContainer"}>
                         <div style={{
                             height: 100,
                             display: "flex",
