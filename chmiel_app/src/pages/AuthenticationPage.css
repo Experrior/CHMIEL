@@ -1,0 +1,79 @@
+.authenticationContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LEFT SIDE OF THE SCREEN*/
+.authenticationTextContainer {
+    width: 50%;
+    height: 100%;
+    background-color: #132F45;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px
+}
+
+.authenticationTextContainer div {
+    width: 80%;
+}
+
+.mainAuthenticationText {
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 82px;
+}
+
+.secondaryAuthenticationText {
+    font-size: 24px;
+}
+
+.authenticationTextContainer p {
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.authenticationTextContainer p > span, .authenticationTextContainer p > a{
+    color: #FF6B35;
+    text-decoration: none;
+}
+
+.authenticationTextContainer p > a:hover {
+    color: #FFB59A;
+}
+
+/* RIGHT SIDE OF THE SCREEN*/
+.authFormNavContainer {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.formContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.formContainer > form {
+    width: 80%;
+    max-width: 600px;
+}
+
+@media screen and (max-width: 768px){
+    .authenticationTextContainer {
+        display: none;
+    }
+
+    .authFormNavContainer{
+        width: 100%
+    }
+}
