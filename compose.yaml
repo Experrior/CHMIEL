@@ -2,7 +2,7 @@ version: '3'
 
 services:
   chmiel_db:
-    image: postgres:16
+    image: chmiel_db
     ports:
       - "5432:5432"
     environment:

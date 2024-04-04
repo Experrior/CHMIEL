@@ -16,9 +16,8 @@ RUN mvn -X package --debug -DskipTests
 # Package stage
 #
 
-FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:17-jre-jammy 
 ARG JAR_FILE=/spring/target/chmiel-0.0.1-SNAPSHOT.jar
 COPY --from=build $JAR_FILE /app/runner.jar
 EXPOSE 8084
 ENTRYPOINT java -jar -Dport=8084 /app/runner.jar --debug
-
