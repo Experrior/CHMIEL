@@ -7,31 +7,20 @@ chmiel_front-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-
 chmiel_front-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 chmiel_front-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 chmiel_front-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: using the "epoll" event method
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: nginx/1.25.4
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: OS: Linux 6.7.10-100.fc38.x86_64
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1073741816:1073741816
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker processes
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 29
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 30
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 31
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 32
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 33
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 34
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 35
-chmiel_front-1  | 2024/04/04 18:03:00 [notice] 1#1: start worker process 36
-chmiel_back-1   | 2024-04-04T18:03:01.497Z  INFO 7 --- [           main] com.backend.chmiel.ChmielApplication     : Starting ChmielApplication v0.0.1-SNAPSHOT using Java 17.0.10 with PID 7 (/app/runner.jar started by root in /)
-chmiel_back-1   | 2024-04-04T18:03:01.506Z  INFO 7 --- [           main] com.backend.chmiel.ChmielApplication     : No active profile set, falling back to 1 default profile: "default"
-chmiel_back-1   | 2024-04-04T18:03:01.508Z DEBUG 7 --- [           main] o.s.boot.SpringApplication               : Loading source class com.backend.chmiel.ChmielApplication
-chmiel_back-1   | 2024-04-04T18:03:01.704Z DEBUG 7 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2a7ed1f
-chmiel_back-1   | 2024-04-04T18:03:02.477Z  INFO 7 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-chmiel_back-1   | 2024-04-04T18:03:02.495Z DEBUG 7 --- [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.backend.chmiel'. Automatic @Repository and @Entity scanning is enabled.
-chmiel_back-1   | 2024-04-04T18:03:02.542Z  INFO 7 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 1 JPA repository interface.
-chmiel_back-1   | 2024-04-04T18:03:03.071Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: /app/runner.jar
-chmiel_back-1   | 2024-04-04T18:03:03.071Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: /app/runner.jar
-chmiel_back-1   | 2024-04-04T18:03:03.072Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-chmiel_back-1   | 2024-04-04T18:03:03.102Z  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: using the "epoll" event method
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: nginx/1.25.4
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: OS: Linux 6.7.10-100.fc38.x86_64
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1073741816:1073741816
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker processes
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 29
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 30
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 31
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 32
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 33
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 34
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 35
+chmiel_front-1  | 2024/04/04 18:55:46 [notice] 1#1: start worker process 36
 chmiel_db-1     | The files belonging to this database system will be owned by user "postgres".
 chmiel_db-1     | This user must also own the server process.
 chmiel_db-1     | 
@@ -40,6 +29,22 @@ chmiel_db-1     | The default database encoding has accordingly been set to "UTF
 chmiel_db-1     | The default text search configuration will be set to "english".
 chmiel_db-1     | 
 chmiel_db-1     | Data page checksums are disabled.
+chmiel_back-1   | 2024-04-04T18:55:47.134Z  INFO 7 --- [           main] com.backend.chmiel.ChmielApplication     : Starting ChmielApplication v0.0.1-SNAPSHOT using Java 17.0.10 with PID 7 (/app/runner.jar started by root in /)
+chmiel_back-1   | 2024-04-04T18:55:47.140Z  INFO 7 --- [           main] com.backend.chmiel.ChmielApplication     : No active profile set, falling back to 1 default profile: "default"
+chmiel_back-1   | 2024-04-04T18:55:47.142Z DEBUG 7 --- [           main] o.s.boot.SpringApplication               : Loading source class com.backend.chmiel.ChmielApplication
+chmiel_back-1   | 2024-04-04T18:55:47.214Z DEBUG 7 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2a7ed1f
+chmiel_back-1   | 2024-04-04T18:55:47.830Z  INFO 7 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+chmiel_back-1   | 2024-04-04T18:55:47.847Z DEBUG 7 --- [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.backend.chmiel'. Automatic @Repository and @Entity scanning is enabled.
+chmiel_back-1   | 2024-04-04T18:55:47.897Z  INFO 7 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 1 JPA repository interface.
+chmiel_back-1   | 2024-04-04T18:55:48.401Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: /app/runner.jar
+chmiel_back-1   | 2024-04-04T18:55:48.401Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: /app/runner.jar
+chmiel_back-1   | 2024-04-04T18:55:48.401Z DEBUG 7 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+chmiel_back-1   | 2024-04-04T18:55:48.426Z  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+chmiel_back-1   | 2024-04-04T18:55:48.435Z  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+chmiel_back-1   | 2024-04-04T18:55:48.436Z  INFO 7 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+chmiel_back-1   | 2024-04-04T18:55:48.464Z  INFO 7 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+chmiel_back-1   | 2024-04-04T18:55:48.464Z DEBUG 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+chmiel_back-1   | 2024-04-04T18:55:48.465Z  INFO 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1251 ms
 chmiel_db-1     | 
 chmiel_db-1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
 chmiel_db-1     | creating subdirectories ... ok
@@ -53,66 +58,57 @@ chmiel_db-1     | performing post-bootstrap initialization ... ok
 chmiel_db-1     | syncing data to disk ... ok
 chmiel_db-1     | 
 chmiel_db-1     | initdb: warning: enabling "trust" authentication for local connections
+chmiel_back-1   | 2024-04-04T18:55:48.481Z DEBUG 7 --- [           main] ySourcesPropertyResolver$DefaultResolver : Found key 'ENCRYPTION_KEY' in PropertySource 'env' with value of type String
+chmiel_back-1   | 2024-04-04T18:55:48.584Z  INFO 7 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+chmiel_back-1   | 2024-04-04T18:55:48.647Z  INFO 7 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+chmiel_back-1   | 2024-04-04T18:55:48.692Z  INFO 7 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+chmiel_back-1   | 2024-04-04T18:55:48.915Z  INFO 7 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+chmiel_back-1   | 2024-04-04T18:55:48.945Z  INFO 7 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+chmiel_back-1   | 2024-04-04T18:55:49.132Z  INFO 7 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@24197b13
+chmiel_back-1   | 2024-04-04T18:55:49.133Z  INFO 7 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+chmiel_back-1   | 2024-04-04T18:55:49.161Z  WARN 7 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
 chmiel_db-1     | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
-chmiel_back-1   | 2024-04-04T18:03:03.115Z  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-chmiel_back-1   | 2024-04-04T18:03:03.115Z  INFO 7 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-chmiel_back-1   | 2024-04-04T18:03:03.150Z  INFO 7 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-chmiel_back-1   | 2024-04-04T18:03:03.150Z DEBUG 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-chmiel_back-1   | 2024-04-04T18:03:03.151Z  INFO 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1448 ms
-chmiel_back-1   | 2024-04-04T18:03:03.165Z DEBUG 7 --- [           main] ySourcesPropertyResolver$DefaultResolver : Found key 'ENCRYPTION_KEY' in PropertySource 'env' with value of type String
-chmiel_back-1   | 2024-04-04T18:03:03.218Z  INFO 7 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-chmiel_back-1   | 2024-04-04T18:03:03.372Z  INFO 7 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2ed71727
-chmiel_back-1   | 2024-04-04T18:03:03.373Z  INFO 7 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-chmiel_back-1   | 2024-04-04T18:03:03.387Z ERROR 7 --- [           main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'applicationConfig' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/ApplicationConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
-chmiel_back-1   | 2024-04-04T18:03:03.410Z  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-chmiel_back-1   | 2024-04-04T18:03:03.412Z  WARN 7 --- [           main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
-chmiel_back-1   |  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
-chmiel_back-1   |  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
-chmiel_back-1   |  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
-chmiel_back-1   |  java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
-chmiel_back-1   |  java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
-chmiel_back-1   |  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
-chmiel_back-1   |  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-chmiel_back-1   |  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-chmiel_back-1   |  java.base@17.0.10/java.lang.Thread.run(Unknown Source)
-chmiel_back-1   | 2024-04-04T18:03:03.414Z  WARN 7 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
 chmiel_db-1     | 
 chmiel_db-1     | Success. You can now start the database server using:
 chmiel_db-1     | 
 chmiel_db-1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
 chmiel_db-1     | 
-chmiel_back-1   | 2024-04-04T18:03:03.414Z  INFO 7 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-chmiel_db-1     | waiting for server to start....2024-04-04 18:02:31.072 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-chmiel_back-1   | 2024-04-04T18:03:03.416Z  INFO 7 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-chmiel_back-1   | 2024-04-04T18:03:03.433Z DEBUG 7 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+chmiel_back-1   | 2024-04-04T18:55:49.933Z  INFO 7 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+chmiel_back-1   | 2024-04-04T18:55:49.935Z  INFO 7 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+chmiel_back-1   | 2024-04-04T18:55:50.222Z DEBUG 7 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105, jwtAuthenticationFilter urls=[/*] order=2147483647
+chmiel_back-1   | 2024-04-04T18:55:50.222Z DEBUG 7 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+chmiel_back-1   | 2024-04-04T18:55:50.247Z DEBUG 7 --- [           main] o.s.b.w.s.f.OrderedRequestContextFilter  : Filter 'requestContextFilter' configured for use
+chmiel_back-1   | 2024-04-04T18:55:50.250Z DEBUG 7 --- [           main] s.b.w.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
+chmiel_back-1   | 2024-04-04T18:55:50.250Z DEBUG 7 --- [           main] .DelegatingFilterProxyRegistrationBean$1 : Filter 'springSecurityFilterChain' configured for use
+chmiel_back-1   | 2024-04-04T18:55:50.250Z DEBUG 7 --- [           main] o.s.b.w.s.f.OrderedFormContentFilter     : Filter 'formContentFilter' configured for use
+chmiel_db-1     | waiting for server to start....2024-04-04 18:55:17.083 UTC [48] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+chmiel_db-1     | 2024-04-04 18:55:17.085 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+chmiel_db-1     | 2024-04-04 18:55:17.093 UTC [51] LOG:  database system was shut down at 2024-04-04 18:55:15 UTC
+chmiel_db-1     | 2024-04-04 18:55:17.107 UTC [48] LOG:  database system is ready to accept connections
+chmiel_db-1     |  done
+chmiel_db-1     | server started
+chmiel_db-1     | CREATE DATABASE
+chmiel_back-1   | 2024-04-04T18:55:50.329Z  WARN 7 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+chmiel_back-1   | 2024-04-04T18:55:50.464Z DEBUG 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 5 mappings in 'requestMappingHandlerMapping'
+chmiel_back-1   | 2024-04-04T18:55:50.536Z DEBUG 7 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+chmiel_back-1   | 2024-04-04T18:55:50.571Z  INFO 7 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38d308e7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6b6f73d, org.springframework.security.web.context.SecurityContextHolderFilter@1a45e29f, org.springframework.security.web.header.HeaderWriterFilter@646c872a, org.springframework.web.filter.CorsFilter@4c6fabba, org.springframework.security.web.authentication.logout.LogoutFilter@4d6027be, com.backend.chmiel.config.JwtAuthenticationFilter@71de1091, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b4c793b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51a69e8f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f2ab6ec, org.springframework.security.web.session.SessionManagementFilter@53b7f08, org.springframework.security.web.access.ExceptionTranslationFilter@7962c1d5, org.springframework.security.web.access.intercept.AuthorizationFilter@3b80bb63]
+chmiel_db-1     | 
+chmiel_db-1     | 
+chmiel_db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/create_tables.sql
+chmiel_db-1     | CREATE TABLE
+chmiel_db-1     | CREATE TABLE
+chmiel_back-1   | 2024-04-04T18:55:50.630Z DEBUG 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+chmiel_back-1   | 2024-04-04T18:55:50.655Z DEBUG 7 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+chmiel_back-1   | 2024-04-04T18:55:50.745Z  INFO 7 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path ''
+chmiel_back-1   | 2024-04-04T18:55:50.762Z DEBUG 7 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
 chmiel_back-1   | 
 chmiel_back-1   | 
 chmiel_back-1   | ============================
-chmiel_db-1     | 2024-04-04 18:02:31.074 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-chmiel_db-1     | 2024-04-04 18:02:31.082 UTC [51] LOG:  database system was shut down at 2024-04-04 18:02:29 UTC
 chmiel_back-1   | CONDITIONS EVALUATION REPORT
 chmiel_back-1   | ============================
 chmiel_back-1   | 
 chmiel_back-1   | 
 chmiel_back-1   | Positive matches:
-chmiel_back-1   | -----------------
-chmiel_db-1     | 2024-04-04 18:02:31.095 UTC [48] LOG:  database system is ready to accept connections
-chmiel_db-1     |  done
-chmiel_db-1     | server started
-chmiel_db-1     | CREATE DATABASE
-chmiel_db-1     | 
-chmiel_db-1     | 
-chmiel_db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/create_tables.sql
-chmiel_back-1   | 
-chmiel_back-1   |    AopAutoConfiguration matched:
-chmiel_back-1   |       - @ConditionalOnProperty (spring.aop.auto=true) matched (OnPropertyCondition)
-chmiel_back-1   | 
-chmiel_back-1   |    AopAutoConfiguration.AspectJAutoProxyingConfiguration matched:
-chmiel_back-1   |       - @ConditionalOnClass found required class 'org.aspectj.weaver.Advice' (OnClassCondition)
-chmiel_back-1   | 
-chmiel_back-1   |    AopAutoConfiguration.AspectJAutoProxyingConfiguration.CglibAutoProxyConfiguration matched:
-chmiel_db-1     | CREATE TABLE
-chmiel_db-1     | CREATE TABLE
 chmiel_db-1     | CREATE TABLE
 chmiel_db-1     | CREATE TABLE
 chmiel_db-1     | CREATE TABLE
@@ -123,10 +119,34 @@ chmiel_db-1     | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoin
 chmiel_db-1     | INSERT 0 4
 chmiel_db-1     | CREATE VIEW
 chmiel_db-1     | CREATE VIEW
+chmiel_db-1     | CREATE VIEW
+chmiel_db-1     | CREATE VIEW
+chmiel_db-1     | INSERT 0 5
+chmiel_db-1     | INSERT 0 5
+chmiel_db-1     | INSERT 0 5
+chmiel_db-1     | INSERT 0 5
+chmiel_db-1     | INSERT 0 5
+chmiel_db-1     | INSERT 0 5
+chmiel_db-1     | INSERT 0 5
+chmiel_db-1     | INSERT 0 5
+chmiel_back-1   | -----------------
+chmiel_back-1   | 
+chmiel_back-1   |    AopAutoConfiguration matched:
+chmiel_back-1   |       - @ConditionalOnProperty (spring.aop.auto=true) matched (OnPropertyCondition)
+chmiel_back-1   | 
+chmiel_back-1   |    AopAutoConfiguration.AspectJAutoProxyingConfiguration matched:
+chmiel_back-1   |       - @ConditionalOnClass found required class 'org.aspectj.weaver.Advice' (OnClassCondition)
+chmiel_back-1   | 
+chmiel_db-1     | INSERT 0 9
+chmiel_db-1     | INSERT 0 9
+chmiel_db-1     | INSERT 0 9
+chmiel_db-1     | INSERT 0 9
+chmiel_db-1     | INSERT 0 4
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | INSERT 0 3
+chmiel_back-1   |    AopAutoConfiguration.AspectJAutoProxyingConfiguration.CglibAutoProxyConfiguration matched:
 chmiel_back-1   |       - @ConditionalOnProperty (spring.aop.proxy-target-class=true) matched (OnPropertyCondition)
 chmiel_back-1   | 
-chmiel_db-1     | CREATE VIEW
-chmiel_db-1     | CREATE VIEW
 chmiel_back-1   |    ApplicationAvailabilityAutoConfiguration#applicationAvailability matched:
 chmiel_back-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.availability.ApplicationAvailability; SearchStrategy: all) did not find any beans (OnBeanCondition)
 chmiel_back-1   | 
@@ -134,26 +154,30 @@ chmiel_back-1   |    DataSourceAutoConfiguration matched:
 chmiel_back-1   |       - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
 chmiel_back-1   |       - @ConditionalOnMissingBean (types: io.r2dbc.spi.ConnectionFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
 chmiel_back-1   | 
-chmiel_db-1     | INSERT 0 5
-chmiel_db-1     | INSERT 0 5
-chmiel_db-1     | INSERT 0 5
 chmiel_back-1   |    DataSourceAutoConfiguration.PooledDataSourceConfiguration matched:
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | INSERT 0 4
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | INSERT 0 4
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | 
+chmiel_db-1     | 
+chmiel_db-1     | 2024-04-04 18:55:18.026 UTC [48] LOG:  received fast shutdown request
+chmiel_db-1     | waiting for server to shut down....2024-04-04 18:55:18.028 UTC [48] LOG:  aborting any active transactions
+chmiel_db-1     | 2024-04-04 18:55:18.032 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+chmiel_db-1     | 2024-04-04 18:55:18.033 UTC [49] LOG:  shutting down
+chmiel_db-1     | 2024-04-04 18:55:18.035 UTC [49] LOG:  checkpoint starting: shutdown immediate
+chmiel_db-1     | 2024-04-04 18:55:18.539 UTC [49] LOG:  checkpoint complete: wrote 966 buffers (5.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.122 s, sync=0.375 s, total=0.506 s; sync files=330, longest=0.005 s, average=0.002 s; distance=4481 kB, estimate=4481 kB; lsn=0/194AED0, redo lsn=0/194AED0
+chmiel_db-1     | 2024-04-04 18:55:18.560 UTC [48] LOG:  database system is shut down
+chmiel_db-1     |  done
+chmiel_db-1     | server stopped
+chmiel_db-1     | 
 chmiel_back-1   |       - AnyNestedCondition 1 matched 1 did not; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.PooledDataSourceAvailable PooledDataSource found supported DataSource; NestedCondition on DataSourceAutoConfiguration.PooledDataSourceCondition.ExplicitType @ConditionalOnProperty (spring.datasource.type) did not find property 'type' (DataSourceAutoConfiguration.PooledDataSourceCondition)
 chmiel_back-1   |       - @ConditionalOnMissingBean (types: javax.sql.DataSource,javax.sql.XADataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
-chmiel_db-1     | INSERT 0 5
-chmiel_db-1     | INSERT 0 5
-chmiel_db-1     | INSERT 0 5
-chmiel_db-1     | INSERT 0 5
-chmiel_db-1     | INSERT 0 5
-chmiel_db-1     | INSERT 0 9
-chmiel_db-1     | INSERT 0 9
-chmiel_db-1     | INSERT 0 9
-chmiel_db-1     | INSERT 0 9
-chmiel_db-1     | INSERT 0 4
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 4
 chmiel_back-1   | 
 chmiel_back-1   |    DataSourceAutoConfiguration.PooledDataSourceConfiguration#jdbcConnectionDetails matched:
 chmiel_back-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.jdbc.JdbcConnectionDetails; SearchStrategy: all) did not find any beans (OnBeanCondition)
@@ -163,51 +187,26 @@ chmiel_back-1   |       - @ConditionalOnClass found required class 'com.zaxxer.h
 chmiel_back-1   |       - @ConditionalOnProperty (spring.datasource.type=com.zaxxer.hikari.HikariDataSource) matched (OnPropertyCondition)
 chmiel_back-1   |       - @ConditionalOnMissingBean (types: javax.sql.DataSource; SearchStrategy: all) did not find any beans (OnBeanCondition)
 chmiel_back-1   | 
-chmiel_back-1   |    DataSourceInitializationConfiguration matched:
-chmiel_back-1   |       - @ConditionalOnClass found required class 'org.springframework.jdbc.datasource.init.DatabasePopulator' (OnClassCondition)
-chmiel_back-1   |       - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource'; @ConditionalOnMissingBean (types: org.springframework.boot.autoconfigure.sql.init.SqlDataSourceScriptDatabaseInitializer,org.springframework.boot.autoconfigure.sql.init.SqlR2dbcScriptDatabaseInitializer; SearchStrategy: all) did not find any beans (OnBeanCondition)
-chmiel_back-1   | 
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 4
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 3
-chmiel_db-1     | INSERT 0 3
+chmiel_db-1     | PostgreSQL init process complete; ready for start up.
+chmiel_db-1     | 
+chmiel_db-1     | 2024-04-04 18:55:18.701 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+chmiel_db-1     | 2024-04-04 18:55:18.702 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+chmiel_db-1     | 2024-04-04 18:55:18.702 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+chmiel_db-1     | 2024-04-04 18:55:18.705 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+chmiel_db-1     | 2024-04-04 18:55:18.712 UTC [68] LOG:  database system was shut down at 2024-04-04 18:55:18 UTC
+chmiel_db-1     | 2024-04-04 18:55:18.726 UTC [1] LOG:  database system is ready to accept connections
+chmiel_db-1     | 2024-04-04 18:55:45.024 UTC [80] FATAL:  role "root" does not exist
 chmiel_back-1   |    DataSourceJmxConfiguration matched:
 chmiel_back-1   |       - @ConditionalOnProperty (spring.jmx.enabled=true) matched (OnPropertyCondition)
 chmiel_back-1   | 
 chmiel_back-1   |    DataSourceJmxConfiguration.Hikari matched:
 chmiel_back-1   |       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
 chmiel_back-1   |       - @ConditionalOnSingleCandidate (types: javax.sql.DataSource; SearchStrategy: all) found a single bean 'dataSource' (OnBeanCondition)
-chmiel_db-1     | 
-chmiel_db-1     | 
-chmiel_db-1     | 2024-04-04 18:02:31.976 UTC [48] LOG:  received fast shutdown request
-chmiel_db-1     | waiting for server to shut down....2024-04-04 18:02:31.977 UTC [48] LOG:  aborting any active transactions
-chmiel_db-1     | 2024-04-04 18:02:31.981 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
-chmiel_db-1     | 2024-04-04 18:02:31.983 UTC [49] LOG:  shutting down
-chmiel_db-1     | 2024-04-04 18:02:31.985 UTC [49] LOG:  checkpoint starting: shutdown immediate
-chmiel_db-1     | 2024-04-04 18:02:32.495 UTC [49] LOG:  checkpoint complete: wrote 966 buffers (5.9%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.118 s, sync=0.386 s, total=0.513 s; sync files=330, longest=0.003 s, average=0.002 s; distance=4481 kB, estimate=4481 kB; lsn=0/194AED0, redo lsn=0/194AED0
 chmiel_back-1   | 
 chmiel_back-1   |    DataSourcePoolMetadataProvidersConfiguration.HikariPoolDataSourceMetadataProviderConfiguration matched:
 chmiel_back-1   |       - @ConditionalOnClass found required class 'com.zaxxer.hikari.HikariDataSource' (OnClassCondition)
 chmiel_back-1   | 
 chmiel_back-1   |    DataSourceTransactionManagerAutoConfiguration matched:
-chmiel_db-1     | 2024-04-04 18:02:32.513 UTC [48] LOG:  database system is shut down
-chmiel_db-1     |  done
-chmiel_db-1     | server stopped
-chmiel_db-1     | 
-chmiel_db-1     | PostgreSQL init process complete; ready for start up.
-chmiel_db-1     | 
-chmiel_db-1     | 2024-04-04 18:02:32.661 UTC [1] LOG:  starting PostgreSQL 16.2 (Debian 16.2-1.pgdg120+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-chmiel_db-1     | 2024-04-04 18:02:32.662 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-chmiel_db-1     | 2024-04-04 18:02:32.662 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-chmiel_db-1     | 2024-04-04 18:02:32.665 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-chmiel_db-1     | 2024-04-04 18:02:32.674 UTC [68] LOG:  database system was shut down at 2024-04-04 18:02:32 UTC
-chmiel_db-1     | 2024-04-04 18:02:32.687 UTC [1] LOG:  database system is ready to accept connections
-chmiel_db-1     | 2024-04-04 18:02:59.060 UTC [80] FATAL:  role "root" does not exist
-chmiel_db-1     | 2024-04-04 18:03:03.378 UTC [81] ERROR:  column "id" of relation "users" does not exist at character 20
-chmiel_db-1     | 2024-04-04 18:03:03.378 UTC [81] STATEMENT:  INSERT INTO USERS (id, firstname, lastname, email, password, role) VALUES (1, 'Michael', 'Johnson', 'michael@example.com', 'password5', "USER"), (2, 'Emily', 'Davis', 'emily@example.com', 'password6', "ADMIN"), (3, 'Christopher', 'Wilson', 'chris@example.com', 'password7', "USER"), (4, 'Jessica', 'Martinez', 'jessica@example.com', 'password8', "USER"), (5, 'David', 'Taylor', 'david@example.com', 'password9', "USER"), (6, 'Sophia', 'Anderson', 'sophia@example.com', 'password10', "USER")
 chmiel_back-1   |       - @ConditionalOnClass found required classes 'org.springframework.jdbc.core.JdbcTemplate', 'org.springframework.transaction.TransactionManager' (OnClassCondition)
 chmiel_back-1   | 
 chmiel_back-1   |    DataSourceTransactionManagerAutoConfiguration.JdbcTransactionManagerConfiguration matched:
@@ -456,10 +455,6 @@ chmiel_back-1   |       - @ConditionalOnMissingBean (types: org.springframework.
 chmiel_back-1   | 
 chmiel_back-1   |    SpringDataWebAutoConfiguration#sortCustomizer matched:
 chmiel_back-1   |       - @ConditionalOnMissingBean (types: org.springframework.data.web.config.SortHandlerMethodArgumentResolverCustomizer; SearchStrategy: all) did not find any beans (OnBeanCondition)
-chmiel_back-1   | 
-chmiel_back-1   |    SqlInitializationAutoConfiguration matched:
-chmiel_back-1   |       - @ConditionalOnProperty (spring.sql.init.enabled) matched (OnPropertyCondition)
-chmiel_back-1   |       - NoneNestedConditions 0 matched 1 did not; NestedCondition on SqlInitializationAutoConfiguration.SqlInitializationModeCondition.ModeIsNever @ConditionalOnProperty (spring.sql.init.mode=never) found different value in property 'mode' (SqlInitializationAutoConfiguration.SqlInitializationModeCondition)
 chmiel_back-1   | 
 chmiel_back-1   |    SslAutoConfiguration#sslBundleRegistry matched:
 chmiel_back-1   |       - @ConditionalOnMissingBean (types: org.springframework.boot.ssl.SslBundleRegistry,org.springframework.boot.ssl.SslBundles; SearchStrategy: all) did not find any beans (OnBeanCondition)
@@ -1016,10 +1011,6 @@ chmiel_back-1   |    R2dbcDataAutoConfiguration:
 chmiel_back-1   |       Did not match:
 chmiel_back-1   |          - @ConditionalOnClass did not find required class 'org.springframework.data.r2dbc.core.R2dbcEntityTemplate' (OnClassCondition)
 chmiel_back-1   | 
-chmiel_back-1   |    R2dbcInitializationConfiguration:
-chmiel_back-1   |       Did not match:
-chmiel_back-1   |          - @ConditionalOnClass did not find required classes 'io.r2dbc.spi.ConnectionFactory', 'org.springframework.r2dbc.connection.init.DatabasePopulator' (OnClassCondition)
-chmiel_back-1   | 
 chmiel_back-1   |    R2dbcRepositoriesAutoConfiguration:
 chmiel_back-1   |       Did not match:
 chmiel_back-1   |          - @ConditionalOnClass did not find required class 'io.r2dbc.spi.ConnectionFactory' (OnClassCondition)
@@ -1157,6 +1148,12 @@ chmiel_back-1   |          - @ConditionalOnMissingBean (names: springSecurityFil
 chmiel_back-1   |       Matched:
 chmiel_back-1   |          - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
 chmiel_back-1   | 
+chmiel_back-1   |    SqlInitializationAutoConfiguration:
+chmiel_back-1   |       Did not match:
+chmiel_back-1   |          - NoneNestedConditions 1 matched 0 did not; NestedCondition on SqlInitializationAutoConfiguration.SqlInitializationModeCondition.ModeIsNever @ConditionalOnProperty (spring.sql.init.mode=never) matched (SqlInitializationAutoConfiguration.SqlInitializationModeCondition)
+chmiel_back-1   |       Matched:
+chmiel_back-1   |          - @ConditionalOnProperty (spring.sql.init.enabled) matched (OnPropertyCondition)
+chmiel_back-1   | 
 chmiel_back-1   |    TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilderVirtualThreads:
 chmiel_back-1   |       Did not match:
 chmiel_back-1   |          - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder' simpleAsyncTaskExecutorBuilder (OnBeanCondition)
@@ -1286,173 +1283,6 @@ chmiel_back-1   |     org.springframework.boot.autoconfigure.info.ProjectInfoAut
 chmiel_back-1   | 
 chmiel_back-1   | 
 chmiel_back-1   | 
-chmiel_back-1   | 2024-04-04T18:03:03.448Z ERROR 7 --- [           main] o.s.boot.SpringApplication               : Application run failed
-chmiel_back-1   | 
-chmiel_back-1   | org.springframework.context.ApplicationContextException: Unable to start web server
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:618) ~[spring-context-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at com.backend.chmiel.ChmielApplication.main(ChmielApplication.java:10) ~[!/:0.0.1-SNAPSHOT]
-chmiel_back-1   | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-chmiel_back-1   | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
-chmiel_back-1   | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
-chmiel_back-1   | 	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-chmiel_back-1   | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91) ~[runner.jar:0.0.1-SNAPSHOT]
-chmiel_back-1   | 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53) ~[runner.jar:0.0.1-SNAPSHOT]
-chmiel_back-1   | 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58) ~[runner.jar:0.0.1-SNAPSHOT]
-chmiel_back-1   | Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
-chmiel_back-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:145) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:105) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:499) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:218) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	... 15 common frames omitted
-chmiel_back-1   | Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'applicationConfig' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/ApplicationConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4866) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-chmiel_back-1   | 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source) ~[na:na]
-chmiel_back-1   | 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:845) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
-chmiel_back-1   | 	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source) ~[na:na]
-chmiel_back-1   | 	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:240) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:921) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.19.jar!/:na]
-chmiel_back-1   | 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	... 20 common frames omitted
-chmiel_back-1   | Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'applicationConfig' defined in URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/com/backend/chmiel/config/ApplicationConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:409) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	... 61 common frames omitted
-chmiel_back-1   | Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.backend.chmiel.dao.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
-chmiel_back-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1685) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1434) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	... 84 common frames omitted
-chmiel_back-1   | Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
-chmiel_back-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:685) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	... 98 common frames omitted
-chmiel_back-1   | Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute SQL script statement #1 of URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/data.sql]: INSERT INTO USERS (id, firstname, lastname, email, password, role) VALUES (1, 'Michael', 'Johnson', 'michael@example.com', 'password5', "USER"), (2, 'Emily', 'Davis', 'emily@example.com', 'password6', "ADMIN"), (3, 'Christopher', 'Wilson', 'chris@example.com', 'password7', "USER"), (4, 'Jessica', 'Martinez', 'jessica@example.com', 'password8', "USER"), (5, 'David', 'Taylor', 'david@example.com', 'password9', "USER"), (6, 'Sophia', 'Anderson', 'sophia@example.com', 'password10', "USER")
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	... 110 common frames omitted
-chmiel_back-1   | Caused by: org.springframework.jdbc.datasource.init.ScriptStatementFailedException: Failed to execute SQL script statement #1 of URL [jar:nested:/app/runner.jar/!BOOT-INF/classes/!/data.sql]: INSERT INTO USERS (id, firstname, lastname, email, password, role) VALUES (1, 'Michael', 'Johnson', 'michael@example.com', 'password5', "USER"), (2, 'Emily', 'Davis', 'emily@example.com', 'password6', "ADMIN"), (3, 'Christopher', 'Wilson', 'chris@example.com', 'password7', "USER"), (4, 'Jessica', 'Martinez', 'jessica@example.com', 'password8', "USER"), (5, 'David', 'Taylor', 'david@example.com', 'password9', "USER"), (6, 'Sophia', 'Anderson', 'sophia@example.com', 'password10', "USER")
-chmiel_back-1   | 	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:282) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.jdbc.datasource.init.ResourceDatabasePopulator.populate(ResourceDatabasePopulator.java:254) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:54) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:146) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:108) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyDataScripts(AbstractScriptDatabaseInitializer.java:102) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:77) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:66) ~[spring-boot-3.2.3.jar!/:3.2.3]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	... 119 common frames omitted
-chmiel_back-1   | Caused by: org.postgresql.util.PSQLException: ERROR: column "id" of relation "users" does not exist
-chmiel_back-1   |   Position: 20
-chmiel_back-1   | 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292) ~[postgresql-42.6.1.jar!/:42.6.1]
-chmiel_back-1   | 	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar!/:na]
-chmiel_back-1   | 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar!/:na]
-chmiel_back-1   | 	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:261) ~[spring-jdbc-6.1.4.jar!/:6.1.4]
-chmiel_back-1   | 	... 129 common frames omitted
-chmiel_back-1   | 
+chmiel_back-1   | 2024-04-04T18:55:50.765Z  INFO 7 --- [           main] com.backend.chmiel.ChmielApplication     : Started ChmielApplication in 4.259 seconds (process running for 4.904)
+chmiel_back-1   | 2024-04-04T18:55:50.767Z DEBUG 7 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+chmiel_back-1   | 2024-04-04T18:55:50.768Z DEBUG 7 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC

@@ -17,7 +17,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8083"})
     @GetMapping()
     public ResponseEntity<List<User>> getUsers(){
         return ResponseEntity.ok(userService.findAll());
