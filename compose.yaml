@@ -2,7 +2,9 @@ version: '3'
 
 services:
   chmiel_db:
-    image: chmiel_db
+    build:
+      context: .
+      dockerfile: Dockerfile_db
     ports:
       - "5432:5432"
     environment:
@@ -15,7 +17,7 @@ services:
       interval: 30s
       timeout: 60s
       retries: 3
-      start_period: 80s
+      #start_period: 80s
     networks:
       - my_network
 
@@ -38,7 +40,9 @@ services:
 
 
   chmiel_front:
-    image: chmiel_front
+    build:
+      context: .
+      dockerfile: Dockerfile_front
     ports:
       - "3000:80"
     depends_on:
