@@ -39,16 +39,17 @@ export const Navigation = () => {
                         <p className={"link-text"}>Settings</p>
                     </Nav.Link>
 
-                    {cookies.token ?
-                        <Nav.Link className={"account-link"} onClick={logout}>
-                            <FontAwesomeIcon icon={faArrowRightFromBracket}/>
-                            <p className={"link-text"}>Logout</p>
-                        </Nav.Link>
-                        :
-                        <Nav.Link href={"/login"} className={"account-link"}>
-                            <FontAwesomeIcon icon={faCircleUser}/>
-                            <p className={"link-text"}>Sign In</p>
-                        </Nav.Link>}
+                    <Nav.Link href={"/profile"} className={"account-link"}>
+                        <FontAwesomeIcon icon={faCircleUser}/>
+                        <p className={"link-text"}>Profile</p>
+                    </Nav.Link>
+
+                    <Nav.Link className={"account-link"} onClick={logout}>
+                        <FontAwesomeIcon icon={faArrowRightFromBracket}/>
+                        <p className={"link-text"}>Logout</p>
+                    </Nav.Link>
+
+
                 </Nav>
             </Container>
         </Navbar>

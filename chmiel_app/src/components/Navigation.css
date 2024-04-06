@@ -84,14 +84,17 @@
     flex-direction: column;
 }
 
-
-/* FOR LARGE SCREEN */
-@media only screen and (min-width: 768px) {
+/* FOR MEDIUM SCREEN */
+@media only screen and (min-width: 992px) {
     /* HIDE LARGE LOGO AND LINKS */
     .link-text {
         display: block;
     }
+}
 
+
+/* FOR LARGE SCREEN */
+@media only screen and (min-width: 768px) {
     .brand-name-large {
         display: block;
     }
@@ -109,5 +112,4 @@
         flex-direction: row;
         margin-left: 32px;
     }
-
 }

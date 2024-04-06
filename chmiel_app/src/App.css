@@ -1,38 +1,38 @@
 /* GENERAL REUSABLE STYLES */
 /* use only for common css styling */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* CUSTOM BUTTONS */
 .btn-custom-primary {
-  background-color: #369ED1 !important;
-  color: #FFFFFF !important;
-  text-transform: uppercase;
-  font-size: 24px !important;
-  font-weight: 600 !important;
-  letter-spacing: 2px;
+    background-color: #369ED1 !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    letter-spacing: 2px;
 }
 
 .btn-custom-primary:hover {
-  background-color: #132F45 !important;
+    background-color: #132F45 !important;
 }
 
-.btn-custom-secondary{
-  display: inline-block !important;
-  outline: 0 !important;
-  border: none !important;
-  border-radius: 16px !important;
-  font-weight: 600 !important;
+.btn-custom-secondary {
+    display: inline-block !important;
+    outline: 0 !important;
+    border: none !important;
+    border-radius: 16px !important;
+    font-weight: 600 !important;
 }
 
-.btn-custom-secondary:hover{
-  font-weight: 600 !important;
-  font-size: 16px !important;
-  background: #fff !important;
-  color: #696969 !important;
-  background: rgba(255,255,255,0.9) !important;
-  box-shadow: 0 6px 20px rgb(93 93 93 / 23%) !important;
+.btn-custom-secondary:hover {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    background: #fff !important;
+    color: #696969 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 6px 20px rgb(93 93 93 / 23%) !important;
 }

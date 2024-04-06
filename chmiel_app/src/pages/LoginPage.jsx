@@ -42,7 +42,7 @@ export const LoginPage = () => {
             setSuccess(true)
         } catch (e) {
             console.error(e)
-            setErrorMsg("Registration failed.")
+            setErrorMsg("Login failed.")
         }
     }
 
