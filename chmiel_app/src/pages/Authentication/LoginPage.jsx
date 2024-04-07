@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
 import "./AuthenticationPage.css"
 import {Button, Form} from "react-bootstrap";

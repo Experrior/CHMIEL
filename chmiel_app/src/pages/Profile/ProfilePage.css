@@ -1,0 +1,47 @@
+.profileContainer {
+    height: 100%;
+    /*padding: 32px;*/
+    display: flex;
+}
+
+.profileImageBackground {
+    background-color: #DADADA;
+    width: 100%;
+    height: 100px;
+    /*position: absolute;*/
+}
+
+.profilePicture {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%,-50%)
+}
+
+.profileDetails {
+    position: relative;
+    /*to avoid image background - 75px of image and 11px gap*/
+    /*padding-top: 90px;*/
+    padding: 91px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+
+    background-color: red;
+    height: 100%;
+    width: 30%;
+}
+
+.profileDetails > h2 {
+    text-align: center;
+    /*font-size: 42px;*/
+}
+
+.profileProjects {
+    background-color: #FF6B35;
+    width: 70%;
+}

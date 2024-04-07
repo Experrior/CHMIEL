@@ -1,4 +1,10 @@
 /* GENERAL STYLES FOR CUSTOM TOP NAVIGATION */
+
+#navigation-custom-top {
+    background-color: #FFFFFF;
+}
+
+
 .navbar-brand {
     color: #FF6B35 !important;
     text-transform: uppercase;
