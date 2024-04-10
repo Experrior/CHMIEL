@@ -23,9 +23,10 @@ services:
 
 
   chmiel_back:
-    build:
-      context: .
-      dockerfile: Dockerfile_back
+    #build:
+    image: chmiel_back
+      #context: .
+      #dockerfile: Dockerfile_back
     ports:
       - "8084:8084"
     depends_on:
@@ -40,9 +41,10 @@ services:
 
 
   chmiel_front:
-    build:
-      context: .
-      dockerfile: Dockerfile_front
+    image: chmiel_front
+    #build:
+      #context: .
+      #dockerfile: Dockerfile_front
     ports:
       - "3000:80"
     depends_on:
