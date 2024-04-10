@@ -29,6 +29,7 @@
     height: 100%;
     min-height: calc(100vh - 175px);
     width: 30%;
+    min-width: 350px;
 }
 
 /* PROFILE NAME */
@@ -103,3 +104,45 @@
 .slick-next:before {
     color: #132F45 !important;
 }
+
+@media only screen and (max-width: 1200px) {
+    .profileProjectsWorkedOnContainer {
+        height: 264px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .profileContainer {
+        flex-direction: column;
+    }
+
+    .profileDetailsContainer {
+        width: 100%;
+        align-items: center;
+    }
+
+    .profileDetails {
+        width: 80%;
+    }
+
+    .profileProjects{
+        height: fit-content;
+        overflow: inherit;
+        width: 100%;
+    }
+
+    .profileProjects h3 {
+        text-align: center;
+    }
+}
+
+
+/*@media only screen and (max-width: 991px) {*/
+/*    .profileDetailsContainer {*/
+/*        width: 40%;*/
+/*    }*/
+
+/*    .profileProjects {*/
+/*        width: 60%;*/
+/*    }*/
+/*}*/

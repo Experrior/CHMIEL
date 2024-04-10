@@ -1,0 +1,12 @@
+.projectComponentContainer {
+    background-color: #DADADA;
+    height: 250px;
+    padding: 5%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .projectComponentContainer {
+        height: 200px;
+    }
+}
+

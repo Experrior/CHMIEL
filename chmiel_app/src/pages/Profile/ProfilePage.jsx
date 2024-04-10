@@ -2,14 +2,18 @@ import {Button, Col, Row, Stack} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import "./ProfilePage.css"
 import default_profile_picture from "../../assets/default_profile_picture.jpg"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import {ProjectComponent} from "../../components/ProjectComponent";
+import useScreenSize from "../../other/useScreenSize";
 
 export const ProfilePage = () => {
+    const screenSize = useScreenSize();
+    const [columnNum, setColumnNum] = useState(0)
     const [accountDetails, setAccountDetails] = useState({name: "Jane Doe"})
+
     const [projects, setProjects] = useState([
         {id: 1, name: "testProject1"},
         {id: 2, name: "testProject2"},
@@ -22,27 +26,14 @@ export const ProfilePage = () => {
         {id: 3, name: "testProject3"}
     ])
 
-    // const SampleNextArrow = (props) => {
-    //     const { className, style, onClick } = props;
-    //     return (
-    //         <div
-    //             className={className}
-    //             style={{ ...style, display: "block", background: "red" }}
-    //             onClick={onClick}
-    //         />
-    //     );
-    // }
-    //
-    // const SamplePrevArrow = (props) => {
-    //     const { className, style, onClick } = props;
-    //     return (
-    //         <div
-    //             className={className}
-    //             style={{ ...style, display: "block", stroke: "grey"}}
-    //             onClick={onClick}
-    //         />
-    //     );
-    // }
+    useEffect(() => {
+        if (screenSize.width < 840) {
+            setColumnNum(1)
+        } else if (screenSize.width < 992) {
+            setColumnNum(2)
+        } else setColumnNum(3)
+        console.log(columnNum)
+    }, [screenSize.width])
 
     const settings = {
         dots: false,
@@ -50,18 +41,29 @@ export const ProfilePage = () => {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
-        // nextArrow: <SampleNextArrow />,
-        // prevArrow: <SamplePrevArrow />
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    speed: 500,
+                    infinite: false,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 840,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    speed: 500,
+                    infinite: false,
+                    dots: false
+                }
+            }
+        ]
     };
-    const formatData = (data, numberOfColumns) => {
-        let numberOfElementsInLastRow = data.length;
-        while (numberOfElementsInLastRow !== numberOfColumns) {
-            data.push({id: -1});
-            numberOfElementsInLastRow++;
-        }
-        return data;
-    }
-
 
     return (
         <>
@@ -102,11 +104,11 @@ export const ProfilePage = () => {
                         <div>
                             <h3>Worked on</h3>
                             <div className={"profileProjectsWorkedOnContainer"}>
-                                {projects.length > 3 ? <Slider {...settings}>
+                                {projects.length > columnNum ? <Slider {...settings}>
                                     {projects.map((project) => {
                                         return <ProjectComponent project={project}/>
                                     })}
-                                </Slider> : (projects.length !== 0 ? <Row lg={3}>
+                                </Slider> : (projects.length !== 0 ? <Row sm={3}>
                                     {
                                         projects.map((project) => {
                                             return <Col><ProjectComponent project={project}/></Col>
@@ -118,11 +120,11 @@ export const ProfilePage = () => {
                         <div>
                             <h3>Contributed to</h3>
                             <div className={"profileProjectsWorkedOnContainer"}>
-                                {projects2.length > 3 ? <Slider {...settings}>
+                                {projects2.length > columnNum ? <Slider {...settings}>
                                     {projects2.map((project) => {
                                         return <ProjectComponent project={project}/>
                                     })}
-                                </Slider> : (projects2.length !== 0 ? <Row lg={3}>
+                                </Slider> : (projects2.length !== 0 ? <Row sm={3}>
                                     {
                                         projects2.map((project) => {
                                             return <Col><ProjectComponent project={project}/></Col>
