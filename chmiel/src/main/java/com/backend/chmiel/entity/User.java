@@ -22,15 +22,20 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
-    private Integer userID;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceUserId")
+    @SequenceGenerator(name = "SequenceUserId", sequenceName = "users_user_id_seq", allocationSize = 1)
+    private Integer userId;
 
-    private String firstname;
+    @Column(name = "first_name")
+    private String firstName;
 
-    private String lastname;
+    @Column(name = "last_name")
+    private String lastName;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -74,9 +79,9 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "userID=" + userID +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +

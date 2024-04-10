@@ -19,7 +19,7 @@ SELECT groupId FROM GROUPS WHERE groupName = 'Customer Support Team';
 
 
 -- Inserting users for Engineering Department
-INSERT INTO USERS (firstName, lastName, email, password, role)
+INSERT INTO USERS (first_name, last_name, email, password, role)
 VALUES 
 ('John', 'Doe', 'john.doe@example.com', 'password', 'ADMIN'),
 ('Alice', 'Smith', 'alice.smith@example.com', 'password', 'USER'),
@@ -28,7 +28,7 @@ VALUES
 ('Michael', 'Davis', 'michael.davis@example.com', 'password', 'USER');
 
 -- Inserting users for Marketing Team
-INSERT INTO USERS (firstName, lastName, email, password, role)
+INSERT INTO USERS (first_name, last_name, email, password, role)
 VALUES 
 ('Emily', 'Wilson', 'emily.wilson@example.com', 'password', 'ADMIN'),
 ('James', 'Taylor', 'james.taylor@example.com', 'password', 'USER'),
@@ -37,7 +37,7 @@ VALUES
 ('Olivia', 'Garcia', 'olivia.garcia@example.com', 'password', 'USER');
 
 -- Inserting users for Sales Division
-INSERT INTO USERS (firstName, lastName, email, password, role)
+INSERT INTO USERS (first_name, last_name, email, password, role)
 VALUES 
 ('Daniel', 'Miller', 'daniel.miller@example.com', 'password', 'ADMIN'),
 ('Ava', 'Rodriguez', 'ava.rodriguez@example.com', 'password', 'USER'),
@@ -46,7 +46,7 @@ VALUES
 ('Jackson', 'Gonzalez', 'jackson.gonzalez@example.com', 'password', 'USER');
 
 -- Inserting users for Customer Support Team
-INSERT INTO USERS (firstName, lastName, email, password, role)
+INSERT INTO USERS (first_name, last_name, email, password, role)
 VALUES 
 ('Liam', 'Lopez', 'liam.lopez@example.com', 'password', 'ADMIN'),
 ('Ella', 'Perez', 'ella.perez@example.com', 'password', 'USER'),
@@ -57,32 +57,32 @@ VALUES
 
 
 -- Inserting users into Engineering Department group
-INSERT INTO GROUP_USERS (userId, groupId)
-SELECT u.userId, g.groupId
+INSERT INTO GROUP_USERS (user_id, groupId)
+SELECT u.user_id, g.groupId
 FROM USERS u
          CROSS JOIN GROUPS g
 WHERE g.groupName = 'Engineering Department'
   AND u.email IN ('john.doe@example.com', 'alice.smith@example.com', 'bob.johnson@example.com', 'emma.brown@example.com', 'michael.davis@example.com');
 
 -- Inserting users into Marketing Team group
-INSERT INTO GROUP_USERS (userId, groupId)
-SELECT u.userId, g.groupId
+INSERT INTO GROUP_USERS (user_id, groupId)
+SELECT u.user_id, g.groupId
 FROM USERS u
          CROSS JOIN GROUPS g
 WHERE g.groupName = 'Marketing Team'
   AND u.email IN ('emily.wilson@example.com', 'james.taylor@example.com', 'sophia.anderson@example.com', 'william.martinez@example.com', 'olivia.garcia@example.com');
 
 -- Inserting users into Sales Division group
-INSERT INTO GROUP_USERS (userId, groupId)
-SELECT u.userId, g.groupId
+INSERT INTO GROUP_USERS (user_id, groupId)
+SELECT u.user_id, g.groupId
 FROM USERS u
          CROSS JOIN GROUPS g
 WHERE g.groupName = 'Sales Division'
   AND u.email IN ('daniel.miller@example.com', 'ava.rodriguez@example.com', 'logan.lee@example.com', 'madison.hernandez@example.com', 'jackson.gonzalez@example.com');
 
 -- Inserting users into Customer Support Team group
-INSERT INTO GROUP_USERS (userId, groupId)
-SELECT u.userId, g.groupId
+INSERT INTO GROUP_USERS (user_id, groupId)
+SELECT u.user_id, g.groupId
 FROM USERS u
          CROSS JOIN GROUPS g
 WHERE g.groupName = 'Customer Support Team'
