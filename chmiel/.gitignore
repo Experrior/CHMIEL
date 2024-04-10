@@ -34,6 +34,3 @@ build/
 
 #ENV
 /src/main/resources/.env
-
-#ENV LOCAL --- DO NOT MAKE PUBLIC.
-/src/main/resources/.env.local

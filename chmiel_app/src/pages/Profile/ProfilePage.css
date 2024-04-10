@@ -1,6 +1,5 @@
 .profileContainer {
-    height: 100%;
-    /*padding: 32px;*/
+    height: calc(100vh - 175px);
     display: flex;
 }
 
@@ -8,7 +7,6 @@
     background-color: #DADADA;
     width: 100%;
     height: 100px;
-    /*position: absolute;*/
 }
 
 .profilePicture {
@@ -21,27 +19,87 @@
     transform: translate(-50%,-50%)
 }
 
-.profileDetails {
+.profileDetailsContainer {
     position: relative;
     /*to avoid image background - 75px of image and 11px gap*/
-    /*padding-top: 90px;*/
-    padding: 91px 16px 16px 16px;
+    padding: 91px 32px 32px 32px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-
-
-    background-color: red;
+    gap: 1rem;
     height: 100%;
+    min-height: calc(100vh - 175px);
     width: 30%;
 }
 
-.profileDetails > h2 {
+/* PROFILE NAME */
+.profileDetailsContainer > h2 {
     text-align: center;
-    /*font-size: 42px;*/
 }
 
+
+.profileDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 16px;
+}
+
+.profileDetails .profileDetail:first-of-type{
+    margin-bottom: 1rem;
+}
+
+.profileDetailsHeader {
+    background-color: #C5DEE6;
+    padding: 0 1rem;
+    border-radius: 8px;
+}
+
+.profileDetail {
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profileDetail > p{
+    margin: 0;
+}
+
+.profileDetail p:last-child {
+    font-weight: 600;
+}
+
+
+/* PROJECTS */
 .profileProjects {
-    background-color: #FF6B35;
     width: 70%;
+    height: 100%;
+    padding: 2rem;
+    overflow-y: scroll;
+    /*height: calc(100vh - 175px);*/
+}
+
+.profileProjectsWorkedOnContainer {
+    /*background-color: #FFB59A;*/
+    height: 364px;
+    padding: 32px;
+}
+
+.profileProjectsWorkedOn {
+    display: flex;
+    gap: 16px;
+}
+
+.profileProjectsWorkedOnContainer > .row {
+    margin: 0 !important;
+}
+
+.slick-slide > div {
+    padding: 0 12px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #132F45 !important;
 }
