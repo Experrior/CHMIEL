@@ -22,15 +22,20 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceUserId")
+    @SequenceGenerator(name = "SequenceUserId", sequenceName = "users_user_id_seq", allocationSize = 1)
     private Integer userId;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
     @Enumerated(EnumType.STRING)
