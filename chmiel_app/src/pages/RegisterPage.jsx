@@ -35,7 +35,7 @@ export const RegisterPage = () => {
 
         try {
             const response = await axios.post("/api/auth/register",
-                JSON.stringify({firstname: firstName, lastname: lastName, email: email, password: password}),
+                JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
                 {
                     headers: {"Content-Type": "application/json"},
                 });

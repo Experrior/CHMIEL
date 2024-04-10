@@ -23,11 +23,11 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue
-    private Integer userID;
+    private Integer userId;
 
-    private String firstname;
+    private String firstName;
 
-    private String lastname;
+    private String lastName;
 
     private String email;
 
@@ -74,9 +74,9 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "userID=" + userID +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
