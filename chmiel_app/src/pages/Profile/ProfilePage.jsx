@@ -25,6 +25,21 @@ export const ProfilePage = () => {
         {id: 2, name: "testProject2"},
         {id: 3, name: "testProject3"}
     ])
+    const [userConnections, setUserConnections] = useState([
+        {id: 1},
+        {id: 2},
+        {id: 3},
+        {id: 4},
+        {id: 5},
+        {id: 6},
+        {id: 7},
+        {id: 8},
+        {id: 9},
+        {id: 10},
+        {id: 11},
+        {id: 12},
+        {id: 13}
+    ])
 
     useEffect(() => {
         if (screenSize.width < 840) {
@@ -131,6 +146,21 @@ export const ProfilePage = () => {
                                         })
                                     }
                                 </Row> : <></>)}
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Connections</h3>
+                            <div className={"profileProjectsConnections"}>
+                                {userConnections.length !== 0 ? <Row>
+                                    {
+                                        userConnections.map((userConnection) => {
+                                            return <Col xs={2} md={3} lg={2} xxxl={1}> <img style={{width: "80%", borderRadius: "50%", marginBottom: 16}}
+                                                                     src={default_profile_picture}
+                                                                     alt={"default profile picture"}/>
+                                            </Col>
+                                        })
+                                    }
+                                </Row> : <></>}
                             </div>
                         </div>
                     </Stack>

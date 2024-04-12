@@ -76,7 +76,7 @@
 .profileProjects {
     width: 70%;
     height: 100%;
-    padding: 2rem;
+    padding: 2rem 2rem 4rem 2rem;
     overflow-y: scroll;
     /*height: calc(100vh - 175px);*/
 }
@@ -85,6 +85,12 @@
     /*background-color: #FFB59A;*/
     height: 364px;
     padding: 32px;
+}
+
+.profileProjectsConnections {
+    padding: 32px;
+    /*height: 364px;*/
+    /*overflow-y: scroll;*/
 }
 
 .profileProjectsWorkedOn {
@@ -135,14 +141,3 @@
         text-align: center;
     }
 }
-
-
-/*@media only screen and (max-width: 991px) {*/
-/*    .profileDetailsContainer {*/
-/*        width: 40%;*/
-/*    }*/
-
-/*    .profileProjects {*/
-/*        width: 60%;*/
-/*    }*/
-/*}*/
