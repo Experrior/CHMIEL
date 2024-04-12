@@ -1,4 +1,11 @@
 /* GENERAL STYLES FOR CUSTOM TOP NAVIGATION */
+
+#navigation-custom-top {
+    background-color: #FFFFFF;
+    height: 75px;
+}
+
+
 .navbar-brand {
     color: #FF6B35 !important;
     text-transform: uppercase;
@@ -84,14 +91,17 @@
     flex-direction: column;
 }
 
-
-/* FOR LARGE SCREEN */
-@media only screen and (min-width: 768px) {
+/* FOR MEDIUM SCREEN */
+@media only screen and (min-width: 992px) {
     /* HIDE LARGE LOGO AND LINKS */
     .link-text {
         display: block;
     }
+}
 
+
+/* FOR LARGE SCREEN */
+@media only screen and (min-width: 768px) {
     .brand-name-large {
         display: block;
     }
@@ -109,5 +119,4 @@
         flex-direction: row;
         margin-left: 32px;
     }
-
 }
