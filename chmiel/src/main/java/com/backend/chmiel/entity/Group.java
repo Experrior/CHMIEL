@@ -13,13 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Groups", uniqueConstraints = {@UniqueConstraint(name = "nameUnique", columnNames = {"groupName"})})
+@Table(name = "Groups", uniqueConstraints = {@UniqueConstraint(name = "nameUnique", columnNames = {"group_name"})})
 public class Group {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceGroupId")
+    @SequenceGenerator(name = "SequenceGroupId", sequenceName = "groups_group_id_seq", allocationSize = 1)
     private Integer groupId;
 
+    @Column(name = "group_name")
     private String groupName;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)

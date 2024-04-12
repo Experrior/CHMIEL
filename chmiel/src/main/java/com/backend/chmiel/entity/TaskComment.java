@@ -15,19 +15,22 @@ import lombok.NoArgsConstructor;
 public class TaskComment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceTaskCommentId")
+    @SequenceGenerator(name = "SequenceTaskCommentId", sequenceName = "task_comments_task_comment_id_seq", allocationSize = 1)
     private Integer taskCommentId;
 
     @ManyToOne
-    @JoinColumn(name = "taskId")
+    @JoinColumn(name = "task_id")
     private Task task;
 
+    @Column(name = "message")
     private String message;
 
     @ManyToOne
-    @JoinColumn(name = "authorId")
+    @JoinColumn(name = "author_id")
     private User author;
 
+    @Column(name = "logged")
     private boolean logged;
 
     @Override

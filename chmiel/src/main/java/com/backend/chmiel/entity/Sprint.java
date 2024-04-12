@@ -17,19 +17,24 @@ import java.sql.Timestamp;
 public class Sprint {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceSprintId")
+    @SequenceGenerator(name = "SequenceSprintId", sequenceName = "sprints_sprint_id_seq", allocationSize = 1)
     private Integer sprintId;
 
+    @Column(name = "sprint_name")
     private String sprintName;
 
     @ManyToOne
-    @JoinColumn(name = "groupId")
+    @JoinColumn(name = "group_id")
     private Group group;
 
+    @Column(name = "start_time")
     private Timestamp startTime;
 
+    @Column(name = "stop_time")
     private Timestamp stopTime;
 
+    @Column(name = "logged")
     private boolean logged;
 
     @Override
