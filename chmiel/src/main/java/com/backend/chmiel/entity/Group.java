@@ -1,12 +1,11 @@
 package com.backend.chmiel.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -18,22 +17,28 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceGroupId")
-    @SequenceGenerator(name = "SequenceGroupId", sequenceName = "groups_group_id_seq", allocationSize = 1)
-    private Integer groupId;
+    @SequenceGenerator(name = "SequenceGroupId", sequenceName = "groups_id_seq", allocationSize = 1)
+    private Integer id;
 
     @Column(name = "group_name")
     private String groupName;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    private List<GroupUser> groupUsers;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @JoinTable(name = "groups_users",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    @ManyToMany(targetEntity = User.class)
+    private Set<User> users;
+
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private List<Sprint> sprints;
 
     @Override
     public String toString() {
         return "Group{" +
-                "groupId=" + groupId +
+                "id=" + id +
                 ", groupName='" + groupName + '\'' +
                 '}';
     }
