@@ -5,7 +5,9 @@ CREATE TABLE IF NOT EXISTS USERS (
   last_name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
-  role VARCHAR CHECK (role IN ('USER', 'ADMIN'))
+  role VARCHAR CHECK (role IN ('USER', 'ADMIN')),
+  birth_date DATE DEFAULT NULL,
+  phone_number VARCHAR DEFAULT NULL
 );
 
 -- Create Table GROUPS
