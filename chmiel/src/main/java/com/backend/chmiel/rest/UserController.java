@@ -1,7 +1,7 @@
 package com.backend.chmiel.rest;
 
 import com.backend.chmiel.config.JwtService;
-import com.backend.chmiel.entity.User;
+import com.backend.chmiel.payload.EditUserDetailsRequest;
 import com.backend.chmiel.payload.UserDetailsResponse;
 import com.backend.chmiel.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,14 @@ public class UserController {
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @GetMapping()
     public ResponseEntity<UserDetailsResponse> getUserDetails(@RequestHeader("Authorization") String token) {
-        String email = jwtService.extractUsername(token.substring(7));
-        return ResponseEntity.ok(userService.getUserDetailsByEmail(email));
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(userService.getUserDetailsById(id));
+    }
+
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    @PutMapping()
+    public ResponseEntity<UserDetailsResponse> editUserDetails(@RequestHeader("Authorization") String token, @RequestBody EditUserDetailsRequest request) {
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(userService.editUserDetailsById(id, request));
     }
 }

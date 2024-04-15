@@ -10,6 +10,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -22,13 +25,15 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request){
         var user = User.builder()
                 .firstName(request.getFirstName())
-                .lastName(request.getFirstName())
+                .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
-        userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        User user_db = userRepository.save(user);
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("userId", user_db.getUserId());
+        var jwtToken = jwtService.generateToken(extraClaims, user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -41,7 +46,9 @@ public class AuthenticationService {
                 )
         );
         var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("userId", user.getUserId());
+        var jwtToken = jwtService.generateToken(extraClaims, user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
