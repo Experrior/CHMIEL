@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SprintRepository extends JpaRepository<Sprint, Integer> {
 
-    List<Sprint> findAllByGroup(Group group);
+    List<Sprint> findAllByGroupId(Integer group_id);
 
     List<Sprint> findAllByStartTimeAfterOrderByStartTimeAsc(Timestamp startTime);
 
