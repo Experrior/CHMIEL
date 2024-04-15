@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {HomePage} from "./pages/Home/HomePage";
-import {createBrowserRouter, RouterProvider, useNavigate} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {RegisterPage} from "./pages/Authentication/RegisterPage";
 import {ProtectedRoute} from "./other/ProtectedRoute";
 import {LoginPage} from "./pages/Authentication/LoginPage";
