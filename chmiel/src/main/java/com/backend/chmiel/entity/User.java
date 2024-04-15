@@ -24,8 +24,8 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceUserId")
-    @SequenceGenerator(name = "SequenceUserId", sequenceName = "users_user_id_seq", allocationSize = 1)
-    private Integer userId;
+    @SequenceGenerator(name = "SequenceUserId", sequenceName = "users_id_seq", allocationSize = 1)
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -86,7 +86,7 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "userId=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

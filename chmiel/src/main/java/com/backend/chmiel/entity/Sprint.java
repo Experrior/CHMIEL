@@ -18,15 +18,14 @@ public class Sprint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceSprintId")
-    @SequenceGenerator(name = "SequenceSprintId", sequenceName = "sprints_sprint_id_seq", allocationSize = 1)
-    private Integer sprintId;
+    @SequenceGenerator(name = "SequenceSprintId", sequenceName = "sprints_id_seq", allocationSize = 1)
+    private Integer id;
 
     @Column(name = "sprint_name")
     private String sprintName;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @Column(name = "group_id")
+    private Integer groupId;
 
     @Column(name = "start_time")
     private Timestamp startTime;
@@ -40,9 +39,9 @@ public class Sprint {
     @Override
     public String toString() {
         return "Sprint{" +
-                "sprintId=" + sprintId +
+                "sprintId=" + id +
                 ", sprintName='" + sprintName + '\'' +
-                ", group=" + group +
+                ", group=" + groupId +
                 ", startTime=" + startTime +
                 ", stopTime=" + stopTime +
                 ", logged=" + logged +

@@ -23,15 +23,15 @@ public class Task {
     @JoinColumn(name = "assignee_id")
     private User assignee;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "reported_id")
     private User reporter;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id")
+    @OneToOne
+    @JoinColumn(name = "group")
     private Group group;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "sprint_id")
     private Sprint sprint;
 

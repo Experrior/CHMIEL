@@ -12,5 +12,6 @@ public interface GroupRepository extends JpaRepository<Group, Integer> {
 
     List<Group> findAllByGroupNameContaining(String keyword);
 
+
     
 }

@@ -16,12 +16,11 @@ public class TaskComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceTaskCommentId")
-    @SequenceGenerator(name = "SequenceTaskCommentId", sequenceName = "task_comments_task_comment_id_seq", allocationSize = 1)
-    private Integer taskCommentId;
+    @SequenceGenerator(name = "SequenceTaskCommentId", sequenceName = "task_comments_id_seq", allocationSize = 1)
+    private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "task_id")
-    private Task task;
+    @Column(name = "task_id")
+    private Integer taskId;
 
     @Column(name = "message")
     private String message;
@@ -36,8 +35,8 @@ public class TaskComment {
     @Override
     public String toString() {
         return "TaskComment{" +
-                "taskCommentId=" + taskCommentId +
-                ", task=" + task +
+                "taskCommentId=" + id +
+                ", task=" + taskId +
                 ", message='" + message + '\'' +
                 ", author=" + author +
                 ", logged=" + logged +
