@@ -32,7 +32,7 @@ public class AuthenticationService {
                 .build();
         User user_db = userRepository.save(user);
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("userId", user_db.getUserId());
+        extraClaims.put("userId", user_db.getId());
         var jwtToken = jwtService.generateToken(extraClaims, user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -47,7 +47,7 @@ public class AuthenticationService {
         );
         var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("userId", user.getUserId());
+        extraClaims.put("userId", user.getId());
         var jwtToken = jwtService.generateToken(extraClaims, user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
