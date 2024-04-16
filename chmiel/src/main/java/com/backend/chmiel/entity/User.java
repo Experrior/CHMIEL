@@ -42,6 +42,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "birth_date")
     private Date birthDate;
 

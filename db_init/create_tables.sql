@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS USERS (
   email VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
   role VARCHAR CHECK (role IN ('USER', 'ADMIN')),
+  address VARCHAR DEFAULT NULL,
   birth_date DATE DEFAULT NULL,
   phone_number VARCHAR DEFAULT NULL
 );

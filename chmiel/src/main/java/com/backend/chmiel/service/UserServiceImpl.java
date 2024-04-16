@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService{
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .address(user.getAddress())
                 .birthDate(user.getBirthDate())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService{
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
+        user.setAddress(request.getAddress());
         user.setBirthDate(request.getBirthDate());
         user.setPhoneNumber(request.getPhoneNumber());
         userRepository.save(user);
@@ -46,6 +48,7 @@ public class UserServiceImpl implements UserService{
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .address(user.getAddress())
                 .birthDate(user.getBirthDate())
                 .phoneNumber(user.getPhoneNumber())
                 .build();

@@ -1,4 +1,4 @@
-import {Button, Col, Row, Stack} from "react-bootstrap";
+import {Col, Row, Stack} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import "./ProfilePage.css"
 import default_profile_picture from "../../assets/default_profile_picture.jpg"
@@ -8,11 +8,15 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import {ProjectComponent} from "../../components/ProfileComponents/ProjectComponent";
 import useScreenSize from "../../other/useScreenSize";
+import axios from "../../api/axios";
+import {useCookies} from "react-cookie";
+import {EditUserDetailsModal} from "../../components/ProfileComponents/EditUserDetailsModal";
 
 export const ProfilePage = () => {
+    const [cookies] = useCookies(["token"]);
     const screenSize = useScreenSize();
     const [columnNum, setColumnNum] = useState(0)
-    const [accountDetails, setAccountDetails] = useState({name: "Jane Doe"})
+    const [accountDetails, setAccountDetails] = useState({})
 
     const [projects, setProjects] = useState([
         {id: 1, name: "testProject1"},
@@ -40,15 +44,6 @@ export const ProfilePage = () => {
         {id: 12},
         {id: 13}
     ])
-
-    useEffect(() => {
-        if (screenSize.width < 840) {
-            setColumnNum(1)
-        } else if (screenSize.width < 992) {
-            setColumnNum(2)
-        } else setColumnNum(3)
-        console.log(columnNum)
-    }, [screenSize.width])
 
     const settings = {
         dots: false,
@@ -80,39 +75,92 @@ export const ProfilePage = () => {
         ]
     };
 
+
+    const getUserDetails = async () => {
+        return await axios.get("/api/user", {
+            headers: {
+                Authorization: "Bearer " + cookies.token
+            }
+        })
+    }
+
+    const editUser = async (firstName, lastName, email, birthDate, address, phoneNumber) => {
+        await axios.put("/api/user",
+            {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                birthDate: birthDate,
+                address: address,
+                phoneNumber: phoneNumber
+            }, {
+                headers: {
+                    Authorization: "Bearer " + cookies.token
+                }
+            }).then(result => {
+            console.log(result.data)
+            setAccountDetails(result.data)
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
+
+
+    useEffect(() => {
+        if (screenSize.width < 840) {
+            setColumnNum(1)
+        } else if (screenSize.width < 992) {
+            setColumnNum(2)
+        } else setColumnNum(3)
+        console.log(columnNum)
+    }, [screenSize.width])
+
+    useEffect(() => {
+        getUserDetails().then(results => {
+            console.log(results.data)
+            setAccountDetails(results.data)
+        }).catch(e => {
+            console.error(e);
+        })
+    }, [])
+
     return (
         <>
             <Navigation/>
             <div className={"profileImageBackground"}/>
             <div className={"profileContainer"}>
                 <div className={"profileDetailsContainer"}>
-                    <img className={"profilePicture"} src={default_profile_picture} alt={"default profile picture"}/>
-                    <h2>{accountDetails.name}</h2>
+                    <div className={"profilePicture"}><p>{accountDetails.firstName ? accountDetails.firstName[0] : ""}{accountDetails.lastName ? accountDetails.lastName[0] : ""}</p></div>
+                    <h2>{accountDetails.firstName} {accountDetails.lastName}</h2>
                     <div className={"profileDetails"}>
                         <div>
                             <p className={"profileDetailsHeader"}>Basic Details</p>
                             <div className={"profileDetail"}>
                                 <p>Date Of Birth</p>
-                                <p>Date Of Birth</p>
+                                {accountDetails.birthDate ? <p>{accountDetails.birthDate}</p> :
+                                    <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
                             </div>
                             <div className={"profileDetail"}>
                                 <p>Address</p>
-                                <p>Lake Gailmouth</p>
+                                {accountDetails.address ? <p>{accountDetails.address}</p> :
+                                    <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
                             </div>
                         </div>
                         <div>
                             <p className={"profileDetailsHeader"}>Contact Information</p>
                             <div className={"profileDetail"}>
                                 <p>Email</p>
-                                <p>test@email.com</p>
+                                <p>{accountDetails.email}</p>
                             </div>
                             <div className={"profileDetail"}>
                                 <p>Phone Number</p>
-                                <p>111 111 111</p>
+                                {accountDetails.phoneNumber ? <p>{accountDetails.phoneNumber}</p> :
+                                    <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
                             </div>
                         </div>
                     </div>
-                    <Button variant={"custom-primary"}>Edit details</Button>
+                    <EditUserDetailsModal accountDetails={accountDetails} editUser={editUser}/>
                 </div>
                 <div className={"profileProjects"}>
                     <Stack gap={3}>
@@ -154,9 +202,10 @@ export const ProfilePage = () => {
                                 {userConnections.length !== 0 ? <Row>
                                     {
                                         userConnections.map((userConnection) => {
-                                            return <Col xs={2} md={3} lg={2} xxxl={1}> <img style={{width: "80%", borderRadius: "50%", marginBottom: 16}}
-                                                                     src={default_profile_picture}
-                                                                     alt={"default profile picture"}/>
+                                            return <Col xs={2} md={3} lg={2} xxxl={1}> <img
+                                                style={{width: "80%", borderRadius: "50%", marginBottom: 16}}
+                                                src={default_profile_picture}
+                                                alt={"default profile picture"}/>
                                             </Col>
                                         })
                                     }
