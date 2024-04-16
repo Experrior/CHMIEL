@@ -1,4 +1,4 @@
-import {Button, Col, Form, Modal, Row, Stack} from "react-bootstrap";
+import {Col, Row, Stack} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import "./ProfilePage.css"
 import default_profile_picture from "../../assets/default_profile_picture.jpg"
@@ -10,96 +10,18 @@ import {ProjectComponent} from "../../components/ProfileComponents/ProjectCompon
 import useScreenSize from "../../other/useScreenSize";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
+import {EditUserDetailsModal} from "../../components/ProfileComponents/EditUserDetailsModal";
 
 export const ProfilePage = () => {
     const [cookies] = useCookies(["token"]);
     const screenSize = useScreenSize();
     const [columnNum, setColumnNum] = useState(0)
     const [accountDetails, setAccountDetails] = useState({})
-    const [email, setEmail] = useState("");
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [address, setAddress] = useState("")
-    const [birthDate, setBirthDate] = useState("")
-    const [phoneNumber, setPhoneNumber] = useState("")
+
 
     // EditUserDetailsModal
     const [modalShow, setModalShow] = useState(false);
-    const [validated, setValidated] = useState(false);
 
-    function EditUserDetailsModal(props) {
-        return (
-            <Modal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-                backdrop={"static"}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                keyboard={true}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Edit User Details
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form noValidate validated={validated} onSubmit={onFormSubmit}>
-                        {/*<Row>*/}
-                        {/*    <Col>*/}
-                        {/*        /!*<Form.Group className="mb-3" controlId="formGroupFirstName">*!/*/}
-                        {/*        /!*    <Form.Label>First Name</Form.Label>*!/*/}
-                        {/*        /!*    <Form.Control required*!/*/}
-                        {/*        /!*                  type="text"*!/*/}
-                        {/*        /!*                  placeholder="FirstName"*!/*/}
-                        {/*        /!*                  onChange={onInputFirstName}*!/*/}
-                        {/*        /!*                  value={firstName}*!/*/}
-                        {/*        /!*    />*!/*/}
-                        {/*        /!*    <Form.Control.Feedback type="invalid">*!/*/}
-                        {/*        /!*        Please enter first name.*!/*/}
-                        {/*        /!*    </Form.Control.Feedback>*!/*/}
-                        {/*        /!*</Form.Group>*!/*/}
-                        {/*    </Col>*/}
-                        {/*    <Col>*/}
-                        {/*        <Form.Group className="mb-3" controlId="formGroupFirstName">*/}
-                        {/*            <Form.Label>Last Name</Form.Label>*/}
-                        {/*            <Form.Control required*/}
-                        {/*                          type="text"*/}
-                        {/*                          placeholder="LastName"*/}
-                        {/*                          onChange={(e) => {*/}
-                        {/*                              setLastName(e.target.value)*/}
-                        {/*                              setValidated(false)*/}
-                        {/*                          }*/}
-                        {/*                          }*/}
-                        {/*                          value={lastName}*/}
-                        {/*            />*/}
-                        {/*            <Form.Control.Feedback type="invalid">*/}
-                        {/*                Please enter last name.*/}
-                        {/*            </Form.Control.Feedback>*/}
-                        {/*        </Form.Group>*/}
-                        {/*    </Col>*/}
-                        {/*</Row>*/}
-                        <Form.Group className={"mb-3"} controlId={"formGroupEmail"}>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control required
-                                          type={"email"}
-                                          placeholder={"Email"}
-                                          onChange={onInputEmail}
-                                          value={email}
-                            />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={props.onHide}>Close</Button>
-                    <Button variant="primary" onClick={() => setModalShow(false)}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        );
-    }
 
     const getUserDetails = async () => {
         return await axios.get("/api/user", {
@@ -109,32 +31,25 @@ export const ProfilePage = () => {
         })
     }
 
-    const onFormSubmit = (e) => {
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.preventDefault();
-            e.stopPropagation();
-            setValidated(true);
-
-        } else {
-            e.preventDefault();
-            e.stopPropagation();
-            setValidated(false);
-
-            // if (shipping) {
-            //     setPayment(true);
-            //     setShipping(false);
-            // } else if (payment) {
-            //     setPayment(false);
-            //     setReview(true);
-            // }
-        }
-    }
-
-    const onInputEmail = ({target: {value}}) => {
-        setEmail(value)
-        // setValidated(false)
-        console.log("test")
+    const editUser = async (firstName, lastName, email, birthDate, address, phoneNumber) => {
+        await axios.put("/api/user",
+            {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                birthDate: birthDate,
+                address: address,
+                phoneNumber: phoneNumber
+            }, {
+                headers: {
+                    Authorization: "Bearer " + cookies.token
+                }
+            }).then(result => {
+            console.log(result.data)
+            setAccountDetails(result.data)
+        }).catch(e => {
+            console.error(e)
+        })
     }
 
 
@@ -248,8 +163,7 @@ export const ProfilePage = () => {
                             </div>
                         </div>
                     </div>
-                    <Button variant={"custom-primary"} onClick={() => setModalShow(true)}>Edit details</Button>
-                    <EditUserDetailsModal/>
+                    <EditUserDetailsModal accountDetails={accountDetails} editUser={editUser}/>
                 </div>
                 <div className={"profileProjects"}>
                     <Stack gap={3}>
