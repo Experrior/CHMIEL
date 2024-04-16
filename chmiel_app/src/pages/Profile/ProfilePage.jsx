@@ -18,9 +18,62 @@ export const ProfilePage = () => {
     const [columnNum, setColumnNum] = useState(0)
     const [accountDetails, setAccountDetails] = useState({})
 
+    const [projects, setProjects] = useState([
+        {id: 1, name: "testProject1"},
+        {id: 2, name: "testProject2"},
+        {id: 3, name: "testProject3"},
+        {id: 4, name: "testProject4"}
+    ])
+    const [projects2, setProjects2] = useState([
+        {id: 1, name: "testProject1"},
+        {id: 2, name: "testProject2"},
+        {id: 3, name: "testProject3"}
+    ])
+    const [userConnections, setUserConnections] = useState([
+        {id: 1},
+        {id: 2},
+        {id: 3},
+        {id: 4},
+        {id: 5},
+        {id: 6},
+        {id: 7},
+        {id: 8},
+        {id: 9},
+        {id: 10},
+        {id: 11},
+        {id: 12},
+        {id: 13}
+    ])
 
-    // EditUserDetailsModal
-    const [modalShow, setModalShow] = useState(false);
+    const settings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    speed: 500,
+                    infinite: false,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 840,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    speed: 500,
+                    infinite: false,
+                    dots: false
+                }
+            }
+        ]
+    };
 
 
     const getUserDetails = async () => {
@@ -53,41 +106,6 @@ export const ProfilePage = () => {
     }
 
 
-    useEffect(() => {
-        getUserDetails().then(results => {
-            console.log(results.data)
-            setAccountDetails(results.data)
-        }).catch(e => {
-            console.error(e);
-        })
-    }, [])
-
-    const [projects, setProjects] = useState([
-        {id: 1, name: "testProject1"},
-        {id: 2, name: "testProject2"},
-        {id: 3, name: "testProject3"},
-        {id: 4, name: "testProject4"}
-    ])
-    const [projects2, setProjects2] = useState([
-        {id: 1, name: "testProject1"},
-        {id: 2, name: "testProject2"},
-        {id: 3, name: "testProject3"}
-    ])
-    const [userConnections, setUserConnections] = useState([
-        {id: 1},
-        {id: 2},
-        {id: 3},
-        {id: 4},
-        {id: 5},
-        {id: 6},
-        {id: 7},
-        {id: 8},
-        {id: 9},
-        {id: 10},
-        {id: 11},
-        {id: 12},
-        {id: 13}
-    ])
 
     useEffect(() => {
         if (screenSize.width < 840) {
@@ -98,35 +116,14 @@ export const ProfilePage = () => {
         console.log(columnNum)
     }, [screenSize.width])
 
-    const settings = {
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    speed: 500,
-                    infinite: false,
-                    dots: false
-                }
-            },
-            {
-                breakpoint: 840,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    speed: 500,
-                    infinite: false,
-                    dots: false
-                }
-            }
-        ]
-    };
+    useEffect(() => {
+        getUserDetails().then(results => {
+            console.log(results.data)
+            setAccountDetails(results.data)
+        }).catch(e => {
+            console.error(e);
+        })
+    }, [])
 
     return (
         <>
@@ -134,7 +131,7 @@ export const ProfilePage = () => {
             <div className={"profileImageBackground"}/>
             <div className={"profileContainer"}>
                 <div className={"profileDetailsContainer"}>
-                    <img className={"profilePicture"} src={default_profile_picture} alt={"default profile picture"}/>
+                    <div className={"profilePicture"}><p>{accountDetails.firstName ? accountDetails.firstName[0] : ""}{accountDetails.lastName ? accountDetails.lastName[0] : ""}</p></div>
                     <h2>{accountDetails.firstName} {accountDetails.lastName}</h2>
                     <div className={"profileDetails"}>
                         <div>
