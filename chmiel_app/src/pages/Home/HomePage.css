@@ -1,7 +1,7 @@
 .homeContainer {
     max-width: 1200px;
     margin: 0 auto;
-    height: calc(0100vh - 175px);
+    height: calc(100vh - 175px);
     padding: 16px;
 }
 
@@ -54,6 +54,7 @@
     cursor: pointer;
     padding: 10px 20px 10px 0px;
     font-weight: 600;
+    transition: color 0.3s ease !important;
 }
 
 .tab:hover {
@@ -63,3 +64,21 @@
 .tab.active {
     color: #FF6B35;
 }
+
+.tab-content {
+    padding-top: 5px;
+}
+  
+.tab-line {
+    margin: 10px 0px 0px 0px;
+    width: 100%;
+    background-color: gray;
+    height: 2px;
+    position: relative;
+    bottom: 0;
+}
+
+.tab.active .tab-line {
+    background-color: #FF6B35;
+}
+  

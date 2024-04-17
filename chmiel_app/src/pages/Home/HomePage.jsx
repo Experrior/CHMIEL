@@ -45,14 +45,6 @@ export const HomePage = () => {
         {id: 6, name: "testProject6"}
     ])
 
-    const getUserDetails = async () => {
-        return await axios.get("/api/user", {
-            headers: {
-                Authorization: "Bearer " + cookies.token
-            }
-        })
-    }
-
     useEffect(() => {
         if (screenSize.width < 840) {
             setColumnNum(1)
@@ -95,18 +87,21 @@ export const HomePage = () => {
                                 onClick={() => handleTabClick("workedOn")}
                             >
                                 Worked On
+                                <div className="tab-line"></div>
                             </div>
                             <div
                                 className={`tab ${activeTab === "viewed" && "active"}`}
                                 onClick={() => handleTabClick("viewed")}
                             >
                                 Viewed
+                                <div className="tab-line"></div>
                             </div>
                             <div
                                 className={`tab ${activeTab === "assignedToMe" && "active"}`}
                                 onClick={() => handleTabClick("assignedToMe")}
                             >
                                 Assigned to me
+                                <div className="tab-line"></div>
                             </div>
                         </div>
                         <div className="tab-content">

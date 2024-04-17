@@ -14,9 +14,8 @@
     background-color: #dadada;
 }
 
-/* Media query for smaller screens */
 @media only screen and (max-width: 1200px) {
     .taskComponentContainer {
-        height: auto; /* Reset height */
+        height: auto; 
     }
 }
