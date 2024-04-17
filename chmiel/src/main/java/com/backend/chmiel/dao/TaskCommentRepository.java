@@ -1,6 +1,5 @@
 package com.backend.chmiel.dao;
 
-import com.backend.chmiel.entity.Task;
 import com.backend.chmiel.entity.TaskComment;
 
 import java.util.List;

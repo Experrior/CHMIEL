@@ -2,8 +2,6 @@ package com.backend.chmiel.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.SQLRestriction;
-
 import java.util.List;
 import java.util.Set;
 

@@ -1,6 +1,5 @@
 package com.backend.chmiel.dao;
 
-import com.backend.chmiel.entity.Group;
 import com.backend.chmiel.entity.Sprint;
 
 import java.sql.Timestamp;
