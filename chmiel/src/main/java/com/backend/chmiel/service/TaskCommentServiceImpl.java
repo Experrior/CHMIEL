@@ -2,7 +2,12 @@ package com.backend.chmiel.service;
 
 import com.backend.chmiel.dao.TaskCommentRepository;
 import com.backend.chmiel.entity.TaskComment;
+import com.backend.chmiel.entity.User;
+import com.backend.chmiel.exception.TaskCommentNotFoundException;
+import com.backend.chmiel.payload.PostTaskCommentRequest;
+import com.backend.chmiel.payload.UserDetailsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,16 +23,33 @@ public class TaskCommentServiceImpl implements TaskCommentService{
     }
 
     @Override
-    public List<TaskComment> findAll() {
-        return taskCommentRepository.findAll();
+    public void removeById(Integer id) {
+        taskCommentRepository.deleteById(id);
     }
 
-    @Override
-    public Optional<TaskComment> findById(Integer id) {
-        return taskCommentRepository.findById(id);
-    }
     @Override
     public List<TaskComment> findAllByTaskId(Integer id) {
         return taskCommentRepository.findAllByTaskId(id);
     }
+    @Override
+    public TaskComment editTaskCommentById(Integer id, String message)  {
+        Optional<TaskComment> taskComment = taskCommentRepository.findById(id);
+//                .orElseThrow(() -> new TaskCommentNotFoundException("User not found"));
+        if (taskComment.isPresent()) {
+            taskComment.get().setMessage(message);
+            taskCommentRepository.save(taskComment.get());
+            return taskComment.get();
+        }
+        return new TaskComment();
+    }
+
+    @Override
+    public TaskComment createTaskComment(PostTaskCommentRequest postTaskCommentRequest){
+        return taskCommentRepository.save(TaskComment.builder()
+                        .author(postTaskCommentRequest.getAuthor_id())
+                        .message(postTaskCommentRequest.getMessage())
+                        .taskId(postTaskCommentRequest.getTask_id())
+                .build());
+    }
+
 }

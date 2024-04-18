@@ -25,9 +25,8 @@ public class TaskComment {
     @Column(name = "message")
     private String message;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private User author;
+    @Column(name = "author_id")
+    private Integer author;
 
     @Column(name = "logged")
     private boolean logged;

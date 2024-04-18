@@ -11,5 +11,8 @@ public interface TaskCommentRepository extends JpaRepository<TaskComment, Intege
     
     List<TaskComment> findAllByTaskId(Integer taskId);
 
-    Optional<TaskComment> findById(Integer id);
+    Optional<TaskComment> findTaskCommentById(Integer id);
+
+    void deleteById(Integer id);
+
 }
