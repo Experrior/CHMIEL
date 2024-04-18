@@ -1,20 +1,52 @@
 .projectComponentContainer {
     background-color: #fafafa;
-    height: 250px;
+    height: 200px;
     padding: 5%;
     margin: 5px 0px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 .projectComponentContainer:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.projectComponentContainer > h4 {
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.quickLinks {
+    margin-top: 16px;
+}
+
+.quickLinks > h4 {
+    font: 800;
+    font-size: medium;
+    color: gray;
+    padding-left: 5px;
+}
+
+.link {
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.link a {
+    font-size: small;
+    color: gray;
+    text-decoration: none;
+}
+
+.link:hover {
     background-color: #dadada;
 }
 
 @media only screen and (max-width: 1200px) {
     .projectComponentContainer {
-        height: 200px;
+        height: 160px;
     }
 }
 
