@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskCommentServiceImpl implements TaskCommentService{
@@ -19,5 +20,14 @@ public class TaskCommentServiceImpl implements TaskCommentService{
     @Override
     public List<TaskComment> findAll() {
         return taskCommentRepository.findAll();
+    }
+
+    @Override
+    public Optional<TaskComment> findById(Integer id) {
+        return taskCommentRepository.findById(id);
+    }
+    @Override
+    public List<TaskComment> findAllByTaskId(Integer id) {
+        return taskCommentRepository.findAllByTaskId(id);
     }
 }

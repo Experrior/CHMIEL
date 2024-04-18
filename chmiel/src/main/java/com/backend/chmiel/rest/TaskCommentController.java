@@ -4,10 +4,7 @@ import com.backend.chmiel.entity.TaskComment;
 import com.backend.chmiel.service.TaskCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class TaskCommentController {
 
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @GetMapping()
-    public ResponseEntity<List<TaskComment>> getTaskComments(){
+    public ResponseEntity<List<TaskComment>> getTaskComments(@RequestParam Integer task_id){
         return ResponseEntity.ok(taskCommentService.findAll());
     }
 }
