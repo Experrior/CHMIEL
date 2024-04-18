@@ -14,3 +14,4 @@ public interface SprintRepository extends JpaRepository<Sprint, Integer> {
 
     List<Sprint> findAllByStopTimeBeforeOrderByStopTimeAsc(Timestamp stopTime);
 }
+

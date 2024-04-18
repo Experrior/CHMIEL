@@ -17,25 +17,25 @@ public class TaskCommentController {
     private final TaskCommentService taskCommentService;
 
 //    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @GetMapping()
-    public ResponseEntity<List<TaskComment>> getTaskCommentsByTaskId(@RequestParam Integer task_id){
+    @GetMapping("/getByTaskId/{task_id}")
+    public ResponseEntity<List<TaskComment>> getTaskCommentsByTaskId(@PathVariable Integer task_id){
         return ResponseEntity.ok(taskCommentService.findAllByTaskId(task_id));
     }
 
 //    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @PutMapping()
-    public ResponseEntity<Optional<TaskComment>> putTaskCommentById(@RequestParam Integer id, @RequestParam String message){
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Optional<TaskComment>> putTaskCommentById(@PathVariable Integer id, @RequestBody String message){
 
         return ResponseEntity.ok(Optional.ofNullable(taskCommentService.editTaskCommentById(id, message)));
     }
 
 //    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @DeleteMapping()
-    public void deleteTaskComment(@RequestParam Integer id){
+    @DeleteMapping("/delete/{id}")
+    public void deleteTaskComment(@PathVariable Integer id){
         taskCommentService.removeById(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Optional<TaskComment>> putTaskCommentById(@RequestBody PostTaskCommentRequest postTaskCommentRequest){
 
         return ResponseEntity.ok(Optional.ofNullable(taskCommentService.createTaskComment(postTaskCommentRequest)));
