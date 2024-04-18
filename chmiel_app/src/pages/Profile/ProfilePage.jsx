@@ -1,4 +1,4 @@
-import {Col, Row, Stack} from "react-bootstrap";
+import {Col, Row, Stack, Container} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import "./ProfilePage.css"
 import default_profile_picture from "../../assets/default_profile_picture.jpg"
@@ -129,92 +129,95 @@ export const ProfilePage = () => {
         <>
             <Navigation/>
             <div className={"profileImageBackground"}/>
-            <div className={"profileContainer"}>
-                <div className={"profileDetailsContainer"}>
-                    <div className={"profilePicture"}><p>{accountDetails.firstName ? accountDetails.firstName[0] : ""}{accountDetails.lastName ? accountDetails.lastName[0] : ""}</p></div>
-                    <h2>{accountDetails.firstName} {accountDetails.lastName}</h2>
-                    <div className={"profileDetails"}>
-                        <div>
-                            <p className={"profileDetailsHeader"}>Basic Details</p>
-                            <div className={"profileDetail"}>
-                                <p>Date Of Birth</p>
-                                {accountDetails.birthDate ? <p>{accountDetails.birthDate}</p> :
-                                    <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+            <Container fluid={"md"}>
+                <div className={"profileContainer"}>
+                    <div className={"profileDetailsContainer"}>
+                        <div className={"profilePicture"}><p>{accountDetails.firstName ? accountDetails.firstName[0] : ""}{accountDetails.lastName ? accountDetails.lastName[0] : ""}</p></div>
+                        <h2>{accountDetails.firstName} {accountDetails.lastName}</h2>
+                        <div className={"profileDetails"}>
+                            <div>
+                                <p className={"profileDetailsHeader"}>Basic Details</p>
+                                <div className={"profileDetail"}>
+                                    <p>Date Of Birth</p>
+                                    {accountDetails.birthDate ? <p>{accountDetails.birthDate}</p> :
+                                        <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                                </div>
+                                <div className={"profileDetail"}>
+                                    <p>Address</p>
+                                    {accountDetails.address ? <p>{accountDetails.address}</p> :
+                                        <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                                </div>
                             </div>
-                            <div className={"profileDetail"}>
-                                <p>Address</p>
-                                {accountDetails.address ? <p>{accountDetails.address}</p> :
-                                    <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                            <div>
+                                <p className={"profileDetailsHeader"}>Contact Information</p>
+                                <div className={"profileDetail"}>
+                                    <p>Email</p>
+                                    <p>{accountDetails.email}</p>
+                                </div>
+                                <div className={"profileDetail"}>
+                                    <p>Phone Number</p>
+                                    {accountDetails.phoneNumber ? <p>{accountDetails.phoneNumber}</p> :
+                                        <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <p className={"profileDetailsHeader"}>Contact Information</p>
-                            <div className={"profileDetail"}>
-                                <p>Email</p>
-                                <p>{accountDetails.email}</p>
-                            </div>
-                            <div className={"profileDetail"}>
-                                <p>Phone Number</p>
-                                {accountDetails.phoneNumber ? <p>{accountDetails.phoneNumber}</p> :
-                                    <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
-                            </div>
-                        </div>
+                        <EditUserDetailsModal accountDetails={accountDetails} editUser={editUser}/>
                     </div>
-                    <EditUserDetailsModal accountDetails={accountDetails} editUser={editUser}/>
+                    <div className={"profileProjects"}>
+                        <Stack gap={3}>
+                            <div>
+                                <h3>Worked on</h3>
+                                <div className={"profileProjectsWorkedOnContainer"}>
+                                    {projects.length > columnNum ? <Slider {...settings}>
+                                        {projects.map((project) => {
+                                            return <ProjectComponent project={project}/>
+                                        })}
+                                    </Slider> : (projects.length !== 0 ? <Row sm={3}>
+                                        {
+                                            projects.map((project) => {
+                                                return <Col><ProjectComponent project={project}/></Col>
+                                            })
+                                        }
+                                    </Row> : <></>)}
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Contributed to</h3>
+                                <div className={"profileProjectsWorkedOnContainer"}>
+                                    {projects2.length > columnNum ? <Slider {...settings}>
+                                        {projects2.map((project) => {
+                                            return <ProjectComponent project={project}/>
+                                        })}
+                                    </Slider> : (projects2.length !== 0 ? <Row sm={3}>
+                                        {
+                                            projects2.map((project) => {
+                                                return <Col><ProjectComponent project={project}/></Col>
+                                            })
+                                        }
+                                    </Row> : <></>)}
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Connections</h3>
+                                <div className={"profileProjectsConnections"}>
+                                    {userConnections.length !== 0 ? <Row>
+                                        {
+                                            userConnections.map((userConnection) => {
+                                                return <Col xs={2} md={3} lg={2} xxxl={1}> <img
+                                                    style={{width: "80%", borderRadius: "50%", marginBottom: 16}}
+                                                    src={default_profile_picture}
+                                                    alt={"default profile picture"}/>
+                                                </Col>
+                                            })
+                                        }
+                                    </Row> : <></>}
+                                </div>
+                            </div>
+                        </Stack>
+                    </div>
                 </div>
-                <div className={"profileProjects"}>
-                    <Stack gap={3}>
-                        <div>
-                            <h3>Worked on</h3>
-                            <div className={"profileProjectsWorkedOnContainer"}>
-                                {projects.length > columnNum ? <Slider {...settings}>
-                                    {projects.map((project) => {
-                                        return <ProjectComponent project={project}/>
-                                    })}
-                                </Slider> : (projects.length !== 0 ? <Row sm={3}>
-                                    {
-                                        projects.map((project) => {
-                                            return <Col><ProjectComponent project={project}/></Col>
-                                        })
-                                    }
-                                </Row> : <></>)}
-                            </div>
-                        </div>
-                        <div>
-                            <h3>Contributed to</h3>
-                            <div className={"profileProjectsWorkedOnContainer"}>
-                                {projects2.length > columnNum ? <Slider {...settings}>
-                                    {projects2.map((project) => {
-                                        return <ProjectComponent project={project}/>
-                                    })}
-                                </Slider> : (projects2.length !== 0 ? <Row sm={3}>
-                                    {
-                                        projects2.map((project) => {
-                                            return <Col><ProjectComponent project={project}/></Col>
-                                        })
-                                    }
-                                </Row> : <></>)}
-                            </div>
-                        </div>
-                        <div>
-                            <h3>Connections</h3>
-                            <div className={"profileProjectsConnections"}>
-                                {userConnections.length !== 0 ? <Row>
-                                    {
-                                        userConnections.map((userConnection) => {
-                                            return <Col xs={2} md={3} lg={2} xxxl={1}> <img
-                                                style={{width: "80%", borderRadius: "50%", marginBottom: 16}}
-                                                src={default_profile_picture}
-                                                alt={"default profile picture"}/>
-                                            </Col>
-                                        })
-                                    }
-                                </Row> : <></>}
-                            </div>
-                        </div>
-                    </Stack>
-                </div>
-            </div>
+            </Container>
+            
         </>
     )
 }

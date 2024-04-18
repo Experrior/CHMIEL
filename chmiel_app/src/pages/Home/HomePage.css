@@ -1,12 +1,10 @@
 .homeContainer {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
     height: calc(100vh - 175px);
-    padding: 16px;
+    padding-top: 16px;
 }
 
 .recentProjectsContainer {
-    width: 100%;
     height: auto;
     padding-bottom: 32px;
     display: flex;

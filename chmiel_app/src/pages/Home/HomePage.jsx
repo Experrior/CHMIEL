@@ -1,4 +1,4 @@
-import {Col, Row, Stack} from "react-bootstrap";
+import {Col, Row, Stack, Container} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import "./HomePage.css"
 import {useEffect, useState} from "react";
@@ -57,60 +57,64 @@ export const HomePage = () => {
     return (
         <>
             <Navigation/>
-            <div className={"homeContainer"}>
-                <Stack gap={3}>
-                    <h2>Your work</h2>
-                    <div className={"recentProjectsContainer"}>
-                        <div className={"projectsHeaderRow"}>
-                            <div className={"projectsHeader"}>
-                                <h3>Recent Projects</h3>
+            <Container fluid={"md"}>
+                <div className={"homeContainer"}> 
+                    <Stack gap={3}>
+                        <h2>Your work</h2>
+                        <div className={"recentProjectsContainer"}>
+                            <div className={"projectsHeaderRow"}>
+                                <div className={"projectsHeader"}>
+                                    <h3>Recent Projects</h3>
+                                </div>
+                                <div className={"projectsLink"}>
+                                        <a href="#">View all projects</a>
+                                </div>
                             </div>
-                            <div className={"projectsLink"}>
-                                    <a href="#">View all projects</a>
+                            <div>
+                                {projects.length !== 0 ? <Row sm={5}>
+                                    {
+                                        projects.slice(0, 5).map((project) => {
+                                            return <Col><ProjectComponent project={project}/></Col>
+                                        })
+                                    }
+                                </Row> : <></>}
                             </div>
-                        </div>
-                        <div>
-                            {projects.length !== 0 ? <Row sm={5}>
-                                {
-                                    projects.slice(0, 5).map((project) => {
-                                        return <Col><ProjectComponent project={project}/></Col>
-                                    })
-                                }
-                            </Row> : <></>}
-                        </div>
 
-                    </div>
-                    <div className={"summaryContainer"}>
-                        <div className="tabs">
-                            <div
-                                className={`tab ${activeTab === "workedOn" && "active"}`}
-                                onClick={() => handleTabClick("workedOn")}
-                            >
-                                Worked On
-                                <div className="tab-line"></div>
+                        </div>
+                        <div className={"summaryContainer"}>
+                            <div className="tabs">
+                                <div
+                                    className={`tab ${activeTab === "workedOn" && "active"}`}
+                                    onClick={() => handleTabClick("workedOn")}
+                                >
+                                    Worked On
+                                    <div className="tab-line"></div>
+                                </div>
+                                <div
+                                    className={`tab ${activeTab === "viewed" && "active"}`}
+                                    onClick={() => handleTabClick("viewed")}
+                                >
+                                    Viewed
+                                    <div className="tab-line"></div>
+                                </div>
+                                <div
+                                    className={`tab ${activeTab === "assignedToMe" && "active"}`}
+                                    onClick={() => handleTabClick("assignedToMe")}
+                                >
+                                    Assigned to me
+                                    <div className="tab-line"></div>
+                                </div>
                             </div>
-                            <div
-                                className={`tab ${activeTab === "viewed" && "active"}`}
-                                onClick={() => handleTabClick("viewed")}
-                            >
-                                Viewed
-                                <div className="tab-line"></div>
-                            </div>
-                            <div
-                                className={`tab ${activeTab === "assignedToMe" && "active"}`}
-                                onClick={() => handleTabClick("assignedToMe")}
-                            >
-                                Assigned to me
-                                <div className="tab-line"></div>
+                            <div className="tab-content">
+                                {generateTabContent(activeTab)}
                             </div>
                         </div>
-                        <div className="tab-content">
-                            {generateTabContent(activeTab)}
-                        </div>
-                    </div>
-                </Stack>
-                
-            </div>
+                    </Stack>
+                    
+                    
+                    
+                </div>
+            </Container>
         </>
     )
 }
