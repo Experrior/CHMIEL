@@ -1,8 +1,7 @@
 .projectComponentContainer {
     background-color: #fafafa;
-    height: 200px;
-    min-height: fit-content;
-    min-width: fit-content;
+    height: 160px;
+    min-width: max-content;
     padding: 5%;
     margin: 5px 0px;
     border-radius: 8px;
@@ -46,9 +45,9 @@
     background-color: #dadada;
 }
 
-@media only screen and (max-width: 1200px) {
+/* @media only screen and (max-width: 1200px) {
     .projectComponentContainer {
         height: 160px;
     }
-}
+} */
 
