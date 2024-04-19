@@ -1,6 +1,8 @@
 .projectComponentContainer {
     background-color: #fafafa;
     height: 200px;
+    min-height: fit-content;
+    min-width: fit-content;
     padding: 5%;
     margin: 5px 0px;
     border-radius: 8px;
@@ -20,7 +22,7 @@
     margin-top: 16px;
 }
 
-.quickLinks > h4 {
+.quickLinks > h6 {
     font: 800;
     font-size: medium;
     color: gray;
