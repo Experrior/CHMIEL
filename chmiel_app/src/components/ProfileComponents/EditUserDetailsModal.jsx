@@ -11,6 +11,8 @@ export const EditUserDetailsModal = (props) => {
     const [address, setAddress] = useState("")
     const [birthDate, setBirthDate] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
+    const [ errors, setErrors ] = useState({})
+
 
     useEffect(() => {
         setFirstName(props.accountDetails.firstName)
@@ -21,24 +23,38 @@ export const EditUserDetailsModal = (props) => {
         setPhoneNumber(props.accountDetails.phoneNumber)
     }, [modalShow])
 
+    const findFormErrors = () => {
+        const newErrors = {}
+        // name errors
+        if (!firstName || firstName === '') newErrors.firstName = 'First name is required!'
+        else if (firstName.match(/\d+/)) newErrors.firstName = 'First name cannot contain numbers'
+
+        if (!lastName || lastName === '') newErrors.lastName = 'Last name is required!'
+        else if (lastName.match(/\d+/)) newErrors.lastName = 'Last name cannot contain numbers'
+
+        if (!email || email === '') newErrors.email = 'Email is required!'
+        else if (!email.match(/.+@.+/)) newErrors.email = 'Email must contain "@"'
+
+        if (Date.parse(birthDate) > new Date()) newErrors.birthDate = 'Birth date cannot be set to future'
+
+        if (phoneNumber.match(/\d/g).length !== 9) {
+            newErrors.phoneNumber = 'Phone number must consist of 9 numbers'
+        }
+        else if (phoneNumber.match(/.*[A-Za-z]+.*/)) newErrors.phoneNumber = 'Phone number cannot contain letters'
+
+        return newErrors
+    }
+
     const onFormSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const form = e.currentTarget
-        if (form.checkValidity() === false) {
-            setValidated(true);
+        const newErrors = findFormErrors()
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors)
         } else {
-            setValidated(false);
-        //     handle successful validation of data here
             props.editUser(firstName, lastName, email, birthDate, address, phoneNumber);
             setModalShow(false);
-        // if (shipping) {
-        //     setPayment(true);
-        //     setShipping(false);
-        // } else if (payment) {
-        //     setPayment(false);
-        //     setReview(true);
-        // }
+            setErrors({})
         }
     }
 
@@ -47,7 +63,10 @@ export const EditUserDetailsModal = (props) => {
             <Button variant={"custom-primary"} onClick={() => setModalShow(true)}>Edit details</Button>
             <Modal
                 show={modalShow}
-                onHide={() => setModalShow(false)}
+                onHide={() => {
+                    setModalShow(false)
+                    setErrors({})
+                }}
                 backdrop={"static"}
                 centered
                 keyboard={false}
@@ -70,8 +89,16 @@ export const EditUserDetailsModal = (props) => {
                                                   value={firstName}
                                                   onChange={(e) => {
                                                       setFirstName(e.target.value)
+                                                      if ( !!errors["firstName"] ) setErrors({
+                                                          ...errors,
+                                                          ["firstName"]: null
+                                                      })
                                                   }}
+                                                  isInvalid={ !!errors.firstName }
                                     />
+                                    <Form.Control.Feedback type='invalid'>
+                                        { errors.firstName }
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -82,20 +109,36 @@ export const EditUserDetailsModal = (props) => {
                                                   value={lastName}
                                                   onChange={(e) => {
                                                       setLastName(e.target.value)
+                                                      if ( !!errors["lastName"] ) setErrors({
+                                                          ...errors,
+                                                          ["lastName"]: null
+                                                      })
                                                   }}
+                                                  isInvalid={ errors.lastName }
                                     />
+                                    <Form.Control.Feedback type='invalid'>
+                                        { errors.lastName }
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Form.Group className={"mb-3"} controlId={"formGroupEmail"}>
                             <Form.Label>Email</Form.Label>
                             <Form.Control required
-                                          type={"text"}
+                                          type={"email"}
                                           value={email}
                                           onChange={(e) => {
                                               setEmail(e.target.value)
+                                              if ( !!errors["email"] ) setErrors({
+                                                  ...errors,
+                                                  ["email"]: null
+                                              })
                                           }}
+                                          isInvalid={ errors.email }
                             />
+                            <Form.Control.Feedback type='invalid'>
+                                { errors.email }
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className={"mb-3"} controlId={"formGroupAddress"}>
                             <Form.Label>Address</Form.Label>
@@ -112,24 +155,42 @@ export const EditUserDetailsModal = (props) => {
                                 <Form.Group className={"mb-3"} controlId={"formGroupBirthDate"}>
                                     <Form.Label>Birth Date</Form.Label>
                                     <Form.Control
-                                                  type={"date"}
-                                                  value={birthDate}
-                                                  onChange={(e) => {
-                                                      setBirthDate(e.target.value)
-                                                  }}
+                                        type={"date"}
+                                        value={birthDate}
+                                        onChange={(e) => {
+                                            setBirthDate(e.target.value)
+                                            if ( !!errors["birthDate"] ) setErrors({
+                                                ...errors,
+                                                ["birthDate"]: null
+                                            })
+                                        }}
+                                        max={new Date().toISOString().slice(0, 10)}
+                                        isInvalid={ errors.birthDate }
+
                                     />
+                                    <Form.Control.Feedback type='invalid'>
+                                        { errors.birthDate }
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className={"mb-3"} controlId={"formGroupPhoneNumber"}>
                                     <Form.Label>Phone Number</Form.Label>
                                     <Form.Control
-                                                  type={"text"}
-                                                  value={phoneNumber}
-                                                  onChange={(e) => {
-                                                      setPhoneNumber(e.target.value)
-                                                  }}
+                                        type={"text"}
+                                        value={phoneNumber}
+                                        onChange={(e) => {
+                                            setPhoneNumber(e.target.value)
+                                            if ( !!errors["phoneNumber"] ) setErrors({
+                                                ...errors,
+                                                ["phoneNumber"]: null
+                                            })
+                                        }}
+                                        isInvalid={ errors.phoneNumber }
                                     />
+                                    <Form.Control.Feedback type='invalid'>
+                                        { errors.phoneNumber }
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
                         </Row>
