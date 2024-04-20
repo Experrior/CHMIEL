@@ -129,7 +129,7 @@ export const ProfilePage = () => {
         <>
             <Navigation/>
             <div className={"profileImageBackground"}/>
-            <Container fluid={"md"}>
+            {/*<Container fluid={"md"}>*/}
                 <div className={"profileContainer"}>
                     <div className={"profileDetailsContainer"}>
                         <div className={"profilePicture"}><p>{accountDetails.firstName ? accountDetails.firstName[0] : ""}{accountDetails.lastName ? accountDetails.lastName[0] : ""}</p></div>
@@ -216,7 +216,7 @@ export const ProfilePage = () => {
                         </Stack>
                     </div>
                 </div>
-            </Container>
+            {/*</Container>*/}
             
         </>
     )
