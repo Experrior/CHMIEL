@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .profilePicture > p {
@@ -47,7 +48,6 @@
 .profileDetailsContainer > h2 {
     text-align: center;
 }
-
 
 .profileDetails {
     display: flex;
@@ -88,7 +88,7 @@
     width: 70%;
     height: 100%;
     padding: 2rem 2rem 4rem 2rem;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .profileProjectsWorkedOnContainer {

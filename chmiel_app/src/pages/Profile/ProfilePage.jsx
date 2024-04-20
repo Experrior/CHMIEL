@@ -53,7 +53,7 @@ export const ProfilePage = () => {
         slidesToScroll: 1,
         responsive: [
             {
-                breakpoint: 992,
+                breakpoint: 1200, // 992
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
@@ -63,7 +63,7 @@ export const ProfilePage = () => {
                 }
             },
             {
-                breakpoint: 840,
+                breakpoint: 992, // 840
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
@@ -108,9 +108,9 @@ export const ProfilePage = () => {
 
 
     useEffect(() => {
-        if (screenSize.width < 840) {
+        if (screenSize.width < 992) {
             setColumnNum(1)
-        } else if (screenSize.width < 992) {
+        } else if (screenSize.width < 1200) {
             setColumnNum(2)
         } else setColumnNum(3)
         console.log(columnNum)

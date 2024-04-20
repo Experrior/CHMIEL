@@ -1,6 +1,7 @@
 .projectComponentContainer {
     background-color: #fafafa;
-    height: 200px;
+    height: 160px;
+    min-width: max-content;
     padding: 5%;
     margin: 5px 0px;
     border-radius: 8px;
@@ -11,7 +12,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.projectComponentContainer > h4 {
+.projectComponentContainer > h5 {
     cursor: pointer;
     padding-left: 5px;
 }
@@ -20,7 +21,7 @@
     margin-top: 16px;
 }
 
-.quickLinks > h4 {
+.quickLinks > h6 {
     font: 800;
     font-size: medium;
     color: gray;
@@ -44,9 +45,9 @@
     background-color: #dadada;
 }
 
-@media only screen and (max-width: 1200px) {
+/* @media only screen and (max-width: 1200px) {
     .projectComponentContainer {
         height: 160px;
     }
-}
+} */
 
