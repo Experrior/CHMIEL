@@ -61,17 +61,17 @@ export const ProfilePage = () => {
                     infinite: false,
                     dots: false
                 }
-            },
-            {
-                breakpoint: 992, // 840
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    speed: 500,
-                    infinite: false,
-                    dots: false
-                }
             }
+            // {
+            //     breakpoint: 992, // 840
+            //     settings: {
+            //         slidesToShow: 1,
+            //         slidesToScroll: 1,
+            //         speed: 500,
+            //         infinite: false,
+            //         dots: false
+            //     }
+            // }
         ]
     };
 
@@ -129,40 +129,41 @@ export const ProfilePage = () => {
         <>
             <Navigation/>
             <div className={"profileImageBackground"}/>
-            {/*<Container fluid={"md"}>*/}
+            <Container fluid={"md"}>
                 <div className={"profileContainer"}>
-                    <div className={"profileDetailsContainer"}>
-                        <div className={"profilePicture"}><p>{accountDetails.firstName ? accountDetails.firstName[0] : ""}{accountDetails.lastName ? accountDetails.lastName[0] : ""}</p></div>
-                        <h2>{accountDetails.firstName} {accountDetails.lastName}</h2>
-                        <div className={"profileDetails"}>
-                            <div>
-                                <p className={"profileDetailsHeader"}>Basic Details</p>
-                                <div className={"profileDetail"}>
-                                    <p>Date Of Birth</p>
-                                    {accountDetails.birthDate ? <p>{accountDetails.birthDate}</p> :
-                                        <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                        <div className={"profileDetailsContainer"}>
+                            <div className={"profilePicture"}><p>{accountDetails.firstName ? accountDetails.firstName[0] : ""}{accountDetails.lastName ? accountDetails.lastName[0] : ""}</p></div>
+                            <h2>{accountDetails.firstName} {accountDetails.lastName}</h2>
+                            <div className={"profileDetails"}>
+                                <div>
+                                    <p className={"profileDetailsHeader"}>Basic Details</p>
+                                    <div className={"profileDetail"}>
+                                        <p>Date Of Birth</p>
+                                        {accountDetails.birthDate ? <p>{accountDetails.birthDate}</p> :
+                                            <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                                    </div>
+                                    <div className={"profileDetail"}>
+                                        <p>Address</p>
+                                        {accountDetails.address ? <p>{accountDetails.address}</p> :
+                                            <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                                    </div>
                                 </div>
-                                <div className={"profileDetail"}>
-                                    <p>Address</p>
-                                    {accountDetails.address ? <p>{accountDetails.address}</p> :
-                                        <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                                <div>
+                                    <p className={"profileDetailsHeader"}>Contact Information</p>
+                                    <div className={"profileDetail"}>
+                                        <p>Email</p>
+                                        <p>{accountDetails.email}</p>
+                                    </div>
+                                    <div className={"profileDetail"}>
+                                        <p>Phone Number</p>
+                                        {accountDetails.phoneNumber ? <p>{accountDetails.phoneNumber}</p> :
+                                            <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <p className={"profileDetailsHeader"}>Contact Information</p>
-                                <div className={"profileDetail"}>
-                                    <p>Email</p>
-                                    <p>{accountDetails.email}</p>
-                                </div>
-                                <div className={"profileDetail"}>
-                                    <p>Phone Number</p>
-                                    {accountDetails.phoneNumber ? <p>{accountDetails.phoneNumber}</p> :
-                                        <p style={{color: "lightgrey", fontStyle: "italic"}}>undefined</p>}
-                                </div>
-                            </div>
+                            <EditUserDetailsModal accountDetails={accountDetails} editUser={editUser}/>
                         </div>
-                        <EditUserDetailsModal accountDetails={accountDetails} editUser={editUser}/>
-                    </div>
+
                     <div className={"profileProjects"}>
                         <Stack gap={3}>
                             <div>
@@ -216,7 +217,7 @@ export const ProfilePage = () => {
                         </Stack>
                     </div>
                 </div>
-            {/*</Container>*/}
+            </Container>
             
         </>
     )

@@ -1,12 +1,16 @@
 .profileContainer {
     height: calc(100vh - 175px);
     display: flex;
+    /*gap: 16px;*/
 }
 
 .profileImageBackground {
     background-color: #DADADA;
     width: 100%;
     height: 100px;
+    position: fixed;
+    margin-top: 75px;
+    z-index: 900;
 }
 
 .profilePicture {
@@ -21,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .profilePicture > p {
@@ -32,16 +36,19 @@
 }
 
 .profileDetailsContainer {
-    position: relative;
+    position: fixed;
+    top: 175px;
+    /*position: relative;*/
     /*to avoid image background - 75px of image and 11px gap*/
-    padding: 91px 32px 32px 32px;
+    padding: 91px 16px 16px 16px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     height: 100%;
     min-height: calc(100vh - 175px);
     width: 30%;
-    min-width: 350px;
+    max-width: 450px;
+    z-index: 999;
 }
 
 /* PROFILE NAME */
@@ -88,6 +95,8 @@
     width: 70%;
     height: 100%;
     padding: 2rem 2rem 4rem 2rem;
+    margin-left: calc(30% + 48px);
+    margin-top: 175px;
     /* overflow-y: scroll; */
 }
 
@@ -122,16 +131,37 @@
     .profileProjectsWorkedOnContainer {
         height: 264px;
     }
+
+    .profileProjects {
+        width: 60%;
+        margin-left: calc(40% + 48px);
+    }
+
+    .profileDetailsContainer {
+        width: 40%;
+        /*width:inherit;*/
+    }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
     .profileContainer {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .profileImageBackground {
+        height: 100px;
+        position: relative;
+        margin-top: 75px;
+        /*z-index: 900;*/
     }
 
     .profileDetailsContainer {
         width: 100%;
         align-items: center;
+        max-width: 600px;
+        position: relative;
+        top: 0;
     }
 
     .profileDetails {
@@ -142,6 +172,8 @@
         height: fit-content;
         overflow: inherit;
         width: 100%;
+        /*margin-top: 100%;*/
+        margin: 0;
     }
 
     .profileProjects h3 {
