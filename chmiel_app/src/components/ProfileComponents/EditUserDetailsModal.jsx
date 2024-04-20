@@ -11,7 +11,7 @@ export const EditUserDetailsModal = (props) => {
     const [address, setAddress] = useState("")
     const [birthDate, setBirthDate] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
-    const [ errors, setErrors ] = useState({})
+    const [errors, setErrors] = useState({})
 
 
     useEffect(() => {
@@ -39,8 +39,7 @@ export const EditUserDetailsModal = (props) => {
 
         if (phoneNumber.match(/\d/g).length !== 9) {
             newErrors.phoneNumber = 'Phone number must consist of 9 numbers'
-        }
-        else if (phoneNumber.match(/.*[A-Za-z]+.*/)) newErrors.phoneNumber = 'Phone number cannot contain letters'
+        } else if (phoneNumber.match(/.*[A-Za-z]+.*/)) newErrors.phoneNumber = 'Phone number cannot contain letters'
 
         return newErrors
     }
@@ -52,7 +51,7 @@ export const EditUserDetailsModal = (props) => {
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
         } else {
-            props.editUser(firstName, lastName, email, birthDate, address, phoneNumber);
+            props.editUser(firstName[0].toUpperCase() + firstName.slice(1), lastName[0].toUpperCase() + lastName.slice(1), email, birthDate, address, phoneNumber);
             setModalShow(false);
             setErrors({})
         }
@@ -89,15 +88,15 @@ export const EditUserDetailsModal = (props) => {
                                                   value={firstName}
                                                   onChange={(e) => {
                                                       setFirstName(e.target.value)
-                                                      if ( !!errors["firstName"] ) setErrors({
+                                                      if (!!errors["firstName"]) setErrors({
                                                           ...errors,
                                                           ["firstName"]: null
                                                       })
                                                   }}
-                                                  isInvalid={ !!errors.firstName }
+                                                  isInvalid={!!errors.firstName}
                                     />
                                     <Form.Control.Feedback type='invalid'>
-                                        { errors.firstName }
+                                        {errors.firstName}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
@@ -109,15 +108,15 @@ export const EditUserDetailsModal = (props) => {
                                                   value={lastName}
                                                   onChange={(e) => {
                                                       setLastName(e.target.value)
-                                                      if ( !!errors["lastName"] ) setErrors({
+                                                      if (!!errors["lastName"]) setErrors({
                                                           ...errors,
                                                           ["lastName"]: null
                                                       })
                                                   }}
-                                                  isInvalid={ errors.lastName }
+                                                  isInvalid={errors.lastName}
                                     />
                                     <Form.Control.Feedback type='invalid'>
-                                        { errors.lastName }
+                                        {errors.lastName}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
@@ -129,15 +128,15 @@ export const EditUserDetailsModal = (props) => {
                                           value={email}
                                           onChange={(e) => {
                                               setEmail(e.target.value)
-                                              if ( !!errors["email"] ) setErrors({
+                                              if (!!errors["email"]) setErrors({
                                                   ...errors,
                                                   ["email"]: null
                                               })
                                           }}
-                                          isInvalid={ errors.email }
+                                          isInvalid={errors.email}
                             />
                             <Form.Control.Feedback type='invalid'>
-                                { errors.email }
+                                {errors.email}
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className={"mb-3"} controlId={"formGroupAddress"}>
@@ -159,17 +158,17 @@ export const EditUserDetailsModal = (props) => {
                                         value={birthDate}
                                         onChange={(e) => {
                                             setBirthDate(e.target.value)
-                                            if ( !!errors["birthDate"] ) setErrors({
+                                            if (!!errors["birthDate"]) setErrors({
                                                 ...errors,
                                                 ["birthDate"]: null
                                             })
                                         }}
                                         max={new Date().toISOString().slice(0, 10)}
-                                        isInvalid={ errors.birthDate }
+                                        isInvalid={errors.birthDate}
 
                                     />
                                     <Form.Control.Feedback type='invalid'>
-                                        { errors.birthDate }
+                                        {errors.birthDate}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
@@ -181,15 +180,15 @@ export const EditUserDetailsModal = (props) => {
                                         value={phoneNumber}
                                         onChange={(e) => {
                                             setPhoneNumber(e.target.value)
-                                            if ( !!errors["phoneNumber"] ) setErrors({
+                                            if (!!errors["phoneNumber"]) setErrors({
                                                 ...errors,
                                                 ["phoneNumber"]: null
                                             })
                                         }}
-                                        isInvalid={ errors.phoneNumber }
+                                        isInvalid={errors.phoneNumber}
                                     />
                                     <Form.Control.Feedback type='invalid'>
-                                        { errors.phoneNumber }
+                                        {errors.phoneNumber}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>

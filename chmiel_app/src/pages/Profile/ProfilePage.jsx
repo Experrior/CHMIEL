@@ -62,16 +62,6 @@ export const ProfilePage = () => {
                     dots: false
                 }
             }
-            // {
-            //     breakpoint: 992, // 840
-            //     settings: {
-            //         slidesToShow: 1,
-            //         slidesToScroll: 1,
-            //         speed: 500,
-            //         infinite: false,
-            //         dots: false
-            //     }
-            // }
         ]
     };
 
