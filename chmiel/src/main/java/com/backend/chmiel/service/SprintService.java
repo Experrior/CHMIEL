@@ -8,7 +8,8 @@ import java.util.List;
 public interface SprintService {
     List<Sprint> findAll();
 
-    List<Sprint> findAllByGroupId(Integer id);
+    List<Sprint> findAllByProjectId(Integer id);
+
 
     List<Sprint> findAllByStartTimeAfterOrderByStartTimeAsc(String timestamp);
 
