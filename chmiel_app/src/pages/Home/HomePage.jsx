@@ -17,7 +17,6 @@ export const HomePage = () => {
     const [cookies] = useCookies(["token"]);
     const screenSize = useScreenSize();
     const [columnNum, setColumnNum] = useState(0);
-
     const [activeTab, setActiveTab] = useState("workedOn");
     const generateTabContent = (tab) => {
         switch (tab) {

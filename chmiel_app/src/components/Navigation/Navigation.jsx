@@ -14,7 +14,7 @@ export const Navigation = () => {
     }
 
     return (
-        <Navbar id={"navigation-custom-top"} sticky={"top"} expand={"md"}>
+        <Navbar id={"navigation-custom-top"} fixed={"top"} expand={"md"}>
             <Container fluid={"md"}>
                 <a className={"navbar-brand brand-name-large"} href={"/"}>CHMIEL</a>
                 <Navbar.Toggle aria-controls="basic-navbar-nav">

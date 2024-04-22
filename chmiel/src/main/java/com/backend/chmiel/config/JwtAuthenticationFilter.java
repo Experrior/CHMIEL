@@ -24,6 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
+
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -34,7 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
 //        final String userEmail;
         final Integer id;
-        if (authHeader == null || !authHeader.startsWith("Bearer ")){
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -43,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 //         need to get email base on id
         id = jwtService.extractClaim(jwt, (claims) -> claims.get("userId", Integer.class));
 //        userEmail = userRepository.findById(id).orElseThrow().getEmail();
-        if (id != null && SecurityContextHolder.getContext().getAuthentication() == null){
+        if (id != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found."));
             if (jwtService.isTokenValid(jwt, id)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
