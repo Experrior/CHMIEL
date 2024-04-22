@@ -17,7 +17,7 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @GetMapping("/getAll")
     public ResponseEntity<List<Project>> getSprints(){
         return ResponseEntity.ok(projectService.findAll());

@@ -52,7 +52,28 @@ export const HomePage = () => {
         } else setColumnNum(3)
         console.log(columnNum)
     }, [screenSize.width])
+    const [responseData, setResponseData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const response = await axios.get('http://localhost:8084/api/project/getAll');
+                const projectsData = response.data.map(project => ({
+                    id: project.id,
+                    name: project.projectName,
+                }));
+                setProjects(projectsData);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchProjects();
+    }, []);
     return (
         <>
             <Navigation/>

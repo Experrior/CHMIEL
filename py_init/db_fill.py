@@ -1,8 +1,7 @@
 import datetime
-
 import requests
 
-api = "http://localhost:8084"
+api = "http://172.22.0.1:8084"
 headers = {'Content-Type': 'application/json'}
 
 session = requests.Session()
@@ -33,10 +32,10 @@ users = [
 ]
 
 projects_to_make = [
-    {"name": "MVP project baseline", "id": 1},
-    {"name": "Strategy & Launch", "id": 2},
-    {"name": "Securing clients", "id": 3},
-    {"name": "QA Long Term analysis", "id": 4}
+    {"name": "MVP project baseline", "projectOwner": 1},
+    {"name": "Strategy & Launch", "projectOwner": 2},
+    {"name": "Securing clients", "projectOwner": 3},
+    {"name": "QA Long Term analysis", "projectOwner": 4}
 ]
 
 base_tasks = [
