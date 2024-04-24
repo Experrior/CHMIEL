@@ -1,0 +1,25 @@
+#sidebar-left {
+    width: 256px;
+    height: calc(100vh - 175px);
+    padding-top: 75px;
+}
+
+.menuItemContent {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 30px;
+}
+
+.text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.menuTitle {
+    margin: auto 8px;
+    padding: 20px;
+    font-weight: 600;
+}
