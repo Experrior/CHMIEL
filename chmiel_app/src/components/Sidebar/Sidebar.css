@@ -1,12 +1,14 @@
 .sidebar {
-    left: 0;
+    left: -64px;
     width: 256px;
-    padding-top: 75px;
-    transition: left 0.3s ease-in-out;
+    top: 75px;
+    /* transition: left 0.3s ease; */
+    position: absolute;
+    height: calc(100vh - 175px);
 }
 
-.sidebar.closed {
-    left: -234px;
+.sidebar.open {
+    left: 0;
 }
 
 .menuItemContent {
@@ -40,15 +42,15 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     background-color: white;
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     top: 95px;
-    left: 236px;
+    left: 4px;
     z-index: 900;
-    transition: left 0.3s ease-in-out;
+    transition: left 0.3s ease;
 }
 
-.sidebar.closed + .toggleButton {
-    left: 4px;
+.sidebar.open + .toggleButton {
+    left: 236px;
 }
 
 .toggleButton:hover {

@@ -10,7 +10,7 @@ export const SidebarMenu = () => {
     const [activeItem, setActiveItem] = useState("board");
     const [sidebarVisible, setSidebarVisible] = useState(true);
 
-    const sidebarClass = sidebarVisible ? "sidebar" : "sidebar closed";
+    const sidebarClass = sidebarVisible ? "sidebar open" : "sidebar";
 
     const handleItemClick = (item) => {
         setActiveItem(item);
@@ -22,7 +22,7 @@ export const SidebarMenu = () => {
 
     return (
         <div style={{display: 'flex',}}>
-            <Sidebar fixed={"left"} className={sidebarClass}>
+            <Sidebar fixed={"left"} className={sidebarClass} collapsed={!sidebarVisible}>
                 <Menu
                     menuItemStyles={{ button: ({ active }) => {
                         return {
@@ -39,7 +39,8 @@ export const SidebarMenu = () => {
                     },
                     }}
                 >
-                    <div className="menuTitle">Project Name</div>
+                    {sidebarVisible ? <div className="menuTitle">Project Name</div>
+                    : <div className="menuTitle"><br/></div>}
                             
                     <MenuItem
                         active={activeItem === "backlog"}
