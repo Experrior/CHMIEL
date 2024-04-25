@@ -1,10 +1,10 @@
-version: '3'
 
 services:
   chmiel_db:
-    build:
-      context: .
-      dockerfile: Dockerfile_db
+    image: chmiel_db
+#    build:
+ #     context: .
+  #    dockerfile: Dockerfile_db
     ports:
       - "5432:5432"
     environment:
@@ -15,19 +15,25 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "ChmielDB"]
       interval: 30s
-      timeout: 60s
+      timeout: 10s
       retries: 3
     networks:
       - my_network
 
 
   chmiel_back:
-    build:
-#    image: chmiel_back
-      context: .
-      dockerfile: Dockerfile_back
+#    build:
+    image: chmiel_back
+   #   context: .
+   #   dockerfile: Dockerfile_back
     ports:
       - "8084:8084"
+    healthcheck:
+      test: "curl --fail --silent localhost:8084/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 1
+      start_period: 10s
     depends_on:
       chmiel_db:
         condition: service_healthy
@@ -40,10 +46,10 @@ services:
 
 
   chmiel_front:
-#    image: chmiel_front
-    build:
-      context: .
-      dockerfile: Dockerfile_front
+    image: chmiel_front
+#    build:
+ #     context: .
+  #    dockerfile: Dockerfile_front
     ports:
       - "3000:80"
     depends_on:
@@ -51,6 +57,14 @@ services:
     networks:
       - my_network
 
+  chmiel_py:
+    image: chmiel_py
+#    command: dockerize -wait 172.22.0.1:8084/api/auth
+    depends_on:
+      chmiel_back:
+        condition: service_healthy
+    networks:
+      - my_network
 
 networks:
   my_network:

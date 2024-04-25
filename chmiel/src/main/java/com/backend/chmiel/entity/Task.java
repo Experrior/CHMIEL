@@ -17,19 +17,18 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceTaskId")
     @SequenceGenerator(name = "SequenceTaskId", sequenceName = "tasks_task_id_seq", allocationSize = 1)
-    private Integer taskId;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "assignee_id")
     private User assignee;
 
     @OneToOne
-    @JoinColumn(name = "reported_id")
+    @JoinColumn(name = "reporter_id")
     private User reporter;
 
-    @OneToOne
-    @JoinColumn(name = "group")
-    private Group group;
+    @Column(name = "project_id")
+    private Integer projectId;
 
     @OneToOne
     @JoinColumn(name = "sprint_id")
@@ -60,10 +59,10 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "taskId=" + taskId +
+                "id=" + id +
                 ", assignee=" + assignee +
                 ", reporter=" + reporter +
-                ", group=" + group +
+                ", projectId=" + projectId +
                 ", sprint=" + sprint +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

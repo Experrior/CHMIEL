@@ -6,14 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostTaskCommentRequest {
-    private Integer taskId;
-    @Schema(example = "Example message")
-    private String message;
-    private Integer authorId;
+public class PostProjectRequest {
+
+    private String name;
+    private Integer projectOwner;
 
 }

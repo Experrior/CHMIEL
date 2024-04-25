@@ -6,6 +6,7 @@ import {RegisterPage} from "./pages/Authentication/RegisterPage";
 import {ProtectedRoute} from "./other/ProtectedRoute";
 import {LoginPage} from "./pages/Authentication/LoginPage";
 import {ProfilePage} from "./pages/Profile/ProfilePage";
+import { Board } from './pages/Board/Board';
 
 function App() {
 
@@ -25,7 +26,19 @@ function App() {
         {
             path: "/profile",
             element: <ProtectedRoute><ProfilePage/></ProtectedRoute>,
-        }
+        },
+        {
+            path: "/board",
+            element: <ProtectedRoute><Board/></ProtectedRoute>,
+        },
+        // {
+        //     path: "/backlog",
+        //     element: <ProtectedRoute><Backlog/></ProtectedRoute>,
+        // },
+        // {
+        //     path: "/issues",
+        //     element: <ProtectedRoute><Issues/></ProtectedRoute>,
+        // }
     ]);
 
     return (

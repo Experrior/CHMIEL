@@ -24,8 +24,8 @@ public class SprintServiceImpl implements SprintService{
     }
 
     @Override
-    public List<Sprint> findAllByGroupId(Integer group_id) {
-        return sprintRepository.findAllByGroupId(group_id);
+    public List<Sprint> findAllByProjectId(Integer project_id) {
+        return sprintRepository.findAllByProjectId(project_id);
     }
 
     @Override
@@ -39,10 +39,10 @@ public class SprintServiceImpl implements SprintService{
     @Override
     public Sprint createSprint(PostSprintRequest postSprintRequest) {
         return sprintRepository.save(Sprint.builder()
-                .sprintName(postSprintRequest.getSprint_name())
-                .groupId(postSprintRequest.getGroup_id())
-                .startTime(Timestamp.valueOf(postSprintRequest.getStart_time()))
-                .stopTime(Timestamp.valueOf(postSprintRequest.getStop_time()))
+                .sprintName(postSprintRequest.getSprintName())
+                .projectId(postSprintRequest.getProjectId())
+                .startTime(Timestamp.valueOf(postSprintRequest.getStartTime()))
+                .stopTime(Timestamp.valueOf(postSprintRequest.getStopTime()))
                 .build());
     }
 }

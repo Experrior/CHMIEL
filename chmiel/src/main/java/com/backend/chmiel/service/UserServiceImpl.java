@@ -1,12 +1,18 @@
 package com.backend.chmiel.service;
 
+import com.backend.chmiel.auth.AuthenticationResponse;
+import com.backend.chmiel.auth.RegisterRequest;
 import com.backend.chmiel.dao.UserRepository;
+import com.backend.chmiel.entity.Role;
 import com.backend.chmiel.entity.User;
 import com.backend.chmiel.payload.EditUserDetailsRequest;
 import com.backend.chmiel.payload.UserDetailsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -49,4 +55,15 @@ public class UserServiceImpl implements UserService{
                 .phoneNumber(user.getPhoneNumber())
                 .build();
     }
+
+    @Override
+    public User changeUserPassword(Integer id, String password) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        user.setPassword(password);
+        userRepository.save(user);
+        return user;
+    }
+
+
+
 }

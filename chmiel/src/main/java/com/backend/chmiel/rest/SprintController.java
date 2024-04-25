@@ -22,9 +22,9 @@ public class SprintController {
     }
 
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @GetMapping("/getByGroupId/{group_id}")
-    public ResponseEntity<List<Sprint>> getSprintsByGroup(@PathVariable Integer group_id){
-        return ResponseEntity.ok(sprintService.findAllByGroupId(group_id));
+    @GetMapping("/getByProjectId/{project_id}")
+    public ResponseEntity<List<Sprint>> getSprintsByGroup(@PathVariable Integer project_id){
+        return ResponseEntity.ok(sprintService.findAllByProjectId(project_id));
     }
 
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})

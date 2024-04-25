@@ -13,10 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostSprintRequest {
 
-    @Schema(example = "CD-WTF")
-    private String sprint_name;
-    private Integer group_id;
-    private String start_time;
-    private String stop_time;
+    private String sprintName;
+    private Integer projectId;
+    private String startTime;
+    private String stopTime;
 
 }

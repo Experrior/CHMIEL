@@ -24,8 +24,8 @@ public class Sprint {
     @Column(name = "sprint_name")
     private String sprintName;
 
-    @Column(name = "group_id")
-    private Integer groupId;
+    @Column(name = "project_id")
+    private Integer projectId;
 
     @Column(name = "start_time")
     private Timestamp startTime;
@@ -41,7 +41,7 @@ public class Sprint {
         return "Sprint{" +
                 "sprintId=" + id +
                 ", sprintName='" + sprintName + '\'' +
-                ", group=" + groupId +
+                ", projectId=" + projectId +
                 ", startTime=" + startTime +
                 ", stopTime=" + stopTime +
                 ", logged=" + logged +

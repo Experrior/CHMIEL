@@ -46,9 +46,9 @@ public class TaskCommentServiceImpl implements TaskCommentService{
     @Override
     public TaskComment createTaskComment(PostTaskCommentRequest postTaskCommentRequest){
         return taskCommentRepository.save(TaskComment.builder()
-                        .author(postTaskCommentRequest.getAuthor_id())
+                        .author(postTaskCommentRequest.getAuthorId())
                         .message(postTaskCommentRequest.getMessage())
-                        .taskId(postTaskCommentRequest.getTask_id())
+                        .taskId(postTaskCommentRequest.getTaskId())
                 .build());
     }
 

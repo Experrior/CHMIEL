@@ -1,0 +1,8 @@
+FROM python:3.10
+
+COPY py_init/db_fill.py .
+COPY py_init/requirements.txt .
+
+RUN python3 -m pip install -r requirements.txt
+
+CMD python3 db_fill.py

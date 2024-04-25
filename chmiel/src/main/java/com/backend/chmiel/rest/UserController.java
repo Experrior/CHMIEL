@@ -1,7 +1,10 @@
 package com.backend.chmiel.rest;
 
+import com.backend.chmiel.auth.RegisterRequest;
 import com.backend.chmiel.config.JwtService;
+import com.backend.chmiel.entity.User;
 import com.backend.chmiel.payload.EditUserDetailsRequest;
+import com.backend.chmiel.payload.PostPremadeUserRequest;
 import com.backend.chmiel.payload.UserDetailsResponse;
 import com.backend.chmiel.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -28,4 +31,14 @@ public class UserController {
         Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
         return ResponseEntity.ok(userService.editUserDetailsById(id, request));
     }
+
+
+    @PutMapping("changePassword")
+    public ResponseEntity<User> changePassword(@RequestHeader("Authorization") String token,
+                                               @RequestBody String password) {
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(userService.changeUserPassword(id, password));
+    }
+
+
 }
