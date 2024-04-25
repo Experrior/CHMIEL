@@ -1,0 +1,58 @@
+.boardContainer {
+    max-width: 1440px;
+    height: calc(100vh - 175px);
+    padding: 24px 32px;
+    margin-top: 75px;
+    /* background-color: aqua; */
+}
+
+.projectLocation {
+    /* padding-bottom: 8px; */
+    display: flex;
+    color: rgb(77, 77, 77);
+    padding-left: 1px;
+}
+
+.projectLocation > .nav-link:hover {
+    text-decoration: underline;
+}
+
+.boardName {
+    font-size: larger;
+    font-weight: 600;
+    padding: 16px 0px;
+}
+
+.boardName > h2 > span {
+    transition: background-color 0.2s ease;
+}
+
+.boardName > h2 > span:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.boardName > h2 > input {
+    /* doesn't work :( */
+    border-style: solid;
+    border-color: #87caff;
+    border-width: 1px;
+}
+
+.searchLevel {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.members {
+    display: flex;
+}
+
+.innerBoardContainer {
+    display: flex;
+    max-width: 100%;
+    gap: 16px;
+    overflow-x: scroll;
+    /* box-shadow: inset 10px 0px 10px -10px rgba(0, 0, 0, 0.5),
+                inset -10px 0px 10px -10px rgba(0, 0, 0, 0.5); */
+}

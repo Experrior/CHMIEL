@@ -1,0 +1,10 @@
+.boardComponentContainer {
+    min-width: 282px;
+    min-height: 372px;
+    background-color: rgb(240, 240, 240);
+    padding: 16px;
+}
+
+.boardComponentContainer > h5 {
+    padding-left: 4px;
+}
