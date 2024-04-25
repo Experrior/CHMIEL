@@ -99,7 +99,7 @@ export const ProfilePage = () => {
 
     useEffect(() => {
         // if (screenSize.width < 992) {
-            setColumnNum(1)
+        //     setColumnNum(1)
         if (screenSize.width < 1200) {
             setColumnNum(2)
         } else setColumnNum(3)
