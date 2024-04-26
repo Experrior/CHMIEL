@@ -77,7 +77,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public String createTask(PostTaskRequest postTaskRequest) {
+    public List<Task> createTask(PostTaskRequest postTaskRequest) {
         Optional<User> assignee = Optional.empty();
         if (postTaskRequest.getAssigneeId() != null){
             assignee = userRepository.findById(postTaskRequest.getAssigneeId());
@@ -102,10 +102,10 @@ public class TaskServiceImpl implements TaskService {
             if (postTaskRequest.getTimeEstimate() != null) {newTask.setTimeEstimate(postTaskRequest.getTimeEstimate());}
 
             taskRepository.save(newTask);
-            return "success";
+//            return "success";
         }
 
-        return String.valueOf(postTaskRequest.getReporterId());
-
+//        return String.valueOf(postTaskRequest.getReporterId());
+        return taskRepository.findTasksByProjectId(postTaskRequest.getProjectId());
     }
 }

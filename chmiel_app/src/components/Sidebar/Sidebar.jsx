@@ -21,7 +21,7 @@ export const SidebarMenu = () => {
     };
 
     return (
-        <div style={{display: 'flex',}}>
+        <>
             <Sidebar fixed={"left"} className={sidebarClass} collapsed={!sidebarVisible}>
                 <Menu
                     menuItemStyles={{ button: ({ active }) => {
@@ -45,7 +45,7 @@ export const SidebarMenu = () => {
                     <MenuItem
                         active={activeItem === "backlog"}
                         onClick={() => handleItemClick("backlog")}
-                        component={<Link to="/board" />}
+                        component={<Link to="/backlog" />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -83,7 +83,6 @@ export const SidebarMenu = () => {
             <div className="toggleButton" onClick={toggleSidebar}>
                 <FontAwesomeIcon icon={sidebarVisible ? faArrowLeft : faArrowRight} />
             </div>
-        </div>
-        
+        </>
     );
 };

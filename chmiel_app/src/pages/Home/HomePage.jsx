@@ -50,7 +50,6 @@ export const HomePage = () => {
         } else if (screenSize.width < 992) {
             setColumnNum(2)
         } else setColumnNum(3)
-        console.log(columnNum)
     }, [screenSize.width])
     const [responseData, setResponseData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -76,7 +75,7 @@ export const HomePage = () => {
     }, []);
     return (
         <>
-            <Navigation/>
+            <Navigation />
             <Container fluid={"md"}>
                 <div className={"homeContainer"}> 
                     <Stack gap={3}>

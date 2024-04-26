@@ -54,8 +54,9 @@ public class TaskController {
         taskService.removeById(id);
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @PostMapping("/create")
-    public ResponseEntity<String> putTaskCommentById(@RequestBody PostTaskRequest postTaskRequest){
+    public ResponseEntity<List<Task>> putTaskById(@RequestBody PostTaskRequest postTaskRequest){
         return ResponseEntity.ok(taskService.createTask(postTaskRequest));
     }
 

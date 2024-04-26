@@ -6,7 +6,7 @@ import {faCircleUser} from "@fortawesome/free-regular-svg-icons";
 import {faArrowRightFromBracket, faBars, faGear} from "@fortawesome/free-solid-svg-icons";
 import {useCookies} from "react-cookie";
 
-export const Navigation = () => {
+export const Navigation = ({sticky, fixed}) => {
     const [cookies, setCookies, removeCookie] = useCookies(['token']);
 
     const logout = () => {
@@ -14,7 +14,7 @@ export const Navigation = () => {
     }
 
     return (
-        <Navbar id={"navigation-custom-top"} fixed={"top"} expand={"md"}>
+        <Navbar id={"navigation-custom-top"} sticky={sticky} fixed={fixed} expand={"md"}>
             <Container fluid={"md"}>
                 <a className={"navbar-brand brand-name-large"} href={"/"}>CHMIEL</a>
                 <Navbar.Toggle aria-controls="basic-navbar-nav">

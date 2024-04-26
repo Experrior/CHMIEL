@@ -34,3 +34,19 @@
     background: rgba(255, 255, 255, 0.9) !important;
     box-shadow: 0 6px 20px rgb(93 93 93 / 23%) !important;
 }
+
+.btn-custom-tertiary {
+    display: block !important;
+    outline: 0 !important;
+    border: none !important;
+    font-weight: 600 !important;
+    width: 100%;
+    text-align: start !important;
+}
+
+.btn-custom-tertiary:hover {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    background: #e8e8e8 !important;
+    color: #696969 !important;
+}

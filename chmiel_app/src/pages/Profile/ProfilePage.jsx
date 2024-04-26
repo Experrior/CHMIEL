@@ -117,7 +117,7 @@ export const ProfilePage = () => {
 
     return (
         <>
-            <Navigation/>
+            <Navigation fixed={"top"}/>
             <div className={"profileImageBackground"}/>
             <Container fluid={"md"}>
                 <div className={"profileContainer"}>
