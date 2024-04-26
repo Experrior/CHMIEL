@@ -39,6 +39,7 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getTasksByReporterId(reporter_id));
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @GetMapping("/getTasksByProjectId/{project_id}")
     public ResponseEntity<List<Task>> getTasksByProjectId(@PathVariable Integer project_id) {
         return ResponseEntity.ok(taskService.getTasksByProjectId(project_id));

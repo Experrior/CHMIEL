@@ -38,13 +38,22 @@ export const BacklogPage = (props) => {
                 setSprints(response.data);
             } catch (error) {
                 console.log(error)
+            }
+        };
 
-                // setError(error.message);
-                // setLoading(false);
+        const getTasks = async () => {
+            try {
+                const response = await axios.get(`/api/task/getTasksByProjectId/${location.state.project.id}`)
+                console.log(response.data)
+                setTasks(response.data);
+            } catch (error) {
+                console.log(error)
             }
         };
 
         getSprints()
+        getTasks()
+        console.log(location.state.project)
     }, [])
 
 

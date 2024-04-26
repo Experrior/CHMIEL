@@ -7,6 +7,7 @@ import {ProtectedRoute} from "./other/ProtectedRoute";
 import {LoginPage} from "./pages/Authentication/LoginPage";
 import {ProfilePage} from "./pages/Profile/ProfilePage";
 import {BacklogPage} from "./pages/Backlog/Backlog";
+import {Board} from "./pages/Board/Board";
 // import { Board } from './pages/Board/Board';
 
 function App() {
@@ -28,10 +29,10 @@ function App() {
             path: "/profile",
             element: <ProtectedRoute><ProfilePage/></ProtectedRoute>,
         },
-        // {
-        //     path: "/board",
-        //     element: <ProtectedRoute><Board/></ProtectedRoute>,
-        // },
+        {
+            path: "/board",
+            element: <ProtectedRoute><Board/></ProtectedRoute>,
+        },
         {
             path: "/backlog",
             element: <ProtectedRoute><BacklogPage/></ProtectedRoute>,
