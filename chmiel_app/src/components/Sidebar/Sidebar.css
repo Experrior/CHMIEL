@@ -4,7 +4,7 @@
     top: 75px;
     /* transition: left 0.3s ease; */
     position: absolute;
-    height: calc(100vh - 175px);
+    /* height: calc(100vh - 175px); */
 }
 
 .sidebar.open {

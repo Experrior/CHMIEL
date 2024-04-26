@@ -1,5 +1,6 @@
 package com.backend.chmiel.rest;
 
+import com.backend.chmiel.config.JwtService;
 import com.backend.chmiel.entity.Project;
 import com.backend.chmiel.payload.PostProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final JwtService jwtService;
 
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @GetMapping("/getAll")
@@ -24,8 +26,9 @@ public class ProjectController {
     }
 
     @GetMapping("/getByUserId/{user_id}")
-    public ResponseEntity<List<Project>> getSprintsByUserId(@PathVariable Integer user_id){
-        return ResponseEntity.ok(projectService.getAllByUserId(user_id));
+    public ResponseEntity<List<Project>> getSprintsByUserId(@RequestHeader("Authorization") String token){
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(projectService.getAllByUserId(id));
     }
 
     @PostMapping("/createProject")
