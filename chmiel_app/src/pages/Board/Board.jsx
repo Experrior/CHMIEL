@@ -128,18 +128,15 @@ export const Board = () => {
                         <div className="members">
                             <Row>
                                 {groupMembers.slice(0, showAllMembers ? maxTotalMembers : maxDisplayedMembers).map((groupMember, index) => (
-                                    <Col key={index} xs={2} md={3} lg={2} xxxl={1}>
+                                    <Col key={index} xs={2} md={3} lg={2} xxxl={1} className="custom-col">
                                         <img
-                                            style={{ width: '30px', borderRadius: '50%' }}
+                                            className="custom-image"
                                             src={groupMember.profilePicture || default_profile_picture}
                                             alt={`Profile picture of ${groupMember.name}`}
                                         />
                                     </Col>
                                 ))}
                             </Row>
-                            {/* {groupMembers.length > maxDisplayedMembers && !showAllMembers && (
-                                <Button onClick={toggleShowAllMembers}>Show all members</Button>
-                            )} */}
                         </div>
                     </div>
                 </div>

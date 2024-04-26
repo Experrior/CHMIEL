@@ -2,7 +2,6 @@
     max-width: 1440px;
     height: calc(100vh - 175px);
     padding: 24px 32px;
-    margin-top: 75px;
     /* background-color: aqua; */
 }
 
@@ -46,7 +45,27 @@
 
 .members {
     display: flex;
+    margin: auto 8px;
 }
+
+.custom-col {
+    padding: 0;
+}
+
+.custom-image {
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.custom-image:hover {
+    transform: scale(1.1);
+    z-index: 2;
+}
+
 
 .innerBoardContainer {
     display: flex;
