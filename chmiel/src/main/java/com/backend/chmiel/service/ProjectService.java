@@ -11,6 +11,8 @@ public interface ProjectService {
 
     List<Project> findAll();
 
+    Project findById(Integer project_id);
+
     List<Project> getAllByUserId(Integer user_id);
 
     Integer removeById(Integer id);

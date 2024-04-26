@@ -11,11 +11,29 @@ import useScreenSize from "../../other/useScreenSize";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
 import { BoardComponent } from "../../components/Board/BoardComponent";
+import {useParams} from "react-router-dom";
 
-export const Board = () => {
+export const Board = (props) => {
+    let { projectId } = useParams();
+    const [project, setProject] = useState([])
     const [cookies] = useCookies(["token"]);
     const screenSize = useScreenSize();
     const [columnNum, setColumnNum] = useState(0);
+
+    useEffect(() => {
+        const getProject = async () => {
+            try {
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`)
+                console.log(response.data)
+                setProject(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
+        getProject()
+        console.log(projectId)
+    }, [])
 
     useEffect(() => {
         if (screenSize.width < 840) {
@@ -91,15 +109,15 @@ export const Board = () => {
 
     return (
         <>
-        <Navigation />
+        <Navigation/>
         <div style={{display: "flex"}}>
-            <SidebarMenu/>
+            <SidebarMenu project={project} from={"board"}/>
             <Container fluid={"md"} className="boardContainer">
                 <div className="boardHeader">
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
                         <span style={{padding: '0px 8px'}}>/</span>
-                        <Nav.Link href="/board" className="nav-link">Project Name</Nav.Link>
+                        <Nav.Link href={`/board/${projectId}`} className="nav-link">Project Name</Nav.Link>
                     </div>
                     <div className="boardName">
                     {isEditing ? (

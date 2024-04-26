@@ -26,6 +26,14 @@ export const EditUserDetailsModal = (props) => {
     const findFormErrors = () => {
         const newErrors = {}
         // name errors
+        console.log(firstName)
+        console.log(lastName)
+        console.log(email)
+        console.log(address)
+        console.log(birthDate)
+        console.log(phoneNumber)
+
+
         if (!firstName || firstName === '') newErrors.firstName = 'First name is required!'
         else if (firstName.match(/\d+/)) newErrors.firstName = 'First name cannot contain numbers'
 
@@ -33,13 +41,13 @@ export const EditUserDetailsModal = (props) => {
         else if (lastName.match(/\d+/)) newErrors.lastName = 'Last name cannot contain numbers'
 
         if (!email || email === '') newErrors.email = 'Email is required!'
-        else if (!email.match(/.+@.+/)) newErrors.email = 'Email must contain "@"'
+        else if (!email.match(/.+@.+/)) newErrors.email = 'Email must contain "@" and mail name'
 
-        if (Date.parse(birthDate) > new Date()) newErrors.birthDate = 'Birth date cannot be set to future'
+        if (birthDate && Date.parse(birthDate) > new Date()) newErrors.birthDate = 'Birth date cannot be set to future'
 
-        if (phoneNumber.match(/\d/g).length !== 9) {
+        if (phoneNumber && phoneNumber.match(/\d/g) && phoneNumber.match(/\d/g).length !== 9) {
             newErrors.phoneNumber = 'Phone number must consist of 9 numbers'
-        } else if (phoneNumber.match(/.*[A-Za-z]+.*/)) newErrors.phoneNumber = 'Phone number cannot contain letters'
+        } else if (phoneNumber && phoneNumber.match(/.*[A-Za-z]+.*/)) newErrors.phoneNumber = 'Phone number cannot contain letters'
 
         return newErrors
     }
@@ -194,76 +202,6 @@ export const EditUserDetailsModal = (props) => {
                             </Col>
                         </Row>
                     </Form>
-                    {/*<Form noValidate validated={validated} onSubmit={onFormSubmit}>*/}
-                    {/*    <Row>*/}
-                    {/*        <Col>*/}
-                    {/*            <Form.Group className={"mb-3"} controlId={"formGroupFirstName"}>*/}
-                    {/*                <Form.Label>First Name</Form.Label>*/}
-                    {/*                <Form.Control required*/}
-                    {/*                              type={"text"}*/}
-                    {/*                              placeholder={accountDetails.firstName}*/}
-
-                    {/*                />*/}
-                    {/*                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>*/}
-                    {/*            </Form.Group>*/}
-                    {/*        </Col>*/}
-                    {/*        <Col>*/}
-                    {/*            <Form.Group className={"mb-3"} controlId={"formGroupLastName"}>*/}
-                    {/*                <Form.Label>Last Name</Form.Label>*/}
-                    {/*                <Form.Control required*/}
-                    {/*                              type={"text"}*/}
-                    {/*                              placeholder={accountDetails.lastName}*/}
-                    {/*                    // onChange={onInputEmail}*/}
-                    {/*                    // value={email}*/}
-                    {/*                />*/}
-                    {/*                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>*/}
-                    {/*            </Form.Group>*/}
-                    {/*        </Col>*/}
-                    {/*    </Row>*/}
-                    {/*    <Form.Group className={"mb-3"} controlId={"formGroupEmail"}>*/}
-                    {/*        <Form.Label>Email</Form.Label>*/}
-                    {/*        <Form.Control required*/}
-                    {/*                      type={"email"}*/}
-                    {/*                      placeholder={accountDetails.email}*/}
-                    {/*                      onChange={(e) => {*/}
-                    {/*                          setEmail(e.target.value)*/}
-                    {/*                      }}*/}
-                    {/*                      value={email}*/}
-                    {/*        />*/}
-                    {/*        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>*/}
-                    {/*    </Form.Group>*/}
-                    {/*    <Row>*/}
-                    {/*        <Col>*/}
-                    {/*            <Form.Group className={"mb-3"} controlId={"formGroupAddress"}>*/}
-                    {/*                <Form.Label>Address</Form.Label>*/}
-                    {/*                <Form.Control*/}
-                    {/*                    type={"text"}*/}
-                    {/*                    placeholder={accountDetails.address}*/}
-                    {/*                    // onChange={onInputEmail}*/}
-                    {/*                    // value={email}*/}
-                    {/*                />*/}
-                    {/*                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>*/}
-                    {/*            </Form.Group>*/}
-                    {/*        </Col>*/}
-                    {/*        <Col>*/}
-                    {/*            <Form.Group className={"mb-3"} controlId={"formGroupPhoneNumber"}>*/}
-                    {/*                <Form.Label>Phone Number</Form.Label>*/}
-                    {/*                <Form.Control*/}
-                    {/*                    type={"text"}*/}
-                    {/*                    placeholder={accountDetails.phoneNumber}*/}
-                    {/*                    // onChange={onInputEmail}*/}
-                    {/*                    // value={email}*/}
-                    {/*                />*/}
-                    {/*                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>*/}
-                    {/*            </Form.Group>*/}
-                    {/*        </Col>*/}
-                    {/*    </Row>*/}
-                    {/*    <Form.Group>*/}
-                    {/*        <Button type={"submit"} variant={"custom-primary"}>*/}
-                    {/*            Save Changes*/}
-                    {/*        </Button>*/}
-                    {/*    </Form.Group>*/}
-                    {/*</Form>*/}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant={"custom-primary"} form={"editUserForm"} type={"submit"}>Save changes</Button>

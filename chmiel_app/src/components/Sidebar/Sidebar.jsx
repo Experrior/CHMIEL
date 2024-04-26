@@ -5,10 +5,9 @@ import {Link, useLocation} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-export const SidebarMenu = () => {
-    const [activeItem, setActiveItem] = useState("board");
+export const SidebarMenu = (props) => {
+    const [activeItem, setActiveItem] = useState(props.from);
     const [sidebarVisible, setSidebarVisible] = useState(true);
-
     const sidebarClass = sidebarVisible ? "sidebar open" : "sidebar";
 
     const handleItemClick = (item) => {
@@ -44,7 +43,7 @@ export const SidebarMenu = () => {
                     <MenuItem
                         active={activeItem === "backlog"}
                         onClick={() => handleItemClick("backlog")}
-                        component={<Link to="/backlog"/>}
+                        component={<Link to={`/backlog/${props.project.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -56,7 +55,7 @@ export const SidebarMenu = () => {
                     <MenuItem
                         active={activeItem === "board"}
                         onClick={() => handleItemClick("board")}
-                        component={<Link to="/board"/>}
+                        component={<Link to={`/board/${props.project.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -68,7 +67,7 @@ export const SidebarMenu = () => {
                     <MenuItem
                         active={activeItem === "issues"}
                         onClick={() => handleItemClick("issues")}
-                        component={<Link to="/board" />}
+                        component={<Link to={`/board/${props.project.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>

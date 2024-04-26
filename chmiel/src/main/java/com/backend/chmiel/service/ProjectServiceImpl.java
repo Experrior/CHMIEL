@@ -37,6 +37,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public Project findById(Integer project_id) {
+        return projectRepository.findById(project_id).orElseThrow();
+    }
+
+    @Override
     public Integer removeById(Integer id) {
         return projectRepository.removeProjectById(id);
     }

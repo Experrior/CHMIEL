@@ -2,9 +2,34 @@
     /*background-color: red;*/
     width: 100%;
     height: calc(100vh - 75px);
-    padding: 50px;
+    padding: 24px 32px;
 }
 
 .accordion-header {
     font-weight: bold !important;
+}
+
+.projectLocation {
+    /* padding-bottom: 8px; */
+    display: flex;
+    color: rgb(77, 77, 77);
+    padding-left: 1px;
+}
+
+.projectLocation > .nav-link:hover {
+    text-decoration: underline;
+}
+
+.backlogName {
+    font-size: larger;
+    font-weight: 600;
+    padding: 16px 0;
+}
+
+.backlogName > h2 > span {
+    transition: background-color 0.2s ease;
+}
+
+.backlogName > h2 > span:hover {
+    background-color: rgb(240, 240, 240);
 }
