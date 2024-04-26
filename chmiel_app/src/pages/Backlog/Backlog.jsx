@@ -1,4 +1,4 @@
-import {Accordion, Button} from "react-bootstrap";
+import {Accordion, Button, Nav} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import './Backlog.css';
@@ -76,8 +76,19 @@ export const BacklogPage = (props) => {
             <div style={{display: "flex"}}>
                 <SidebarMenu project={project} from={"backlog"}/>
                 <div className={"projectPageContainer"}>
-                    <p>Projects/{project.projectName}</p>
-                    <h2>Backlog</h2>
+                    <div className="projectLocation">
+                        <Nav.Link href="" className="nav-link">Projects</Nav.Link>
+                        <span style={{padding: '0px 8px'}}>/</span>
+                        <Nav.Link href={`/board/${projectId}`} className="nav-link">Project Name</Nav.Link>
+                    </div>
+                    <div className="backlogName">
+                        <h2>
+                            <span>
+                                Backlog
+                            </span>
+                        </h2>
+
+                    </div>
                     <div>
                         <Accordion defaultActiveKey="0" flush>
                             {sprints.length !== 0 ? sprints.map((sprint) => {

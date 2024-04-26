@@ -117,7 +117,7 @@ export const Board = (props) => {
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
                         <span style={{padding: '0px 8px'}}>/</span>
-                        <Nav.Link href="/board" className="nav-link">Project Name</Nav.Link>
+                        <Nav.Link href={`/board/${projectId}`} className="nav-link">Project Name</Nav.Link>
                     </div>
                     <div className="boardName">
                     {isEditing ? (
