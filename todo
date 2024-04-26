@@ -1,0 +1,34 @@
+mateusz:
+
+    charts page (baseline)
+
+
+    hotfix: (deadline do wtorku, for api udpates)
+        add lsit of taks sform given sprint
+        add spritn to creating new task
+        remove repoeted id from payload to creating tasks., take from jwt
+        add restrictions to security configutrions (wihtout login/register)
+        update register/login reuqired names
+        add project name change
+        add connections endpoitn for users in same projects
+
+
+
+dominika:
+    backlog functionality (show more sprints, change model for creating tasks, add model for creating sprints)
+    logic for looking for users, board
+
+
+    hotfix:
+        add global cors to all endpoints
+        register/login validate usernames (chekc if empty)
+
+
+
+zuzia:
+
+    strona issues wiht capability to edit task,add commnets
+
+    hotfix:
+        check all front pages, once api is updated, add all configs auth to others
+
