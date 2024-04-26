@@ -10,7 +10,6 @@ import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 
 export const BacklogPage = (props) => {
     let { projectId } = useParams();
-    // const location = useLocation()
     const [project, setProject] = useState([])
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
@@ -79,7 +78,7 @@ export const BacklogPage = (props) => {
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
                         <span style={{padding: '0px 8px'}}>/</span>
-                        <Nav.Link href={`/board/${projectId}`} className="nav-link">Project Name</Nav.Link>
+                        <Nav.Link href={`/board/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
                     </div>
                     <div className="backlogName">
                         <h2>
