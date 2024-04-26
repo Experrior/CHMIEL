@@ -30,11 +30,11 @@ function App() {
             element: <ProtectedRoute><ProfilePage/></ProtectedRoute>,
         },
         {
-            path: "/board",
+            path: "/board/:projectId",
             element: <ProtectedRoute><Board/></ProtectedRoute>,
         },
         {
-            path: "/backlog",
+            path: "/backlog/:projectId",
             element: <ProtectedRoute><BacklogPage/></ProtectedRoute>,
         },
         // {

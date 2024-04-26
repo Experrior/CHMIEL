@@ -4,12 +4,14 @@ import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import './Backlog.css';
 import React, {useEffect, useState} from "react";
 import axios from "../../api/axios";
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {EditUserDetailsModal} from "../../components/ProfileComponents/EditUserDetailsModal";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 
 export const BacklogPage = (props) => {
-    const location = useLocation()
+    let { projectId } = useParams();
+    // const location = useLocation()
+    const [project, setProject] = useState([])
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
 
@@ -18,7 +20,7 @@ export const BacklogPage = (props) => {
             {
                 name: taskName,
                 description: taskDescription,
-                projectId: location.state.project.id,
+                projectId: projectId,
                 reporterId: 3,
                 timeEstimate: 2
             }).then(result => {
@@ -31,9 +33,19 @@ export const BacklogPage = (props) => {
 
 
     useEffect(() => {
+
+        const getProject = async () => {
+            try {
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`)
+                console.log(response.data)
+                setProject(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
         const getSprints = async () => {
             try {
-                const response = await axios.get(`/api/sprint/getByProjectId/${location.state.project.id}`)
+                const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`)
                 console.log(response.data)
                 setSprints(response.data);
             } catch (error) {
@@ -43,7 +55,7 @@ export const BacklogPage = (props) => {
 
         const getTasks = async () => {
             try {
-                const response = await axios.get(`/api/task/getTasksByProjectId/${location.state.project.id}`)
+                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`)
                 console.log(response.data)
                 setTasks(response.data);
             } catch (error) {
@@ -53,7 +65,8 @@ export const BacklogPage = (props) => {
 
         getSprints()
         getTasks()
-        console.log(location.state.project)
+        getProject()
+        console.log(projectId)
     }, [])
 
 
@@ -61,9 +74,9 @@ export const BacklogPage = (props) => {
         <>
             <Navigation sticky={"top"}/>
             <div style={{display: "flex"}}>
-                <SidebarMenu/>
+                <SidebarMenu project={project} from={"backlog"}/>
                 <div className={"projectPageContainer"}>
-                    <p>Projects/{location.state.project.name}</p>
+                    <p>Projects/{project.projectName}</p>
                     <h2>Backlog</h2>
                     <div>
                         <Accordion defaultActiveKey="0" flush>

@@ -25,6 +25,12 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.findAll());
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    @GetMapping("/getProjectByProjectId/{project_id}")
+    public ResponseEntity<Project> getProjectById(@PathVariable Integer project_id){
+        return ResponseEntity.ok(projectService.findById(project_id));
+    }
+
     @GetMapping("/getByUserId/{user_id}")
     public ResponseEntity<List<Project>> getSprintsByUserId(@RequestHeader("Authorization") String token){
         Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
