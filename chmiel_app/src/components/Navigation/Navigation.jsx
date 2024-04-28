@@ -25,7 +25,7 @@ export const Navigation = ({sticky, fixed}) => {
                         <Container className={"tabs-container"}>
                             <Nav.Link href={"/"}>Work</Nav.Link>
                             <Nav.Link>Projects</Nav.Link>
-                            <Nav.Link>Teams</Nav.Link>
+                            <Nav.Link href={"/charts"}>Charts</Nav.Link>
                         </Container>
                     </Nav>
                 </Navbar.Collapse>

@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import {Link, useLocation} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight, faChartSimple } from '@fortawesome/free-solid-svg-icons';
 
 export const SidebarMenu = (props) => {
     const [activeItem, setActiveItem] = useState(props.from);
@@ -72,6 +72,18 @@ export const SidebarMenu = (props) => {
                         <div className="menuItemContent">
                             <div className={"icon"}>
                                 <FontAwesomeIcon icon={faExclamationCircle}/>
+                            </div>
+                            <div className="text">Issues</div>
+                        </div>
+                    </MenuItem>
+                    <MenuItem
+                        active={activeItem === "charts"}
+                        onClick={() => handleItemClick("charts")}
+                        component={<Link to={`/charts/${props.project.id}`} />}
+                    >
+                        <div className="menuItemContent">
+                            <div className={"icon"}>
+                                <FontAwesomeIcon icon={faChartSimple}/>
                             </div>
                             <div className="text">Issues</div>
                         </div>

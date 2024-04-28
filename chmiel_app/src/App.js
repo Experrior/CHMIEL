@@ -8,7 +8,7 @@ import {LoginPage} from "./pages/Authentication/LoginPage";
 import {ProfilePage} from "./pages/Profile/ProfilePage";
 import {BacklogPage} from "./pages/Backlog/Backlog";
 import {Board} from "./pages/Board/Board";
-// import { Board } from './pages/Board/Board';
+import ChartsPage, {Charts} from './pages/Charts/Charts';
 
 function App() {
 
@@ -37,10 +37,10 @@ function App() {
             path: "/backlog/:projectId",
             element: <ProtectedRoute><BacklogPage/></ProtectedRoute>,
         },
-        // {
-        //     path: "/issues",
-        //     element: <ProtectedRoute><Issues/></ProtectedRoute>,
-        // }
+        {
+            path: "/charts",
+            element: <ProtectedRoute><ChartsPage/></ProtectedRoute>,
+        }
     ]);
 
     return (
