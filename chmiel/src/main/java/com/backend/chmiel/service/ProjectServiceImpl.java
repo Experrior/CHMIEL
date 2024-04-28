@@ -5,6 +5,7 @@ import com.backend.chmiel.dao.UserRepository;
 import com.backend.chmiel.entity.Project;
 import com.backend.chmiel.entity.User;
 import com.backend.chmiel.payload.PostProjectRequest;
+import com.backend.chmiel.payload.PutProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -54,6 +55,15 @@ public class ProjectServiceImpl implements ProjectService {
                 .build());
     }
 
+
+    @Override
+    public Project editName(PutProjectRequest putProjectRequest) {
+        Project project = projectRepository.findById(putProjectRequest.getId()).orElseThrow();
+        project.setProjectName(putProjectRequest.getName());
+
+        return projectRepository.save(project);
+    }
+
     @Override
     public String addUser(PutProjectUserRequest putProjectUserRequest) {
         //check if user exists
@@ -61,7 +71,7 @@ public class ProjectServiceImpl implements ProjectService {
         //check if project exists
         Optional<Project> project = projectRepository.findById(putProjectUserRequest.projectID);
 
-        //TODO add exception here
+
         if (user.isPresent() && project.isPresent()){
 //            Query q =  em.createNativeQuery("INSERT INTO Projects_Users(project_id, user_id) VALUES(:projectId, :userId)");
 //            BigInteger biid = (BigInteger) q.getSingleResult();

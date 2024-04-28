@@ -10,6 +10,7 @@ import com.backend.chmiel.entity.Task;
 import com.backend.chmiel.entity.User;
 import com.backend.chmiel.payload.PostTaskRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -77,7 +78,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> createTask(PostTaskRequest postTaskRequest) {
+    public Task createTask(PostTaskRequest postTaskRequest, Integer reporterId) {
+
         Optional<User> assignee = Optional.empty();
         if (postTaskRequest.getAssigneeId() != null){
             assignee = userRepository.findById(postTaskRequest.getAssigneeId());
@@ -86,26 +88,21 @@ public class TaskServiceImpl implements TaskService {
         if (postTaskRequest.getSprintId() != null){
             sprint = sprintRepository.findById(postTaskRequest.getSprintId());
         }
-        Optional<User> reporter = userRepository.findById(postTaskRequest.getReporterId());
-        //TODO add exception
-        if (reporter.isPresent()){
-            Task newTask = Task.builder()
-                    .projectId(postTaskRequest.getProjectId())
-                    .reporter(reporter.get())
-                    .description(postTaskRequest.getDescription())
-                    .name(postTaskRequest.getName())
-                    .status(Status.backlog)
-                    .build();
 
-            if (assignee.isPresent()) {newTask.setAssignee(assignee.get());}
-            if (sprint.isPresent()) {newTask.setSprint(sprint.get());}
-            if (postTaskRequest.getTimeEstimate() != null) {newTask.setTimeEstimate(postTaskRequest.getTimeEstimate());}
+        User reporter = userRepository.findById(reporterId).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-            taskRepository.save(newTask);
-//            return "success";
-        }
+        Task newTask = Task.builder()
+                .projectId(postTaskRequest.getProjectId())
+                .reporter(reporter)
+                .description(postTaskRequest.getDescription())
+                .name(postTaskRequest.getName())
+                .status(Status.backlog)
+                .build();
 
-//        return String.valueOf(postTaskRequest.getReporterId());
-        return taskRepository.findTasksByProjectId(postTaskRequest.getProjectId());
+        if (assignee.isPresent()) {newTask.setAssignee(assignee.get());}
+        if (sprint.isPresent()) {newTask.setSprint(sprint.get());}
+        if (postTaskRequest.getTimeEstimate() != null) {newTask.setTimeEstimate(postTaskRequest.getTimeEstimate());}
+
+        return taskRepository.save(newTask);
     }
 }

@@ -3,6 +3,7 @@ package com.backend.chmiel.rest;
 import com.backend.chmiel.config.JwtService;
 import com.backend.chmiel.entity.Project;
 import com.backend.chmiel.payload.PostProjectRequest;
+import com.backend.chmiel.payload.PutProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
 import com.backend.chmiel.service.ProjectService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -50,17 +51,25 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getAllByUserId(id));
     }
 
-    @PostMapping("/createProject")
-    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<Project> getSprintsByUserId(@RequestBody PostProjectRequest postProjectRequest){
-        return ResponseEntity.ok(projectService.createProject(postProjectRequest));
-    }
 
     @PutMapping("/addUser")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<String> addUser(@RequestBody PutProjectUserRequest putProjectUserRequest){
         return ResponseEntity.ok(projectService.addUser(putProjectUserRequest));
     }
+
+    @PutMapping("/editName")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<Project> editName(@RequestBody PutProjectRequest putProjectRequest){
+        return ResponseEntity.ok(projectService.editName(putProjectRequest));
+    }
+
+    @PostMapping("/createProject")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<Project> getSprintsByUserId(@RequestBody PostProjectRequest postProjectRequest){
+        return ResponseEntity.ok(projectService.createProject(postProjectRequest));
+    }
+
     @DeleteMapping("/remove/{id}")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<Integer> removeProject(@PathVariable Integer id){

@@ -1,6 +1,7 @@
 package com.backend.chmiel.rest;
 
 
+import com.backend.chmiel.config.JwtService;
 import com.backend.chmiel.entity.Task;
 import com.backend.chmiel.payload.PostTaskRequest;
 import com.backend.chmiel.service.TaskService;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class TaskController {
 
     private final TaskService taskService;
-
+    private final JwtService jwtService;
 
     @GetMapping("/getById/{task_id}")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
@@ -63,8 +64,9 @@ public class TaskController {
 
     @PostMapping("/create")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<List<Task>> putTaskById(@RequestBody PostTaskRequest postTaskRequest){
-        return ResponseEntity.ok(taskService.createTask(postTaskRequest));
+    public ResponseEntity<Task> putTaskById(@RequestHeader("Authorization") String token, @RequestBody PostTaskRequest postTaskRequest){
+        Integer reporterId = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(taskService.createTask(postTaskRequest, reporterId));
     }
 
 
