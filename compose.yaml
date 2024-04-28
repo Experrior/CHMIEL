@@ -1,6 +1,6 @@
-
 services:
   chmiel_db:
+    container_name: chmiel_db
     image: chmiel_db
 #    build:
  #     context: .
@@ -22,6 +22,7 @@ services:
 
 
   chmiel_back:
+    container_name: chmiel_back
 #    build:
     image: chmiel_back
    #   context: .
@@ -38,7 +39,7 @@ services:
       chmiel_db:
         condition: service_healthy
     environment:
-      DATASOURCE_URL: jdbc:postgresql://chmiel_db:5432/ChmielDB
+      DATASOURCE_URL: jdbc:postgresql://172.22.0.1:5432/ChmielDB
       DATASOURCE_USERNAME: admin
       DATASOURCE_PASSWORD: test
     networks:
@@ -46,6 +47,7 @@ services:
 
 
   chmiel_front:
+    container_name: chmiel_front
     image: chmiel_front
 #    build:
  #     context: .
@@ -58,6 +60,7 @@ services:
       - my_network
 
   chmiel_py:
+    container_name: chmiel_py
     image: chmiel_py
 #    command: dockerize -wait 172.22.0.1:8084/api/auth
     depends_on:

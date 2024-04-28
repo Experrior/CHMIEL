@@ -5,6 +5,13 @@ import com.backend.chmiel.entity.Project;
 import com.backend.chmiel.payload.PostProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
 import com.backend.chmiel.service.ProjectService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,39 +21,48 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/project")
 @RequiredArgsConstructor
+
+
 public class ProjectController {
 
     private final ProjectService projectService;
     private final JwtService jwtService;
 
-    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+
     @GetMapping("/getAll")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<List<Project>> getSprints(){
         return ResponseEntity.ok(projectService.findAll());
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+
     @GetMapping("/getProjectByProjectId/{project_id}")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<Project> getProjectById(@PathVariable Integer project_id){
         return ResponseEntity.ok(projectService.findById(project_id));
     }
 
+
     @GetMapping("/getByUserId/{user_id}")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<List<Project>> getSprintsByUserId(@RequestHeader("Authorization") String token){
         Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
         return ResponseEntity.ok(projectService.getAllByUserId(id));
     }
 
     @PostMapping("/createProject")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<Project> getSprintsByUserId(@RequestBody PostProjectRequest postProjectRequest){
         return ResponseEntity.ok(projectService.createProject(postProjectRequest));
     }
 
     @PutMapping("/addUser")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<String> addUser(@RequestBody PutProjectUserRequest putProjectUserRequest){
         return ResponseEntity.ok(projectService.addUser(putProjectUserRequest));
     }
     @DeleteMapping("/remove/{id}")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<Integer> removeProject(@PathVariable Integer id){
         Integer output = projectService.removeById(id);
         if (output == 0) {

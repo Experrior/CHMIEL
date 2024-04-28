@@ -1,11 +1,10 @@
 import datetime
 import requests
-
-api = "http://172.22.0.1:8084"
-headers = {'Content-Type': 'application/json'}
+import copy
+api = "http://localhost:8084"
 
 session = requests.Session()
-session.headers = headers
+
 
 
 users = [
@@ -272,7 +271,7 @@ for i, jwt in enumerate(jwts):
 projects = []
 # create teams
 for project_json in projects_to_make:
-    response = session.post(api + "/api/project/createProject", json=project_json)
+    response = session.post(api + "/api/project/createProject", json=project_json, headers={'Authorization': 'Bearer '+ jwts[project_json['projectOwner']]})
     projects.append(response.json()['id'])
     print(f"User {project_json['name']} created with status code {response.status_code}")
     print(response.text)
@@ -283,8 +282,8 @@ for project_id in projects:
         response = session.put(api + "/api/project/addUser",
                                json={
                                    "projectID": project_id,
-                                   "userId": i
-                               }, headers=headers)
+                                   "userId": project_id*5 - i
+                               },  headers={'Authorization': 'Bearer '+ jwts[project_id]})
         print(response.status_code)
         print(response.text)
 
@@ -309,7 +308,8 @@ for project_id in projects:
             "startTime": start_time,
             "stopTime": stop_time
         }
-        response = session.post(api + '/api/sprint/create', json=sprint_data)
+        response = session.post(api + '/api/sprint/create', json=sprint_data,
+                                headers={'Authorization': 'Bearer '+ jwts[project_id]})
         if response.status_code == 200:
             print(
                 f"Sprint '{sprint_data['sprintName']}' created successfully for project '{projects_to_make[project_id - 1]['name']}'.")
@@ -318,5 +318,5 @@ for project_id in projects:
 
 # fill tasks
 for task_json in all_tasks:
-    response = session.post(api + '/api/task/create', json=task_json)
+    response = session.post(api + '/api/task/create', json=task_json, headers={'Authorization': 'Bearer '+ jwts[int(task_json['assigneeId'])]})
     print(response.status_code, response.text)

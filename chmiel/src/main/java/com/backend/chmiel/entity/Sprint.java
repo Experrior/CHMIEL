@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Data
 @Builder
@@ -35,6 +36,8 @@ public class Sprint {
 
     @Column(name = "logged")
     private boolean logged;
+
+
 
     @Override
     public String toString() {

@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -18,15 +20,23 @@ public class UserController {
     private final UserService userService;
     private final JwtService jwtService;
 
+
+    @GetMapping("")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @GetMapping()
     public ResponseEntity<UserDetailsResponse> getUserDetails(@RequestHeader("Authorization") String token) {
         Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
         return ResponseEntity.ok(userService.getUserDetailsById(id));
     }
 
+    @GetMapping("getConnections")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @PutMapping()
+    public ResponseEntity<List<User>> getConnections(@RequestHeader("Authorization") String token) {
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(userService.getConnections(id));
+    }
+
+    @PutMapping("")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<UserDetailsResponse> editUserDetails(@RequestHeader("Authorization") String token, @RequestBody EditUserDetailsRequest request) {
         Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
         return ResponseEntity.ok(userService.editUserDetailsById(id, request));
@@ -34,6 +44,7 @@ public class UserController {
 
 
     @PutMapping("changePassword")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<User> changePassword(@RequestHeader("Authorization") String token,
                                                @RequestBody String password) {
         Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
