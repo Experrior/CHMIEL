@@ -65,7 +65,7 @@ public class TaskController {
     @PostMapping("/create")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<Task> putTaskById(@RequestHeader("Authorization") String token, @RequestBody PostTaskRequest postTaskRequest){
-        Integer reporterId = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        Integer reporterId = jwtService.extractClaim(token, (claims) -> claims.get("userId", Integer.class));
         return ResponseEntity.ok(taskService.createTask(postTaskRequest, reporterId));
     }
 

@@ -7,9 +7,11 @@ import axios from "../../api/axios";
 import {useLocation, useParams} from "react-router-dom";
 import {EditUserDetailsModal} from "../../components/ProfileComponents/EditUserDetailsModal";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
+import {useCookies} from "react-cookie";
 
 export const BacklogPage = (props) => {
     let { projectId } = useParams();
+    const [cookies] = useCookies(["token"]);
     const [project, setProject] = useState([])
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
@@ -22,9 +24,12 @@ export const BacklogPage = (props) => {
                 projectId: projectId,
                 reporterId: 3,
                 timeEstimate: 2
+            },
+            {
+                headers: { Authorization: cookies.token }
             }).then(result => {
             console.log(result.data)
-            setTasks(result.data)
+            setTasks([...tasks, result.data])
         }).catch(e => {
             console.error(e)
         })
@@ -104,7 +109,10 @@ export const BacklogPage = (props) => {
                         </Accordion>
                         <Accordion defaultActiveKey="0" flush>
                             <Accordion.Item eventKey="0">
-                                <Accordion.Header>Backlog</Accordion.Header>
+                                <Accordion.Header>
+                                    <p>Backlog</p>
+                                    <Button variant={"custom-tertiary"}>Create Sprint</Button>
+                                </Accordion.Header>
                                 <Accordion.Body>
                                     {tasks.length !== 0 ? tasks.map((task) => {
                                         return <div>{task.name}</div>
