@@ -50,3 +50,38 @@
     background: #e8e8e8 !important;
     color: #696969 !important;
 }
+
+.btn-custom-tertiary-v2 {
+    display: block !important;
+    outline: 0 !important;
+    border: none !important;
+    font-weight: 600 !important;
+    width: 100%;
+    text-align: start !important;
+    background: #e7e7e7 !important;
+}
+
+.btn-custom-tertiary-v2:hover {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    background: #d3d3d3 !important;
+    color: #696969 !important;
+}
+
+.btn-custom-tertiary-v3 {
+    display: block !important;
+    outline: 0 !important;
+    border: none !important;
+    font-weight: 600 !important;
+    width: 100%;
+    text-align: start !important;
+    /*background: #e7e7e7 !important;*/
+    padding: 8px 20px;
+}
+
+.btn-custom-tertiary-v3:hover {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    background: #f0f0f0 !important;
+    color: #696969 !important;
+}

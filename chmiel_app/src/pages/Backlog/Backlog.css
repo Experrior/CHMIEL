@@ -36,10 +36,6 @@
     padding: 8px 20px;
 }
 
-.accordion-button:focus {
-    /*box-shadow: none;*/
-}
-
 .accordion-button:not(.collapsed) {
     color: #212529;
     /*color: red;*/
@@ -71,7 +67,7 @@
     display: none;
 }
 
-.accordion-button > .btn-custom-tertiary{
+.accordion-button > .btn-custom-tertiary-v2{
     width: fit-content;
     margin-left: auto;
 }
@@ -84,7 +80,62 @@
     padding: 8px 20px;
 }
 
-.accordion-body > .btn-custom-tertiary{
-    /*background-color: blue !important;*/
+.accordion-body > .btn-custom-tertiary-v2{
     margin-top: 6px;
 }
+
+.sprintsContainer .accordion-button{
+    background-color: #FAFAFA !important;
+    padding: 14px 20px;
+}
+
+.sprintsContainer .accordion-item{
+    margin-bottom: 16px;
+}
+
+.accordionHeaderContainer {
+    position: relative;
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    width: 100%;
+}
+
+.accordion-header {
+   flex: 1;
+    margin-right: 16px;
+}
+
+.accordionHeaderContainer > .btn-custom-tertiary-v2{
+    width: fit-content;
+    height: fit-content;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%; /* Positions the dropdown right below the button */
+    right: 0; /* Aligns the dropdown to the left edge of the container */
+    z-index: 1000; /* Ensures it's on top of other content */
+    width: auto; /* Adjust based on content size */
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    overflow: hidden; /* Keeps the child elements within the box */
+}
+
+
+/*.dropdown button {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    padding: 8px 20px;*/
+/*    text-align: left;*/
+/*    border: none;*/
+/*    background: none;*/
+/*    outline: none;*/
+/*    color: black;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.dropdown button:hover {*/
+/*    background-color: #f0f0f0;*/
+/*}*/

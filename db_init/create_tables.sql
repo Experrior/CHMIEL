@@ -33,8 +33,10 @@ CREATE TABLE IF NOT EXISTS SPRINTS (
   id SERIAL PRIMARY KEY,
   sprint_name VARCHAR NOT NULL,
   project_id INTEGER REFERENCES PROJECTS(id),
-  start_time TIMESTAMP NOT NULL,
-  stop_time TIMESTAMP NOT NULL,
+  start_time TIMESTAMP DEFAULT NULL,
+  stop_time TIMESTAMP DEFAULT NULL,
+  is_started BOOLEAN NOT NULL DEFAULT FALSE,
+  is_finished BOOLEAN NOT NULL DEFAULT FALSE,
   logged BOOLEAN NOT NULL,
   CONSTRAINT unique_sprint_project_name UNIQUE (sprint_name, id)
 );

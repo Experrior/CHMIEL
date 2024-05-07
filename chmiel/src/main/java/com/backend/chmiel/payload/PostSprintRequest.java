@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostSprintRequest {
 
-    private String sprintName;
+//    private String sprintName;
     private Integer projectId;
-    private String startTime;
-    private String stopTime;
+//    private String startTime;
+//    private String stopTime;
 
 }
