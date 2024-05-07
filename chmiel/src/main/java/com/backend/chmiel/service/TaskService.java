@@ -26,5 +26,5 @@ public interface TaskService {
 
     void removeById(Integer id);
 
-    List<Task> createTask(PostTaskRequest postTaskRequest);
+    Task createTask(PostTaskRequest postTaskRequest, Integer reportedId);
 }

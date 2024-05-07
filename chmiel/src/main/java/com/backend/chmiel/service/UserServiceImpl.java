@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -54,6 +55,14 @@ public class UserServiceImpl implements UserService{
                 .birthDate(user.getBirthDate())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
+    }
+
+    @Override
+    public List<User> getConnections(Integer id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        List<User> users =userRepository.getConnections(id);
+        users.remove(user);
+        return users;
     }
 
     @Override

@@ -6,10 +6,13 @@ import com.backend.chmiel.payload.EditUserDetailsRequest;
 import com.backend.chmiel.payload.PostPremadeUserRequest;
 import com.backend.chmiel.payload.UserDetailsResponse;
 
+import java.util.List;
+
 public interface UserService {
     UserDetailsResponse getUserDetailsById(Integer id);
     UserDetailsResponse editUserDetailsById(Integer id, EditUserDetailsRequest request);
 
+    List<User> getConnections(Integer id);
     User changeUserPassword(Integer id, String password);
 
 }

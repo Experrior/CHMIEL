@@ -1,11 +1,10 @@
 import datetime
 import requests
-
-api = "http://172.22.0.1:8084"
-headers = {'Content-Type': 'application/json'}
+import copy
+api = "http://localhost:8084"
 
 session = requests.Session()
-session.headers = headers
+
 
 
 users = [
@@ -40,9 +39,8 @@ projects_to_make = [
 
 base_tasks = [
     {
-        "assigneeId": 0,
-        "reporterId": 0,
-        "projectId": 1,
+        "reporterId": 1,
+        "projectId": "1",
         "sprintId": 0,
         "name": "Develop User Authentication System",
         "description": "Implement a robust user authentication system to ensure secure access to the platform.\nUtilize industry-standard encryption algorithms and best practices.\nFor more information on user authentication, refer to [this Wikipedia article](https://en.wikipedia.org/wiki/Authentication).",
@@ -51,9 +49,8 @@ base_tasks = [
         "epic": False
     },
     {
-        "assigneeId": 0,
-        "reporterId": 0,
-        "projectId": 1,
+        "reporterId": 1,
+        "projectId": "1",
         "sprintId": 0,
         "name": "Design Database Schema",
         "description": "Create an efficient and scalable database schema to store user data, application settings, and other relevant information.\nConsider the specific requirements of the project and choose appropriate data structures.\nLearn more about database design principles [here](https://en.wikipedia.org/wiki/Database_design).",
@@ -62,9 +59,8 @@ base_tasks = [
         "epic": False
     },
     {
-        "assigneeId": 0,
-        "reporterId": 0,
-        "projectId": 1,
+        "reporterId": 1,
+        "projectId": "1",
         "sprintId": 0,
         "name": "Setup Development Environment",
         "description": "Configure the development environment with the necessary tools and libraries for efficient software development.\nInstall IDEs, version control systems, and other required software components.\nCheck out this guide on setting up a development environment [here](https://en.wikipedia.org/wiki/Integrated_development_environment).",
@@ -73,9 +69,8 @@ base_tasks = [
         "epic": False
     },
     {
-        "assigneeId": 0,
-        "reporterId": 0,
-        "projectId": 1,
+        "reporterId": 1,
+        "projectId": "1",
         "sprintId": 0,
         "name": "Create Homepage Layout",
         "description": "Design an attractive and user-friendly layout for the homepage of the application.\nUse modern design principles and responsive design techniques to ensure compatibility across different devices.\nExplore the basics of web design [here](https://en.wikipedia.org/wiki/Web_design).",
@@ -84,9 +79,9 @@ base_tasks = [
         "epic": False
     },
     {
-        "assigneeId": 0,
-        "reporterId": 0,
-        "projectId": 1,
+        "assigneeId": 1,
+        "reporterId": 1,
+        "projectId": "1",
         "sprintId": 0,
         "name": "Implement Core Functionality",
         "description": "Develop the core features and functionality of the application according to the project requirements.\nFocus on essential tasks such as user registration, profile management, and data manipulation.\nLearn about software development methodologies [here](https://en.wikipedia.org/wiki/Software_development_process).",
@@ -95,7 +90,7 @@ base_tasks = [
         "epic": False
     },
     {
-        "assigneeId": "1",
+        "assigneeId": "3",
         "reporterId": "1",
         "projectId": "1",
         "sprintId": "1",
@@ -106,7 +101,7 @@ base_tasks = [
         "epic": True
     },
     {
-        "assigneeId": "1",
+        "assigneeId": "2",
         "reporterId": "1",
         "projectId": "1",
         "sprintId": "1",
@@ -128,7 +123,7 @@ base_tasks = [
         "epic": False
     },
     {
-        "assigneeId": "1",
+        "assigneeId": "2",
         "reporterId": "1",
         "projectId": "1",
         "sprintId": "1",
@@ -142,7 +137,6 @@ base_tasks = [
 
 tasks = [
     {
-        "assigneeId": "1",
         "reporterId": "1",
         "projectId": "1",
         "sprintId": "1",
@@ -153,7 +147,6 @@ tasks = [
         "epic": True
     },
     {
-        "assigneeId": "1",
         "reporterId": "1",
         "projectId": "1",
         "sprintId": "1",
@@ -164,7 +157,6 @@ tasks = [
         "epic": True
     },
     {
-        "assigneeId": "1",
         "reporterId": "1",
         "projectId": "1",
         "sprintId": "1",
@@ -179,7 +171,6 @@ tasks = [
 # Subtasks for the first epic task "Develop User Authentication System"
 subtasks_auth_system = [
     {
-        "assigneeId": "1",
         "reporterId": "1",
         "projectId": "1",
         "sprintId": "1",
@@ -272,7 +263,7 @@ for i, jwt in enumerate(jwts):
 projects = []
 # create teams
 for project_json in projects_to_make:
-    response = session.post(api + "/api/project/createProject", json=project_json)
+    response = session.post(api + "/api/project/createProject", json=project_json, headers={'Authorization': 'Bearer '+ jwts[project_json['projectOwner']]})
     projects.append(response.json()['id'])
     print(f"User {project_json['name']} created with status code {response.status_code}")
     print(response.text)
@@ -283,8 +274,8 @@ for project_id in projects:
         response = session.put(api + "/api/project/addUser",
                                json={
                                    "projectID": project_id,
-                                   "userId": i
-                               }, headers=headers)
+                                   "userId": project_id*5 - i
+                               },  headers={'Authorization': 'Bearer '+ jwts[project_id]})
         print(response.status_code)
         print(response.text)
 
@@ -309,7 +300,8 @@ for project_id in projects:
             "startTime": start_time,
             "stopTime": stop_time
         }
-        response = session.post(api + '/api/sprint/create', json=sprint_data)
+        response = session.post(api + '/api/sprint/create', json=sprint_data,
+                                headers={'Authorization': 'Bearer '+ jwts[project_id]})
         if response.status_code == 200:
             print(
                 f"Sprint '{sprint_data['sprintName']}' created successfully for project '{projects_to_make[project_id - 1]['name']}'.")
@@ -318,5 +310,5 @@ for project_id in projects:
 
 # fill tasks
 for task_json in all_tasks:
-    response = session.post(api + '/api/task/create', json=task_json)
+    response = session.post(api + '/api/task/create', json=task_json, headers={'Authorization': 'Bearer '+ jwts[int(task_json['reporterId'])]})
     print(response.status_code, response.text)

@@ -21,8 +21,6 @@ public class PostTaskRequest {
 
     private Integer assigneeId;
 
-    private Integer reporterId;
-
     private Integer projectId;
 
     private Integer sprintId;

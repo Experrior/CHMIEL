@@ -74,6 +74,14 @@ export const ProfilePage = () => {
         })
     }
 
+    const getUserConnections = async () => {
+        return await axios.get("/api/user/getConnections", {
+            headers: {
+                Authorization: "Bearer " + cookies.token
+            }
+        })
+    }
+
     const editUser = async (firstName, lastName, email, birthDate, address, phoneNumber) => {
         await axios.put("/api/user",
             {
@@ -113,6 +121,13 @@ export const ProfilePage = () => {
         }).catch(e => {
             console.error(e);
         })
+        getUserConnections().then(results => {
+            console.log(results.data)
+            setUserConnections(results.data)
+        }).catch(e => {
+            console.error(e);
+        })
+
     }, [])
 
     return (
@@ -194,11 +209,15 @@ export const ProfilePage = () => {
                                     {userConnections.length !== 0 ? <Row>
                                         {
                                             userConnections.map((userConnection) => {
-                                                return <Col xs={2} md={3} lg={2} xxxl={1}> <img
-                                                    style={{width: "80%", borderRadius: "50%", marginBottom: 16}}
-                                                    src={default_profile_picture}
-                                                    alt={"default profile picture"}/>
-                                                </Col>
+                                                return (
+                                                    <Row key={userConnection.email}>
+                                                        <Col xs={12}>
+                                                            <div style={{ marginBottom: 16 }}>
+                                                                <p>{userConnection.email}</p>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                );
                                             })
                                         }
                                     </Row> : <></>}

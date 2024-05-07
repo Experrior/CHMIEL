@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,14 +20,16 @@ public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
 
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .anyRequest().permitAll()
+                                .requestMatchers("/swagger-ui/*", "/v3/api-docs","/v3/api-docs/swagger-config", "/api/auth/*").permitAll() // Allow access without authentication
+                                .anyRequest().authenticated()
+                                 // Require authentication for all other requests
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement
@@ -39,3 +42,29 @@ public class SecurityConfiguration {
     }
 }
 
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//
+//        http
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(auth -> auth.requestMatchers("/v3/api-docs/**",
+//                                "/swagger-ui/**", "/swagger-ui.html")
+//                        .permitAll()
+//                        .anyRequest()
+//                        .authenticated())
+////                .authorizeHttpRequests(authorizeRequests ->
+////                        authorizeRequests
+////                                .requestMatchers("/login", "/register", "/swagger-ui/*","/swagger-ui/*/*", "/actuator/health").permitAll() // Allow access without authentication
+//////                                .anyRequest().permitAll() // Require authentication for all other requests
+////                )
+//                .sessionManagement(sessionManagement ->
+//                        sessionManagement
+//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                )
+//                .authenticationProvider(authenticationProvider)
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        return http.build();
+//    }
+//}
+//

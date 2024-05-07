@@ -58,7 +58,7 @@ export const HomePage = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get('http://localhost:8084/api/project/getAll',
+                const response = await axios.get('http://localhost:8084/api/project/getByUserId',
                      {
                         headers: { Authorization: cookies }
                     });

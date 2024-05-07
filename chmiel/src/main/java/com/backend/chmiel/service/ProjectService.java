@@ -2,6 +2,7 @@ package com.backend.chmiel.service;
 
 import com.backend.chmiel.entity.Project;
 import com.backend.chmiel.payload.PostProjectRequest;
+import com.backend.chmiel.payload.PutProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public interface ProjectService {
 
     Project createProject(PostProjectRequest postProjectRequest);
 
-
+    Project editName(PutProjectRequest putProjectRequest);
     String addUser(PutProjectUserRequest putProjectUserRequest);
 }
