@@ -18,6 +18,8 @@ export const HomePage = () => {
     const screenSize = useScreenSize();
     const [columnNum, setColumnNum] = useState(0);
     const [activeTab, setActiveTab] = useState("workedOn");
+    const [projects, setProjects] = useState([])
+
     const generateTabContent = (tab) => {
         switch (tab) {
             case "workedOn":
@@ -35,14 +37,6 @@ export const HomePage = () => {
         setActiveTab(tab);
     };
 
-    const [projects, setProjects] = useState([
-        {id: 1, name: "testProject1"},
-        {id: 2, name: "testProject2"},
-        {id: 3, name: "testProject3"},
-        {id: 4, name: "testProject4"},
-        {id: 5, name: "testProject5"},
-        {id: 6, name: "testProject6"}
-    ])
 
     useEffect(() => {
         if (screenSize.width < 840) {
@@ -58,10 +52,11 @@ export const HomePage = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get('http://localhost:8084/api/project/getByUserId',
+                const response = await axios.get('/api/project/getByUserId',
                      {
-                        headers: { Authorization: cookies }
+                        headers: { Authorization: cookies.token }
                     });
+                console.log(response.data)
                 const projectsData = response.data.map(project => ({
                     id: project.id,
                     name: project.projectName,
@@ -76,6 +71,7 @@ export const HomePage = () => {
 
         fetchProjects();
     }, []);
+
     return (
         <>
             <Navigation />
