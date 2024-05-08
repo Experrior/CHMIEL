@@ -99,11 +99,12 @@
     /*justify-content: center;*/
     align-items: center;
     width: 100%;
+    gap: 8px;
 }
 
 .accordion-header {
    flex: 1;
-    margin-right: 16px;
+    margin-right: 8px;
 }
 
 .accordionHeaderContainer > .btn-custom-tertiary-v2{

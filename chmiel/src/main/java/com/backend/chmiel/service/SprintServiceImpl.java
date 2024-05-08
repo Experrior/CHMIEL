@@ -57,11 +57,13 @@ public class SprintServiceImpl implements SprintService{
     @Override
     public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest){
         Sprint sprint = sprintRepository.findById(id).orElseThrow();
-        if (editSprintRequest.getSprintName() != null) sprint.setSprintName(editSprintRequest.getSprintName());
-        if (editSprintRequest.getStartTime() != null) sprint.setStartTime(editSprintRequest.getStartTime());
-        if (editSprintRequest.getStopTime() != null) sprint.setStopTime(editSprintRequest.getStopTime());
-        if (editSprintRequest.getIsStarted() != null) sprint.setStarted(editSprintRequest.getIsStarted());
-        if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
+
+        sprint.setSprintName(editSprintRequest.getSprintName());
+        sprint.setStartTime(editSprintRequest.getStartTime());
+        sprint.setStopTime(editSprintRequest.getStopTime());
+        sprint.setStarted(editSprintRequest.getIsStarted());
+        sprint.setFinished(editSprintRequest.getIsFinished());
+
         return sprintRepository.save(sprint);
     }
 }

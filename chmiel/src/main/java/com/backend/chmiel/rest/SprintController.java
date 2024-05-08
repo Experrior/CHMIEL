@@ -52,6 +52,7 @@ public class SprintController {
         sprintService.deleteSprintById(sprintId);
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @PatchMapping("/edit/{id}")
     public ResponseEntity<Sprint> updateSprint(@PathVariable Integer id, @RequestBody EditSprintRequest request) {
         return ResponseEntity.ok(sprintService.updateSprintById(id, request));

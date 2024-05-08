@@ -1,8 +1,8 @@
-import {Accordion, Button, DropdownButton, Nav, Dropdown} from "react-bootstrap";
+import {Accordion, Button, Dropdown, Nav} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import './Backlog.css';
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "../../api/axios";
 import {useParams} from "react-router-dom";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
@@ -52,13 +52,33 @@ export const BacklogPage = (props) => {
     }
 
     const deleteSprint = async (sprint_id) => {
-        console.log("delete " + sprint_id)
         await axios.delete(`/api/sprint/delete/${sprint_id}`,
             {
                 headers: {Authorization: cookies.token}
             }).then(result => {
             setSprints(sprints => sprints.filter(sprint => sprint.id !== sprint_id))
-            }).catch(e => {
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
+    const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished) => {
+        console.log("edit " + sprint_id)
+        console.log(sprintName, startTime, endTime, isStarted, isFinished)
+        await axios.patch(`/api/sprint/edit/${sprint_id}`, {
+                sprintName: sprintName,
+                startTime: startTime,
+                stopTime: endTime,
+                isStarted: isStarted,
+                isFinished: isFinished
+            },
+            {
+                headers: {Authorization: cookies.token}
+            }).then(result => {
+            setSprints(sprints => sprints.map(sprint =>
+                sprint.id === sprint_id ? {...sprint, ...result.data} : sprint
+            ))
+        }).catch(e => {
             console.error(e)
         })
     }
@@ -120,8 +140,8 @@ export const BacklogPage = (props) => {
                     </div>
                     <div>
                         <div className={"sprintsContainer"}>
-                            {sprints.length !== 0 ? sprints.map((sprint) => {
-                                return <Accordion flush>
+                            {sprints.length !== 0 ? sprints.map((sprint) => (
+                                <Accordion key={sprint.id} flush>
                                     <Accordion.Item eventKey="0">
                                         <div className={"accordionHeaderContainer"}>
                                             <Accordion.Header>
@@ -133,7 +153,7 @@ export const BacklogPage = (props) => {
                                                     More
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
-                                                    <EditSprintModal sprint={sprint}/>
+                                                    <EditSprintModal sprint={sprint} editSprint={editSprint}/>
                                                     <DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>
                                                 </Dropdown.Menu>
                                             </Dropdown>
@@ -145,8 +165,7 @@ export const BacklogPage = (props) => {
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
-
-                            }) : <></>}
+                            )) : <></>}
                         </div>
 
 
@@ -161,7 +180,7 @@ export const BacklogPage = (props) => {
                                 </div>
                                 <Accordion.Body>
                                     {tasks.length !== 0 ? tasks.map((task) => {
-                                        return <div>{task.name}</div>
+                                        return <div key={task.id}>{task.name}</div>
                                     }) : <></>}
                                     <CreateIssueModal addIssue={addIssue}/>
                                 </Accordion.Body>
