@@ -1,4 +1,4 @@
-import {Accordion, Button, Nav} from "react-bootstrap";
+import {Accordion, Button, DropdownButton, Nav, Dropdown} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import './Backlog.css';
@@ -8,6 +8,7 @@ import {useParams} from "react-router-dom";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
+import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -15,10 +16,6 @@ export const BacklogPage = (props) => {
     const [project, setProject] = useState([])
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
-    const [openDropdownId, setOpenDropdownId] = useState(null)
-    const containerRef = useRef(null);
-    const buttonRef = useRef(null);
-    const [justToggled, setJustToggled] = useState(false);
 
     const addIssue = async (taskName, taskDescription) => {
         await axios.post("/api/task/create",
@@ -66,21 +63,6 @@ export const BacklogPage = (props) => {
         })
     }
 
-    const toggleDropdown = (event, sprintId) => {
-        console.log(sprintId)
-        console.log(openDropdownId)
-        if (openDropdownId === sprintId) {
-            console.log("toggleDropdown - closing")
-            setOpenDropdownId(null);
-        } else {
-            console.log("toggleDropdown - opening")
-            setOpenDropdownId(sprintId);
-        }
-        // console.log("toggleDropdown - flag true")
-        // setJustToggled(true);
-    }
-
-
     useEffect(() => {
 
         const getProject = async () => {
@@ -117,27 +99,6 @@ export const BacklogPage = (props) => {
         getProject()
     }, [])
 
-    // useEffect(() => {
-    //     function handleClickOutside(event) {
-    //         console.log(justToggled)
-    //         if (justToggled && buttonRef.current && buttonRef.current.contains(event.target)) {
-    //             console.log("handleOnClick - just toggled");
-    //             setJustToggled(false); // Reset the flag
-    //         } else if (containerRef.current && !containerRef.current.contains(event.target)) {
-    //             console.log("handleOnClick - set null");
-    //             setOpenDropdownId(null);
-    //         }
-    //     }
-    //
-    //     // Attach the listener to the document
-    //     document.addEventListener('mousedown', handleClickOutside);
-    //
-    //     // Cleanup the listener on unmount or when dependencies change
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside);
-    //     };
-    // }, [justToggled, containerRef]); // Include dependencies that affect the effect
-
     return (
         <>
             <Navigation sticky={"top"}/>
@@ -167,15 +128,15 @@ export const BacklogPage = (props) => {
                                                 <p>{sprint.sprintName}</p>
                                             </Accordion.Header>
                                             <Button variant={"custom-tertiary-v2"}>Start Sprint</Button>
-                                            <Button ref={buttonRef} variant={"custom-tertiary-v2"}
-                                                    onClick={(e) => toggleDropdown(e, sprint.id)}>...</Button>
-                                            {openDropdownId === sprint.id && (
-                                                <div ref={containerRef} className={"dropdown"}>
-                                                    <Button variant={"custom-tertiary-v3"}>Edit Sprint</Button>
-                                                    {/*<Button variant={"custom-tertiary-v3"}>Delete Sprint</Button>*/}
+                                            <Dropdown>
+                                                <Dropdown.Toggle variant="custom-tertiary-v2" id="dropdown-basic">
+                                                    More
+                                                </Dropdown.Toggle>
+                                                <Dropdown.Menu>
+                                                    <EditSprintModal sprint={sprint}/>
                                                     <DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>
-                                                </div>
-                                            )}
+                                                </Dropdown.Menu>
+                                            </Dropdown>
                                         </div>
                                         <Accordion.Body>
                                             <div>
