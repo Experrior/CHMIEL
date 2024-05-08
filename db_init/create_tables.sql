@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS SPRINTS (
   project_id INTEGER REFERENCES PROJECTS(id),
   start_time TIMESTAMP NOT NULL,
   stop_time TIMESTAMP NOT NULL,
-  logged BOOLEAN NOT NULL,
+  starting_task_count INTEGER NOT NULL DEFAULT 0,
+  ending_task_count INTEGER NOT NULL DEFAULT 0,
   CONSTRAINT unique_sprint_project_name UNIQUE (sprint_name, id)
 );
 
@@ -51,7 +52,7 @@ CREATE TABLE IF NOT EXISTS TASKS (
   logged_hours FLOAT,
   time_estimate FLOAT NOT NULL,
   status VARCHAR CHECK (status IN ('backlog', 'open', 'in_progress', 'review', 'closed')),
-  is_epic BOOLEAN NOT NULL,
+  is_epic BOOLEAN NOT NULL DEFAULT FALSE,
   in_epic INTEGER REFERENCES TASKS(id)
 );
 

@@ -1,11 +1,9 @@
 import datetime
 import requests
 import copy
+import random
 api = "http://localhost:8084"
-
 session = requests.Session()
-
-
 
 users = [
     {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "password": "password"},
@@ -29,14 +27,12 @@ users = [
     {"firstName": "Noah", "lastName": "Rivera", "email": "noah.rivera@example.com", "password": "password"},
     {"firstName": "Isabella", "lastName": "Torres", "email": "isabella.torres@example.com", "password": "password"}
 ]
-
 projects_to_make = [
     {"name": "MVP project baseline", "projectOwner": 1},
     {"name": "Strategy & Launch", "projectOwner": 2},
     {"name": "Securing clients", "projectOwner": 3},
     {"name": "QA Long Term analysis", "projectOwner": 4}
 ]
-
 base_tasks = [
     {
         "reporterId": 1,
@@ -45,18 +41,17 @@ base_tasks = [
         "name": "Develop User Authentication System",
         "description": "Implement a robust user authentication system to ensure secure access to the platform.\nUtilize industry-standard encryption algorithms and best practices.\nFor more information on user authentication, refer to [this Wikipedia article](https://en.wikipedia.org/wiki/Authentication).",
         "timeEstimate": 0,
-        "inEpic": 0,
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     },
     {
         "reporterId": 1,
         "projectId": "1",
         "sprintId": 0,
-        "name": "Design Database Schema",
+        "name": "Deploy Working and Scalable Database System",
         "description": "Create an efficient and scalable database schema to store user data, application settings, and other relevant information.\nConsider the specific requirements of the project and choose appropriate data structures.\nLearn more about database design principles [here](https://en.wikipedia.org/wiki/Database_design).",
         "timeEstimate": 0,
-        "inEpic": 0,
-        "epic": False
+        "epic": "true"
     },
     {
         "reporterId": 1,
@@ -65,8 +60,8 @@ base_tasks = [
         "name": "Setup Development Environment",
         "description": "Configure the development environment with the necessary tools and libraries for efficient software development.\nInstall IDEs, version control systems, and other required software components.\nCheck out this guide on setting up a development environment [here](https://en.wikipedia.org/wiki/Integrated_development_environment).",
         "timeEstimate": 0,
-        "inEpic": 0,
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     },
     {
         "reporterId": 1,
@@ -75,8 +70,8 @@ base_tasks = [
         "name": "Create Homepage Layout",
         "description": "Design an attractive and user-friendly layout for the homepage of the application.\nUse modern design principles and responsive design techniques to ensure compatibility across different devices.\nExplore the basics of web design [here](https://en.wikipedia.org/wiki/Web_design).",
         "timeEstimate": 0,
-        "inEpic": 0,
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     },
     {
         "assigneeId": 1,
@@ -86,8 +81,8 @@ base_tasks = [
         "name": "Implement Core Functionality",
         "description": "Develop the core features and functionality of the application according to the project requirements.\nFocus on essential tasks such as user registration, profile management, and data manipulation.\nLearn about software development methodologies [here](https://en.wikipedia.org/wiki/Software_development_process).",
         "timeEstimate": 0,
-        "inEpic": 0,
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     },
     {
         "assigneeId": "3",
@@ -97,8 +92,7 @@ base_tasks = [
         "name": "Perform Unit Testing",
         "description": "Write and execute unit tests to verify the correctness of individual components and modules.\nUse testing frameworks and tools to automate the testing process and ensure code quality.\nExplore the importance of unit testing [here](https://en.wikipedia.org/wiki/Unit_testing).",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": True
+        "epic": "true"
     },
     {
         "assigneeId": "2",
@@ -108,8 +102,7 @@ base_tasks = [
         "name": "Optimize Performance",
         "description": "Identify and address performance bottlenecks in the application to improve responsiveness and efficiency.\nProfile the codebase, optimize algorithms, and utilize caching mechanisms where applicable.\nLearn more about performance optimization [here](https://en.wikipedia.org/wiki/Performance_optimization).",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": True
+        "epic": "true"
     },
     {
         "assigneeId": "1",
@@ -119,8 +112,8 @@ base_tasks = [
         "name": "Document Codebase",
         "description": "Create comprehensive documentation for the codebase to facilitate understanding, maintenance, and collaboration among team members.\nDocument APIs, data structures, and implementation details using standard documentation tools.\nRead about the importance of code documentation [here](https://en.wikipedia.org/wiki/Code_documentation).",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     },
     {
         "assigneeId": "2",
@@ -130,11 +123,10 @@ base_tasks = [
         "name": "Deploy to Production Environment",
         "description": "Deploy the application to the production environment following established deployment procedures and best practices.\nMonitor deployment process, perform smoke tests, and ensure seamless transition to the live environment.\nLearn about deployment strategies [here](https://en.wikipedia.org/wiki/Software_deployment).",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     }
 ]
-
 tasks = [
     {
         "reporterId": "1",
@@ -143,8 +135,7 @@ tasks = [
         "name": "Develop User Authentication System",
         "description": "Implement a robust user authentication system to ensure secure access to the platform.\nUtilize industry-standard encryption algorithms and best practices.\nFor more information on user authentication, refer to [this Wikipedia article](https://en.wikipedia.org/wiki/Authentication).",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": True
+        "epic": "true"
     },
     {
         "reporterId": "1",
@@ -153,8 +144,7 @@ tasks = [
         "name": "Design Database Schema",
         "description": "Create an efficient and scalable database schema to store user data, application settings, and other relevant information.\nConsider the specific requirements of the project and choose appropriate data structures.\nLearn more about database design principles [here](https://en.wikipedia.org/wiki/Database_design).",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": True
+        "epic": "true"
     },
     {
         "reporterId": "1",
@@ -163,22 +153,20 @@ tasks = [
         "name": "Implement Core Functionality",
         "description": "Develop the core features and functionality of the application according to the project requirements.\nFocus on essential tasks such as user registration, profile management, and data manipulation.\nLearn about software development methodologies [here](https://en.wikipedia.org/wiki/Software_development_process).",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": True
+        "epic": "true"
     }
 ]
-
 # Subtasks for the first epic task "Develop User Authentication System"
 subtasks_auth_system = [
     {
         "reporterId": "1",
         "projectId": "1",
-        "sprintId": "1",
+        "sprintId": "3",
         "name": "Implement Login Page UI",
         "description": "Design and implement the user interface for the login page of the application.",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": False
+        "epic": "false",
+		"inEpic": "1"
     },
     {
         "assigneeId": "1",
@@ -188,11 +176,10 @@ subtasks_auth_system = [
         "name": "Develop Authentication API",
         "description": "Create API endpoints for user authentication, including login, registration, and password reset functionality.",
         "timeEstimate": "1",
-        "inEpic": "1",
-        "epic": False
+        "epic": "false",
+		"inEpic": "1"
     }
 ]
-
 # Subtasks for the second epic task "Design Database Schema"
 subtasks_db_schema = [
     {
@@ -203,8 +190,8 @@ subtasks_db_schema = [
         "name": "Define Entity Relationships",
         "description": "Identify and define relationships between different entities in the database schema.",
         "timeEstimate": "1",
-        "inEpic": 2,
-        "epic": False
+        "epic": "false",
+		"inEpic": "1"
     },
     {
         "assigneeId": "1",
@@ -214,42 +201,82 @@ subtasks_db_schema = [
         "name": "Create Table Definitions",
         "description": "Write SQL scripts to create tables and define their attributes based on the identified entity relationships.",
         "timeEstimate": "1",
-        "inEpic": 2,
-        "epic": False
+        "epic": "false",
+		"inEpic": "1"
     }
 ]
-
 # Subtasks for the third epic task "Implement Core Functionality"
 subtasks_core_functionality = [
     {
         "assigneeId": "1",
         "reporterId": "1",
-        "projectId": "1",
+        "projectId": "2",
         "sprintId": "1",
         "name": "User Registration",
         "description": "Implement user registration functionality, allowing new users to sign up for an account.",
         "timeEstimate": "1",
-        "inEpic": 3,
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     },
     {
         "assigneeId": "1",
         "reporterId": "1",
-        "projectId": "1",
+        "projectId": "2",
         "sprintId": "1",
         "name": "Profile Management",
         "description": "Develop user profile management features, allowing users to update their personal information and preferences.",
         "timeEstimate": "1",
-        "inEpic": 3,
-        "epic": False
+        "epic": "false",
+		"inEpic": "2"
     }
 ]
 
+more_tasks = [
+      {
+    "reporterId": "1",
+    "projectId": "1",
+    "sprintId": "3",
+    "name": "Implement User Authentication",
+    "description": "Develop the user authentication module to allow users to register, log in, and manage their accounts securely.",
+    "timeEstimate": "1",
+    "epic": "false",
+    "inEpic": "1"
+  },
+  {
+    "reporterId": "1",
+    "projectId": "1",
+    "sprintId": "4",
+    "name": "Design Database Schema",
+    "description": "Create the database schema for the application, including tables, relationships, and constraints.",
+    "timeEstimate": "1",
+    "epic": "false",
+    "inEpic": "1"
+  },
+  {
+    "reporterId": "1",
+    "projectId": "1",
+    "sprintId": "5",
+    "name": "Implement User Profile Management",
+    "description": "Develop the functionality to allow users to manage their profiles, including updating personal information and profile pictures.",
+    "timeEstimate": "1",
+    "epic": "false",
+    "inEpic": "1"
+  },
+  {
+    "reporterId": "1",
+    "projectId": "1",
+    "sprintId": "6",
+    "name": "Implement Data Manipulation Features",
+    "description": "Develop features for manipulating data within the application, such as creating, editing, and deleting records.",
+    "timeEstimate": "1",
+    "epic": "false",
+    "inEpic": "1"
+  }
+]
 # Combining all tasks and subtasks into a single list
-all_tasks = base_tasks + tasks + subtasks_auth_system + subtasks_db_schema + subtasks_core_functionality
+all_tasks = tasks + base_tasks + subtasks_auth_system + subtasks_db_schema + subtasks_core_functionality + more_tasks
 
 # Create users
-
 jwts = []
 for user_json in users:
     response = session.post(api + "/api/auth/register", json=user_json)
@@ -259,7 +286,6 @@ for user_json in users:
 # Print JWTs for created users
 for i, jwt in enumerate(jwts):
     print(f"JWT for user {str(users[i])}: {jwt}")
-
 projects = []
 # create teams
 for project_json in projects_to_make:
@@ -267,7 +293,6 @@ for project_json in projects_to_make:
     projects.append(response.json()['id'])
     print(f"User {project_json['name']} created with status code {response.status_code}")
     print(response.text)
-
 # fill teams
 for project_id in projects:
     for i in range(5):
@@ -278,19 +303,14 @@ for project_id in projects:
                                },  headers={'Authorization': 'Bearer '+ jwts[project_id]})
         print(response.status_code)
         print(response.text)
-
 # fill sprints
 sprint_prefix = "Sprint"
 start_date = datetime.datetime(2024, 4, 3, 12, 0, 0)
 interval = datetime.timedelta(weeks=2)
 no_sprints = 9
-
 for project_id in projects:
-
     current_date = start_date
-
     for i in range(no_sprints):
-
         start_time = current_date.strftime("%Y-%m-%d %H:%M:%S")
         stop_time = (current_date + interval).strftime("%Y-%m-%d %H:%M:%S")
         current_date += interval
@@ -307,8 +327,27 @@ for project_id in projects:
                 f"Sprint '{sprint_data['sprintName']}' created successfully for project '{projects_to_make[project_id - 1]['name']}'.")
         else:
             print(f"Failed to create sprint for project '{projects_to_make[project_id - 1]['name']}'.")
-
 # fill tasks
 for task_json in all_tasks:
     response = session.post(api + '/api/task/create', json=task_json, headers={'Authorization': 'Bearer '+ jwts[int(task_json['reporterId'])]})
     print(response.status_code, response.text)
+
+
+
+print("\n","#"*40, "\n")
+print("Edit tasks")
+print("\n","#"*40, "\n")
+# set tasks as done
+for i, task_json in enumerate(all_tasks):
+    if 'epic' in task_json and task_json['epic'] == 'false' and task_json and random.random() > 0.33:
+        response = session.put(api + '/api/task/update',
+                json={
+                    "id": i+1,
+                    "status": "closed"
+                    },
+        headers={'Authorization': 'Bearer '+ jwts[int(task_json['reporterId'])]}
+        )
+        print(response.status_code)
+
+print(f"Send all tasks: {len(all_tasks)}")
+print(f"Example cookie: \n\t{jwts[0]}")

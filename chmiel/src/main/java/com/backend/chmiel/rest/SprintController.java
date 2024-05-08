@@ -28,13 +28,13 @@ public class SprintController {
     }
 
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @GetMapping("/getByStartTime")
+    @GetMapping("/getSprintsStartingAfter")
     public ResponseEntity<List<Sprint>> getSprintsByStartTime(@RequestParam String timestamp){
         return ResponseEntity.ok(sprintService.findAllByStartTimeAfterOrderByStartTimeAsc(timestamp));
     }
 
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    @GetMapping("/getByStopTime")
+    @GetMapping("/getSprintsFinishedBefore")
     public ResponseEntity<List<Sprint>> getSprintsByStopTime(@RequestParam String timestamp){
         return ResponseEntity.ok(sprintService.findAllByStopTimeBeforeOrderByStopTimeAsc(timestamp));
     }

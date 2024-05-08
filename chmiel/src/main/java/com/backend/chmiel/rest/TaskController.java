@@ -2,7 +2,10 @@ package com.backend.chmiel.rest;
 
 
 import com.backend.chmiel.config.JwtService;
+import com.backend.chmiel.entity.EpicsData;
 import com.backend.chmiel.entity.Task;
+import com.backend.chmiel.exception.TaskNotFoundException;
+import com.backend.chmiel.payload.EditTaskRequest;
 import com.backend.chmiel.payload.PostTaskRequest;
 import com.backend.chmiel.service.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -49,25 +53,40 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getTasksByProjectId(project_id));
     }
 
-    @PutMapping("/update/{id}")
+    @GetMapping("/getEpicsData/{project_id}")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<Optional<Task>> putTaskCommentById(@PathVariable Integer id, @RequestBody String name, @RequestBody String description){
-        return ResponseEntity.ok(Optional.ofNullable(taskService.editTaskCommentById(id, name, description)));
+    public ResponseEntity<Map<String, Map<Integer, Integer>>> getEpicsData(@PathVariable Integer project_id) {
+        return ResponseEntity.ok(taskService.getEpicsData(project_id));
+    }
+
+    @PutMapping("/update")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<Optional<Task>> putTaskById(@RequestBody EditTaskRequest editTaskRequest){
+        return ResponseEntity.ok(Optional.ofNullable(taskService.editTask(editTaskRequest)));
     }
 
     @DeleteMapping("/delete/{id}")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public void deleteTaskComment(@PathVariable Integer id){
+    public void deleteTask(@PathVariable Integer id){
         taskService.removeById(id);
     }
 
 
     @PostMapping("/create")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<Task> putTaskById(@RequestHeader("Authorization") String token, @RequestBody PostTaskRequest postTaskRequest){
+    public Task createTask(@RequestHeader("Authorization") String token, @RequestBody PostTaskRequest postTaskRequest)  {
         Integer reporterId = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
-        return ResponseEntity.ok(taskService.createTask(postTaskRequest, reporterId));
+
+        try{
+            Task output = taskService.createTask(postTaskRequest, reporterId);
+            return output.getInEpic();
+        }catch (TaskNotFoundException e){
+            return Task.builder()
+                    .description(e.toString())
+                    .build();
+        }
     }
+
 
 
 }
