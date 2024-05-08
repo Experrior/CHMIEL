@@ -2,8 +2,18 @@ import datetime
 import requests
 import copy
 import random
+
+
 api = "http://localhost:8084"
+
+
 session = requests.Session()
+
+
+response = session.get(api+'/actuator/health')
+if response.status_code != 200:
+    api = "http://172.22.0.1:8084"
+
 
 users = [
     {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "password": "password"},
@@ -311,8 +321,8 @@ no_sprints = 9
 for project_id in projects:
     current_date = start_date
     for i in range(no_sprints):
-        start_time = current_date.strftime("%Y-%m-%d %H:%M:%S")
-        stop_time = (current_date + interval).strftime("%Y-%m-%d %H:%M:%S")
+        start_time = current_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+        stop_time = (current_date + interval).strftime("%Y-%m-%dT%H:%M:%SZ")
         current_date += interval
         sprint_data = {
             "sprintName": f"Sprint {i + 1}",
