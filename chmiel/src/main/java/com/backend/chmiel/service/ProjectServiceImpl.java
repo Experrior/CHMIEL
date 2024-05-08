@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -49,9 +50,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project createProject(PostProjectRequest postProjectRequest) {
+        Set<User> users = new HashSet<>();
+        userRepository.findById(postProjectRequest.getProjectOwner()).ifPresent(users::add);
         return projectRepository.save(Project.builder()
                 .projectOwner(postProjectRequest.getProjectOwner())
                 .projectName(postProjectRequest.getName())
+                .users(users)
                 .build());
     }
 

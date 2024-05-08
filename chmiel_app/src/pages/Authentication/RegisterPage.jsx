@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
 import "./AuthenticationPage.css"
@@ -14,9 +14,11 @@ export const RegisterPage = () => {
     const [password, setPassword] = useState("")
     const [success, setSuccess] = useState(false)
     const [cookies, setCookie] = useCookies(['token']);
+    const [errors, setErrors] = useState({})
+    const [validated, setValidated] = useState(false);
 
     useEffect(() => {
-        if (cookies.token){
+        if (cookies.token) {
             setSuccess(true)
         }
     }, [])
@@ -25,31 +27,54 @@ export const RegisterPage = () => {
         setErrorMsg("");
     }, [firstName, lastName, email, password])
 
-    const onInputFirstName = ({target: {value}}) => setFirstName(value)
-    const onInputLastName = ({target: {value}}) => setLastName(value)
-    const onInputEmail = ({target: {value}}) => setEmail(value)
-    const onInputPass = ({target: {value}}) => setPassword(value)
+    const findFormErrors = () => {
+        const newErrors = {}
+
+        if (!email || email === '') newErrors.email = 'Email is required!'
+        else if (!email.match(/.+@.+/)) newErrors.email = 'Email must contain "@" and mail name'
+
+        if (!firstName || firstName === '') newErrors.firstName = 'First name is required!'
+        else if (firstName.match(/\d+/)) newErrors.firstName = 'First name cannot contain numbers'
+
+        if (!lastName || lastName === '') newErrors.lastName = 'Last name is required!'
+        else if (lastName.match(/\d+/)) newErrors.lastName = 'Last name cannot contain numbers'
+
+        if (!password || password === '') newErrors.password = 'Password is required!'
+        else if (password.length < 8) newErrors.password = 'Password has to be at least 8 characters'
+        else if (!password.match(/\d+/)) newErrors.password = 'Password must contain numbers'
+        return newErrors
+    }
 
     const onFormSubmit = async e => {
         e.preventDefault()
-
-        try {
-            const response = await axios.post("/api/auth/register",
-                JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
-                {
-                    headers: {"Content-Type": "application/json"},
-                });
-            const accessToken = response.data.token;
-            setCookie('token', accessToken);
-            setEmail("")
-            setPassword("")
-            setFirstName("")
-            setLastName("")
-            setSuccess(true)
-        } catch (e) {
-            console.error(e)
-            setErrorMsg("Registration failed.")
+        e.stopPropagation();
+        console.log("submitting")
+        const newErrors = findFormErrors()
+        console.log(newErrors)
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors)
+        } else {
+            try {
+                const response = await axios.post("/api/auth/register",
+                    JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password}),
+                    {
+                        headers: {"Content-Type": "application/json"},
+                    });
+                const accessToken = response.data.token;
+                setCookie('token', accessToken);
+                setEmail("")
+                setPassword("")
+                setFirstName("")
+                setLastName("")
+                setSuccess(true)
+            } catch (e) {
+                console.error(e)
+                setErrorMsg("Registration failed.")
+            }
+            setErrors({})
         }
+
+
     }
 
 
@@ -82,22 +107,76 @@ export const RegisterPage = () => {
                             <Button href={"/register"} variant={"custom-secondary"}>Register</Button>
                         </div>
                         <div className={"formContainer"}>
-                            <Form onSubmit={onFormSubmit}>
+                            <Form id={"registerForm"} noValidate validated={validated} onSubmit={onFormSubmit}>
                                 <Form.Group className={"mb-3"} controlId={"formGroupEmail"}>
-                                    <Form.Control type={"email"} placeholder={"Email"} onChange={onInputEmail}
-                                                  value={email}/>
+                                    <Form.Control required
+                                                  type={"email"}
+                                                  placeholder={"Email"}
+                                                  onChange={(e) => {
+                                                      setEmail(e.target.value)
+                                                      if (!!errors["email"]) setErrors({
+                                                          ...errors,
+                                                          ["email"]: null
+                                                      })
+                                                  }}
+                                                  isInvalid={!!errors.email}
+                                                  value={email}
+                                    />
+                                    <Form.Control.Feedback type='invalid'>
+                                        {errors.email}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group className={"mb-3"} controlId={"firstNameGroup"}>
-                                    <Form.Control placeholder={"First Name"} onChange={onInputFirstName}
-                                                  value={firstName}/>
+                                    <Form.Control required
+                                                  placeholder={"First Name"}
+                                                  onChange={(e) => {
+                                                      setFirstName(e.target.value)
+                                                      if (!!errors["firstName"]) setErrors({
+                                                          ...errors,
+                                                          ["firstName"]: null
+                                                      })
+                                                  }}
+                                                  isInvalid={!!errors.firstName}
+                                                  value={firstName}
+                                    />
+                                    <Form.Control.Feedback type='invalid'>
+                                        {errors.firstName}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group className={"mb-3"} controlId={"lastNameGroup"}>
-                                    <Form.Control placeholder={"Last Name"} onChange={onInputLastName}
-                                                  value={lastName}/>
+                                    <Form.Control required
+                                                  placeholder={"Last Name"}
+                                                  onChange={(e) => {
+                                                      setLastName(e.target.value)
+                                                      if (!!errors["lastName"]) setErrors({
+                                                          ...errors,
+                                                          ["lastName"]: null
+                                                      })
+                                                  }}
+                                                  isInvalid={!!errors.lastName}
+                                                  value={lastName}
+                                    />
+                                    <Form.Control.Feedback type='invalid'>
+                                        {errors.lastName}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Control type="password" placeholder="Password" onChange={onInputPass}
-                                                  value={password}/>
+                                    <Form.Control required
+                                                  type="password"
+                                                  placeholder="Password"
+                                                  onChange={(e) => {
+                                                      setPassword(e.target.value)
+                                                      if (!!errors["password"]) setErrors({
+                                                          ...errors,
+                                                          ["password"]: null
+                                                      })
+                                                  }}
+                                                  isInvalid={!!errors.password}
+                                                  value={password}
+                                    />
+                                    <Form.Control.Feedback type='invalid'>
+                                        {errors.password}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
 
                                 <p ref={errRef} className={errorMsg ? "errmsg" : "offscreen"}
@@ -106,7 +185,7 @@ export const RegisterPage = () => {
 
                                 <Form.Group as={"div"}>
                                     <Button variant={"custom-primary"} size={"lg"} style={{width: "100%"}}
-                                            type="submit">SIGN UP</Button>
+                                            form={"registerForm"} type="submit">SIGN UP</Button>
                                 </Form.Group>
                             </Form>
                         </div>

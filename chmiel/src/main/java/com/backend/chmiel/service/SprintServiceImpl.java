@@ -38,11 +38,12 @@ public class SprintServiceImpl implements SprintService{
 
     @Override
     public Sprint createSprint(PostSprintRequest postSprintRequest) {
-        return sprintRepository.save(Sprint.builder()
-                .sprintName(postSprintRequest.getSprintName())
+        Sprint newSprint = Sprint.builder()
+                .sprintName("Temporary Name")
                 .projectId(postSprintRequest.getProjectId())
-                .startTime(Timestamp.valueOf(postSprintRequest.getStartTime()))
-                .stopTime(Timestamp.valueOf(postSprintRequest.getStopTime()))
-                .build());
+                .build();
+        newSprint = sprintRepository.save(newSprint);
+        newSprint.setSprintName("Sprint " + newSprint.getId());
+        return sprintRepository.save(newSprint);
     }
 }
