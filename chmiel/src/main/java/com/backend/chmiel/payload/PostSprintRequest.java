@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 
 @Data
 @Builder
@@ -13,9 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostSprintRequest {
 
-//    private String sprintName;
+    private String sprintName;
     private Integer projectId;
-//    private String startTime;
-//    private String stopTime;
+    private Timestamp startTime;
+    private Timestamp stopTime;
 
 }

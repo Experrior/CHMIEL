@@ -34,14 +34,13 @@ public class Sprint {
     @Column(name = "stop_time")
     private Timestamp stopTime;
 
-    @Column(name = "logged")
-    private boolean logged;
+//    private boolean logged;
 
-    @Column(name = "is_started")
-    private boolean isStarted;
-
-    @Column(name = "is_finished")
-    private boolean isFinished;
+//    @Column(name = "is_started")
+//    private boolean isStarted;
+//
+//    @Column(name = "is_finished")
+//    private boolean isFinished;
 
 
     @Override
@@ -52,7 +51,7 @@ public class Sprint {
                 ", projectId=" + projectId +
                 ", startTime=" + startTime +
                 ", stopTime=" + stopTime +
-                ", logged=" + logged +
+//                ", logged=" + logged +
                 '}';
     }
 }

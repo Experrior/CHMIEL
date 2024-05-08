@@ -2,12 +2,10 @@ package com.backend.chmiel.service;
 
 import com.backend.chmiel.dao.SprintRepository;
 import com.backend.chmiel.entity.Sprint;
-import com.backend.chmiel.payload.EditSprintRequest;
 import com.backend.chmiel.payload.PostSprintRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -40,12 +38,21 @@ public class SprintServiceImpl implements SprintService{
 
     @Override
     public Sprint createSprint(PostSprintRequest postSprintRequest) {
+
         Sprint newSprint = Sprint.builder()
-                .sprintName("Temporary Name")
                 .projectId(postSprintRequest.getProjectId())
                 .build();
-        newSprint = sprintRepository.save(newSprint);
-        newSprint.setSprintName("Sprint " + newSprint.getId());
+
+        if (postSprintRequest.getSprintName() != null){
+            newSprint.setSprintName(postSprintRequest.getSprintName());
+        }
+        if (postSprintRequest.getStartTime() != null){
+            newSprint.setStartTime(postSprintRequest.getStartTime());
+        }
+        if (postSprintRequest.getStopTime() != null){
+            newSprint.setStopTime(postSprintRequest.getStopTime());
+        }
+
         return sprintRepository.save(newSprint);
     }
 
