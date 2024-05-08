@@ -1,6 +1,7 @@
 package com.backend.chmiel.rest;
 
 import com.backend.chmiel.entity.Sprint;
+import com.backend.chmiel.payload.EditSprintRequest;
 import com.backend.chmiel.payload.PostSprintRequest;
 import com.backend.chmiel.service.SprintService;
 import lombok.RequiredArgsConstructor;
@@ -45,4 +46,14 @@ public class SprintController {
         return ResponseEntity.ok(sprintService.createSprint(postSprintRequest));
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    @DeleteMapping("/delete/{sprintId}")
+    public void deleteSprint(@PathVariable Integer sprintId){
+        sprintService.deleteSprintById(sprintId);
+    }
+
+    @PatchMapping("/edit/{id}")
+    public ResponseEntity<Sprint> updateSprint(@PathVariable Integer id, @RequestBody EditSprintRequest request) {
+        return ResponseEntity.ok(sprintService.updateSprintById(id, request));
+    }
 }

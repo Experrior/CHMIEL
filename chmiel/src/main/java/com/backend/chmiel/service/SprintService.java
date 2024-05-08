@@ -1,6 +1,7 @@
 package com.backend.chmiel.service;
 
 import com.backend.chmiel.entity.Sprint;
+import com.backend.chmiel.payload.EditSprintRequest;
 import com.backend.chmiel.payload.PostSprintRequest;
 
 import java.util.List;
@@ -16,4 +17,8 @@ public interface SprintService {
     List<Sprint> findAllByStopTimeBeforeOrderByStopTimeAsc(String timestamp);
 
     Sprint createSprint(PostSprintRequest postSprintRequest);
- }
+
+    void deleteSprintById(Integer id);
+
+    Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest);
+}

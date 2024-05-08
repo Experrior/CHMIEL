@@ -2,8 +2,6 @@ package com.backend.chmiel.service;
 
 import com.backend.chmiel.dao.SprintRepository;
 import com.backend.chmiel.entity.Sprint;
-import com.backend.chmiel.entity.Task;
-import com.backend.chmiel.exception.TaskNotFoundException;
 import com.backend.chmiel.payload.PostSprintRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,5 +54,21 @@ public class SprintServiceImpl implements SprintService{
         }
 
         return sprintRepository.save(newSprint);
+    }
+
+    @Override
+    public void deleteSprintById(Integer id) {
+        sprintRepository.deleteById(id);
+    }
+
+    @Override
+    public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest){
+        Sprint sprint = sprintRepository.findById(id).orElseThrow();
+        if (editSprintRequest.getSprintName() != null) sprint.setSprintName(editSprintRequest.getSprintName());
+        if (editSprintRequest.getStartTime() != null) sprint.setStartTime(editSprintRequest.getStartTime());
+        if (editSprintRequest.getStopTime() != null) sprint.setStopTime(editSprintRequest.getStopTime());
+        if (editSprintRequest.getIsStarted() != null) sprint.setStarted(editSprintRequest.getIsStarted());
+        if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
+        return sprintRepository.save(sprint);
     }
 }
