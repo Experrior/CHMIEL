@@ -7,6 +7,7 @@ import axios from "../../api/axios";
 import {useParams} from "react-router-dom";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
+import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -53,6 +54,18 @@ export const BacklogPage = (props) => {
         })
     }
 
+    const deleteSprint = async (sprint_id) => {
+        console.log("delete " + sprint_id)
+        await axios.delete(`/api/sprint/delete/${sprint_id}`,
+            {
+                headers: {Authorization: cookies.token}
+            }).then(result => {
+            setSprints(sprints => sprints.filter(sprint => sprint.id !== sprint_id))
+            }).catch(e => {
+            console.error(e)
+        })
+    }
+
     const toggleDropdown = (event, sprintId) => {
         console.log(sprintId)
         console.log(openDropdownId)
@@ -63,8 +76,8 @@ export const BacklogPage = (props) => {
             console.log("toggleDropdown - opening")
             setOpenDropdownId(sprintId);
         }
-        console.log("toggleDropdown - flag true")
-        setJustToggled(true);
+        // console.log("toggleDropdown - flag true")
+        // setJustToggled(true);
     }
 
 
@@ -104,26 +117,26 @@ export const BacklogPage = (props) => {
         getProject()
     }, [])
 
-    useEffect(() => {
-        function handleClickOutside(event) {
-            console.log(justToggled)
-            if (justToggled && buttonRef.current && buttonRef.current.contains(event.target)) {
-                console.log("handleOnClick - just toggled");
-                setJustToggled(false); // Reset the flag
-            } else if (containerRef.current && !containerRef.current.contains(event.target)) {
-                console.log("handleOnClick - set null");
-                setOpenDropdownId(null);
-            }
-        }
-
-        // Attach the listener to the document
-        document.addEventListener('mousedown', handleClickOutside);
-
-        // Cleanup the listener on unmount or when dependencies change
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [justToggled, containerRef]); // Include dependencies that affect the effect
+    // useEffect(() => {
+    //     function handleClickOutside(event) {
+    //         console.log(justToggled)
+    //         if (justToggled && buttonRef.current && buttonRef.current.contains(event.target)) {
+    //             console.log("handleOnClick - just toggled");
+    //             setJustToggled(false); // Reset the flag
+    //         } else if (containerRef.current && !containerRef.current.contains(event.target)) {
+    //             console.log("handleOnClick - set null");
+    //             setOpenDropdownId(null);
+    //         }
+    //     }
+    //
+    //     // Attach the listener to the document
+    //     document.addEventListener('mousedown', handleClickOutside);
+    //
+    //     // Cleanup the listener on unmount or when dependencies change
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside);
+    //     };
+    // }, [justToggled, containerRef]); // Include dependencies that affect the effect
 
     return (
         <>
@@ -159,7 +172,8 @@ export const BacklogPage = (props) => {
                                             {openDropdownId === sprint.id && (
                                                 <div ref={containerRef} className={"dropdown"}>
                                                     <Button variant={"custom-tertiary-v3"}>Edit Sprint</Button>
-                                                    <Button variant={"custom-tertiary-v3"}>Delete Sprint</Button>
+                                                    {/*<Button variant={"custom-tertiary-v3"}>Delete Sprint</Button>*/}
+                                                    <DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>
                                                 </div>
                                             )}
                                         </div>
