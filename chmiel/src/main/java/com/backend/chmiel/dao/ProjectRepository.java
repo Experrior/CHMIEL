@@ -26,4 +26,5 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     @Query(value = "INSERT Projects_Users(project_id, user_id) VALUES(?1, ?2)", nativeQuery = true)
     void addProjectUser( Integer projectId, Integer userId);
 
+
 }

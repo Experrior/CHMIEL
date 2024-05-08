@@ -2,12 +2,12 @@ package com.backend.chmiel.service;
 
 
 import com.backend.chmiel.entity.Task;
-import com.backend.chmiel.exception.TaskCommentNotFoundException;
-import com.backend.chmiel.payload.PostTaskCommentRequest;
+import com.backend.chmiel.exception.TaskNotFoundException;
+import com.backend.chmiel.payload.EditTaskRequest;
 import com.backend.chmiel.payload.PostTaskRequest;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 public interface TaskService {
 
@@ -21,10 +21,11 @@ public interface TaskService {
 
     List<Task> getTasksBySprintId(Integer sprint_id);
 
+    Map<String, Map<Integer, Integer>> getEpicsData(Integer sprint_id);
 
-    Task editTaskCommentById(Integer id, String name, String description);
+    Task editTask(EditTaskRequest editTaskRequest);
 
     void removeById(Integer id);
 
-    Task createTask(PostTaskRequest postTaskRequest, Integer reportedId);
+    Task createTask(PostTaskRequest postTaskRequest, Integer reportedId) throws TaskNotFoundException;
 }

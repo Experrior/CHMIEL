@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Nav, Col, Row } from 'react-bootstrap';
 import { Chart as ChartJS, LinearScale, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip, LineController, BarController } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 
 import default_profile_picture from "../../assets/default_profile_picture.jpg";
+import axios from "../../api/axios";
 import {Navigation} from "../../components/Navigation/Navigation";
+import {EpicsChartsComponent} from "../../components/Charts/EpicsChartsComponent";
+import {useCookies} from "react-cookie";
 
 ChartJS.register(
     LinearScale,
@@ -53,29 +56,32 @@ const data = {
 };
 
 const ChartsPage = () => {
+    const [epicsData, setData] = useState({});
+    const [cookies] = useCookies(["token"]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('/api/task/getEpicsData/1',
+                    {
+                        headers: { Authorization: "Bearer "+cookies.token }
+                    }
+                    );
+                setData(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, []); // Run only once on component mount
+
+
     return (
         <>
             <Navigation/>
-            <Container fluid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                <div style={{ marginBottom: '30px' }}>
-                    <Row>
-                        <h3>Chart 1</h3>
-                        <div style={{ width: '100%', height: '400px' }}>
-                            <Chart type="line" data={data} />
-                        </div>
-                    </Row>
-                </div>
-            </Container>
-            <Container fluid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '10vh' }}>
-                <div style={{ marginBottom: '30px' }}>
-                    <Row>
-                        <h3>Chart 2</h3>
-                        <div style={{ width: '100%', height: '400px' }}>
-                            <Chart type="line" data={data} />
-                        </div>
-                    </Row>
-                </div>
-            </Container>
+            <EpicsChartsComponent inputData={epicsData}/>
         </>
     );
 };
