@@ -78,7 +78,8 @@
 
 .issueDescription {
     padding: 0;
-    
+    margin-bottom: 32px;
+    /* background-color: aqua; */
 }
 
 .edit-textarea {

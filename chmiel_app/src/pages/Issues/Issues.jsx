@@ -17,7 +17,7 @@ export const Issues = () => {
     const [project, setProject] = useState([]);
     const [tasks, setTasks] = useState([
         {id: 1, name: "testTask1", description: null},
-        {id: 2, name: "testTask2", description: "pizda"},
+        {id: 2, name: "testTask2", description: "description"},
     ]);
     
     const [selectedIssueId, setSelectedIssueId] = useState(1);
@@ -32,7 +32,7 @@ export const Issues = () => {
 
     const handleEditClick = () => {
         setIsEditing(true);
-        setNewIssueName(issueName);
+        setNewIssueName(getSelectedTask().name);
     };
 
     const handleInputChange = (event) => {
@@ -48,18 +48,30 @@ export const Issues = () => {
         saveChanges();
     };
 
-    const saveChanges = () => {
+    const saveChanges = async () => {
+        try {
+            // await editTask(newIssueName, getSelectedTask().description);
+            const updatedTasks = tasks.map(task => {
+                if (task.id === selectedIssueId) {
+                    return { ...task, name: newIssueName };
+                }
+                return task;
+            });
+            setTasks(updatedTasks);
+        } catch (error) {
+            console.error(error);
+        }
         setIssueName(newIssueName);
         setIsEditing(false);
     };
 
     const [issueDescription, setIssueDescription] = useState(getSelectedTask().description);
-    const [newIssueDescription, setNewIssueDescription] = useState('');
     const [isEditingDescription, setIsEditingDescription] = useState(false);
+    const [newIssueDescription, setNewIssueDescription] = useState('');
     
     const handleEditDescriptionClick = () => {
         setIsEditingDescription(true);
-        setNewIssueDescription(issueDescription);
+        setNewIssueDescription(getSelectedTask().description);
     };
 
     const handleDescriptionChange = (event) => {
@@ -69,28 +81,38 @@ export const Issues = () => {
 
     const saveDescriptionChanges = async () => {
         try {
-            await modifyDescription(newIssueDescription);
+            // await editTask(getSelectedTask().name, newIssueDescription);
+            const updatedTasks = tasks.map(task => {
+                if (task.id === selectedIssueId) {
+                    return { ...task, description: newIssueDescription };
+                }
+                return task;
+            });
+            setTasks(updatedTasks);
         } catch (error) {
             console.error(error);
         }
-        setIssueDescription(newIssueDescription);
         setIsEditingDescription(false);
     };
 
-    const modifyDescription = async (description) => {
+    const editTask = async (name, description) => {
         await axios.put("/api/task/update",
         {
-            name: getSelectedTask().name,
+            id: getSelectedTask().id,
+            assigneeId: getSelectedTask().assigneeId,
+            sprintId: getSelectedTask().sprintId,
+            name: name,
             description: description,
-            projectId: projectId,
-            reporterId: 22,
-            timeEstimate: 2
+            loggedHours: getSelectedTask().loggedHours,
+            timeEstimate: getSelectedTask().timeEstimate,
+            status: getSelectedTask().status,
+            inEpic: getSelectedTask().inEpic,
         },
         {
             headers: {Authorization: cookies.token}
         }).then(result => {
             console.log(result.data)
-            // setTasks(tasks.map(task => task.id === selectedIssueId ? response.data : task));
+            setTasks(tasks.map(task => task.id === selectedIssueId ? result.data : task));
         }).catch(e => {
             console.error(e)
         })
@@ -122,10 +144,12 @@ export const Issues = () => {
 
         getProject();
         getTasks();
-    }, [projectId]);
+    }, []);
 
     const handleIssueClick = (taskId) => {
+        console.log("Selected issue: " + selectedIssueId);
         setSelectedIssueId(taskId);
+        console.log("New selected issue: " + taskId);
     };
 
 
@@ -205,7 +229,7 @@ export const Issues = () => {
                                             {isEditingDescription ? (
                                                 <>
                                                     <textarea
-                                                        rows={5}
+                                                        rows={3}
                                                         value={newIssueDescription}
                                                         onChange={handleDescriptionChange}
                                                         autoFocus
@@ -230,6 +254,13 @@ export const Issues = () => {
                                             )}
                                         </div>
 
+                                    </div>
+
+                                    <div className="issueComments">
+                                        <p style={{fontWeight: "500", paddingLeft: "4px"}}>Comments</p>
+                                        <div>
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </>
