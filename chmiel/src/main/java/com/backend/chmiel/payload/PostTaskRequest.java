@@ -34,4 +34,6 @@ public class PostTaskRequest {
     private boolean isEpic;
 
     private Integer inEpic;
+
+    private Status status;
 }

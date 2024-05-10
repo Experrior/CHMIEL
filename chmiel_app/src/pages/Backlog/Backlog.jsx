@@ -23,11 +23,10 @@ export const BacklogPage = (props) => {
                 name: taskName,
                 description: taskDescription,
                 projectId: projectId,
-                reporterId: 3,
                 timeEstimate: 2
             },
             {
-                headers: {Authorization: cookies.token}
+                headers: {Authorization: `Bearer ${cookies.token}`}
             }).then(result => {
             console.log(result.data)
             setTasks([...tasks, result.data])
@@ -42,7 +41,7 @@ export const BacklogPage = (props) => {
                 projectId: projectId,
             },
             {
-                headers: {Authorization: cookies.token}
+                headers: {Authorization: `Bearer ${cookies.token}`}
             }).then(result => {
             console.log(result.data)
             setSprints([...sprints, result.data])
@@ -54,7 +53,7 @@ export const BacklogPage = (props) => {
     const deleteSprint = async (sprint_id) => {
         await axios.delete(`/api/sprint/delete/${sprint_id}`,
             {
-                headers: {Authorization: cookies.token}
+                headers: {Authorization: `Bearer ${cookies.token}`}
             }).then(result => {
             setSprints(sprints => sprints.filter(sprint => sprint.id !== sprint_id))
         }).catch(e => {
@@ -73,7 +72,7 @@ export const BacklogPage = (props) => {
                 isFinished: isFinished
             },
             {
-                headers: {Authorization: cookies.token}
+                headers: {Authorization: `Bearer ${cookies.token}`}
             }).then(result => {
             setSprints(sprints => sprints.map(sprint =>
                 sprint.id === sprint_id ? {...sprint, ...result.data} : sprint

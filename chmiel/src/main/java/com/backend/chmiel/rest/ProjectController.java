@@ -48,7 +48,7 @@ public class ProjectController {
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<List<Project>> getProjectsByUserId(@RequestHeader("Authorization") String token){
         System.out.println(token);
-        Integer id = jwtService.extractClaim(token, (claims) -> claims.get("userId", Integer.class));
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
         System.out.println(id);
         return ResponseEntity.ok(projectService.getAllByUserId(id));
     }

@@ -2,6 +2,7 @@ package com.backend.chmiel.service;
 
 import com.backend.chmiel.dao.SprintRepository;
 import com.backend.chmiel.entity.Sprint;
+import com.backend.chmiel.payload.EditSprintRequest;
 import com.backend.chmiel.payload.PostSprintRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,12 +66,11 @@ public class SprintServiceImpl implements SprintService{
     public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest){
         Sprint sprint = sprintRepository.findById(id).orElseThrow();
 
-        sprint.setSprintName(editSprintRequest.getSprintName());
-        sprint.setStartTime(editSprintRequest.getStartTime());
-        sprint.setStopTime(editSprintRequest.getStopTime());
-        sprint.setStarted(editSprintRequest.getIsStarted());
-        sprint.setFinished(editSprintRequest.getIsFinished());
-
+        if (editSprintRequest.getSprintName() != null) sprint.setSprintName(editSprintRequest.getSprintName());
+        if (editSprintRequest.getStartTime() != null) sprint.setStartTime(editSprintRequest.getStartTime());
+        if (editSprintRequest.getStopTime() != null) sprint.setStopTime(editSprintRequest.getStopTime());
+        if (editSprintRequest.getIsStarted() != null) sprint.setStarted(editSprintRequest.getIsStarted());
+        if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
         return sprintRepository.save(sprint);
     }
 }

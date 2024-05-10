@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS SPRINTS (
   project_id INTEGER REFERENCES PROJECTS(id),
   start_time TIMESTAMP,
   stop_time TIMESTAMP,
+  is_started BOOLEAN NOT NULL DEFAULT FALSE,
+  is_finished BOOLEAN NOT NULL DEFAULT FALSE,
   starting_task_count INTEGER NOT NULL DEFAULT 0,
   ending_task_count INTEGER NOT NULL DEFAULT 0,
   CONSTRAINT unique_sprint_project_name UNIQUE (sprint_name, id)

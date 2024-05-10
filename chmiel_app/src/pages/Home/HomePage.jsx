@@ -54,7 +54,7 @@ export const HomePage = () => {
             try {
                 const response = await axios.get('/api/project/getByUserId',
                      {
-                        headers: { Authorization: cookies.token }
+                        headers: { Authorization: `Bearer ${cookies.token}` }
                     });
                 console.log(response.data)
                 const projectsData = response.data.map(project => ({
