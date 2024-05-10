@@ -7,6 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import {Navigation} from "../../components/Navigation/Navigation";
 import {EpicsChartsComponent} from "../../components/Charts/EpicsChartsComponent";
 import {SprintChartsComponent} from "../../components/Charts/SprintChartsComponent";
+import {SprintChartsComponent2} from "../../components/Charts/SprintChartsComponent2";
 import {useCookies} from "react-cookie";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import React, { useState, useEffect } from 'react';
@@ -69,6 +70,7 @@ const ChartsPage = () => {
     const [error, setError] = useState(null);
     const [epicsData, setEpicsData] = useState({});
     const [sprintsData, setSprintsData] = useState({});
+    const [selectedProject, setSelectedProject] = useState(null); // State to hold the selected project
 
 
     useEffect(() => {
@@ -136,10 +138,15 @@ const ChartsPage = () => {
                     <Row>
                         <Col>
                             <div style={{marginLeft: '100px'}}>
-                                <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+                                <DropdownButton id="dropdown-basic-button" title={selectedProject ? selectedProject.name : "Project"}>
                                     {projects.map(project => (
-                                        <Dropdown.Item key={project.id}
-                                                       value={project.id}>{project.name}</Dropdown.Item>
+                                        <Dropdown.Item
+                                            key={project.id}
+                                            value={project.id}
+                                            onClick={() => setSelectedProject(project)} // Update selected project on click
+                                        >
+                                            {project.name}
+                                        </Dropdown.Item>
                                     ))}
                                 </DropdownButton>
                             </div>
@@ -154,6 +161,11 @@ const ChartsPage = () => {
                         <Col>
                             <EpicsChartsComponent inputData={epicsData}/>
                         </Col>
+                        <Col>
+                            <SprintChartsComponent2 inputData={sprintsData}/>
+                        </Col>
+                    </Row>
+                    <Row>
                         <Col>
                             <SprintChartsComponent inputData={sprintsData}/>
                         </Col>
