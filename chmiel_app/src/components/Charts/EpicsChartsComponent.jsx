@@ -94,14 +94,16 @@ export const EpicsChartsComponent = ({inputData} ) => {
     };
 
     return (
-        <Container fluid style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-            <div style={{marginBottom: '30px'}}>
-                <Row>
-                    <h3>Epics activity chart</h3>
-                    <div style={{width: '100%', height: '400px'}}>
-                        <Chart type="line" data={data} options={options}/>
-                    </div>
-                </Row>
+        <Container fluid style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh'}}>
+            <div style={{marginBottom: '10px'}}>
+                <h3>Epics activity chart</h3>
+                <p style={{ margin: '0', marginTop: '0px'}}>Chart showing how many tasks from epics were
+                    finished in given sprint.</p>
+                <p style={{ margin: '0', marginTop: '0px'}}>Helps to keep track if epics are progressing
+                    according to plans.</p>
+                <div style={{width: '750px', height: '400px', marginTop: '20px'}}>
+                    <Chart type="line" data={data} options={options}/>
+                </div>
             </div>
         </Container>
     );
