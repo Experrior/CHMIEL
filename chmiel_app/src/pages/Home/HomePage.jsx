@@ -59,7 +59,7 @@ export const HomePage = () => {
                 console.log(response.data)
                 const projectsData = response.data.map(project => ({
                     id: project.id,
-                    name: project.projectName,
+                    name: project.project_name,
                 }));
                 setProjects(projectsData);
                 setLoading(false);

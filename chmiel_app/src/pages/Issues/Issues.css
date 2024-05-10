@@ -46,7 +46,7 @@
     /* padding-bottom: 8px; */
     display: flex;
     color: rgb(77, 77, 77);
-    padding-left: 1px;
+    padding-left: 4px;
 }
 
 .issueDetails {
@@ -58,7 +58,7 @@
 .issueName {
     font-size: x-large;
     font-weight: 600;
-    padding: 16px 0px;
+    padding: 16px 4px;
 }
 
 .issueName > p > span {
@@ -78,7 +78,8 @@
 
 .issueDescription {
     padding: 0;
-    
+    margin-bottom: 32px;
+    /* background-color: aqua; */
 }
 
 .edit-textarea {
@@ -87,14 +88,19 @@
     margin-bottom: 12px;
     border: 1px solid #ced4da;
     border-radius: 4px;
-    resize: vertical; /* Allow vertical resize */
+    resize: vertical;
 }
 
 .description-preview {
-    border: 1px solid #ced4da;
+    border: 1px;
     border-radius: 4px;
-    padding: 12px;
-    margin-bottom: 12px;
+    padding: 0px 4px;
+    color: rgb(56, 56, 56);
+    /* margin-bottom: 12px; */
+}
+
+.description-preview:hover {
+    background-color: #f5f5f5;
 }
 
 .edit-button {

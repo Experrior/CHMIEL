@@ -82,6 +82,14 @@ export const ProfilePage = () => {
         })
     }
 
+    const getUserProjects = async () => {
+        return await axios.get("/api/project/getByUserId", {
+            headers: {
+                Authorization: "Bearer " + cookies.token
+            }
+        })
+    }
+
     const editUser = async (firstName, lastName, email, birthDate, address, phoneNumber) => {
         await axios.put("/api/user",
             {
@@ -127,8 +135,16 @@ export const ProfilePage = () => {
         }).catch(e => {
             console.error(e);
         })
+        getUserProjects().then(results => {
+            console.log(results.data)
+            setProjects(results.data)
+            setProjects2(results.data)
+        }).catch(e => {
+            console.log(e);
+        })
 
     }, [])
+
 
     return (
         <>
@@ -184,7 +200,7 @@ export const ProfilePage = () => {
                                                 return <Col><ProjectComponent project={project}/></Col>
                                             })
                                         }
-                                    </Row> : <></>)}
+                                    </Row> : <>You haven't worked on anything yet.</>)}
                                 </div>
                             </div>
                             <div>
@@ -200,7 +216,7 @@ export const ProfilePage = () => {
                                                 return <Col><ProjectComponent project={project}/></Col>
                                             })
                                         }
-                                    </Row> : <></>)}
+                                    </Row> : <>You haven't worked on anything yet.</>)}
                                 </div>
                             </div>
                             <div>
