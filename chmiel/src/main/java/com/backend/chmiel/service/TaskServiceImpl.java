@@ -151,7 +151,7 @@ public class TaskServiceImpl implements TaskService {
                 .reporter(reporter)
                 .description(postTaskRequest.getDescription())
                 .name(postTaskRequest.getName())
-                .status(Status.backlog)
+                .status(postTaskRequest.getStatus())
                 .isEpic(postTaskRequest.isEpic())
                 .build();
 

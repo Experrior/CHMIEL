@@ -1,13 +1,14 @@
-import {Accordion, Button, Nav} from "react-bootstrap";
+import {Accordion, Button, Dropdown, Nav} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import './Backlog.css';
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "../../api/axios";
 import {useParams} from "react-router-dom";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
+import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -15,10 +16,6 @@ export const BacklogPage = (props) => {
     const [project, setProject] = useState([])
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
-    const [openDropdownId, setOpenDropdownId] = useState(null)
-    const containerRef = useRef(null);
-    const buttonRef = useRef(null);
-    const [justToggled, setJustToggled] = useState(false);
 
     const addIssue = async (taskName, taskDescription) => {
         await axios.post("/api/task/create",
@@ -26,11 +23,10 @@ export const BacklogPage = (props) => {
                 name: taskName,
                 description: taskDescription,
                 projectId: projectId,
-                reporterId: 3,
                 timeEstimate: 2
             },
             {
-                headers: {Authorization: cookies.token}
+                headers: {Authorization: `Bearer ${cookies.token}`}
             }).then(result => {
             console.log(result.data)
             setTasks([...tasks, result.data])
@@ -45,7 +41,7 @@ export const BacklogPage = (props) => {
                 projectId: projectId,
             },
             {
-                headers: {Authorization: cookies.token}
+                headers: {Authorization: `Bearer ${cookies.token}`}
             }).then(result => {
             console.log(result.data)
             setSprints([...sprints, result.data])
@@ -55,31 +51,36 @@ export const BacklogPage = (props) => {
     }
 
     const deleteSprint = async (sprint_id) => {
-        console.log("delete " + sprint_id)
         await axios.delete(`/api/sprint/delete/${sprint_id}`,
             {
-                headers: {Authorization: cookies.token}
+                headers: {Authorization: `Bearer ${cookies.token}`}
             }).then(result => {
             setSprints(sprints => sprints.filter(sprint => sprint.id !== sprint_id))
-            }).catch(e => {
+        }).catch(e => {
             console.error(e)
         })
     }
 
-    const toggleDropdown = (event, sprintId) => {
-        console.log(sprintId)
-        console.log(openDropdownId)
-        if (openDropdownId === sprintId) {
-            console.log("toggleDropdown - closing")
-            setOpenDropdownId(null);
-        } else {
-            console.log("toggleDropdown - opening")
-            setOpenDropdownId(sprintId);
-        }
-        // console.log("toggleDropdown - flag true")
-        // setJustToggled(true);
+    const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished) => {
+        console.log("edit " + sprint_id)
+        console.log(sprintName, startTime, endTime, isStarted, isFinished)
+        await axios.patch(`/api/sprint/edit/${sprint_id}`, {
+                sprintName: sprintName,
+                startTime: startTime,
+                stopTime: endTime,
+                isStarted: isStarted,
+                isFinished: isFinished
+            },
+            {
+                headers: {Authorization: `Bearer ${cookies.token}`}
+            }).then(result => {
+            setSprints(sprints => sprints.map(sprint =>
+                sprint.id === sprint_id ? {...sprint, ...result.data} : sprint
+            ))
+        }).catch(e => {
+            console.error(e)
+        })
     }
-
 
     useEffect(() => {
 
@@ -117,27 +118,6 @@ export const BacklogPage = (props) => {
         getProject()
     }, [])
 
-    // useEffect(() => {
-    //     function handleClickOutside(event) {
-    //         console.log(justToggled)
-    //         if (justToggled && buttonRef.current && buttonRef.current.contains(event.target)) {
-    //             console.log("handleOnClick - just toggled");
-    //             setJustToggled(false); // Reset the flag
-    //         } else if (containerRef.current && !containerRef.current.contains(event.target)) {
-    //             console.log("handleOnClick - set null");
-    //             setOpenDropdownId(null);
-    //         }
-    //     }
-    //
-    //     // Attach the listener to the document
-    //     document.addEventListener('mousedown', handleClickOutside);
-    //
-    //     // Cleanup the listener on unmount or when dependencies change
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside);
-    //     };
-    // }, [justToggled, containerRef]); // Include dependencies that affect the effect
-
     return (
         <>
             <Navigation sticky={"top"}/>
@@ -159,23 +139,23 @@ export const BacklogPage = (props) => {
                     </div>
                     <div>
                         <div className={"sprintsContainer"}>
-                            {sprints.length !== 0 ? sprints.map((sprint) => {
-                                return <Accordion flush>
+                            {sprints.length !== 0 ? sprints.map((sprint) => (
+                                <Accordion key={sprint.id} flush>
                                     <Accordion.Item eventKey="0">
                                         <div className={"accordionHeaderContainer"}>
                                             <Accordion.Header>
                                                 <p>{sprint.sprintName}</p>
                                             </Accordion.Header>
                                             <Button variant={"custom-tertiary-v2"}>Start Sprint</Button>
-                                            <Button ref={buttonRef} variant={"custom-tertiary-v2"}
-                                                    onClick={(e) => toggleDropdown(e, sprint.id)}>...</Button>
-                                            {openDropdownId === sprint.id && (
-                                                <div ref={containerRef} className={"dropdown"}>
-                                                    <Button variant={"custom-tertiary-v3"}>Edit Sprint</Button>
-                                                    {/*<Button variant={"custom-tertiary-v3"}>Delete Sprint</Button>*/}
+                                            <Dropdown>
+                                                <Dropdown.Toggle variant="custom-tertiary-v2" id="dropdown-basic">
+                                                    More
+                                                </Dropdown.Toggle>
+                                                <Dropdown.Menu>
+                                                    <EditSprintModal sprint={sprint} editSprint={editSprint}/>
                                                     <DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>
-                                                </div>
-                                            )}
+                                                </Dropdown.Menu>
+                                            </Dropdown>
                                         </div>
                                         <Accordion.Body>
                                             <div>
@@ -184,8 +164,7 @@ export const BacklogPage = (props) => {
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
-
-                            }) : <></>}
+                            )) : <></>}
                         </div>
 
 
@@ -200,7 +179,7 @@ export const BacklogPage = (props) => {
                                 </div>
                                 <Accordion.Body>
                                     {tasks.length !== 0 ? tasks.map((task) => {
-                                        return <div>{task.name}</div>
+                                        return <div key={task.id}>{task.name}</div>
                                     }) : <></>}
                                     <CreateIssueModal addIssue={addIssue}/>
                                 </Accordion.Body>

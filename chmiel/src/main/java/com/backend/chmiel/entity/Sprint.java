@@ -36,11 +36,11 @@ public class Sprint {
 
 //    private boolean logged;
 
-//    @Column(name = "is_started")
-//    private boolean isStarted;
+    @Column(name = "is_started")
+    private boolean isStarted;
 
-//    @Column(name = "is_finished")
-//    private boolean isFinished;
+    @Column(name = "is_finished")
+    private boolean isFinished;
 
 
     @Override
