@@ -74,9 +74,4 @@ public class SprintServiceImpl implements SprintService{
         return sprintRepository.save(sprint);
     }
 
-    // @Override
-    // public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'updateSprintById'");
-    // }
 }
