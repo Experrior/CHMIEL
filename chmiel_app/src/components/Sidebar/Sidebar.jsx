@@ -67,7 +67,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "issues"}
                         onClick={() => handleItemClick("issues")}
-                        component={<Link to={`/board/${props.project.id}`} />}
+                        component={<Link to={`/issues/${props.project.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -85,7 +85,7 @@ export const SidebarMenu = (props) => {
                             <div className={"icon"}>
                                 <FontAwesomeIcon icon={faChartSimple}/>
                             </div>
-                            <div className="text">Issues</div>
+                            <div className="text">Charts</div>
                         </div>
                     </MenuItem>
                 </Menu>

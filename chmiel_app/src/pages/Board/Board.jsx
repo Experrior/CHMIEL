@@ -95,16 +95,7 @@ export const Board = (props) => {
     const [panels, setPanels] = useState([
         {id: 1, name: "TO-DO"},
         {id: 2, name: "IN PROGRESS"},
-        {id: 3, name: "DONE"},
-        // {id: 11, name: "TO-DO"},
-        // {id: 22, name: "IN PROGRESS"},
-        // {id: 33, name: "DONE"},
-        // {id: 111, name: "TO-DO"},
-        // {id: 222, name: "IN PROGRESS"},
-        // {id: 333, name: "DONE"},
-        // {id: 1111, name: "TO-DO"},
-        // {id: 2222, name: "IN PROGRESS"},
-        // {id: 3333, name: "DONE"},
+        {id: 3, name: "DONE"}
     ]);
 
     return (
@@ -117,7 +108,7 @@ export const Board = (props) => {
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
                         <span style={{padding: '0px 8px'}}>/</span>
-                        <Nav.Link href={`/board/${projectId}`} className="nav-link">Project Name</Nav.Link>
+                        <Nav.Link href={`/board/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
                     </div>
                     <div className="boardName">
                     {isEditing ? (

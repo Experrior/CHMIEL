@@ -1,0 +1,38 @@
+.issueComponentContainer {
+    background-color: #ffffff;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+    justify-content: left center;
+    cursor: pointer;
+    width: 100%;
+    min-height: 75px;
+    border: solid 1px rgb(194, 194, 194);
+}
+
+.issueComponentContainer:hover {
+    background-color: #ececec;
+}
+
+.issueComponentContainer.selected {
+    background-color: #def0ff !important;
+    border: solid 1px #87caff !important;
+}
+
+.task {
+    width: 100%;
+    font-weight: 500;
+    padding: 2px;
+    color: black;
+}
+
+.sprint {
+    padding: 2px;
+    font-size: smaller;
+}
+
+.selected > .sprint {
+    color: #00579e;
+}

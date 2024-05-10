@@ -73,4 +73,10 @@ public class SprintServiceImpl implements SprintService{
         if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
         return sprintRepository.save(sprint);
     }
+
+    // @Override
+    // public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'updateSprintById'");
+    // }
 }
