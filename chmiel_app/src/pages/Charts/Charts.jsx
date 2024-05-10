@@ -110,7 +110,7 @@ const ChartsPage = () => {
         <>
             <Navigation/>
 
-            <div style={{display: "flex"}}>
+            <div style={{display: "flex", margin: "16px"}}>
                 <SidebarMenu project={1} from={"board"}/>
                 <Col>
                 <Row>

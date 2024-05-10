@@ -1,0 +1,15 @@
+.commentBody {
+    border: 1px solid rgb(156, 156, 156);
+    border-radius: 4px;
+    margin: 4px 0px;
+    padding: 8px;
+}
+
+.author {
+    font-weight: 500;
+    color: rgb(39, 39, 39);
+}
+
+.author:hover {
+    color: black;
+}

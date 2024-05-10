@@ -7,8 +7,15 @@ export const IssueComment = ({ comment }) => {
 
     return (
         <>
-        <p>{comment.author}</p>
-        <p>{comment.message}</p>
+        <div className="commentBody">
+            <div className="author">
+                <span> {comment.author} </span>
+            </div>
+            <div className="message">
+                {comment.message}
+            </div>
+        </div>
+       
         </>
     )
 }

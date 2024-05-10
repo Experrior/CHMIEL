@@ -107,6 +107,10 @@
     margin-top: 8px;
 }
 
-.issueComments {
+.issueCommentsContainer {
     padding-left: 4px;
+}
+
+.issueComments {
+    gap: 4px;
 }

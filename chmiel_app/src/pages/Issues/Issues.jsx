@@ -122,7 +122,7 @@ export const Issues = () => {
         })
     }
 
-    const addComments = async (task_id, message, author) => {
+    const addComment = async (task_id, message, author) => {
         await axios.post(`/api/task-comment/create`,
         {
             taskId: task_id,
@@ -292,19 +292,21 @@ export const Issues = () => {
 
                                     </div>
 
-                                    <div className="issueComments">
+                                    <div className="issueCommentsContainer">
                                         <p style={{fontWeight: "500"}}>Comments</p>
-                                        <div>
-                                        { taskComments.length !== 0 ? 
-                                            (
-                                                taskComments.map((comment) => {
-                                                    return <IssueComment
-                                                        key={comment.id} 
-                                                        comment={comment}
-                                                       />
-                                                })
-                                            ) : <><p>No comments yet.</p></>
-                                        }
+                                        <div className="issueComments">
+                                            { taskComments.length !== 0 ? 
+                                                (
+                                                    taskComments.map((comment) => {
+                                                        return <IssueComment
+                                                            key={comment.id} 
+                                                            comment={comment}
+                                                        />
+                                                    })
+                                                ) : <><p>No comments yet.</p></>
+                                            }
+                                        </div>
+                                        <div className="createComment">
                                             
                                         </div>
                                     </div>
