@@ -17,7 +17,7 @@ export const Issues = () => {
     const [project, setProject] = useState([]);
     const [tasks, setTasks] = useState([
         {id: 1, name: "testTask1", description: null},
-        {id: 2, name: "testTask1", description: "pizda"},
+        {id: 2, name: "testTask2", description: "pizda"},
     ]);
     
     const [selectedIssueId, setSelectedIssueId] = useState(1);
@@ -49,16 +49,17 @@ export const Issues = () => {
     };
 
     const saveChanges = () => {
-        setNewIssueName(newIssueName);
+        setIssueName(newIssueName);
         setIsEditing(false);
     };
 
-    const [newIssueDescription, setNewIssueDescription] = useState(getSelectedTask().description);
+    const [issueDescription, setIssueDescription] = useState(getSelectedTask().description);
+    const [newIssueDescription, setNewIssueDescription] = useState('');
     const [isEditingDescription, setIsEditingDescription] = useState(false);
     
     const handleEditDescriptionClick = () => {
         setIsEditingDescription(true);
-        setNewIssueDescription(newIssueDescription);
+        setNewIssueDescription(issueDescription);
     };
 
     const handleDescriptionChange = (event) => {
@@ -72,7 +73,7 @@ export const Issues = () => {
         } catch (error) {
             console.error(error);
         }
-        setNewIssueDescription(newIssueDescription);
+        setIssueDescription(newIssueDescription);
         setIsEditingDescription(false);
     };
 
@@ -199,7 +200,7 @@ export const Issues = () => {
                                         }
                                     </div>
                                     <div className="issueDescription">
-                                        <p style={{fontWeight: "500"}}>Description</p>
+                                        <p style={{fontWeight: "500", paddingLeft: "4px"}}>Description</p>
                                         <div>
                                             {isEditingDescription ? (
                                                 <>
@@ -216,10 +217,15 @@ export const Issues = () => {
                                                 </>
                                             ) : (
                                                 <div className="description-preview">
-                                                    <p>{getSelectedTask().description}</p>
-                                                    <Button onClick={handleEditDescriptionClick} className="edit-button">
-                                                        Edit Description
-                                                    </Button>
+                                                    {getSelectedTask().description ? (
+                                                    <>
+                                                        <p onClick={handleEditDescriptionClick}>{getSelectedTask().description}</p>
+                                                    </>
+                                                    ) : (
+                                                        <p onClick={handleEditDescriptionClick} className="add-description">
+                                                            Add a description
+                                                        </p>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
