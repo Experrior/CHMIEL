@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
-import {useParams} from "react-router-dom";
+import {useAsyncError, useParams} from "react-router-dom";
 import { IssueComment } from "../../components/IssuesComponents/IssueComment";
 
 
@@ -28,6 +28,22 @@ export const Issues = () => {
         return tasks.find(task => task.id === selectedIssueId);
     };
 
+    const [isAdding, setIsAdding] = useState(false);
+    const [newComment, setNewComment] = useState('');
+
+    const handleAddClick = () => {
+        setIsAdding(true);
+    };
+
+    const handleInputCommentChange = (event) => {
+        setNewComment(event.target.value);
+    };
+
+    const handleKeyDownComment = (event) => {
+        if (event.key === 'Enter') {
+            addComment(getSelectedTask().id, newComment, getSelectedTask().author);
+        }
+    };
 
 
     const [issueName, setIssueName] = useState(getSelectedTask().name);
@@ -113,7 +129,7 @@ export const Issues = () => {
             inEpic: getSelectedTask().inEpic,
         },
         {
-            headers: {Authorization: cookies.token}
+            headers: {Authorization:  `Bearer ${cookies.token}`}
         }).then(result => {
             console.log(result.data)
             setTasks(tasks.map(task => task.id === selectedIssueId ? result.data : task));
@@ -307,7 +323,7 @@ export const Issues = () => {
                                             }
                                         </div>
                                         <div className="createComment">
-                                            
+                                        
                                         </div>
                                     </div>
                                 </div>
