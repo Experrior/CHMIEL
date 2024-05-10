@@ -1,5 +1,5 @@
 import './BoardComponent.css'
-import { TaskComponent } from "../../components/Other/TaskComponent";
+import { TaskComponent } from "../../components/Task/TaskComponent";
 import {useState} from "react";
 
 export const BoardComponent = ({panel}) => {

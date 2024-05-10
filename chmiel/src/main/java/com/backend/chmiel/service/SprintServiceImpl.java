@@ -2,6 +2,7 @@ package com.backend.chmiel.service;
 
 import com.backend.chmiel.dao.SprintRepository;
 import com.backend.chmiel.entity.Sprint;
+import com.backend.chmiel.payload.EditSprintRequest;
 import com.backend.chmiel.payload.PostSprintRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,4 +72,10 @@ public class SprintServiceImpl implements SprintService{
         if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
         return sprintRepository.save(sprint);
     }
+
+    // @Override
+    // public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'updateSprintById'");
+    // }
 }

@@ -8,6 +8,7 @@ import {LoginPage} from "./pages/Authentication/LoginPage";
 import {ProfilePage} from "./pages/Profile/ProfilePage";
 import {BacklogPage} from "./pages/Backlog/Backlog";
 import {Board} from "./pages/Board/Board";
+import {Issues} from "./pages/Issues/Issues";
 import ChartsPage, {Charts} from './pages/Charts/Charts';
 
 function App() {
@@ -40,6 +41,10 @@ function App() {
         {
             path: "/charts",
             element: <ProtectedRoute><ChartsPage/></ProtectedRoute>,
+        },
+        {
+            path: "/issues/:projectId",
+            element: <ProtectedRoute><Issues/></ProtectedRoute>,
         }
     ]);
 

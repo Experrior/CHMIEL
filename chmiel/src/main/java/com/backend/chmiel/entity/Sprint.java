@@ -38,7 +38,7 @@ public class Sprint {
 
 //    @Column(name = "is_started")
 //    private boolean isStarted;
-//
+
 //    @Column(name = "is_finished")
 //    private boolean isFinished;
 

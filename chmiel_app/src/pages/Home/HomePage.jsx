@@ -95,7 +95,7 @@ export const HomePage = () => {
                                             return <Col><ProjectComponent project={project}/></Col>
                                         })
                                     }
-                                </Row> : <></>}
+                                </Row> : <>You don't have any projects yet.</>}
                             </div>
 
                         </div>

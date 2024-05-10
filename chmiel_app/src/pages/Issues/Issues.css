@@ -1,0 +1,102 @@
+.issuesContainer {
+    width: 100%;
+    height: calc(100vh - 175px);
+    padding: 24px 32px;
+}
+
+.projectLocation {
+    /* padding-bottom: 8px; */
+    display: flex;
+    color: rgb(77, 77, 77);
+    padding-left: 1px;
+}
+
+.projectLocation > .nav-link:hover {
+    text-decoration: underline;
+}
+
+.issuesHeader {
+    font-size: larger;
+    font-weight: 600;
+    padding: 16px 0px;
+}
+
+.issuesListContainer {
+    /* position: fixed; */
+    width: 20%;
+    max-width: 450px;
+    height: auto;
+    min-height: calc(100vh - 175px);
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    padding: 1px;
+    gap: 1px;
+}
+
+.issueDetailsContainer {
+    /* position: fixed; */
+    width: 80%;
+    /* background-color: aqua; */
+    min-height: calc(100vh - 175px);
+    padding: 2px 16px;
+}
+
+.issueLocation {
+    /* padding-bottom: 8px; */
+    display: flex;
+    color: rgb(77, 77, 77);
+    padding-left: 1px;
+}
+
+.issueDetails {
+    /* background-color: rgb(0, 255, 255); */
+    min-height: calc(100vh - 175px);
+    /* height: min-; */
+}
+
+.issueName {
+    font-size: x-large;
+    font-weight: 600;
+    padding: 16px 0px;
+}
+
+.issueName > p > span {
+    transition: background-color 0.2s ease;
+}
+
+.issueName > p > span:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.issueName > p > input {
+    /* doesn't work :( */
+    border-style: solid;
+    border-color: #87caff;
+    border-width: 1px;
+}
+
+.issueDescription {
+    padding: 0;
+    
+}
+
+.edit-textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    resize: vertical; /* Allow vertical resize */
+}
+
+.description-preview {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.edit-button {
+    margin-top: 8px;
+}
