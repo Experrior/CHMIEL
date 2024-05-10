@@ -49,7 +49,7 @@ export const Issues = () => {
     };
 
     const saveChanges = () => {
-        setIssueName(newIssueName);
+        setNewIssueName(newIssueName);
         setIsEditing(false);
     };
 
@@ -58,17 +58,13 @@ export const Issues = () => {
     
     const handleEditDescriptionClick = () => {
         setIsEditingDescription(true);
+        setNewIssueDescription(newIssueDescription);
     };
 
     const handleDescriptionChange = (event) => {
-        setIsEditingDescription(false);
         setNewIssueDescription(event.target.value);
     };
 
-    const handleSaveDescriptionClick = () => {
-        setIsEditingDescription(false);
-    };
-    
 
     const saveDescriptionChanges = async () => {
         try {
@@ -76,6 +72,7 @@ export const Issues = () => {
         } catch (error) {
             console.error(error);
         }
+        setNewIssueDescription(newIssueDescription);
         setIsEditingDescription(false);
     };
 
@@ -111,7 +108,10 @@ export const Issues = () => {
 
         const getTasks = async () => {
             try {
-                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`);
+                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
+                {
+                    headers: { Authorization: "Bearer " + cookies.token }
+                });
                 console.log(response.data);
                 setTasks(response.data);
             } catch (error) {
@@ -210,7 +210,7 @@ export const Issues = () => {
                                                         autoFocus
                                                         className="form-control edit-textarea"
                                                     />
-                                                    <Button onClick={handleSaveDescriptionClick} className="edit-button">
+                                                    <Button onClick={saveDescriptionChanges} className="edit-button">
                                                         Save Description
                                                     </Button>
                                                 </>
