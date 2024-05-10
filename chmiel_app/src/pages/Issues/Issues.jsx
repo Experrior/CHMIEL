@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
 import {useParams} from "react-router-dom";
+import { IssueComment } from "../../components/IssuesComponents/IssueComment";
 
 
 export const Issues = () => {
@@ -19,12 +20,15 @@ export const Issues = () => {
         {id: 1, name: "testTask1", description: null},
         {id: 2, name: "testTask2", description: "description"},
     ]);
+    const [taskComments, setTaskComments] = useState([]);
     
     const [selectedIssueId, setSelectedIssueId] = useState(1);
     
     const getSelectedTask = () => {
         return tasks.find(task => task.id === selectedIssueId);
     };
+
+
 
     const [issueName, setIssueName] = useState(getSelectedTask().name);
     const [isEditing, setIsEditing] = useState(false);
@@ -118,6 +122,23 @@ export const Issues = () => {
         })
     }
 
+    const addComments = async (task_id, message, author) => {
+        await axios.post(`/api/task-comment/create`,
+        {
+            taskId: task_id,
+            message: message,
+            authorId: author,
+        },
+        {
+            headers: {Authorization: `Bearer ${cookies.token}`}   
+        }).then(result => {
+            console.log(result.data)
+            setTaskComments([...taskComments, result.data])
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
     useEffect(() => {
         const getProject = async () => {
             try {
@@ -142,8 +163,23 @@ export const Issues = () => {
             }
           };
 
+        const getTaskComments = async () => {
+            try  {
+                const response = await axios.get(`/api/task-comment/getByTaskId/${selectedIssueId}`,
+                    {
+                        headers: { Authorization: "Bearer " + cookies.token }
+                    });
+                    console.log(response.data);
+                    setTaskComments(response.data);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+         
+
         getProject();
         getTasks();
+        getTaskComments();
     }, []);
 
     const handleIssueClick = (taskId) => {
@@ -257,8 +293,18 @@ export const Issues = () => {
                                     </div>
 
                                     <div className="issueComments">
-                                        <p style={{fontWeight: "500", paddingLeft: "4px"}}>Comments</p>
+                                        <p style={{fontWeight: "500"}}>Comments</p>
                                         <div>
+                                        { taskComments.length !== 0 ? 
+                                            (
+                                                taskComments.map((comment) => {
+                                                    return <IssueComment
+                                                        key={comment.id} 
+                                                        comment={comment}
+                                                       />
+                                                })
+                                            ) : <><p>No comments yet.</p></>
+                                        }
                                             
                                         </div>
                                     </div>
