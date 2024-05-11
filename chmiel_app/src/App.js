@@ -39,7 +39,7 @@ function App() {
             element: <ProtectedRoute><BacklogPage/></ProtectedRoute>,
         },
         {
-            path: "/charts",
+            path: "/charts/:projectId",
             element: <ProtectedRoute><ChartsPage/></ProtectedRoute>,
         },
         {

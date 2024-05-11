@@ -12,6 +12,7 @@ import {useCookies} from "react-cookie";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import React, { useState, useEffect } from 'react';
 import axios from "../../api/axios";
+import { useNavigate } from 'react-router-dom';
 
 
 ChartJS.register(
@@ -71,21 +72,11 @@ const ChartsPage = () => {
     const [epicsData, setEpicsData] = useState({});
     const [sprintsData, setSprintsData] = useState({});
     const [selectedProject, setSelectedProject] = useState(null); // State to hold the selected project
+    const history = useNavigate(); // Get history object from react-router-dom
 
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/task/getEpicsData/1',
-                    {
-                        headers: { Authorization: "Bearer "+cookies.token }
-                    }
-                    );
-                setEpicsData(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
             try {
                 const response = await axios.get('/api/project/getByUserId',
                     {
@@ -95,13 +86,29 @@ const ChartsPage = () => {
                 const projectsData = response.data.map(project => ({
                     id: project.id,
                     name: project.projectName,
-                }));
+                }))
                 setProjects(projectsData);
                 setLoading(false);
+                if (response.data.length > 0) {
+                    setSelectedProject(response.data[0].id);
+                }
+
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
             }
+            try {
+                const response = await axios.get('/api/task/getEpicsData/' + selectedProject,
+                    {
+                        headers: { Authorization: "Bearer " + cookies.token }
+                    }
+                    );
+                setEpicsData(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+
         };
         fetchData();
     }, []); // Run only once on component mount
@@ -138,8 +145,9 @@ const ChartsPage = () => {
                     <Row>
                         <Col>
                             <div style={{marginLeft: '100px'}}>
-                                <DropdownButton id="dropdown-basic-button" title={selectedProject ? selectedProject.name : "Project"}>
-                                    {projects.map(project => (
+                                <DropdownButton id="dropdown-basic-button"
+                                                title={selectedProject ? selectedProject.name : "Project"}>
+                                {projects.map(project => (
                                         <Dropdown.Item
                                             key={project.id}
                                             value={project.id}
@@ -163,11 +171,6 @@ const ChartsPage = () => {
                         </Col>
                         <Col>
                             <SprintChartsComponent2 inputData={sprintsData}/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <SprintChartsComponent inputData={sprintsData}/>
                         </Col>
                     </Row>
                 </Col>

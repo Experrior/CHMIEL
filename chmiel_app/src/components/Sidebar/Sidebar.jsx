@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Sidebar.css";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import {Link, useLocation} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight, faChartSimple } from '@fortawesome/free-solid-svg-icons';
+import axios from "../../api/axios";
+import {useCookies} from "react-cookie";
 
 export const SidebarMenu = (props) => {
     const [activeItem, setActiveItem] = useState(props.from);
     const [sidebarVisible, setSidebarVisible] = useState(true);
     const sidebarClass = sidebarVisible ? "sidebar open" : "sidebar";
+    const [cookies] = useCookies(["token"]);
 
     const handleItemClick = (item) => {
         setActiveItem(item);
@@ -17,6 +20,29 @@ export const SidebarMenu = (props) => {
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('/api/project/getByUserId',
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    });
+                console.log(response.data)
+                const projectsData = response.data.map(project => ({
+                    id: project.id,
+                    name: project.projectName,
+                }))
+                if (response.data.length > 0) {
+                    setActiveItem(projectsData[0]);
+                }
+            } catch (error) {
+                // todo
+            }
+
+
+        };
+        fetchData();
+    }, []);
 
     return (
         <>
@@ -43,7 +69,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "backlog"}
                         onClick={() => handleItemClick("backlog")}
-                        component={<Link to={`/backlog/${props.project.id}`}/>}
+                        component={<Link to={`/backlog/${activeItem.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -55,7 +81,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "board"}
                         onClick={() => handleItemClick("board")}
-                        component={<Link to={`/board/${props.project.id}`}/>}
+                        component={<Link to={`/board/${activeItem.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -67,7 +93,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "issues"}
                         onClick={() => handleItemClick("issues")}
-                        component={<Link to={`/issues/${props.project.id}`} />}
+                        component={<Link to={`/issues/${activeItem.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -79,7 +105,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "charts"}
                         onClick={() => handleItemClick("charts")}
-                        component={<Link to={`/charts/${props.project.id}`} />}
+                        component={<Link to={`/charts/${activeItem.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>

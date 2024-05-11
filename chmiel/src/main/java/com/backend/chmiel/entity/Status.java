@@ -2,7 +2,7 @@ package com.backend.chmiel.entity;
 
 public enum Status {
     backlog,
-    open,
+    todo,
     in_progress,
     review,
     closed

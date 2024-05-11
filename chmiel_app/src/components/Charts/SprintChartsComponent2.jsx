@@ -84,12 +84,19 @@ export class SprintChartsComponent2 extends React.Component {
 
     render() {
         return (
-            <div>
-                <div id="chart">
-                    <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={350} />
+            <Container fluid style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh'}}>
+                <div style={{marginBottom: '10px'}}>
+                    <h3>Epics activity chart</h3>
+                    <p style={{ margin: '0', marginTop: '0px'}}>Chart showing how many tasks from epics were
+                        finished in given sprint.</p>
+                    <p style={{ margin: '0', marginTop: '0px'}}>Helps to keep track if epics are progressing
+                                according to plans.</p>
+                    <div id="chart" style={{width: '750px', height: '400px', marginTop: '20px'}}>
+                        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" />
+                    </div>
                 </div>
-                <div id="html-dist"></div>
-            </div>
+
+            </Container>
         );
     }
 }
