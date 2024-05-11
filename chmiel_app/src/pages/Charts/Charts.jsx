@@ -13,7 +13,14 @@ import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import React, { useState, useEffect } from 'react';
 import axios from "../../api/axios";
 import { useNavigate } from 'react-router-dom';
-
+import { Navigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import {
+    Routes,
+    Route,
+    useSearchParams,
+    BrowserRouter
+} from "react-router-dom"
 
 ChartJS.register(
     LinearScale,
@@ -71,47 +78,66 @@ const ChartsPage = () => {
     const [error, setError] = useState(null);
     const [epicsData, setEpicsData] = useState({});
     const [sprintsData, setSprintsData] = useState({});
-    const [selectedProject, setSelectedProject] = useState(null); // State to hold the selected project
-    const history = useNavigate(); // Get history object from react-router-dom
+    const [selectedProject, setSelectedProject] = useState(useParams()); // State to hold the selected project
+    const { projectId } = useParams();
+    const [queryParameters] = useSearchParams()
+    const navigate = useNavigate();
 
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/api/project/getByUserId',
-                    {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
-                    });
-                console.log(response.data)
+                const response = await axios.get('/api/project/getByUserId', {
+                    headers: { Authorization: `Bearer ${cookies.token}` }
+                });
                 const projectsData = response.data.map(project => ({
                     id: project.id,
                     name: project.projectName,
-                }))
+                }));
                 setProjects(projectsData);
                 setLoading(false);
-                if (response.data.length > 0) {
-                    setSelectedProject(response.data[0].id);
-                }
-
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
             }
+        };
+
+        const fetchChosenProject = async () => {
             try {
-                const response = await axios.get('/api/task/getEpicsData/' + selectedProject,
-                    {
-                        headers: { Authorization: "Bearer " + cookies.token }
-                    }
-                    );
+                const response = await axios.get('/api/project/getProjectByProjectId/' + projectId, {
+                    headers: { Authorization: `Bearer ${cookies.token}` }
+                });
+                const projectsData = response.data.map(project => ({
+                    id: project.id,
+                    name: project.projectName,
+                }));
+                setSelectedProject(projectId);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        const fetchEpicsData = async () => {
+            try {
+                const response = await axios.get('/api/task/getEpicsData/' + projectId, {
+                    headers: { Authorization: "Bearer " + cookies.token }
+                });
                 setEpicsData(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
-
         };
+
+        // const interval = setInterval(() => {
         fetchData();
-    }, []); // Run only once on component mount
+        fetchEpicsData();
+        fetchChosenProject();
+        // }, );
+
+        // return () => clearInterval(interval);
+    }, [projectId]); // Run whenever selectedProject changes
+
 
     return (
         <>
@@ -137,6 +163,9 @@ const ChartsPage = () => {
                         <Col>
                             <div>
                                 <br/>
+                                <div>
+                                    <p>{projectId}</p>
+                                </div>
                                 <br/>
                                 <br/>
                             </div>
@@ -144,16 +173,22 @@ const ChartsPage = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <div style={{marginLeft: '100px'}}>
+                        <div style={{marginLeft: '100px'}}>
                                 <DropdownButton id="dropdown-basic-button"
                                                 title={selectedProject ? selectedProject.name : "Project"}>
                                 {projects.map(project => (
                                         <Dropdown.Item
                                             key={project.id}
                                             value={project.id}
-                                            onClick={() => setSelectedProject(project)} // Update selected project on click
+                                            onClick= {
+                                            () => {
+                                                setSelectedProject(project)
+                                                navigate('/charts/' + project.id)
+                                            }
+
+                                        }
                                         >
-                                            {project.name}
+                                            {project.id}
                                         </Dropdown.Item>
                                     ))}
                                 </DropdownButton>
@@ -179,135 +214,4 @@ const ChartsPage = () => {
     );
 };
 
-
-
-
-
-
-// const ChartsPage = () => {
-//     const [epicsData, setEpicsData] = useState({});
-//     const [sprintsData, setSprintsData] = useState({});
-//     const [cookies] = useCookies(["token"]);
-//     const [projects, setProjects] = useState([]);
-//     const [loading, setLoading] = useState(true);
-//     const [error, setError] = useState(null);
-//
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             try {
-//                 const response = await axios.get('/api/task/getEpicsData/1',
-//                     {
-//                         headers: { Authorization: "Bearer "+cookies.token }
-//                     }
-//                     );
-//                 setEpicsData(response.data);
-//                 console.log(response.data);
-//             } catch (error) {
-//                 console.error('Error fetching data:', error);
-//             }
-//             try {
-//                 const response = await axios.get('/api/project/getByUserId',
-//                     {
-//                         headers: { Authorization: `Bearer ${cookies.token}` }
-//                     });
-//                 console.log(response.data)
-//                 const projectsData = response.data.map(project => ({
-//                     id: project.id,
-//                     name: project.projectName,
-//                 }));
-//                 setProjects(projectsData);
-//                 setLoading(false);
-//             } catch (error) {
-//                 setError(error.message);
-//                 setLoading(false);
-//             }
-//         };
-//         fetchData();
-//     }, []); // Run only once on component mount
-//
-//     const handleSelectOption = (option) => {
-//         setSelectedOption(option.label);
-//         setSelectedData(option.value);
-//     };
-//     const predefinedDataOptions = [
-//         { label: 'Option 1', value: 'data1' },
-//         { label: 'Option 2', value: 'data2' },
-//         { label: 'Option 3', value: 'data3' }
-//     ];
-//
-//
-//     const [selectedOption, setSelectedOption] = useState(null);
-//     const [selectedData, setSelectedData] = useState(null);
-//
-//     const handleButtonClick = (option) => {
-//         setSelectedOption(option.label);
-//         setSelectedData(option.value);
-//     };
-//
-//
-//
-//     return (
-//         <>
-//             <Navigation/>
-//
-//             <div style={{display: "flex"}}>
-//                 <SidebarMenu project={1} from={"board"}/>
-//                 <Col>
-//                 <Row>
-//                     <Col>
-//                         <div className="text-center" style={{
-//                             flexDirection: 'column',
-//                             justifyContent: 'center',
-//                             alignItems: 'center',
-//                             height: '100%'
-//                         }}>
-//                             <h1 style={{ margin: '0'}}>Analytic charts</h1>
-//                             <h3 style={{ margin: '0'}}>Here are displayed charts with various measures, for given scrum project.</h3>
-//                         </div>
-//                     </Col>
-//                 </Row>
-//     <Row>
-//         <Col>
-//             <div>
-//                 <h3>Selected Option: {selectedOption}</h3>
-//                 <div className="dropdown">
-//                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-//                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//                         Select Project
-//                     </button>
-//                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-//                         {projects.map((project, index) => (
-//                             <button key={index} className="dropdown-item"
-//                                     onClick={() => handleSelectOption({label: project.projectName, value: project.id})}>
-//                                 {project.name}
-//                             </button>
-//                         ))}
-//                     </div>
-//                 </div>
-//
-//                 {/* Render selected data */}
-//                 {selectedData && (
-//                     <div>
-//                         <h4>Selected Data: {selectedData}</h4>
-//                         {/* Render data based on selectedData */}
-//                         {/* You can use conditional rendering or switch case statement here */}
-//                     </div>
-//                 )}
-//             </div>
-//         </Col>
-//     </Row>
-//                     <Row>
-//                         <Col>
-//                             <EpicsChartsComponent inputData={epicsData}/>
-//                         </Col>
-//                         <Col>
-//                             <SprintChartsComponent inputData={sprintsData}/>
-//                         </Col>
-//                     </Row>
-//                 </Col>
-//             </div>
-//         </>
-//     );
-// };
-//
 export default ChartsPage;
