@@ -29,7 +29,7 @@ public class SecurityConfiguration {
                         authorizeRequests
                                 .requestMatchers("/swagger-ui/*", "/v3/api-docs","/v3/api-docs/swagger-config", "/api/auth/*").permitAll() // Allow access without authentication
                                 .anyRequest().authenticated()
-                                .anyRequest().permitAll()
+//                                .anyRequest().permitAll()
                                  // Require authentication for all other requests
                 )
                 .sessionManagement(sessionManagement ->
