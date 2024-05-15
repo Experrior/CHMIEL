@@ -23,7 +23,11 @@ export const Board = (props) => {
     useEffect(() => {
         const getProject = async () => {
             try {
-                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`)
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
                 console.log(response.data)
                 setProject(response.data);
             } catch (error) {

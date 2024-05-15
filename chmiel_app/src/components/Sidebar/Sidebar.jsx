@@ -6,9 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight, faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
+import {useParams} from "react-router-dom";
 
 export const SidebarMenu = (props) => {
+    let {projectId} = useParams()
     const [activeItem, setActiveItem] = useState(props.from);
+    const [project, setProject] = useState({});
     const [sidebarVisible, setSidebarVisible] = useState(true);
     const sidebarClass = sidebarVisible ? "sidebar open" : "sidebar";
     const [cookies] = useCookies(["token"]);
@@ -21,27 +24,25 @@ export const SidebarMenu = (props) => {
         setSidebarVisible(!sidebarVisible);
     };
     useEffect(() => {
-        const fetchData = async () => {
+        console.log("sidebar menu")
+        console.log(projectId);
+        console.log(project);
+
+        const getProject = async () => {
             try {
-                const response = await axios.get('/api/project/getByUserId',
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
                     {
                         headers: { Authorization: `Bearer ${cookies.token}` }
-                    });
+                    }
+                )
                 console.log(response.data)
-                const projectsData = response.data.map(project => ({
-                    id: project.id,
-                    name: project.projectName,
-                }))
-                if (response.data.length > 0) {
-                    setActiveItem(projectsData[0]);
-                }
+                setProject(response.data)
             } catch (error) {
-                // todo
+                console.log(error)
             }
-
-
         };
-        fetchData();
+        
+        getProject()
     }, []);
 
     return (
@@ -63,13 +64,13 @@ export const SidebarMenu = (props) => {
                     },
                     }}
                 >
-                    {sidebarVisible ? <div className="menuTitle">Project Name</div>
+                    {sidebarVisible ? <div className="menuTitle">{project.projectName}</div>
                     : <div className="menuTitle"><br/></div>}
                             
                     <MenuItem
                         active={activeItem === "backlog"}
                         onClick={() => handleItemClick("backlog")}
-                        component={<Link to={`/backlog/${activeItem.id}`}/>}
+                        component={<Link to={`/backlog/${project.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -81,7 +82,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "board"}
                         onClick={() => handleItemClick("board")}
-                        component={<Link to={`/board/${activeItem.id}`}/>}
+                        component={<Link to={`/board/${project.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -93,7 +94,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "issues"}
                         onClick={() => handleItemClick("issues")}
-                        component={<Link to={`/issues/${activeItem.id}`} />}
+                        component={<Link to={`/issues/${project.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -105,7 +106,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "charts"}
                         onClick={() => handleItemClick("charts")}
-                        component={<Link to={`/charts/${activeItem.id}`} />}
+                        component={<Link to={`/charts/${project.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
