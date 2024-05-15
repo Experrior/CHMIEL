@@ -232,8 +232,7 @@ export const Issues = () => {
 
                     </div>
                     
-                    <div className="contentContainer"
-                        style={{display: "flex", gap: "16px"}}>
+                    <div className="contentContainer">
                         <div className="issuesListContainer">
                             { tasks.length !== 0 ? 
                                 (

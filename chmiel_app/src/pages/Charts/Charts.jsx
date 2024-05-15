@@ -143,8 +143,9 @@ const ChartsPage = () => {
         <>
             <Navigation/>
 
-            <div style={{display: "flex", margin: "16px"}}>
-                <SidebarMenu project={1} from={"board"}/>
+            <div style={{display: "flex"}}>
+                <SidebarMenu project={1} from={"charts"}/>
+                <Container fluid={"md"}>
                 <Col>
                 <Row>
                     <Col>
@@ -209,6 +210,8 @@ const ChartsPage = () => {
                         </Col>
                     </Row>
                 </Col>
+                </Container>
+                
             </div>
         </>
     );

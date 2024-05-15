@@ -1,6 +1,5 @@
 .issuesContainer {
     width: 100%;
-    height: calc(100vh - 175px);
     padding: 24px 32px;
 }
 
@@ -21,12 +20,18 @@
     padding: 16px 0px;
 }
 
+.contentContainer {
+    display: flex;
+    gap: 16px;
+    height: calc(100vh - 75px);
+}
+
 .issuesListContainer {
     /* position: fixed; */
     width: 20%;
-    max-width: 450px;
+    /* max-width: 450px; */
     height: auto;
-    min-height: calc(100vh - 175px);
+    min-height: 450px;
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
@@ -35,11 +40,9 @@
 }
 
 .issueDetailsContainer {
-    /* position: fixed; */
     width: 80%;
-    /* background-color: aqua; */
-    min-height: calc(100vh - 175px);
     padding: 2px 16px;
+    min-height: 450px;
 }
 
 .issueLocation {
