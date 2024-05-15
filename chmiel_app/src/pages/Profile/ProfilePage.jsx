@@ -19,15 +19,15 @@ export const ProfilePage = () => {
     const [accountDetails, setAccountDetails] = useState({})
 
     const [projects, setProjects] = useState([
-        {id: 1, name: "testProject1"},
-        {id: 2, name: "testProject2"},
-        {id: 3, name: "testProject3"},
-        {id: 4, name: "testProject4"}
+        // {id: 1, name: "testProject1"},
+        // {id: 2, name: "testProject2"},
+        // {id: 3, name: "testProject3"},
+        // {id: 4, name: "testProject4"}
     ])
     const [projects2, setProjects2] = useState([
-        {id: 1, name: "testProject1"},
-        {id: 2, name: "testProject2"},
-        {id: 3, name: "testProject3"}
+        // {id: 1, name: "testProject1"},
+        // {id: 2, name: "testProject2"},
+        // {id: 3, name: "testProject3"}
     ])
     const [userConnections, setUserConnections] = useState([
         {id: 1},
@@ -137,8 +137,12 @@ export const ProfilePage = () => {
         })
         getUserProjects().then(results => {
             console.log(results.data)
-            setProjects(results.data)
-            setProjects2(results.data)
+            const projectsData = results.data.map(project => ({
+                id: project.id,
+                name: project.projectName,
+            }));
+            setProjects(projectsData)
+            setProjects2(projectsData)
         }).catch(e => {
             console.log(e);
         })

@@ -1,5 +1,5 @@
 .projectComponentContainer {
-    background-color: #fafafa;
+    background-color: #def0ff94;
     height: 160px;
     min-width: max-content;
     padding: 5%;
@@ -42,7 +42,7 @@
 }
 
 .link:hover {
-    background-color: #dadada;
+    background-color: #def0ff;
 }
 
 /* @media only screen and (max-width: 1200px) {
