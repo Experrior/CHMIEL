@@ -16,14 +16,11 @@ export const Issues = () => {
     let { projectId } = useParams();
     const [cookies] = useCookies(["token"]);
     const [project, setProject] = useState([]);
-    const [tasks, setTasks] = useState([
-        {id: 1, name: "testTask1", description: null},
-        {id: 2, name: "testTask2", description: "description"},
-    ]);
+    const [sprints, setSprints] = useState([]);
+    const [tasks, setTasks] = useState([]);
     const [taskComments, setTaskComments] = useState([]);
     
-    const [selectedIssueId, setSelectedIssueId] = useState(1);
-    
+    const [selectedIssueId, setSelectedIssueId] = useState(null);    
     const getSelectedTask = () => {
         return tasks.find(task => task.id === selectedIssueId);
     };
@@ -35,18 +32,23 @@ export const Issues = () => {
         setIsAdding(true);
     };
 
-    const handleInputCommentChange = (event) => {
+    const handleCommentChange = (event) => {
         setNewComment(event.target.value);
     };
 
-    const handleKeyDownComment = (event) => {
-        if (event.key === 'Enter') {
-            addComment(getSelectedTask().id, newComment, getSelectedTask().author);
-        }
+    const handleCommentSubmit = (event) => {
+        event.preventDefault();
+        addComment(newComment);
+        setNewComment('');
+        setIsAdding(false);
+    };
+    const cancelComment = () => {
+        setNewComment('');
+        setIsAdding(false);
     };
 
 
-    const [issueName, setIssueName] = useState(getSelectedTask().name);
+    // SETTING ISSUE NAME
     const [isEditing, setIsEditing] = useState(false);
     const [newIssueName, setNewIssueName] = useState('');
 
@@ -61,31 +63,23 @@ export const Issues = () => {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            saveChanges();
+            saveNameChanges();
         }
     };
     const handleBlur = () => {
-        saveChanges();
+        saveNameChanges();
     };
 
-    const saveChanges = async () => {
+    const saveNameChanges = async () => {
         try {
-            // await editTask(newIssueName, getSelectedTask().description);
-            const updatedTasks = tasks.map(task => {
-                if (task.id === selectedIssueId) {
-                    return { ...task, name: newIssueName };
-                }
-                return task;
-            });
-            setTasks(updatedTasks);
+            await editTask(newIssueName, getSelectedTask().description);
         } catch (error) {
             console.error(error);
         }
-        setIssueName(newIssueName);
         setIsEditing(false);
     };
 
-    const [issueDescription, setIssueDescription] = useState(getSelectedTask().description);
+    // SETTING DESCRIPTION
     const [isEditingDescription, setIsEditingDescription] = useState(false);
     const [newIssueDescription, setNewIssueDescription] = useState('');
     
@@ -98,23 +92,21 @@ export const Issues = () => {
         setNewIssueDescription(event.target.value);
     };
 
+    const cancelChanges = () => {
+        setIsEditingDescription(false);
+    }
 
     const saveDescriptionChanges = async () => {
         try {
-            // await editTask(getSelectedTask().name, newIssueDescription);
-            const updatedTasks = tasks.map(task => {
-                if (task.id === selectedIssueId) {
-                    return { ...task, description: newIssueDescription };
-                }
-                return task;
-            });
-            setTasks(updatedTasks);
+            await editTask(getSelectedTask().name, newIssueDescription);
         } catch (error) {
             console.error(error);
         }
         setIsEditingDescription(false);
     };
 
+
+    // API CALL TO EDIT TASK
     const editTask = async (name, description) => {
         await axios.put("/api/task/update",
         {
@@ -138,12 +130,13 @@ export const Issues = () => {
         })
     }
 
-    const addComment = async (task_id, message, author) => {
+    // API CALL ADD COMMENT
+    const addComment = async (message) => {
         await axios.post(`/api/task-comment/create`,
         {
-            taskId: task_id,
+            taskId: selectedIssueId,
             message: message,
-            authorId: author,
+            authorId: getSelectedTask.authorId,
         },
         {
             headers: {Authorization: `Bearer ${cookies.token}`}   
@@ -156,6 +149,7 @@ export const Issues = () => {
     }
 
     useEffect(() => {
+
         const getProject = async () => {
             try {
                 const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
@@ -170,7 +164,22 @@ export const Issues = () => {
             }
         };
 
+        const getSprints = async () => {
+            try {
+                const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
+                console.log(response.data)
+                setSprints(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
         const getTasks = async () => {
+            // TODO: change it so it retrieves tasks from each sprint
             try {
                 const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
                 {
@@ -178,42 +187,47 @@ export const Issues = () => {
                 });
                 console.log(response.data);
                 setTasks(response.data);
+                setSelectedIssueId(response.data[0].id);
+                getTaskComments(response.data[0].id);
             } catch (error) {
                 console.log(error);
             }
           };
-
-        const getTaskComments = async () => {
-            try  {
-                const response = await axios.get(`/api/task-comment/getByTaskId/${selectedIssueId}`,
-                    {
-                        headers: { Authorization: "Bearer " + cookies.token }
-                    });
-                    console.log(response.data);
-                    setTaskComments(response.data);
-                } catch (error) {
-                    console.log(error);
-                }
-            };
          
-
         getProject();
+        getSprints();
         getTasks();
-        getTaskComments();
     }, []);
+
+    const getTaskComments = async (taskId) => {
+        try  {
+            const response = await axios.get(`/api/task-comment/getByTaskId/${taskId}`,
+                {
+                    headers: { Authorization: "Bearer " + cookies.token }
+                });
+                console.log(response.data);
+                setTaskComments(response.data);
+        } catch (error) {
+                console.log(error);
+        }
+
+    };
 
     const handleIssueClick = (taskId) => {
         console.log("Selected issue: " + selectedIssueId);
         setSelectedIssueId(taskId);
+        getTaskComments(taskId);
         console.log("New selected issue: " + taskId);
     };
+
+
 
 
     return (
         <>
             <Navigation sticky={"top"}/>
-            <div style={{display: "flex", minHeight: "calc(100vh - 175px)"}}>
-                <SidebarMenu project={project} from={"issues"}/>
+            <div style={{display: "flex", minHeight: "calc(100vh - 75px)"}}>
+                <SidebarMenu from={"issues"}/>
                 <div className="issuesContainer">
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
@@ -290,9 +304,20 @@ export const Issues = () => {
                                                         autoFocus
                                                         className="form-control edit-textarea"
                                                     />
-                                                    <Button onClick={saveDescriptionChanges} className="edit-button">
-                                                        Save Description
-                                                    </Button>
+                                                    <div
+                                                        style={{
+                                                                display: 'flex',
+                                                                flexDirection: 'row',
+                                                                gap: '4px'
+                                                            }}>
+                                                        <Button onClick={saveDescriptionChanges} className="btn btn-primary">
+                                                            Save
+                                                        </Button>
+                                                        <Button onClick={cancelChanges} className="btn btn-light">
+                                                            Cancel
+                                                        </Button>
+                                                    </div>
+                                                    
                                                 </>
                                             ) : (
                                                 <div className="description-preview">
@@ -326,7 +351,41 @@ export const Issues = () => {
                                             }
                                         </div>
                                         <div className="createComment">
-                                        
+                                            <span>
+                                                {/* TODO: get user profile picture */}
+                                                user profile picture
+                                            </span>
+                                            {isAdding ? (
+                                                <>
+                                                    <form onSubmit={handleCommentSubmit}>
+                                                        <textarea
+                                                            rows={3}
+                                                            value={newComment}
+                                                            onChange={handleCommentChange}
+                                                            autoFocus
+                                                            className="form-control"
+                                                            placeholder="Start typing..."
+                                                        />
+                                                        <div style={{
+                                                                        display: 'flex',
+                                                                        flexDirection: 'row',
+                                                                        gap: '4px'
+                                                                    }}>
+                                                            <Button type="submit" className="btn btn-primary">
+                                                                Add Comment
+                                                            </Button>
+                                                            <Button onClick={cancelComment} className="btn btn-light">
+                                                                Cancel
+                                                            </Button>
+                                                        </div>
+                                                    </form>
+                                                </> ) : (
+                                                    <div onClick={handleAddClick} className="add-comment">
+                                                        <p>Add a comment...</p>
+                                                    </div>
+                                                )
+                                        }
+                                            
                                         </div>
                                     </div>
                                 </div>

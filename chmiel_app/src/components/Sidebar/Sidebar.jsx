@@ -46,9 +46,10 @@ export const SidebarMenu = (props) => {
     }, []);
 
     return (
+        // TODO: make items of the sidebar fixed with remaining collapsable
         <>
-            <Sidebar fixed={"left"} className={sidebarClass} collapsed={!sidebarVisible}>
-                <Menu
+            <Sidebar className={sidebarClass} collapsed={!sidebarVisible} >
+                <Menu 
                     menuItemStyles={{ button: ({ active }) => {
                         return {
                             backgroundColor: active ? '#def0ff' : undefined,
@@ -63,6 +64,7 @@ export const SidebarMenu = (props) => {
                         };
                     },
                     }}
+                    
                 >
                     {sidebarVisible ? <div className="menuTitle">{project.projectName}</div>
                     : <div className="menuTitle"><br/></div>}
@@ -116,8 +118,9 @@ export const SidebarMenu = (props) => {
                         </div>
                     </MenuItem>
                 </Menu>
+                
             </Sidebar>
-            <div className="toggleButton" onClick={toggleSidebar}>
+            <div className="toggleButton" onClick={toggleSidebar} style={{position: "fixed"}}>
                 <FontAwesomeIcon icon={sidebarVisible ? faArrowLeft : faArrowRight} />
             </div>
         </>

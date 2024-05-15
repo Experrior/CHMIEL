@@ -1,7 +1,6 @@
 .sidebar {
     left: -64px;
     width: 256px;
-    position: fixed;
 }
 
 .sidebar.open {
