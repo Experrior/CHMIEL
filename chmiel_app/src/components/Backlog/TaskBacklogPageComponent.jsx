@@ -57,6 +57,9 @@ export const TaskBacklogPageComponent = (props) => {
                 <Dropdown.Toggle style={{height: 32, width: 32}} variant="custom-tertiary-v2" id="dropdown-basic">
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
+                    {props.sprints?.filter((sprint) => sprint.id !== props.task.sprintId).map((sprint) => (
+                        <Button onClick={() => props.editTaskSprintId(props.task, sprint.id)} variant={"custom-tertiary-small"}>{sprint.sprintName}</Button>
+                    ))}
                 </Dropdown.Menu>
             </Dropdown>
 

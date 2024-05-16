@@ -9,7 +9,6 @@ import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
 import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
-import {TaskComponent} from "../../components/Task/TaskComponent";
 import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPageComponent";
 
 export const BacklogPage = (props) => {
@@ -138,13 +137,39 @@ export const BacklogPage = (props) => {
         })
     }
 
+    const editTaskSprintId = async (task, sprintId) => {
+        await axios.put(`/api/task/update`,
+            {
+                id: task.id,
+                assigneeId: task.assigneeId,
+                sprintId: sprintId,
+                name: task.name,
+                description: task.description,
+                loggedHours: task.loggedHours,
+                timeEstimate: task.timeEstimate,
+                status: task.status,
+                inEpic: task.inEpic
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`
+                }
+            }
+        ).then(result => {
+            console.log(result.data)
+            setTasks(tasks => tasks.map(task2 => task2.id === task.id ? {...task2, ...result.data} : task2))
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
     useEffect(() => {
 
         const getProject = async () => {
             try {
                 const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
+                        headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
                 console.log(response.data)
@@ -153,12 +178,12 @@ export const BacklogPage = (props) => {
                 console.log(error)
             }
         };
-        
+
         const getSprints = async () => {
             try {
                 const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
+                        headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
                 console.log(response.data)
@@ -172,7 +197,7 @@ export const BacklogPage = (props) => {
             try {
                 const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
+                        headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
                 console.log(response.data)
@@ -185,7 +210,7 @@ export const BacklogPage = (props) => {
         getProject()
         getSprints()
         getTasks()
-        
+
     }, [])
 
     return (
@@ -228,9 +253,13 @@ export const BacklogPage = (props) => {
                                             </Dropdown>
                                         </div>
                                         <Accordion.Body>
-                                            <div>
-                                                task test
-                                            </div>
+                                            {tasks.length !== 0 ? tasks.filter((task) => task.sprint?.id === sprint.id).map((task) => {
+                                                return <TaskBacklogPageComponent task={task} editTaskStatus={editTaskStatus}
+                                                                                 users={project.users}
+                                                                                 editTaskAssignee={editTaskAssignee}
+                                                                                 sprints={sprints}
+                                                                                 editTaskSprintId={editTaskSprintId}/>
+                                            }) : <></>}
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
@@ -248,8 +277,12 @@ export const BacklogPage = (props) => {
                                         Sprint</Button>
                                 </div>
                                 <Accordion.Body>
-                                    {tasks.length !== 0 ? tasks.map((task) => {
-                                        return <TaskBacklogPageComponent task={task} editTaskStatus={editTaskStatus} users={project.users} editTaskAssignee={editTaskAssignee}/>
+                                    {tasks.length !== 0 ? tasks.filter((task) => task.sprint === null).map((task) => {
+                                        return <TaskBacklogPageComponent task={task} editTaskStatus={editTaskStatus}
+                                                                         users={project.users}
+                                                                         editTaskAssignee={editTaskAssignee}
+                                                                         sprints={sprints}
+                                                                         editTaskSprintId={editTaskSprintId}/>
                                     }) : <></>}
                                     <CreateIssueModal addIssue={addIssue} user={project.users}/>
                                 </Accordion.Body>
