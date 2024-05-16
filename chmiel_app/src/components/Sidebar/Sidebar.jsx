@@ -50,6 +50,7 @@ export const SidebarMenu = (props) => {
         <>
             <Sidebar className={sidebarClass} collapsed={!sidebarVisible} >
                 <Menu 
+                    style={{position: sidebarVisible ? "fixed" : "relative"}}
                     menuItemStyles={{ button: ({ active }) => {
                         return {
                             backgroundColor: active ? '#def0ff' : undefined,
@@ -61,6 +62,8 @@ export const SidebarMenu = (props) => {
                             '&:hover': {
                                 backgroundColor: '#def0ff',
                             },
+                            width: sidebarVisible ? '120%' : '0%',
+                            transition: 'width 0.3s ease',
                         };
                     },
                     }}
