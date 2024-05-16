@@ -37,23 +37,34 @@ public class SprintServiceImpl implements SprintService{
     public List<Sprint> findAllByStopTimeBeforeOrderByStopTimeAsc(String timestamp) {
         return sprintRepository.findAllByStopTimeBeforeOrderByStopTimeAsc(Timestamp.valueOf(timestamp));}
 
+//    @Override
+//    public Sprint createSprint(PostSprintRequest postSprintRequest) {
+//
+//        Sprint newSprint = Sprint.builder()
+//                .projectId(postSprintRequest.getProjectId())
+//                .build();
+//
+//        if (postSprintRequest.getSprintName() != null){
+//            newSprint.setSprintName(postSprintRequest.getSprintName());
+//        }
+//        if (postSprintRequest.getStartTime() != null){
+//            newSprint.setStartTime(postSprintRequest.getStartTime());
+//        }
+//        if (postSprintRequest.getStopTime() != null){
+//            newSprint.setStopTime(postSprintRequest.getStopTime());
+//        }
+//
+//        return sprintRepository.save(newSprint);
+//    }
+
     @Override
     public Sprint createSprint(PostSprintRequest postSprintRequest) {
-
         Sprint newSprint = Sprint.builder()
+                .sprintName("Temporary Name")
                 .projectId(postSprintRequest.getProjectId())
                 .build();
-
-        if (postSprintRequest.getSprintName() != null){
-            newSprint.setSprintName(postSprintRequest.getSprintName());
-        }
-        if (postSprintRequest.getStartTime() != null){
-            newSprint.setStartTime(postSprintRequest.getStartTime());
-        }
-        if (postSprintRequest.getStopTime() != null){
-            newSprint.setStopTime(postSprintRequest.getStopTime());
-        }
-
+        newSprint = sprintRepository.save(newSprint);
+        newSprint.setSprintName("Sprint " + newSprint.getId());
         return sprintRepository.save(newSprint);
     }
 

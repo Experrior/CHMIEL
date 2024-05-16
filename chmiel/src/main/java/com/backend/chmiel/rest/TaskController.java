@@ -79,7 +79,8 @@ public class TaskController {
 
         try{
             Task output = taskService.createTask(postTaskRequest, reporterId);
-            return output.getInEpic();
+            return output;
+//            return output.getInEpic();
         }catch (TaskNotFoundException e){
             return Task.builder()
                     .description(e.toString())

@@ -17,13 +17,15 @@ export const BacklogPage = (props) => {
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
 
-    const addIssue = async (taskName, taskDescription) => {
+    const addIssue = async (taskName, taskDescription, timeEstimate, assigneeId) => {
+        console.log(assigneeId)
         await axios.post("/api/task/create",
             {
                 name: taskName,
                 description: taskDescription,
                 projectId: projectId,
-                timeEstimate: 2
+                timeEstimate: timeEstimate,
+                assigneeId: assigneeId
             },
             {
                 headers: {Authorization: `Bearer ${cookies.token}`}
@@ -62,8 +64,6 @@ export const BacklogPage = (props) => {
     }
 
     const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished) => {
-        console.log("edit " + sprint_id)
-        console.log(sprintName, startTime, endTime, isStarted, isFinished)
         await axios.patch(`/api/sprint/edit/${sprint_id}`, {
                 sprintName: sprintName,
                 startTime: startTime,
@@ -181,7 +181,7 @@ export const BacklogPage = (props) => {
                                     {tasks.length !== 0 ? tasks.map((task) => {
                                         return <div key={task.id}>{task.name}</div>
                                     }) : <></>}
-                                    <CreateIssueModal addIssue={addIssue}/>
+                                    <CreateIssueModal addIssue={addIssue} user={project.users}/>
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>

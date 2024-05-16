@@ -37,7 +37,7 @@ export const SidebarMenu = (props) => {
                     },
                     }}
                 >
-                    {sidebarVisible ? <div className="menuTitle">Project Name</div>
+                    {sidebarVisible ? <div className="menuTitle">{props.project.projectName}</div>
                     : <div className="menuTitle"><br/></div>}
                             
                     <MenuItem

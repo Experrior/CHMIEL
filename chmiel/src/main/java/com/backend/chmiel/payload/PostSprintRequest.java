@@ -15,9 +15,9 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class PostSprintRequest {
 
-    private String sprintName;
+//    private String sprintName;
     private Integer projectId;
-    private Timestamp startTime;
-    private Timestamp stopTime;
+//    private Timestamp startTime;
+//    private Timestamp stopTime;
 
 }
