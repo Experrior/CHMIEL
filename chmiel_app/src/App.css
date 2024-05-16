@@ -124,3 +124,21 @@
     background: #f0f0f0 !important;
     color: #696969 !important;
 }
+
+.btn-custom-circle {
+    /*display: block !important;*/
+    outline: 0 !important;
+    border: none !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: #696969 !important;
+    padding: 0 !important;
+}
+
+.btn-custom-circle:hover {
+    filter: brightness(90%);
+}

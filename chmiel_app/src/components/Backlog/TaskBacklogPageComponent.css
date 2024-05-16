@@ -30,24 +30,47 @@
 
 }
 
+/* ASSIGNEE */
 .taskAssignee {
     grid-column: assignee;
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background-color: #696969;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.taskAssignee > p {
+.taskAssignee:hover{
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
+.emptyAssignee {
+    background-color: #696969;
+}
+
+.btn-custom-circle > p {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
     color: #FAFAFA;
 }
 
+.nonEmptyAssignee {
+    background-color: #696969;
+}
+
+.btn-custom-circle .assigneeLetters {
+    font-size: 10px;
+}
+
+.noDropdown::after {
+    display: none;
+}
+
+
+/* MENU */
 .taskBacklogContainer .menu {
     grid-column: menu;
 }
