@@ -39,15 +39,18 @@ export const TaskBacklogPageComponent = (props) => {
                 <Dropdown.Menu>
                     {props.task.assignee ?
                         <>
-                            <Button onClick={() => props.editTaskAssignee(props.task, null)} variant={"custom-tertiary-small"}>No assignee</Button>
+                            <Button onClick={() => props.editTaskAssignee(props.task, null)}
+                                    variant={"custom-tertiary-small"}>No assignee</Button>
                             {props.users?.filter((user) => user.id !== props.task.assignee.id).map((user) => (
-                                <Button onClick={() => props.editTaskAssignee(props.task, user.id)} variant={"custom-tertiary-small"}>{user.firstName} {user.lastName}</Button>
+                                <Button onClick={() => props.editTaskAssignee(props.task, user.id)}
+                                        variant={"custom-tertiary-small"}>{user.firstName} {user.lastName}</Button>
                             ))}
                         </>
                         :
                         <>
                             {props.users?.map((user) => (
-                                <Button onClick={() => props.editTaskAssignee(props.task, user.id)} variant={"custom-tertiary-small"}>{user.firstName} {user.lastName}</Button>
+                                <Button onClick={() => props.editTaskAssignee(props.task, user.id)}
+                                        variant={"custom-tertiary-small"}>{user.firstName} {user.lastName}</Button>
                             ))}
                         </>}
 
@@ -57,9 +60,22 @@ export const TaskBacklogPageComponent = (props) => {
                 <Dropdown.Toggle style={{height: 32, width: 32}} variant="custom-tertiary-v2" id="dropdown-basic">
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    {props.sprints?.filter((sprint) => sprint.id !== props.task.sprintId).map((sprint) => (
-                        <Button onClick={() => props.editTaskSprintId(props.task, sprint.id)} variant={"custom-tertiary-small"}>{sprint.sprintName}</Button>
-                    ))}
+                    {props.task.sprint ? <>
+                        <Button onClick={() => props.editTaskSprintId(props.task, null)}
+                                variant={"custom-tertiary-small"}>Backlog</Button>
+                        {props.sprints?.filter((sprint) => sprint.id !== props.task.sprintId).map((sprint) => (
+                            <Button onClick={() => props.editTaskSprintId(props.task, sprint.id)}
+                                    variant={"custom-tertiary-small"}>{sprint.sprintName}</Button>
+                        ))}</> : <>
+                        {props.sprints?.map((sprint) => (
+                            <Button onClick={() => props.editTaskSprintId(props.task, sprint.id)}
+                                    variant={"custom-tertiary-small"}>{sprint.sprintName}</Button>))}
+                    </>}
+
+                    {/*{props.sprints?.filter((sprint) => sprint.id !== props.task.sprintId).map((sprint) => (*/}
+                    {/*    <Button onClick={() => props.editTaskSprintId(props.task, sprint.id)}*/}
+                    {/*            variant={"custom-tertiary-small"}>{sprint.sprintName}</Button>*/}
+                    {/*))}*/}
                 </Dropdown.Menu>
             </Dropdown>
 

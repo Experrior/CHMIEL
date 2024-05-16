@@ -142,3 +142,15 @@
 .btn-custom-circle:hover {
     filter: brightness(90%);
 }
+
+
+/* ALERTS */
+.custom-centered-alert {
+    position: fixed !important;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050; /* Higher than most other items so it appears on top */
+    width: auto; /* Adjust based on content size or leave as auto */
+    border-radius: 0 !important; /* Optional, for full-width can remove border-radius */
+}

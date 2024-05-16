@@ -10,6 +10,7 @@ import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
 import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
 import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPageComponent";
+import {DeleteAlert} from "../../components/Backlog/DeleteAlert";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -248,16 +249,22 @@ export const BacklogPage = (props) => {
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
                                                     <EditSprintModal sprint={sprint} editSprint={editSprint}/>
-                                                    <DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>
+                                                    {/*<DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>*/}
+                                                    {tasks.filter((task) => task.sprint?.id === sprint.id).length > 0 ?
+                                                        <DeleteAlert/>
+                                                        :
+                                                        <DeleteSprintModal sprint={sprint}
+                                                                           deleteSprint={deleteSprint}/>}
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </div>
                                         <Accordion.Body>
                                             {tasks.length !== 0 ? tasks.filter((task) => task.sprint?.id === sprint.id).map((task) => {
-                                                return <TaskBacklogPageComponent task={task} editTaskStatus={editTaskStatus}
+                                                return <TaskBacklogPageComponent task={task}
+                                                                                 editTaskStatus={editTaskStatus}
                                                                                  users={project.users}
                                                                                  editTaskAssignee={editTaskAssignee}
-                                                                                 sprints={sprints}
+                                                                                 sprints={sprints.filter((sprint2) => sprint2.id !== sprint.id)}
                                                                                  editTaskSprintId={editTaskSprintId}/>
                                             }) : <></>}
                                         </Accordion.Body>
