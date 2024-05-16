@@ -68,6 +68,26 @@
     color: #696969 !important;
 }
 
+
+.btn-custom-tertiary-small-v2 {
+    display: block !important;
+    outline: 0 !important;
+    border: none !important;
+    font-weight: 600 !important;
+    width: 100%;
+    font-size: 14px !important;
+    text-align: start !important;
+    background: #e7e7e7 !important;
+    padding: 0 12px 0 12px !important;
+}
+
+.btn-custom-tertiary-small-v2:hover {
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    background: #d3d3d3 !important;
+    color: #696969 !important;
+}
+
 .btn-custom-tertiary-v3 {
     display: block !important;
     outline: 0 !important;

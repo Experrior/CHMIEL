@@ -9,6 +9,8 @@ import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
 import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
+import {TaskComponent} from "../../components/Task/TaskComponent";
+import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPageComponent";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -193,7 +195,7 @@ export const BacklogPage = (props) => {
                                 </div>
                                 <Accordion.Body>
                                     {tasks.length !== 0 ? tasks.map((task) => {
-                                        return <div key={task.id}>{task.name}</div>
+                                        return <TaskBacklogPageComponent task={task}/>
                                     }) : <></>}
                                     <CreateIssueModal addIssue={addIssue} user={project.users}/>
                                 </Accordion.Body>

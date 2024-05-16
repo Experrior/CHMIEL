@@ -1,0 +1,53 @@
+.taskBacklogContainer {
+    /*background-color: red;*/
+    padding: 0 4px 0 16px;
+    height: 40px;
+    display: grid;
+    grid-template-columns: [name] 1fr [break] 48px [status] max-content [break] 48px [assignee] calc(28px) [break] 8px [menu] 32px [end];
+    grid-template-rows: [start card-detail] 39px [end];
+    column-gap: 0.25rem;
+    row-gap: 0;
+    align-items: center;
+    border: 1px solid #EBECF0;
+    text-decoration: none;
+    margin-top: -0.125rem;
+}
+
+.taskBacklogContainer .status {
+    grid-column: status;
+    display: flex;
+    /*padding: 0 48px 0 48px;*/
+}
+
+.taskBacklogContainer .taskNameContainer {
+    /*background-color: red;*/
+}
+
+.taskBacklogContainer .taskNameContainer .taskName{
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+
+}
+
+.taskAssignee {
+    grid-column: assignee;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #696969;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskAssignee > p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FAFAFA;
+}
+
+.taskBacklogContainer .menu {
+    grid-column: menu;
+}
