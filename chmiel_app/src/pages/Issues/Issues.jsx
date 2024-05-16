@@ -1,4 +1,4 @@
-import {Container, Nav, Col, Row, Button} from "react-bootstrap";
+import {Container, Nav, Button, Dropdown} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import { IssueComponent } from "../../components/IssuesComponents/IssueComponent";
@@ -8,9 +8,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
-import {useAsyncError, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import { IssueComment } from "../../components/IssuesComponents/IssueComment";
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
+// TOOD
+// add an edit button for descritpion and name
+// add filtering by status, assignee, sprint
+// add status edition
 
 export const Issues = () => {
     let { projectId } = useParams();
@@ -73,7 +78,7 @@ export const Issues = () => {
 
     const saveNameChanges = async () => {
         try {
-            await editTask(newIssueName, getSelectedTask().description);
+            await editTask(newIssueName, getSelectedTask().description, getSelectedTask().status);
         } catch (error) {
             console.error(error);
         }
@@ -99,16 +104,20 @@ export const Issues = () => {
 
     const saveDescriptionChanges = async () => {
         try {
-            await editTask(getSelectedTask().name, newIssueDescription);
+            await editTask(getSelectedTask().name, newIssueDescription, getSelectedTask().status);
         } catch (error) {
             console.error(error);
         }
         setIsEditingDescription(false);
     };
 
+    // SETTING STATUS
+    const handleStatusChange = async (status) => {
+        editTask(getSelectedTask().name, getSelectedTask().description, status);
+    }
 
     // API CALL TO EDIT TASK
-    const editTask = async (name, description) => {
+    const editTask = async (name, description, status) => {
         await axios.put("/api/task/update",
         {
             id: getSelectedTask().id,
@@ -118,7 +127,7 @@ export const Issues = () => {
             description: description,
             loggedHours: getSelectedTask().loggedHours,
             timeEstimate: getSelectedTask().timeEstimate,
-            status: getSelectedTask().status,
+            status: status,
             inEpic: getSelectedTask().inEpic,
         },
         {
@@ -288,28 +297,41 @@ export const Issues = () => {
                                     <Nav.Link href={""} className="nav-link">SPRINT NAME</Nav.Link>
                                 </div>
                                 <div className="issueDetails">
-                                    <div className="issueName">
-                                        {isEditing ? (
-                                            <p>
-                                                <input
-                                                    type="text"
-                                                    value={newIssueName}
-                                                    onChange={handleInputChange}
-                                                    onKeyDown={handleKeyDown}
-                                                    onBlur={handleBlur}
-                                                    autoFocus
-                                                    />
-                                            </p>
-                                                
-                                            ) : (
+                                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                                        <div className="issueName">
+                                            {isEditing ? (
                                                 <p>
-                                                    <span onClick={handleEditClick}>
-                                                        {getSelectedTask().name}
-                                                    </span>
+                                                    <input
+                                                        type="text"
+                                                        value={newIssueName}
+                                                        onChange={handleInputChange}
+                                                        onKeyDown={handleKeyDown}
+                                                        onBlur={handleBlur}
+                                                        autoFocus
+                                                        />
                                                 </p>
-                                            )
-                                        }
+                                                    
+                                                ) : (
+                                                    <p>
+                                                        <span onClick={handleEditClick}>
+                                                            {getSelectedTask().name}
+                                                        </span>
+                                                    </p>
+                                                )
+                                            }
+                                        </div>
+                                        <div className="status">
+                                            <DropdownButton id="dropdown-basic-button"
+                                                title={getSelectedTask().status}>
+                                                    <Dropdown.Item onClick={() => handleStatusChange('backlog')}>Backlog</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => handleStatusChange('todo')}>To Do</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => handleStatusChange('in_progress')}>In Progress</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => handleStatusChange('review')}>Review</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => handleStatusChange('closed')}>Closed</Dropdown.Item>
+                                            </DropdownButton>
+                                        </div>
                                     </div>
+
                                     <div className="issueDescription">
                                         <p style={{fontWeight: "500", paddingLeft: "4px"}}>Description</p>
                                         <div>

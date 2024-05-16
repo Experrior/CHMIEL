@@ -1,6 +1,9 @@
 .issuesContainer {
     width: 100%;
-    padding: 24px 32px;
+    padding-left: 32px;
+    padding-right: 0px;
+    padding-top: 24px;
+    /* padding: 24px 0 24px 32px; */
     /* margin-left: 256px; */
 }
 
@@ -40,7 +43,7 @@
 
 .issueDetailsContainer {
     width: 80%;
-    padding: 2px 16px;
+    /* padding: 2px 16px; */
     min-height: 100vh;
 }
 
@@ -147,6 +150,11 @@
 
 .add-comment:hover {
     background-color: rgb(240, 240, 240);
+}
+
+.status {
+    background-color: #f5f5f5;
+    /* margin: auto; */
 }
 
 /* to jest bez sensu ale zostawiam do stylowania inputu szukania */
