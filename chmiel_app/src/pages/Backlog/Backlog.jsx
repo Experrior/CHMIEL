@@ -86,16 +86,25 @@ export const BacklogPage = (props) => {
 
         const getProject = async () => {
             try {
-                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`)
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
                 console.log(response.data)
                 setProject(response.data);
             } catch (error) {
                 console.log(error)
             }
         };
+        
         const getSprints = async () => {
             try {
-                const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`)
+                const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
                 console.log(response.data)
                 setSprints(response.data);
             } catch (error) {
@@ -105,7 +114,11 @@ export const BacklogPage = (props) => {
 
         const getTasks = async () => {
             try {
-                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`)
+                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
                 console.log(response.data)
                 setTasks(response.data);
             } catch (error) {
@@ -113,9 +126,10 @@ export const BacklogPage = (props) => {
             }
         };
 
+        getProject()
         getSprints()
         getTasks()
-        getProject()
+        
     }, [])
 
     return (

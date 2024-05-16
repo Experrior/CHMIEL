@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS TASKS (
   description VARCHAR,
   logged_hours FLOAT,
   time_estimate FLOAT NOT NULL,
-  status VARCHAR CHECK (status IN ('backlog', 'open', 'in_progress', 'review', 'closed')),
+  status VARCHAR CHECK (status IN ('backlog', 'todo', 'in_progress', 'review', 'closed')) NOT NULL,
   is_epic BOOLEAN NOT NULL DEFAULT FALSE,
   in_epic INTEGER REFERENCES TASKS(id)
 );

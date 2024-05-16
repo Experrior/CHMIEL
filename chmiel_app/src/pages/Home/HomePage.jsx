@@ -53,7 +53,7 @@ export const HomePage = () => {
         const fetchProjects = async () => {
             try {
                 const response = await axios.get('/api/project/getByUserId',
-                     {
+                    {
                         headers: { Authorization: `Bearer ${cookies.token}` }
                     });
                 console.log(response.data)

@@ -19,15 +19,15 @@ export const ProfilePage = () => {
     const [accountDetails, setAccountDetails] = useState({})
 
     const [projects, setProjects] = useState([
-        {id: 1, name: "testProject1"},
-        {id: 2, name: "testProject2"},
-        {id: 3, name: "testProject3"},
-        {id: 4, name: "testProject4"}
+        // {id: 1, name: "testProject1"},
+        // {id: 2, name: "testProject2"},
+        // {id: 3, name: "testProject3"},
+        // {id: 4, name: "testProject4"}
     ])
     const [projects2, setProjects2] = useState([
-        {id: 1, name: "testProject1"},
-        {id: 2, name: "testProject2"},
-        {id: 3, name: "testProject3"}
+        // {id: 1, name: "testProject1"},
+        // {id: 2, name: "testProject2"},
+        // {id: 3, name: "testProject3"}
     ])
     const [userConnections, setUserConnections] = useState([
         {id: 1},
@@ -82,6 +82,14 @@ export const ProfilePage = () => {
         })
     }
 
+    const getUserProjects = async () => {
+        return await axios.get("/api/project/getByUserId", {
+            headers: {
+                Authorization: "Bearer " + cookies.token
+            }
+        })
+    }
+
     const editUser = async (firstName, lastName, email, birthDate, address, phoneNumber) => {
         await axios.put("/api/user",
             {
@@ -127,8 +135,20 @@ export const ProfilePage = () => {
         }).catch(e => {
             console.error(e);
         })
+        getUserProjects().then(results => {
+            console.log(results.data)
+            const projectsData = results.data.map(project => ({
+                id: project.id,
+                name: project.projectName,
+            }));
+            setProjects(projectsData)
+            setProjects2(projectsData)
+        }).catch(e => {
+            console.log(e);
+        })
 
     }, [])
+
 
     return (
         <>
@@ -184,7 +204,7 @@ export const ProfilePage = () => {
                                                 return <Col><ProjectComponent project={project}/></Col>
                                             })
                                         }
-                                    </Row> : <></>)}
+                                    </Row> : <>You haven't worked on anything yet.</>)}
                                 </div>
                             </div>
                             <div>
@@ -200,7 +220,7 @@ export const ProfilePage = () => {
                                                 return <Col><ProjectComponent project={project}/></Col>
                                             })
                                         }
-                                    </Row> : <></>)}
+                                    </Row> : <>You haven't worked on anything yet.</>)}
                                 </div>
                             </div>
                             <div>

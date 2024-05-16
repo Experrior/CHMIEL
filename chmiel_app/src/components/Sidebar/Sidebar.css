@@ -1,12 +1,6 @@
 .sidebar {
-    height: 100vh;
     left: -64px;
     width: 256px;
-    /*top: 75px;*/
-    /* transition: left 0.3s ease; */
-    position: fixed;
-    /* height: 100%; */
-    /* min-height: calc(100vh - 175px); */
 }
 
 .sidebar.open {

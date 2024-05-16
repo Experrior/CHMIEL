@@ -23,7 +23,11 @@ export const Board = (props) => {
     useEffect(() => {
         const getProject = async () => {
             try {
-                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`)
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
                 console.log(response.data)
                 setProject(response.data);
             } catch (error) {
@@ -93,9 +97,10 @@ export const Board = (props) => {
     };
 
     const [panels, setPanels] = useState([
-        {id: 1, name: "TO-DO"},
-        {id: 2, name: "IN PROGRESS"},
-        {id: 3, name: "DONE"}
+        // ('backlog', 'open', 'in_progress', 'review', 'closed')
+        {id: 1, name: "TO-DO", status: "backlog"},
+        {id: 2, name: "IN PROGRESS", status: "in_progress"},
+        {id: 3, name: "DONE", status: "closed"}
     ]);
 
     return (
@@ -152,7 +157,7 @@ export const Board = (props) => {
                 <div className="innerBoardContainer">
                     {
                         panels.map((panel) => {
-                            return <BoardComponent panel={panel}/>
+                            return <BoardComponent panel={panel} projectId={projectId}/>
                         })
                     }
                 </div>

@@ -93,6 +93,8 @@ public class TaskServiceImpl implements TaskService {
                 }
 
             }
+
+
         }
 
     return groupedData;
@@ -151,10 +153,13 @@ public class TaskServiceImpl implements TaskService {
                 .reporter(reporter)
                 .description(postTaskRequest.getDescription())
                 .name(postTaskRequest.getName())
-                .status(postTaskRequest.getStatus())
                 .isEpic(postTaskRequest.isEpic())
                 .build();
-
+        if (postTaskRequest.getStatus() != null){
+            newTask.setStatus(postTaskRequest.getStatus());
+        }else{
+            newTask.setStatus(Status.backlog);
+        }
         if (postTaskRequest.getInEpic() != null){
             Task epic = taskRepository.findById(postTaskRequest.getInEpic()).orElseThrow(() -> new TaskNotFoundException(String.valueOf(postTaskRequest.getInEpic())));
             newTask.setInEpic(epic);

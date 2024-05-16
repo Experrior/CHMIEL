@@ -1,43 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import { Chart, Line } from "react-chartjs-2";
-// import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from "chart.js";
-import axios from "../../api/axios";
-import { useCookies } from "react-cookie";
+
 
 export const EpicsChartsComponent = ({inputData} ) => {
-
-
-    // const dataObject = {
-    //     "Develop User Authentication System": {
-    //         "1": 0,
-    //         "2": 1,
-    //         "3": 4,
-    //         "4": 1,
-    //         "5": 0
-    //     },
-    //     "Design Database Schema": {
-    //         "1": 1,
-    //         "2": 0,
-    //         "3": 3
-    //     }
-    // };
-
-    // const datasets = Object.entries(inputData).map(([label, data]) => ({
-    //     label,
-    //     data: Object.values(data),
-    //     borderColor: 'rgb(255, 99, 132)',
-    //     backgroundColor: 'rgb(53, 162, 235)',
-    //     yAxisID: 'y',
-    //     yAxis: {
-    //         ticks: {
-    //             stepSize: 1,
-    //             beginAtZero: true,
-    //         },
-    //     }
-    // }));
-    //
-    // const labels = Object.keys(dataObject["Develop User Authentication System"]);
 
     const labelsSet = new Set();
     Object.values(inputData).forEach(data => {
@@ -94,14 +60,16 @@ export const EpicsChartsComponent = ({inputData} ) => {
     };
 
     return (
-        <Container fluid style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-            <div style={{marginBottom: '30px'}}>
-                <Row>
-                    <h3>Epics activity chart</h3>
-                    <div style={{width: '100%', height: '400px'}}>
-                        <Chart type="line" data={data} options={options}/>
-                    </div>
-                </Row>
+        <Container fluid style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh'}}>
+            <div style={{marginBottom: '10px'}}>
+                <h3>Epics activity chart</h3>
+                <p style={{ margin: '0', marginTop: '0px'}}>Chart showing how many tasks from epics were
+                    finished in given sprint.</p>
+                <p style={{ margin: '0', marginTop: '0px'}}>Helps to keep track if epics are progressing
+                    according to plans.</p>
+                <div style={{width: '750px', height: '400px', marginTop: '20px'}}>
+                    <Chart type="line" data={data} options={options}/>
+                </div>
             </div>
         </Container>
     );

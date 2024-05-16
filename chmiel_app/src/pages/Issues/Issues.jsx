@@ -8,31 +8,53 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
-import {useParams} from "react-router-dom";
+import {useAsyncError, useParams} from "react-router-dom";
+import { IssueComment } from "../../components/IssuesComponents/IssueComment";
 
 
 export const Issues = () => {
     let { projectId } = useParams();
     const [cookies] = useCookies(["token"]);
     const [project, setProject] = useState([]);
-    const [tasks, setTasks] = useState([
-        {id: 1, name: "testTask1", description: null},
-        {id: 2, name: "testTask1", description: "pizda"},
-    ]);
+    const [sprints, setSprints] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [taskComments, setTaskComments] = useState([]);
     
-    const [selectedIssueId, setSelectedIssueId] = useState(1);
-    
+    const [selectedIssueId, setSelectedIssueId] = useState(null);    
     const getSelectedTask = () => {
         return tasks.find(task => task.id === selectedIssueId);
     };
 
-    const [issueName, setIssueName] = useState(getSelectedTask().name);
+    const [isAdding, setIsAdding] = useState(false);
+    const [newComment, setNewComment] = useState('');
+
+    const handleAddClick = () => {
+        setIsAdding(true);
+    };
+
+    const handleCommentChange = (event) => {
+        setNewComment(event.target.value);
+    };
+
+    const handleCommentSubmit = (event) => {
+        event.preventDefault();
+        addComment(newComment);
+        setNewComment('');
+        setIsAdding(false);
+    };
+    const cancelComment = () => {
+        setNewComment('');
+        setIsAdding(false);
+    };
+
+
+    // SETTING ISSUE NAME
     const [isEditing, setIsEditing] = useState(false);
     const [newIssueName, setNewIssueName] = useState('');
 
     const handleEditClick = () => {
         setIsEditing(true);
-        setNewIssueName(issueName);
+        setNewIssueName(getSelectedTask().name);
     };
 
     const handleInputChange = (event) => {
@@ -41,67 +63,100 @@ export const Issues = () => {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            saveChanges();
+            saveNameChanges();
         }
     };
     const handleBlur = () => {
-        saveChanges();
+        saveNameChanges();
     };
 
-    const saveChanges = () => {
-        setIssueName(newIssueName);
+    const saveNameChanges = async () => {
+        try {
+            await editTask(newIssueName, getSelectedTask().description);
+        } catch (error) {
+            console.error(error);
+        }
         setIsEditing(false);
     };
 
-    const [newIssueDescription, setNewIssueDescription] = useState(getSelectedTask().description);
+    // SETTING DESCRIPTION
     const [isEditingDescription, setIsEditingDescription] = useState(false);
+    const [newIssueDescription, setNewIssueDescription] = useState('');
     
     const handleEditDescriptionClick = () => {
         setIsEditingDescription(true);
+        setNewIssueDescription(getSelectedTask().description);
     };
 
     const handleDescriptionChange = (event) => {
-        setIsEditingDescription(false);
         setNewIssueDescription(event.target.value);
     };
 
-    const handleSaveDescriptionClick = () => {
+    const cancelChanges = () => {
         setIsEditingDescription(false);
-    };
-    
+    }
 
     const saveDescriptionChanges = async () => {
         try {
-            await modifyDescription(newIssueDescription);
+            await editTask(getSelectedTask().name, newIssueDescription);
         } catch (error) {
             console.error(error);
         }
         setIsEditingDescription(false);
     };
 
-    const modifyDescription = async (description) => {
+
+    // API CALL TO EDIT TASK
+    const editTask = async (name, description) => {
         await axios.put("/api/task/update",
         {
-            name: getSelectedTask().name,
+            id: getSelectedTask().id,
+            assigneeId: getSelectedTask().assigneeId,
+            sprintId: getSelectedTask().sprintId,
+            name: name,
             description: description,
-            projectId: projectId,
-            reporterId: 22,
-            timeEstimate: 2
+            loggedHours: getSelectedTask().loggedHours,
+            timeEstimate: getSelectedTask().timeEstimate,
+            status: getSelectedTask().status,
+            inEpic: getSelectedTask().inEpic,
         },
         {
-            headers: {Authorization: cookies.token}
+            headers: {Authorization:  `Bearer ${cookies.token}`}
         }).then(result => {
             console.log(result.data)
-            // setTasks(tasks.map(task => task.id === selectedIssueId ? response.data : task));
+            setTasks(tasks.map(task => task.id === selectedIssueId ? result.data : task));
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
+    // API CALL ADD COMMENT
+    const addComment = async (message) => {
+        await axios.post(`/api/task-comment/create`,
+        {
+            taskId: selectedIssueId,
+            message: message,
+            authorId: getSelectedTask.authorId,
+        },
+        {
+            headers: {Authorization: `Bearer ${cookies.token}`}   
+        }).then(result => {
+            console.log(result.data)
+            setTaskComments([...taskComments, result.data])
         }).catch(e => {
             console.error(e)
         })
     }
 
     useEffect(() => {
+
         const getProject = async () => {
             try {
-                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`);
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: "Bearer " + cookies.token }
+                    }
+                );
                 console.log(response.data)
                 setProject(response.data);
             } catch (error) {
@@ -109,30 +164,70 @@ export const Issues = () => {
             }
         };
 
-        const getTasks = async () => {
+        const getSprints = async () => {
             try {
-                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`);
+                const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
+                console.log(response.data)
+                setSprints(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
+        const getTasks = async () => {
+            // TODO: change it so it retrieves tasks from each sprint
+            try {
+                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
+                {
+                    headers: { Authorization: "Bearer " + cookies.token }
+                });
                 console.log(response.data);
                 setTasks(response.data);
+                setSelectedIssueId(response.data[0].id);
+                getTaskComments(response.data[0].id);
             } catch (error) {
                 console.log(error);
             }
           };
-
+         
         getProject();
+        getSprints();
         getTasks();
-    }, [projectId]);
+    }, []);
+
+    const getTaskComments = async (taskId) => {
+        try  {
+            const response = await axios.get(`/api/task-comment/getByTaskId/${taskId}`,
+                {
+                    headers: { Authorization: "Bearer " + cookies.token }
+                });
+                console.log(response.data);
+                setTaskComments(response.data);
+        } catch (error) {
+                console.log(error);
+        }
+
+    };
 
     const handleIssueClick = (taskId) => {
+        console.log("Selected issue: " + selectedIssueId);
         setSelectedIssueId(taskId);
+        getTaskComments(taskId);
+        console.log("New selected issue: " + taskId);
     };
+
+
 
 
     return (
         <>
             <Navigation sticky={"top"}/>
-            <div style={{display: "flex", minHeight: "calc(100vh - 175px)"}}>
-                <SidebarMenu project={project} from={"issues"}/>
+            <div style={{display: "flex", minHeight: "calc(100vh - 75px)"}}>
+                <SidebarMenu from={"issues"}/>
                 <div className="issuesContainer">
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
@@ -151,8 +246,7 @@ export const Issues = () => {
 
                     </div>
                     
-                    <div className="contentContainer"
-                        style={{display: "flex", gap: "16px"}}>
+                    <div className="contentContainer">
                         <div className="issuesListContainer">
                             { tasks.length !== 0 ? 
                                 (
@@ -199,31 +293,100 @@ export const Issues = () => {
                                         }
                                     </div>
                                     <div className="issueDescription">
-                                        <p style={{fontWeight: "500"}}>Description</p>
+                                        <p style={{fontWeight: "500", paddingLeft: "4px"}}>Description</p>
                                         <div>
                                             {isEditingDescription ? (
                                                 <>
                                                     <textarea
-                                                        rows={5}
+                                                        rows={3}
                                                         value={newIssueDescription}
                                                         onChange={handleDescriptionChange}
                                                         autoFocus
                                                         className="form-control edit-textarea"
                                                     />
-                                                    <Button onClick={handleSaveDescriptionClick} className="edit-button">
-                                                        Save Description
-                                                    </Button>
+                                                    <div
+                                                        style={{
+                                                                display: 'flex',
+                                                                flexDirection: 'row',
+                                                                gap: '4px'
+                                                            }}>
+                                                        <Button onClick={saveDescriptionChanges} className="btn btn-primary">
+                                                            Save
+                                                        </Button>
+                                                        <Button onClick={cancelChanges} className="btn btn-light">
+                                                            Cancel
+                                                        </Button>
+                                                    </div>
+                                                    
                                                 </>
                                             ) : (
                                                 <div className="description-preview">
-                                                    <p>{getSelectedTask().description}</p>
-                                                    <Button onClick={handleEditDescriptionClick} className="edit-button">
-                                                        Edit Description
-                                                    </Button>
+                                                    {getSelectedTask().description ? (
+                                                    <>
+                                                        <p onClick={handleEditDescriptionClick}>{getSelectedTask().description}</p>
+                                                    </>
+                                                    ) : (
+                                                        <p onClick={handleEditDescriptionClick} className="add-description">
+                                                            Add a description
+                                                        </p>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
 
+                                    </div>
+
+                                    <div className="issueCommentsContainer">
+                                        <p style={{fontWeight: "500"}}>Comments</p>
+                                        <div className="issueComments">
+                                            { taskComments.length !== 0 ? 
+                                                (
+                                                    taskComments.map((comment) => {
+                                                        return <IssueComment
+                                                            key={comment.id} 
+                                                            comment={comment}
+                                                        />
+                                                    })
+                                                ) : <><p>No comments yet.</p></>
+                                            }
+                                        </div>
+                                        <div className="createComment">
+                                            <span>
+                                                {/* TODO: get user profile picture */}
+                                                user profile picture
+                                            </span>
+                                            {isAdding ? (
+                                                <>
+                                                    <form onSubmit={handleCommentSubmit}>
+                                                        <textarea
+                                                            rows={3}
+                                                            value={newComment}
+                                                            onChange={handleCommentChange}
+                                                            autoFocus
+                                                            className="form-control"
+                                                            placeholder="Start typing..."
+                                                        />
+                                                        <div style={{
+                                                                        display: 'flex',
+                                                                        flexDirection: 'row',
+                                                                        gap: '4px'
+                                                                    }}>
+                                                            <Button type="submit" className="btn btn-primary">
+                                                                Add Comment
+                                                            </Button>
+                                                            <Button onClick={cancelComment} className="btn btn-light">
+                                                                Cancel
+                                                            </Button>
+                                                        </div>
+                                                    </form>
+                                                </> ) : (
+                                                    <div onClick={handleAddClick} className="add-comment">
+                                                        <p>Add a comment...</p>
+                                                    </div>
+                                                )
+                                        }
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </>

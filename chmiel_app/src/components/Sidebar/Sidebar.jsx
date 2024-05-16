@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Sidebar.css";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import {Link, useLocation} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight, faChartSimple } from '@fortawesome/free-solid-svg-icons';
+import axios from "../../api/axios";
+import {useCookies} from "react-cookie";
+import {useParams} from "react-router-dom";
 
 export const SidebarMenu = (props) => {
+    let {projectId} = useParams()
     const [activeItem, setActiveItem] = useState(props.from);
+    const [project, setProject] = useState({});
     const [sidebarVisible, setSidebarVisible] = useState(true);
     const sidebarClass = sidebarVisible ? "sidebar open" : "sidebar";
+    const [cookies] = useCookies(["token"]);
 
     const handleItemClick = (item) => {
         setActiveItem(item);
@@ -17,11 +23,34 @@ export const SidebarMenu = (props) => {
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
+    useEffect(() => {
+        console.log("sidebar menu")
+        console.log(projectId);
+        console.log(project);
+
+        const getProject = async () => {
+            try {
+                const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
+                    {
+                        headers: { Authorization: `Bearer ${cookies.token}` }
+                    }
+                )
+                console.log(response.data)
+                setProject(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        
+        getProject()
+    }, []);
 
     return (
+        // TODO: make items of the sidebar fixed with remaining collapsable
         <>
-            <Sidebar fixed={"left"} className={sidebarClass} collapsed={!sidebarVisible}>
-                <Menu
+            <Sidebar className={sidebarClass} collapsed={!sidebarVisible} >
+                <Menu 
+                    style={{position: sidebarVisible ? "fixed" : "relative"}}
                     menuItemStyles={{ button: ({ active }) => {
                         return {
                             backgroundColor: active ? '#def0ff' : undefined,
@@ -33,17 +62,20 @@ export const SidebarMenu = (props) => {
                             '&:hover': {
                                 backgroundColor: '#def0ff',
                             },
+                            width: sidebarVisible ? '120%' : '0%',
+                            transition: 'width 0.3s ease',
                         };
                     },
                     }}
+                    
                 >
-                    {sidebarVisible ? <div className="menuTitle">{props.project.projectName}</div>
+                    {sidebarVisible ? <div className="menuTitle">{project.projectName}</div>
                     : <div className="menuTitle"><br/></div>}
                             
                     <MenuItem
                         active={activeItem === "backlog"}
                         onClick={() => handleItemClick("backlog")}
-                        component={<Link to={`/backlog/${props.project.id}`}/>}
+                        component={<Link to={`/backlog/${project.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -55,7 +87,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "board"}
                         onClick={() => handleItemClick("board")}
-                        component={<Link to={`/board/${props.project.id}`}/>}
+                        component={<Link to={`/board/${project.id}`}/>}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -67,7 +99,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "issues"}
                         onClick={() => handleItemClick("issues")}
-                        component={<Link to={`/issues/${props.project.id}`} />}
+                        component={<Link to={`/issues/${project.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -79,7 +111,7 @@ export const SidebarMenu = (props) => {
                     <MenuItem
                         active={activeItem === "charts"}
                         onClick={() => handleItemClick("charts")}
-                        component={<Link to={`/charts/${props.project.id}`} />}
+                        component={<Link to={`/charts/${project.id}`} />}
                     >
                         <div className="menuItemContent">
                             <div className={"icon"}>
@@ -89,8 +121,9 @@ export const SidebarMenu = (props) => {
                         </div>
                     </MenuItem>
                 </Menu>
+                
             </Sidebar>
-            <div className="toggleButton" onClick={toggleSidebar}>
+            <div className="toggleButton" onClick={toggleSidebar} style={{position: "fixed"}}>
                 <FontAwesomeIcon icon={sidebarVisible ? faArrowLeft : faArrowRight} />
             </div>
         </>
