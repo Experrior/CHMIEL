@@ -19,6 +19,19 @@ export const BacklogPage = (props) => {
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
 
+    const formatDate = (dateString) => {
+        const options = {
+            day: '2-digit',
+            month: 'short',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+            timeZone: 'UTC'
+        };
+        const date = new Date(dateString);
+        return date.toLocaleString('en-US', options);
+    }
+
     const addIssue = async (taskName, taskDescription, timeEstimate, assigneeId) => {
         console.log(assigneeId)
         await axios.post("/api/task/create",
@@ -89,7 +102,7 @@ export const BacklogPage = (props) => {
             {
                 id: task.id,
                 assigneeId: task.assignee ? task.assignee.id : null,
-                sprintId: task.sprintId,
+                sprintId: task.sprint.id,
                 name: task.name,
                 description: task.description,
                 loggedHours: task.loggedHours,
@@ -117,7 +130,7 @@ export const BacklogPage = (props) => {
             {
                 id: task.id,
                 assigneeId: assigneeId,
-                sprintId: task.sprintId,
+                sprintId: task.sprint.id,
                 name: task.name,
                 description: task.description,
                 loggedHours: task.loggedHours,
@@ -241,6 +254,14 @@ export const BacklogPage = (props) => {
                                         <div className={"accordionHeaderContainer"}>
                                             <Accordion.Header>
                                                 <p>{sprint.sprintName}</p>
+                                                {sprint.startTime ?
+                                                    <p style={{
+                                                        marginLeft: 16,
+                                                        color: "grey",
+                                                        fontSize: 12
+                                                    }}>{formatDate(sprint.startTime)} - {formatDate(sprint.stopTime)}</p>
+                                                    : <p></p>
+                                                }
                                             </Accordion.Header>
                                             <Button variant={"custom-tertiary-v2"}>Start Sprint</Button>
                                             <Dropdown>

@@ -11,11 +11,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class SprintServiceImpl implements SprintService{
+public class SprintServiceImpl implements SprintService {
     private final SprintRepository sprintRepository;
 
     @Autowired
-    public SprintServiceImpl(SprintRepository sprintRepository){
+    public SprintServiceImpl(SprintRepository sprintRepository) {
         this.sprintRepository = sprintRepository;
     }
 
@@ -31,11 +31,13 @@ public class SprintServiceImpl implements SprintService{
 
     @Override
     public List<Sprint> findAllByStartTimeAfterOrderByStartTimeAsc(String timestamp) {
-        return sprintRepository.findAllByStartTimeAfterOrderByStartTimeAsc(Timestamp.valueOf(timestamp));}
+        return sprintRepository.findAllByStartTimeAfterOrderByStartTimeAsc(Timestamp.valueOf(timestamp));
+    }
 
     @Override
     public List<Sprint> findAllByStopTimeBeforeOrderByStopTimeAsc(String timestamp) {
-        return sprintRepository.findAllByStopTimeBeforeOrderByStopTimeAsc(Timestamp.valueOf(timestamp));}
+        return sprintRepository.findAllByStopTimeBeforeOrderByStopTimeAsc(Timestamp.valueOf(timestamp));
+    }
 
 //    @Override
 //    public Sprint createSprint(PostSprintRequest postSprintRequest) {
@@ -74,12 +76,19 @@ public class SprintServiceImpl implements SprintService{
     }
 
     @Override
-    public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest){
+    public Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest) {
         Sprint sprint = sprintRepository.findById(id).orElseThrow();
 
         if (editSprintRequest.getSprintName() != null) sprint.setSprintName(editSprintRequest.getSprintName());
-        if (editSprintRequest.getStartTime() != null) sprint.setStartTime(editSprintRequest.getStartTime());
-        if (editSprintRequest.getStopTime() != null) sprint.setStopTime(editSprintRequest.getStopTime());
+
+        if (editSprintRequest.getStartTime() != null) {
+            sprint.setStartTime(editSprintRequest.getStartTime());
+        } else sprint.setStartTime(null);
+
+        if (editSprintRequest.getStopTime() != null) {
+            sprint.setStopTime(editSprintRequest.getStopTime());
+        } else sprint.setStopTime(null);
+
         if (editSprintRequest.getIsStarted() != null) sprint.setStarted(editSprintRequest.getIsStarted());
         if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
         return sprintRepository.save(sprint);
