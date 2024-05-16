@@ -1,15 +1,24 @@
 .commentBody {
-    border: 1px solid rgb(156, 156, 156);
-    border-radius: 4px;
-    margin: 4px 0px;
-    padding: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .author {
-    font-weight: 500;
+    font-weight: bold;
     color: rgb(39, 39, 39);
 }
 
 .author:hover {
     color: black;
+}
+
+.message {
+    word-wrap: break-word; /* Ensure long words wrap */
+    white-space: pre-wrap; /* Preserve whitespace formatting */
+    /* box-sizing: border-box;
+    width: 100%; */
 }

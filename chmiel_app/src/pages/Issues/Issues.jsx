@@ -15,6 +15,7 @@ import { IssueComment } from "../../components/IssuesComponents/IssueComment";
 export const Issues = () => {
     let { projectId } = useParams();
     const [cookies] = useCookies(["token"]);
+    const [user, setUser] = useState({});
     const [project, setProject] = useState([]);
     const [sprints, setSprints] = useState([]);
     const [tasks, setTasks] = useState([]);
@@ -136,7 +137,7 @@ export const Issues = () => {
         {
             taskId: selectedIssueId,
             message: message,
-            authorId: getSelectedTask.authorId,
+            authorId: user.id,
         },
         {
             headers: {Authorization: `Bearer ${cookies.token}`}   
@@ -150,6 +151,19 @@ export const Issues = () => {
 
     useEffect(() => {
 
+        const getUser = async () => {
+            try {
+                const response = await axios.get("/api/user",
+                    { headers: { Authorization: "Bearer " + cookies.token } }
+                );
+                console.log("Current user: ");
+                console.log(response.data);
+                setUser(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
         const getProject = async () => {
             try {
                 const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
@@ -157,6 +171,7 @@ export const Issues = () => {
                         headers: { Authorization: "Bearer " + cookies.token }
                     }
                 );
+                console.log("Current project: ");
                 console.log(response.data)
                 setProject(response.data);
             } catch (error) {
@@ -171,6 +186,7 @@ export const Issues = () => {
                         headers: { Authorization: `Bearer ${cookies.token}` }
                     }
                 )
+                console.log("Sprints: ");
                 console.log(response.data)
                 setSprints(response.data);
             } catch (error) {
@@ -185,6 +201,7 @@ export const Issues = () => {
                 {
                     headers: { Authorization: "Bearer " + cookies.token }
                 });
+                console.log("Tasks: ");
                 console.log(response.data);
                 setTasks(response.data);
                 setSelectedIssueId(response.data[0].id);
@@ -193,7 +210,8 @@ export const Issues = () => {
                 console.log(error);
             }
           };
-         
+        
+        getUser();
         getProject();
         getSprints();
         getTasks();

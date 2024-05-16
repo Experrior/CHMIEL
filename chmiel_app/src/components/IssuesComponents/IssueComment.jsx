@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./IssueComment.css";
-import {useCookies} from "react-cookie";
-import {useParams} from "react-router-dom";
 
 export const IssueComment = ({ comment }) => { 
 
