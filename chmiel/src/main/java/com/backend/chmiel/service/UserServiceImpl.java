@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService{
     public UserDetailsResponse getUserDetailsById(Integer id) {
         User user = userRepository.findById(id).orElseThrow();
         return UserDetailsResponse.builder()
+                .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
