@@ -84,6 +84,32 @@ export const BacklogPage = (props) => {
         })
     }
 
+    const editTaskStatus = async (task, newStatus) => {
+        await axios.put(`/api/task/update`,
+            {
+                id: task.id,
+                assigneeId: task.assignee ? task.assignee.id : null,
+                sprintId: task.sprintId,
+                name: task.name,
+                description: task.description,
+                loggedHours: task.loggedHours,
+                timeEstimate: task.timeEstimate,
+                status: newStatus === "in progress" ? "in_progress" : newStatus,
+                inEpic: task.inEpic
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`
+                }
+            }
+        ).then(result => {
+            console.log(result.data)
+            setTasks(tasks => tasks.map(task2 => task2.id === task.id ? {...task2, ...result.data} : task2))
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
     useEffect(() => {
 
         const getProject = async () => {
@@ -195,7 +221,7 @@ export const BacklogPage = (props) => {
                                 </div>
                                 <Accordion.Body>
                                     {tasks.length !== 0 ? tasks.map((task) => {
-                                        return <TaskBacklogPageComponent task={task}/>
+                                        return <TaskBacklogPageComponent task={task} editTaskStatus={editTaskStatus}/>
                                     }) : <></>}
                                     <CreateIssueModal addIssue={addIssue} user={project.users}/>
                                 </Accordion.Body>
