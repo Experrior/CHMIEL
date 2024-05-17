@@ -162,7 +162,7 @@ export const BacklogPage = (props) => {
         await axios.put(`/api/task/update`,
             {
                 id: task.id,
-                assigneeId: task.assigneeId,
+                assigneeId: task.assignee?.id,
                 sprintId: sprintId,
                 name: task.name,
                 description: task.description,
