@@ -121,7 +121,7 @@ const ChartsPage = () => {
 
     return (
         <>
-            <Navigation/>
+            <Navigation sticky={"top"}/>
 
             <div style={{display: "flex"}}>
                 <SidebarMenu project={1} from={"charts"}/>
