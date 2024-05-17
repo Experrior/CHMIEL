@@ -109,7 +109,7 @@ export const BacklogPage = (props) => {
             {
                 id: task.id,
                 assigneeId: task.assignee ? task.assignee.id : null,
-                sprintId: task.sprint.id,
+                sprintId: task.sprint ? task.sprint.id : null,
                 name: task.name,
                 description: task.description,
                 loggedHours: task.loggedHours,
@@ -292,7 +292,6 @@ export const BacklogPage = (props) => {
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
                                                     <EditSprintModal sprint={sprint} editSprint={editSprint}/>
-                                                    {/*<DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>*/}
                                                     {tasks.filter((task) => task.sprint?.id === sprint.id).length > 0 ?
                                                         <DeleteAlert/>
                                                         :
