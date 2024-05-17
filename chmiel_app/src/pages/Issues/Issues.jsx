@@ -11,6 +11,8 @@ import {useCookies} from "react-cookie";
 import {useParams} from "react-router-dom";
 import { IssueComment } from "../../components/IssuesComponents/IssueComment";
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 // TOOD
 // add an edit button for descritpion and name
@@ -331,25 +333,34 @@ export const Issues = () => {
                                 </div>
                                 <div className="issueDetails">
                                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px'}}>
-                                        <div className="issueName">
-                                            {isEditing ? (
-                                                    <input
-                                                        type="text"
-                                                        value={newIssueName}
-                                                        onChange={handleInputChange}
-                                                        onKeyDown={handleKeyDown}
-                                                        onBlur={handleBlur}
-                                                        autoFocus
-                                                        />
-                                                ) : (
-                                                    
-                                                        <span onClick={handleEditClick}>
-                                                            {getSelectedTask().name}
-                                                        </span>
-                                                    
-                                                )
-                                            }
-                                        </div>
+                                        
+                                            <div className="issueName">
+                                                {isEditing ? (
+                                                        <input
+                                                            type="text"
+                                                            value={newIssueName}
+                                                            onChange={handleInputChange}
+                                                            onKeyDown={handleKeyDown}
+                                                            onBlur={handleBlur}
+                                                            autoFocus
+                                                            />
+                                                    ) : (
+                                                        <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginBottom: '4px'}}>
+                                                            <span onClick={handleEditClick}>
+                                                                {getSelectedTask().name}
+                                                            </span>
+                                                            <FontAwesomeIcon 
+                                                                icon={faEdit} 
+                                                                style={{ marginLeft: "8px", cursor: "pointer", height: '16px' }} 
+                                                                onClick={handleEditClick} 
+                                                            />
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                            
+                                        
+                                        
                                         <div>
                                         <Dropdown className={"status"}>
                                             <Dropdown.Toggle variant="custom-tertiary-small-v2" id="dropdown-basic">
@@ -368,7 +379,22 @@ export const Issues = () => {
                                     </div>
 
                                     <div className="issueDescription">
-                                        <p style={{fontWeight: "500", paddingLeft: "4px"}}>Description</p>
+                                        <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginBottom: '4px'}}>
+                                        <span style={{fontWeight: "500", paddingLeft: "4px"}}>Description</span>
+                                        {
+                                            isEditingDescription ? (
+                                                <></>
+                                            ) : (
+                                                <FontAwesomeIcon 
+                                                icon={faEdit} 
+                                                style={{ marginLeft: "8px", cursor: "pointer" }} 
+                                                onClick={handleEditDescriptionClick} 
+                                            />
+                                            )
+                                        }
+                                        
+                                        </div>
+                                        
                                         <div>
                                             {isEditingDescription ? (
                                                 <>
