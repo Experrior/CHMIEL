@@ -1,41 +1,46 @@
 Dominika:
+    board:
+        logic for looking for users, filter by user, on icon click
+        update users icons to show firstname & lastname letters
+
+    fix routing for charts, after clicking button, projectId only changes locally
 
 
-    backlog functionality(
-        editing sprints
-        deleting sprints (only wihtout tasks and not started)
-        -[wip]-change model for creating tasks,
-    )
-    logic for looking for users, board  [STRECH GOAL]
-
-
-
-
-
+    make filters on issues page, depends on endpoints [STRECH GOAL]
 
 Mateusz:
 
+    add endpoint for current sprint (board page)
+    add is_started, is_finished update on backend , periodical
+    add endpoints for tasks filtering
 
-    --contiune work on charts(
-    --finish second chart,
-    --implement backend logic to provide data
-    --)
+    make charts graphics better:
+        fill more data ???TO ADD OR NOT TO ADD???
+        make them stand next to one another
+
 
     hotfix:
-        -backlog-don't show user creds in api repsonses
-        --show whole user data in api reposne for task comments
+        update sprint for new vars, creating, check if creating new sprint works
 
+
+    add filter endpoints for tasks [STRECH GOAL] ????SKIP OR NOT TO SKIP????
+    bkaclog think over backlog page status issues [STRECH GOAL]
 
 Zuzia:
 
-    issues page(
-        edit tasks,
-        adding comments
-    )
 
+    finish issues:
+        edit comments
+        delete comments
+
+    board:
+        change name: Board - $Sprint_name
+        show tasks filter by status, depends on endpoint
 
 
 
 backlog:
+    add option to creat project
     add global cors to all endpoints, not to each method!
     handle exceptions in more graceful way for api
+    don't show user creds in api repsonses
