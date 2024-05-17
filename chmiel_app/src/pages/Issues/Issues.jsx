@@ -36,6 +36,7 @@ export const Issues = () => {
 
 
     // helper
+    const statuses = ["backlog", "todo", "in_progress", "review", "closed"]
     const [selectedIssueId, setSelectedIssueId] = useState(null);    
     const getSelectedTask = () => {
         return tasks.find(task => task.id === selectedIssueId);
@@ -349,15 +350,20 @@ export const Issues = () => {
                                                 )
                                             }
                                         </div>
-                                        <div className="status">
-                                            <DropdownButton id="dropdown-basic-button"
-                                                title={getSelectedTask().status}>
-                                                    <Dropdown.Item onClick={() => handleStatusChange('backlog')}>Backlog</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => handleStatusChange('todo')}>To Do</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => handleStatusChange('in_progress')}>In Progress</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => handleStatusChange('review')}>Review</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => handleStatusChange('closed')}>Closed</Dropdown.Item>
-                                            </DropdownButton>
+                                        <div>
+                                        <Dropdown className={"status"}>
+                                            <Dropdown.Toggle variant="custom-tertiary-small-v2" id="dropdown-basic">
+                                                {getSelectedTask().status === "in_progress" ? "IN PROGRESS" : getSelectedTask().status.toUpperCase()}
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu>
+                                                {statuses.map((status) =>
+                                                    (<Button variant={"custom-tertiary-small"}
+                                                            onClick={() => handleStatusChange(status)}>{
+                                                                status === "in_progress" ? "IN PROGRESS" : status.toUpperCase()
+                                                                }</Button>)
+                                                )}
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                         </div>
                                     </div>
 
