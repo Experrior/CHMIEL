@@ -7,7 +7,7 @@ export const IssueComment = ({ comment }) => {
         <>
         <div className="commentBody">
             <div className="author">
-                <span> {comment.author} </span>
+                <span> {comment.author?.firstName} {comment.author?.lastName} </span>
             </div>
             <div className="message">
                 {comment.message}
