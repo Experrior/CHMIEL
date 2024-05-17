@@ -171,6 +171,34 @@ export const Issues = () => {
         })
     }
 
+    // const deleteComment = async (commentId) => {
+    //     await axios.delete(`/api/task-comment/delete/${commentId}`,
+    //     {
+    //         headers: {Authorization: `Bearer ${cookies.token}`}
+    //     }).then(result => {
+    //         console.log(result.data)
+    //         setTaskComments(taskComments.filter(comment => comment.id !== commentId))
+    //     }).catch(e => {
+    //         console.error(e)
+    //     })
+    // }
+
+    // const editComment = async (commentId, message) => {
+    //     await axios.put(`/api/task-comment/update`,
+    //     {
+    //         id: commentId,
+    //         message: message
+    //     },
+    //     {
+    //         headers: {Authorization: `Bearer ${cookies.token}`}
+    //     }).then(result => {
+    //         console.log(result.data)
+    //         setTaskComments(taskComments.map(comment => comment.id === commentId ? result.data : comment))
+    //     }).catch(e => {
+    //         console.error(e)
+    //     })
+    // }
+
     useEffect(() => {
 
         const getUser = async () => {
@@ -450,6 +478,7 @@ export const Issues = () => {
                                                         return <IssueComment
                                                             key={comment.id} 
                                                             comment={comment}
+                                                            user={user.id === comment.author.id ? user : null}
                                                         />
                                                     })
                                                 ) : <><p>No comments yet.</p></>
