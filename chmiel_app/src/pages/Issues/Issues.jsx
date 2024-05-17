@@ -20,12 +20,22 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 export const Issues = () => {
     let { projectId } = useParams();
     const [cookies] = useCookies(["token"]);
+
+    // setters
     const [user, setUser] = useState({});
     const [project, setProject] = useState([]);
     const [sprints, setSprints] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [taskComments, setTaskComments] = useState([]);
-    
+
+    // sorting attributes
+    const [statusFilter, setStatusFilter] = useState('Status');
+    const [assigneeFilter, setAssigneeFilter] = useState('');
+    const [sprintFilter, setSprintFilter] = useState('');
+
+
+
+    // helper
     const [selectedIssueId, setSelectedIssueId] = useState(null);    
     const getSelectedTask = () => {
         return tasks.find(task => task.id === selectedIssueId);
@@ -261,6 +271,8 @@ export const Issues = () => {
                         <span style={{padding: '0px 8px'}}>/</span>
                         <Nav.Link href={`/issues/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
                     </div>
+                    {/* <Container fluid={"md"}> */}
+                    
                     <div className="issuesHeader">
                         <h2>
                             <span>
@@ -268,9 +280,29 @@ export const Issues = () => {
                             </span>
                         </h2>
                     </div>
-                    <div style={{display: "flex", marginBottom: "16px"}}>
+                    <div style={{display: "flex",
+                                flexDirection:'row',
+                                marginBottom: "16px",
+                                marginRight: "16px",
+                                justifyContent: 'space-between',
+                                alignItems: 'center'}}>
                         <div className="searchBar"><input type="text" placeholder="Search issues" /></div>
-
+                        <div style={{display: "flex",
+                                flexDirection:'row',
+                                gap: '16px',
+                                alignItems: 'center'}}>
+                            <span>Filter by:</span>
+                            <DropdownButton id="dropdown-filter" title={statusFilter}>
+                                <Dropdown.Item onClick={() => setStatusFilter('Status')}>All</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('backlog')}>Backlog</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('todo')}>To Do</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('in_progress')}>In Progress</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('review')}>Review</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStatusFilter('closed')}>Closed</Dropdown.Item>
+                            </DropdownButton>
+                            <DropdownButton id="dropdown-filter" title="Assignee"></DropdownButton>
+                            <DropdownButton id="dropdown-filter" title="Sprint"></DropdownButton>
+                        </div>
                     </div>
                     
                     <div className="contentContainer">
@@ -297,10 +329,9 @@ export const Issues = () => {
                                     <Nav.Link href={""} className="nav-link">SPRINT NAME</Nav.Link>
                                 </div>
                                 <div className="issueDetails">
-                                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px'}}>
                                         <div className="issueName">
                                             {isEditing ? (
-                                                <p>
                                                     <input
                                                         type="text"
                                                         value={newIssueName}
@@ -309,14 +340,12 @@ export const Issues = () => {
                                                         onBlur={handleBlur}
                                                         autoFocus
                                                         />
-                                                </p>
-                                                    
                                                 ) : (
-                                                    <p>
+                                                    
                                                         <span onClick={handleEditClick}>
                                                             {getSelectedTask().name}
                                                         </span>
-                                                    </p>
+                                                    
                                                 )
                                             }
                                         </div>
@@ -433,6 +462,7 @@ export const Issues = () => {
                         ) : (<p>No issue selected</p>)}
                         </div>
                     </div>
+                    {/* </Container> */}
                 </div>
             </div>
         </>
