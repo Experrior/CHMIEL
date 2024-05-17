@@ -368,10 +368,14 @@ export const Issues = () => {
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu>
                                                 {statuses.map((status) =>
-                                                    (<Button variant={"custom-tertiary-small"}
-                                                            onClick={() => handleStatusChange(status)}>{
+                                                    (<Dropdown.Item
+                                                        as={Button}
+                                                        variant={"custom-tertiary-small"}
+                                                        onClick={() => handleStatusChange(status)}>
+                                                            {
                                                                 status === "in_progress" ? "IN PROGRESS" : status.toUpperCase()
-                                                                }</Button>)
+                                                            }
+                                                    </Dropdown.Item>)
                                                 )}
                                             </Dropdown.Menu>
                                         </Dropdown>
