@@ -13,15 +13,13 @@ export class SprintChartsComponent2 extends React.Component {
     constructor(props) {
         super(props);
 
+        const inputData = props.inputData || { series: [], categories: [] };
+        const series = inputData.series || [];
+        const categories = inputData.categories || [];
+
         this.state = {
 
-            series: [{
-                name: 'Completed tasks',
-                data: [10, 8, 13, 8, 7],
-            }, {
-                name: 'Unfinished tasks',
-                data: [0, 2, 0, 3, 1],
-            }],
+            series: series,
             options: {
                 chart: {
                     type: 'bar',
@@ -62,10 +60,8 @@ export class SprintChartsComponent2 extends React.Component {
                     },
                 },
                 xaxis: {
-                    type: 'datetime',
-                    categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT',
-                        '01/05/2011 GMT', '01/06/2011 GMT'
-                    ],
+                    type: 'string',
+                        categories: categories,
                 },
                 legend: {
                     position: 'right',

@@ -98,9 +98,11 @@ export const Board = (props) => {
 
     const [panels, setPanels] = useState([
         // ('backlog', 'open', 'in_progress', 'review', 'closed')
-        {id: 1, name: "TO-DO", status: "backlog"},
-        {id: 2, name: "IN PROGRESS", status: "in_progress"},
-        {id: 3, name: "DONE", status: "closed"}
+        {id: 1, name: "BACKLOG", status: "backlog"},
+        // {id: 2, name: "TO DO", status: "todo"},
+        {id: 3, name: "IN PROGRESS", status: "in_progress"},
+        // {id: 4, name: "REVIEW", status: "review"},
+        {id: 5, name: "DONE", status: "closed"}
     ]);
 
     return (
@@ -108,7 +110,7 @@ export const Board = (props) => {
         <Navigation/>
         <div style={{display: "flex"}}>
             <SidebarMenu project={project} from={"board"}/>
-            <Container fluid={"md"} className="boardContainer">
+            <Container fluid={"md"} className="boardContainer" >
                 <div className="boardHeader">
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>

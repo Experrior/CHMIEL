@@ -9,11 +9,11 @@ api = "http://localhost:8084"
 
 session = requests.Session()
 
-
-response = session.get(api+'/actuator/health')
-if response.status_code != 200:
-    api = "http://172.22.0.1:8084"
-
+#
+# response = session.get(api+'/actuator/health', timeout=1)
+# if response.status_code != 200:
+#     api = "http://172.22.0.1:8084"
+#
 
 users = [
     {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "password": "password"},
@@ -297,22 +297,28 @@ for user_json in users:
 for i, jwt in enumerate(jwts):
     print(f"JWT for user {str(users[i])}: {jwt}")
 projects = []
-# create teams
+# create projects
 for project_json in projects_to_make:
     response = session.post(api + "/api/project/createProject", json=project_json, headers={'Authorization': 'Bearer '+ jwts[project_json['projectOwner']]})
     projects.append(response.json()['id'])
     print(f"User {project_json['name']} created with status code {response.status_code}")
     print(response.text)
-# fill teams
+# fill projects
 for project_id in projects:
     for i in range(5):
         response = session.put(api + "/api/project/addUser",
                                json={
                                    "projectID": project_id,
                                    "userId": project_id*5 - i
-                               },  headers={'Authorization': 'Bearer '+ jwts[project_id]})
+                               },  headers={'Authorization': 'Bearer '+ jwts[project_id*5 - i -1]})
         print(response.status_code)
         print(response.text)
+
+response = session.put(api + "/api/project/addUser",
+                       json={
+                           "projectID": 2,
+                           "userId": 1
+                       },  headers={'Authorization': 'Bearer '+ jwts[0]})
 # fill sprints
 sprint_prefix = "Sprint"
 start_date = datetime.datetime(2024, 4, 3, 12, 0, 0)

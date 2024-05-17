@@ -26,11 +26,10 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/swagger-ui/*", "/v3/api-docs","/v3/api-docs/swagger-config", "/api/auth/*").permitAll() // Allow access without authentication
-                                .anyRequest().authenticated()
-//                                .anyRequest().permitAll()
-                                 // Require authentication for all other requests
+                                authorizeRequests
+                                        .requestMatchers("/swagger-ui/*", "/v3/api-docs", "/v3/api-docs/swagger-config", "/api/auth/*").permitAll() // Allow access without authentication
+                                        .anyRequest().authenticated()
+                        // Require authentication for all other requests
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement
@@ -42,30 +41,3 @@ public class SecurityConfiguration {
         return http.build();
     }
 }
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//
-//        http
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests(auth -> auth.requestMatchers("/v3/api-docs/**",
-//                                "/swagger-ui/**", "/swagger-ui.html")
-//                        .permitAll()
-//                        .anyRequest()
-//                        .authenticated())
-////                .authorizeHttpRequests(authorizeRequests ->
-////                        authorizeRequests
-////                                .requestMatchers("/login", "/register", "/swagger-ui/*","/swagger-ui/*/*", "/actuator/health").permitAll() // Allow access without authentication
-//////                                .anyRequest().permitAll() // Require authentication for all other requests
-////                )
-//                .sessionManagement(sessionManagement ->
-//                        sessionManagement
-//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                )
-//                .authenticationProvider(authenticationProvider)
-//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-//
-//        return http.build();
-//    }
-//}
-//

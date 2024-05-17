@@ -41,6 +41,12 @@ public class SprintController {
     }
 
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    @GetMapping("/getSprintsCompletionData/{projectId}")
+    public ResponseEntity<Object> getSprintsCompletionData(@PathVariable Integer projectId){
+        return ResponseEntity.ok(sprintService.getSprintsCompletionData(projectId));
+    }
+
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     @PostMapping("/create")
     public ResponseEntity<Sprint> createSprint(@RequestBody PostSprintRequest postSprintRequest){
         return ResponseEntity.ok(sprintService.createSprint(postSprintRequest));

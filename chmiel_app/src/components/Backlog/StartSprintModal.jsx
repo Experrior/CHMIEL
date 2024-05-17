@@ -1,26 +1,21 @@
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 
-export const EditSprintModal = (props) => {
+export const StartSprintModal = (props) => {
     const [modalShow, setModalShow] = useState(false);
     const [validated, setValidated] = useState(false);
-
     const [sprintName, setSprintName] = useState("");
     const [startTime, setStartTime] = useState("");
     const [endTime, setEndTime] = useState("");
     const [isStarted, setIsStarted] = useState(false);
-
-    // const [taskDescription, setTaskDescription] = useState("");
     const [errors, setErrors] = useState({})
 
 
     useEffect(() => {
-        console.log(props.sprint)
         setSprintName(props.sprint.sprintName)
         setStartTime(formatDateTimeForInput(props.sprint.startTime))
         setEndTime(formatDateTimeForInput(props.sprint.stopTime))
-        setIsStarted(props.sprint?.started)
-        // setTaskDescription("")
+        setIsStarted(props.sprint.isStarted)
     }, [modalShow])
 
     function formatDateTimeForInput(dateTimeString) {
@@ -46,12 +41,11 @@ export const EditSprintModal = (props) => {
         const newErrors = {}
         if (!sprintName || sprintName === '') newErrors.sprintName = 'Sprint name is required!'
 
-        if (isStarted && (!startTime || startTime === '')) newErrors.startTime = 'Start Time is required because the sprint is started!'
+        if (!startTime || startTime === '') newErrors.startTime = 'Start Time is required!'
 
-        if (isStarted && (!endTime || endTime === '')) newErrors.endTime = 'End Time is required because the sprint is started!'
+        if (!endTime || endTime === '') newErrors.endTime = 'End Time is required!'
 
         if (endTime && !startTime) newErrors.startTime = 'Please provide an start date to accompany the end date!'
-
         if (startTime && !endTime) newErrors.endTime = 'Please provide an end date to accompany the start date!'
         else if (startTime && compareDates(startTime, endTime)) newErrors.endTime = 'End time needs to be after start time'
         return newErrors
@@ -64,9 +58,8 @@ export const EditSprintModal = (props) => {
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
         } else {
-            // props.addIssue(sprintName, taskDescription);
             props.editSprint(props.sprint.id, sprintName, startTime === "" ? null : startTime, endTime === "" ? null : endTime,
-                props.sprint.started, props.sprint.finished, false)
+                true, false, true)
             setModalShow(false);
             setErrors({})
         }
@@ -82,7 +75,7 @@ export const EditSprintModal = (props) => {
     }
 
     return (<>
-        <Button variant={"custom-tertiary"} onClick={() => setModalShow(true)}>Edit Sprint</Button>
+        <Button variant={"custom-tertiary-v2"} onClick={() => setModalShow(true)}>Start Sprint</Button>
         <Modal
             show={modalShow}
             onHide={() => {
@@ -97,7 +90,7 @@ export const EditSprintModal = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Edit Sprint
+                    Start Sprint
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -163,26 +156,6 @@ export const EditSprintModal = (props) => {
                             </Form.Group>
                         </Col>
                     </Row>
-                    {/*<Form.Group className={"mb-3"} controlId={"formGroupTaskDescription"}>*/}
-                    {/*    <Form.Label>Task Description</Form.Label>*/}
-                    {/*    <Form.Control*/}
-                    {/*        as="textarea"*/}
-                    {/*        type={"text"}*/}
-                    {/*        rows={3}*/}
-                    {/*        value={taskDescription}*/}
-                    {/*        onChange={(e) => {*/}
-                    {/*            setTaskDescription(e.target.value)*/}
-                    {/*            if (!!errors["taskDescription"]) setErrors({*/}
-                    {/*                ...errors,*/}
-                    {/*                ["taskDescription"]: null*/}
-                    {/*            })*/}
-                    {/*        }}*/}
-                    {/*        isInvalid={!!errors.taskDescription}*/}
-                    {/*    />*/}
-                    {/*    <Form.Control.Feedback type='invalid'>*/}
-                    {/*        {errors.taskDescription}*/}
-                    {/*    </Form.Control.Feedback>*/}
-                    {/*</Form.Group>*/}
                 </Form>
             </Modal.Body>
             <Modal.Footer>

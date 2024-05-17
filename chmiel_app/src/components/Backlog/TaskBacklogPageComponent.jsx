@@ -57,17 +57,17 @@ export const TaskBacklogPageComponent = (props) => {
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown className={"menu"}>
-                <Dropdown.Toggle style={{height: 32, width: 32}} variant="custom-tertiary-v2" id="dropdown-basic">
+                <Dropdown.Toggle disabled={props.task.sprint?.started ? true : false} style={{height: 32, width: 32}} variant="custom-tertiary-v2" id="dropdown-basic">
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {props.task.sprint ? <>
                         <Button onClick={() => props.editTaskSprintId(props.task, null)}
                                 variant={"custom-tertiary-small"}>Backlog</Button>
-                        {props.sprints?.filter((sprint) => sprint.id !== props.task.sprintId).map((sprint) => (
+                        {props.sprints?.filter((sprint) => sprint.id !== props.task.sprintId && !sprint.started).map((sprint) => (
                             <Button onClick={() => props.editTaskSprintId(props.task, sprint.id)}
                                     variant={"custom-tertiary-small"}>{sprint.sprintName}</Button>
                         ))}</> : <>
-                        {props.sprints?.map((sprint) => (
+                        {props.sprints?.filter((sprint) => !sprint.started).map((sprint) => (
                             <Button onClick={() => props.editTaskSprintId(props.task, sprint.id)}
                                     variant={"custom-tertiary-small"}>{sprint.sprintName}</Button>))}
                     </>}

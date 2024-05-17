@@ -4,13 +4,15 @@ import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import './Backlog.css';
 import React, {useEffect, useState} from "react";
 import axios from "../../api/axios";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
 import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
 import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPageComponent";
 import {DeleteAlert} from "../../components/Backlog/DeleteAlert";
+import {StartSprintModal} from "../../components/Backlog/StartSprintModal";
+import {StartSprintAlert} from "../../components/Backlog/StartSprintAlert";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -18,6 +20,8 @@ export const BacklogPage = (props) => {
     const [project, setProject] = useState([])
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
+    const [isThereAStartedSprint, setIsThereAStartedSprint] = useState(false)
+    const navigate = useNavigate();
 
     const formatDate = (dateString) => {
         const options = {
@@ -78,7 +82,7 @@ export const BacklogPage = (props) => {
         })
     }
 
-    const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished) => {
+    const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished, startSprint) => {
         await axios.patch(`/api/sprint/edit/${sprint_id}`, {
                 sprintName: sprintName,
                 startTime: startTime,
@@ -92,9 +96,12 @@ export const BacklogPage = (props) => {
             setSprints(sprints => sprints.map(sprint =>
                 sprint.id === sprint_id ? {...sprint, ...result.data} : sprint
             ))
+
         }).catch(e => {
             console.error(e)
         })
+
+        if (startSprint) navigate(`/board/${project.id}`);
     }
 
     const editTaskStatus = async (task, newStatus) => {
@@ -227,6 +234,10 @@ export const BacklogPage = (props) => {
 
     }, [])
 
+    useEffect(() => {
+        setIsThereAStartedSprint(sprints.filter((sprint) => sprint.started === true).length > 0)
+    }, [sprints])
+
     return (
         <>
             <Navigation sticky={"top"}/>
@@ -248,7 +259,7 @@ export const BacklogPage = (props) => {
                     </div>
                     <div>
                         <div className={"sprintsContainer"}>
-                            {sprints.length !== 0 ? sprints.map((sprint) => (
+                            {sprints.length !== 0 ? sprints.filter((sprint) => sprint.finished === false).map((sprint) => (
                                 <Accordion key={sprint.id} flush>
                                     <Accordion.Item eventKey="0">
                                         <div className={"accordionHeaderContainer"}>
@@ -263,7 +274,18 @@ export const BacklogPage = (props) => {
                                                     : <p></p>
                                                 }
                                             </Accordion.Header>
-                                            <Button variant={"custom-tertiary-v2"}>Start Sprint</Button>
+
+                                            {/*{isThereAStartedSprint ? "true" : "false"}*/}
+
+                                            {sprint.started ? <Button variant={"custom-tertiary-v2"}>Finish
+                                                Sprint</Button> : (isThereAStartedSprint ?
+                                                <Button disabled={true} variant={"custom-tertiary-v2"}>Start
+                                                    Sprint</Button> : (tasks.filter((task) => task.sprint?.id === sprint.id).length === 0 ?
+                                                    <StartSprintAlert alertText={"Can't start sprint with no tasks."}/>
+                                                    : <StartSprintModal sprint={sprint} editSprint={editSprint}/>))}
+                                            {/*<StartSprintModal sprint={sprint}/>*/}
+                                            {/*<Button disabled={true} variant={"custom-tertiary-v2"}>Start Sprint</Button>*/}
+
                                             <Dropdown>
                                                 <Dropdown.Toggle variant="custom-tertiary-v2" id="dropdown-basic">
                                                     More

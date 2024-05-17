@@ -21,4 +21,6 @@ public interface SprintService {
     void deleteSprintById(Integer id);
 
     Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest);
+
+    Object getSprintsCompletionData(Integer projectId);
 }

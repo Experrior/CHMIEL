@@ -27,20 +27,23 @@ export const SprintChartsComponent = ({inputData}) => {
         },
     };
 
-    const labels = ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', "Sprint 5"];
+
+
+    const labels = inputData.categories1;
 
     const data = {
         labels: labels,
-        datasets: [
+        datasets:
+            [
             {
-                label: 'Completed tasks',
+                label: "Completed tasks",
                 backgroundColor: 'rgb(87,255,219)',
-                data: [10, 8, 13, 8, 7],
+                data: inputData["Completed tasks"]
             },
             {
-                label: 'Unfinished tasks',
+                label: "Unfinished tasks",
                 backgroundColor: 'rgb(235,54,54)',
-                data: [0, 2, 0, 3, 1],
+                data: inputData["Unfinished tasks"]
             }
         ]
     };
@@ -56,6 +59,7 @@ export const SprintChartsComponent = ({inputData}) => {
                         </div>
                     </div>
                 </Container>
+
     );
 };
 

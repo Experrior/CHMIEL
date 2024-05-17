@@ -40,35 +40,6 @@ const generateRandomData = () => {
     return labels.map(() => Math.floor(Math.random() * 1000));
 };
 
-const data = {
-    labels,
-    datasets: [
-        {
-            type: 'line',
-            label: 'Dataset 1',
-            borderColor: 'rgb(255, 99, 132)',
-            borderWidth: 2,
-            fill: false,
-            data: generateRandomData(),
-        },
-        {
-            type: 'bar',
-            label: 'Dataset 2',
-            backgroundColor: 'rgb(75, 192, 192)',
-            data: generateRandomData(),
-            borderColor: 'white',
-            borderWidth: 2,
-        },
-        {
-            type: 'bar',
-            label: 'Dataset 3',
-            backgroundColor: 'rgb(53, 162, 235)',
-            data: generateRandomData(),
-        },
-    ],
-};
-
-
 
 const ChartsPage = () => {
     const [cookies] = useCookies(["token"]);
@@ -82,7 +53,6 @@ const ChartsPage = () => {
     const { projectId } = useParams();
     const [queryParameters] = useSearchParams()
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -129,15 +99,25 @@ const ChartsPage = () => {
             }
         };
 
-        // const interval = setInterval(() => {
+        const fetchSprintsData = async() =>{
+            try {
+                const response = await axios.get('/api/sprint/getSprintsCompletionData/' + projectId, {
+                    headers: { Authorization: "Bearer " + cookies.token }
+                });
+                setSprintsData(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
         fetchData();
         fetchEpicsData();
         fetchChosenProject();
-        // }, );
+        fetchSprintsData();
+
 
         // return () => clearInterval(interval);
     }, [projectId]); // Run whenever selectedProject changes
-
 
     return (
         <>
@@ -165,7 +145,6 @@ const ChartsPage = () => {
                             <div>
                                 <br/>
                                 <div>
-                                    <p>{projectId}</p>
                                 </div>
                                 <br/>
                                 <br/>
@@ -189,7 +168,7 @@ const ChartsPage = () => {
 
                                         }
                                         >
-                                            {project.id}
+                                            {project.name}
                                         </Dropdown.Item>
                                     ))}
                                 </DropdownButton>
@@ -205,8 +184,11 @@ const ChartsPage = () => {
                         <Col>
                             <EpicsChartsComponent inputData={epicsData}/>
                         </Col>
+                        {/*<Col>*/}
+                        {/*    <SprintChartsComponent2 inputData={sprintsData}/>*/}
+                        {/*</Col>*/}
                         <Col>
-                            <SprintChartsComponent2 inputData={sprintsData}/>
+                            <SprintChartsComponent inputData={sprintsData}/>
                         </Col>
                     </Row>
                 </Col>
