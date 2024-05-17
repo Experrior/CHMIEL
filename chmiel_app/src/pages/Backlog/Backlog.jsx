@@ -12,6 +12,7 @@ import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
 import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPageComponent";
 import {DeleteAlert} from "../../components/Backlog/DeleteAlert";
 import {StartSprintModal} from "../../components/Backlog/StartSprintModal";
+import {StartSprintAlert} from "../../components/Backlog/StartSprintAlert";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -275,8 +276,9 @@ export const BacklogPage = (props) => {
                                             {sprint.started ? <Button variant={"custom-tertiary-v2"}>Stop
                                                 Sprint</Button> : (isThereAStartedSprint ?
                                                 <Button disabled={true} variant={"custom-tertiary-v2"}>Start
-                                                    Sprint</Button> :
-                                                <StartSprintModal sprint={sprint} editSprint={editSprint}/>)}
+                                                    Sprint</Button> : (tasks.filter((task) => task.sprint?.id === sprint.id).length === 0 ?
+                                                    <StartSprintAlert alertText={"Can't start sprint with no tasks."}/>
+                                                    : <StartSprintModal sprint={sprint} editSprint={editSprint}/>))}
                                             {/*<StartSprintModal sprint={sprint}/>*/}
                                             {/*<Button disabled={true} variant={"custom-tertiary-v2"}>Start Sprint</Button>*/}
 

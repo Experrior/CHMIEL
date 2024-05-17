@@ -41,8 +41,11 @@ export const StartSprintModal = (props) => {
         const newErrors = {}
         if (!sprintName || sprintName === '') newErrors.sprintName = 'Sprint name is required!'
 
-        if (endTime && !startTime) newErrors.startTime = 'Please provide an start date to accompany the end date!'
+        if (!startTime || startTime === '') newErrors.startTime = 'Start Time is required!'
 
+        if (!endTime || endTime === '') newErrors.endTime = 'End Time is required!'
+
+        if (endTime && !startTime) newErrors.startTime = 'Please provide an start date to accompany the end date!'
         if (startTime && !endTime) newErrors.endTime = 'Please provide an end date to accompany the start date!'
         else if (startTime && compareDates(startTime, endTime)) newErrors.endTime = 'End time needs to be after start time'
         return newErrors
