@@ -11,6 +11,7 @@ import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
 import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
 import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPageComponent";
 import {DeleteAlert} from "../../components/Backlog/DeleteAlert";
+import {StartSprintModal} from "../../components/Backlog/StartSprintModal";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -18,6 +19,7 @@ export const BacklogPage = (props) => {
     const [project, setProject] = useState([])
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
+    const [isThereAStartedSprint, setIsThereAStartedSprint] = useState(false)
 
     const formatDate = (dateString) => {
         const options = {
@@ -227,6 +229,10 @@ export const BacklogPage = (props) => {
 
     }, [])
 
+    useEffect(() => {
+        setIsThereAStartedSprint(sprints.filter((sprint) => sprint.started === true).length > 0)
+    }, [sprints])
+
     return (
         <>
             <Navigation sticky={"top"}/>
@@ -263,7 +269,17 @@ export const BacklogPage = (props) => {
                                                     : <p></p>
                                                 }
                                             </Accordion.Header>
-                                            <Button variant={"custom-tertiary-v2"}>Start Sprint</Button>
+
+                                            {/*{isThereAStartedSprint ? "true" : "false"}*/}
+
+                                            {sprint.started ? <Button variant={"custom-tertiary-v2"}>Stop
+                                                Sprint</Button> : (isThereAStartedSprint ?
+                                                <Button disabled={true} variant={"custom-tertiary-v2"}>Start
+                                                    Sprint</Button> :
+                                                <StartSprintModal sprint={sprint} editSprint={editSprint}/>)}
+                                            {/*<StartSprintModal sprint={sprint}/>*/}
+                                            {/*<Button disabled={true} variant={"custom-tertiary-v2"}>Start Sprint</Button>*/}
+
                                             <Dropdown>
                                                 <Dropdown.Toggle variant="custom-tertiary-v2" id="dropdown-basic">
                                                     More
