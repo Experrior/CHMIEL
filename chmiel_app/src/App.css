@@ -51,6 +51,25 @@
     color: #696969 !important;
 }
 
+.btn-custom-tertiary-small {
+    display: block !important;
+    outline: 0 !important;
+    border: none !important;
+    font-weight: 600 !important;
+    width: 100%;
+    font-size: 14px !important;
+    text-align: start !important;
+    padding: 0 12px 0 12px !important;
+    border-radius: 0 !important;
+}
+
+.btn-custom-tertiary-small:hover {
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    background: #e8e8e8 !important;
+    color: #696969 !important;
+}
+
 .btn-custom-tertiary-v2 {
     display: block !important;
     outline: 0 !important;
@@ -64,6 +83,26 @@
 .btn-custom-tertiary-v2:hover {
     font-weight: 600 !important;
     font-size: 16px !important;
+    background: #d3d3d3 !important;
+    color: #696969 !important;
+}
+
+
+.btn-custom-tertiary-small-v2 {
+    display: block !important;
+    outline: 0 !important;
+    border: none !important;
+    font-weight: 600 !important;
+    width: 100%;
+    font-size: 14px !important;
+    text-align: start !important;
+    background: #e7e7e7 !important;
+    padding: 0 12px 0 12px !important;
+}
+
+.btn-custom-tertiary-small-v2:hover {
+    font-weight: 600 !important;
+    font-size: 14px !important;
     background: #d3d3d3 !important;
     color: #696969 !important;
 }
@@ -84,4 +123,34 @@
     font-size: 16px !important;
     background: #f0f0f0 !important;
     color: #696969 !important;
+}
+
+.btn-custom-circle {
+    /*display: block !important;*/
+    outline: 0 !important;
+    border: none !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: #696969 !important;
+    padding: 0 !important;
+}
+
+.btn-custom-circle:hover {
+    filter: brightness(90%);
+}
+
+
+/* ALERTS */
+.custom-centered-alert {
+    position: fixed !important;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050; /* Higher than most other items so it appears on top */
+    width: auto; /* Adjust based on content size or leave as auto */
+    border-radius: 0 !important; /* Optional, for full-width can remove border-radius */
 }

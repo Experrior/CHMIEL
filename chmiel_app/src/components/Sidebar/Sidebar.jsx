@@ -66,7 +66,7 @@ export const SidebarMenu = (props) => {
                             transition: 'width 0.3s ease',
                         };
                     },
-                    }}
+                    }}      
                     
                 >
                     {sidebarVisible ? <div className="menuTitle">{project.projectName}</div>

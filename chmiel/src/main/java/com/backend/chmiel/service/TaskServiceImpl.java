@@ -113,11 +113,13 @@ public class TaskServiceImpl implements TaskService {
         if (editTaskRequest.getAssigneeId() != null){
             User user = userRepository.findById(editTaskRequest.getAssigneeId()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
             task.setAssignee(user);
-        }
+        } else task.setAssignee(null);
+
         if (editTaskRequest.getSprintId() != null){
             Sprint sprint = sprintRepository.findById(editTaskRequest.getSprintId()).orElseThrow(() -> new UsernameNotFoundException(String.valueOf(editTaskRequest.getSprintId())));
             task.setSprint(sprint);
-        }
+        } else task.setSprint(null);
+
         if (editTaskRequest.getDescription() != null){
           task.setDescription(editTaskRequest.getDescription());
         }

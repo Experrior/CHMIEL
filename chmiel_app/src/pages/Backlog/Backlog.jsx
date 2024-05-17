@@ -9,6 +9,8 @@ import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
 import {EditSprintModal} from "../../components/Backlog/EditSprintModal";
+import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPageComponent";
+import {DeleteAlert} from "../../components/Backlog/DeleteAlert";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -17,13 +19,28 @@ export const BacklogPage = (props) => {
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
 
-    const addIssue = async (taskName, taskDescription) => {
+    const formatDate = (dateString) => {
+        const options = {
+            day: '2-digit',
+            month: 'short',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+            timeZone: 'UTC'
+        };
+        const date = new Date(dateString);
+        return date.toLocaleString('en-US', options);
+    }
+
+    const addIssue = async (taskName, taskDescription, timeEstimate, assigneeId) => {
+        console.log(assigneeId)
         await axios.post("/api/task/create",
             {
                 name: taskName,
                 description: taskDescription,
                 projectId: projectId,
-                timeEstimate: 2
+                timeEstimate: timeEstimate,
+                assigneeId: assigneeId
             },
             {
                 headers: {Authorization: `Bearer ${cookies.token}`}
@@ -62,8 +79,6 @@ export const BacklogPage = (props) => {
     }
 
     const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished) => {
-        console.log("edit " + sprint_id)
-        console.log(sprintName, startTime, endTime, isStarted, isFinished)
         await axios.patch(`/api/sprint/edit/${sprint_id}`, {
                 sprintName: sprintName,
                 startTime: startTime,
@@ -82,13 +97,93 @@ export const BacklogPage = (props) => {
         })
     }
 
+    const editTaskStatus = async (task, newStatus) => {
+        await axios.put(`/api/task/update`,
+            {
+                id: task.id,
+                assigneeId: task.assignee ? task.assignee.id : null,
+                sprintId: task.sprint.id,
+                name: task.name,
+                description: task.description,
+                loggedHours: task.loggedHours,
+                timeEstimate: task.timeEstimate,
+                status: newStatus === "in progress" ? "in_progress" : newStatus,
+                inEpic: task.inEpic
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`
+                }
+            }
+        ).then(result => {
+            console.log(result.data)
+            setTasks(tasks => tasks.map(task2 => task2.id === task.id ? {...task2, ...result.data} : task2))
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
+    const editTaskAssignee = async (task, assigneeId) => {
+        console.log("id")
+        console.log(assigneeId)
+        await axios.put(`/api/task/update`,
+            {
+                id: task.id,
+                assigneeId: assigneeId,
+                sprintId: task.sprint.id,
+                name: task.name,
+                description: task.description,
+                loggedHours: task.loggedHours,
+                timeEstimate: task.timeEstimate,
+                status: task.status,
+                inEpic: task.inEpic
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`
+                }
+            }
+        ).then(result => {
+            console.log(result.data)
+            setTasks(tasks => tasks.map(task2 => task2.id === task.id ? {...task2, ...result.data} : task2))
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
+    const editTaskSprintId = async (task, sprintId) => {
+        await axios.put(`/api/task/update`,
+            {
+                id: task.id,
+                assigneeId: task.assigneeId,
+                sprintId: sprintId,
+                name: task.name,
+                description: task.description,
+                loggedHours: task.loggedHours,
+                timeEstimate: task.timeEstimate,
+                status: task.status,
+                inEpic: task.inEpic
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${cookies.token}`
+                }
+            }
+        ).then(result => {
+            console.log(result.data)
+            setTasks(tasks => tasks.map(task2 => task2.id === task.id ? {...task2, ...result.data} : task2))
+        }).catch(e => {
+            console.error(e)
+        })
+    }
+
     useEffect(() => {
 
         const getProject = async () => {
             try {
                 const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
+                        headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
                 console.log(response.data)
@@ -97,12 +192,12 @@ export const BacklogPage = (props) => {
                 console.log(error)
             }
         };
-        
+
         const getSprints = async () => {
             try {
                 const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
+                        headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
                 console.log(response.data)
@@ -116,7 +211,7 @@ export const BacklogPage = (props) => {
             try {
                 const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
+                        headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
                 console.log(response.data)
@@ -129,7 +224,7 @@ export const BacklogPage = (props) => {
         getProject()
         getSprints()
         getTasks()
-        
+
     }, [])
 
     return (
@@ -159,6 +254,14 @@ export const BacklogPage = (props) => {
                                         <div className={"accordionHeaderContainer"}>
                                             <Accordion.Header>
                                                 <p>{sprint.sprintName}</p>
+                                                {sprint.startTime ?
+                                                    <p style={{
+                                                        marginLeft: 16,
+                                                        color: "grey",
+                                                        fontSize: 12
+                                                    }}>{formatDate(sprint.startTime)} - {formatDate(sprint.stopTime)}</p>
+                                                    : <p></p>
+                                                }
                                             </Accordion.Header>
                                             <Button variant={"custom-tertiary-v2"}>Start Sprint</Button>
                                             <Dropdown>
@@ -167,14 +270,24 @@ export const BacklogPage = (props) => {
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
                                                     <EditSprintModal sprint={sprint} editSprint={editSprint}/>
-                                                    <DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>
+                                                    {/*<DeleteSprintModal sprint={sprint} deleteSprint={deleteSprint}/>*/}
+                                                    {tasks.filter((task) => task.sprint?.id === sprint.id).length > 0 ?
+                                                        <DeleteAlert/>
+                                                        :
+                                                        <DeleteSprintModal sprint={sprint}
+                                                                           deleteSprint={deleteSprint}/>}
                                                 </Dropdown.Menu>
                                             </Dropdown>
                                         </div>
                                         <Accordion.Body>
-                                            <div>
-                                                task test
-                                            </div>
+                                            {tasks.length !== 0 ? tasks.filter((task) => task.sprint?.id === sprint.id).map((task) => {
+                                                return <TaskBacklogPageComponent task={task}
+                                                                                 editTaskStatus={editTaskStatus}
+                                                                                 users={project.users}
+                                                                                 editTaskAssignee={editTaskAssignee}
+                                                                                 sprints={sprints.filter((sprint2) => sprint2.id !== sprint.id)}
+                                                                                 editTaskSprintId={editTaskSprintId}/>
+                                            }) : <></>}
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
@@ -192,10 +305,14 @@ export const BacklogPage = (props) => {
                                         Sprint</Button>
                                 </div>
                                 <Accordion.Body>
-                                    {tasks.length !== 0 ? tasks.map((task) => {
-                                        return <div key={task.id}>{task.name}</div>
+                                    {tasks.length !== 0 ? tasks.filter((task) => task.sprint === null).map((task) => {
+                                        return <TaskBacklogPageComponent task={task} editTaskStatus={editTaskStatus}
+                                                                         users={project.users}
+                                                                         editTaskAssignee={editTaskAssignee}
+                                                                         sprints={sprints}
+                                                                         editTaskSprintId={editTaskSprintId}/>
                                     }) : <></>}
-                                    <CreateIssueModal addIssue={addIssue}/>
+                                    <CreateIssueModal addIssue={addIssue} user={project.users}/>
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
