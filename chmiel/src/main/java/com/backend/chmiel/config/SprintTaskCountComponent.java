@@ -12,7 +12,7 @@ public class SprintTaskCountComponent{
         this.sprintRepository = sprintRepository;
     }
 
-    @Scheduled(fixedRate=1000*20) // runs every 12 hours
+    @Scheduled(fixedRate=1000*60*1) // runs every 1 minute
     public void SprintTaskCountComponent() {
         System.out.println("Updating task count - " + System.currentTimeMillis() / 1000);
 
