@@ -456,13 +456,14 @@ export const Issues = () => {
                                             }
                                         </div>
                                         <div className="createComment">
-                                            <span>
-                                                {/* TODO: get user profile picture */}
-                                                user profile picture
+                                            <span className="btn-custom-circle">
+                                                <p className="userLetters">
+                                                    {user.firstName[0]}{user.lastName[0]}
+                                                </p>
                                             </span>
                                             {isAdding ? (
                                                 <>
-                                                    <form onSubmit={handleCommentSubmit}>
+                                                    <form onSubmit={handleCommentSubmit} style={{ width: '100%', resize: 'vertical' }}>
                                                         <textarea
                                                             rows={3}
                                                             value={newComment}
@@ -485,7 +486,7 @@ export const Issues = () => {
                                                         </div>
                                                     </form>
                                                 </> ) : (
-                                                    <div onClick={handleAddClick} className="add-comment">
+                                                    <div onClick={handleAddClick} className="add-comment" style={{ width: '100%', resize: 'vertical' }}>
                                                         <p>Add a comment...</p>
                                                     </div>
                                                 )
