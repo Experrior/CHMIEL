@@ -59,7 +59,7 @@ export const StartSprintModal = (props) => {
             setErrors(newErrors)
         } else {
             props.editSprint(props.sprint.id, sprintName, startTime === "" ? null : startTime, endTime === "" ? null : endTime,
-                true, false)
+                true, false, true)
             setModalShow(false);
             setErrors({})
         }
