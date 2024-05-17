@@ -19,8 +19,7 @@ export const EditSprintModal = (props) => {
         setSprintName(props.sprint.sprintName)
         setStartTime(formatDateTimeForInput(props.sprint.startTime))
         setEndTime(formatDateTimeForInput(props.sprint.stopTime))
-        setIsStarted(props.sprint.isStarted)
-
+        setIsStarted(props.sprint?.started)
         // setTaskDescription("")
     }, [modalShow])
 
@@ -47,6 +46,10 @@ export const EditSprintModal = (props) => {
         const newErrors = {}
         if (!sprintName || sprintName === '') newErrors.sprintName = 'Sprint name is required!'
 
+        if (isStarted && (!startTime || startTime === '')) newErrors.startTime = 'Start Time is required because the sprint is started!'
+
+        if (isStarted && (!endTime || endTime === '')) newErrors.endTime = 'End Time is required because the sprint is started!'
+
         if (endTime && !startTime) newErrors.startTime = 'Please provide an start date to accompany the end date!'
 
         if (startTime && !endTime) newErrors.endTime = 'Please provide an end date to accompany the start date!'
@@ -63,7 +66,7 @@ export const EditSprintModal = (props) => {
         } else {
             // props.addIssue(sprintName, taskDescription);
             props.editSprint(props.sprint.id, sprintName, startTime === "" ? null : startTime, endTime === "" ? null : endTime,
-                props.sprint.started, props.sprint.finished)
+                props.sprint.started, props.sprint.finished, false)
             setModalShow(false);
             setErrors({})
         }

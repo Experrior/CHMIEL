@@ -4,7 +4,7 @@ import {SidebarMenu} from "../../components/Sidebar/Sidebar";
 import './Backlog.css';
 import React, {useEffect, useState} from "react";
 import axios from "../../api/axios";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {CreateIssueModal} from "../../components/Backlog/CreateIssueModal";
 import {useCookies} from "react-cookie";
 import {DeleteSprintModal} from "../../components/Backlog/DeleteSprintModal";
@@ -21,6 +21,7 @@ export const BacklogPage = (props) => {
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
     const [isThereAStartedSprint, setIsThereAStartedSprint] = useState(false)
+    const navigate = useNavigate();
 
     const formatDate = (dateString) => {
         const options = {
@@ -81,7 +82,7 @@ export const BacklogPage = (props) => {
         })
     }
 
-    const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished) => {
+    const editSprint = async (sprint_id, sprintName, startTime, endTime, isStarted, isFinished, startSprint) => {
         await axios.patch(`/api/sprint/edit/${sprint_id}`, {
                 sprintName: sprintName,
                 startTime: startTime,
@@ -95,9 +96,12 @@ export const BacklogPage = (props) => {
             setSprints(sprints => sprints.map(sprint =>
                 sprint.id === sprint_id ? {...sprint, ...result.data} : sprint
             ))
+
         }).catch(e => {
             console.error(e)
         })
+
+        if (startSprint) navigate(`/board/${project.id}`);
     }
 
     const editTaskStatus = async (task, newStatus) => {
@@ -255,7 +259,7 @@ export const BacklogPage = (props) => {
                     </div>
                     <div>
                         <div className={"sprintsContainer"}>
-                            {sprints.length !== 0 ? sprints.map((sprint) => (
+                            {sprints.length !== 0 ? sprints.filter((sprint) => sprint.finished === false).map((sprint) => (
                                 <Accordion key={sprint.id} flush>
                                     <Accordion.Item eventKey="0">
                                         <div className={"accordionHeaderContainer"}>
@@ -273,7 +277,7 @@ export const BacklogPage = (props) => {
 
                                             {/*{isThereAStartedSprint ? "true" : "false"}*/}
 
-                                            {sprint.started ? <Button variant={"custom-tertiary-v2"}>Stop
+                                            {sprint.started ? <Button variant={"custom-tertiary-v2"}>Finish
                                                 Sprint</Button> : (isThereAStartedSprint ?
                                                 <Button disabled={true} variant={"custom-tertiary-v2"}>Start
                                                     Sprint</Button> : (tasks.filter((task) => task.sprint?.id === sprint.id).length === 0 ?
