@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SprintServiceImpl implements SprintService {
@@ -92,6 +92,41 @@ public class SprintServiceImpl implements SprintService {
         if (editSprintRequest.getIsStarted() != null) sprint.setStarted(editSprintRequest.getIsStarted());
         if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
         return sprintRepository.save(sprint);
+    }
+
+    @Override
+    public Object getSprintsCompletionData(Integer projectId) {
+        List<Sprint> sprints = sprintRepository.findAllByProjectId(projectId);
+
+        Map<String, Object> sprintData = new HashMap<>();
+        List<Integer> completedTasks = new ArrayList<>();
+        List<Integer> unfinishedTasks = new ArrayList<>();
+        List<String> categories = new ArrayList<>();
+
+        // Populate series data and categories
+        for (Sprint sprint : sprints) {
+            if ((sprint.getStartingTaskCount() != null) && (sprint.getEndingTaskCount() != null)){
+
+                int completed = sprint.getStartingTaskCount() - sprint.getEndingTaskCount();
+                String sprintName = sprint.getSprintName();
+                categories.add(sprintName);
+
+                // Calculate completed tasks
+
+                completedTasks.add(completed);
+
+                // Unfinished tasks
+                unfinishedTasks.add(sprint.getEndingTaskCount());
+            }
+
+        }
+
+        // Add data to sprintData map
+        sprintData.put("Completed tasks", completedTasks);
+        sprintData.put("Unfinished tasks", unfinishedTasks);
+        sprintData.put("categories1", categories);
+
+        return sprintData;
     }
 
 }

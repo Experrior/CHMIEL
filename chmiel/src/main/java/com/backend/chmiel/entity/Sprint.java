@@ -34,13 +34,17 @@ public class Sprint {
     @Column(name = "stop_time")
     private Timestamp stopTime;
 
-//    private boolean logged;
-
     @Column(name = "is_started")
     private boolean isStarted;
 
     @Column(name = "is_finished")
     private boolean isFinished;
+
+    @Column(name = "starting_task_count")
+    private Integer startingTaskCount;
+
+    @Column(name = "ending_task_count")
+    private Integer endingTaskCount;
 
 
     @Override
@@ -51,7 +55,16 @@ public class Sprint {
                 ", projectId=" + projectId +
                 ", startTime=" + startTime +
                 ", stopTime=" + stopTime +
-//                ", logged=" + logged +
+                ", startingTaskCount=" + startingTaskCount +
+                ", endingTaskCount=" + endingTaskCount +
                 '}';
     }
+
+//    public int getStartingTaskCount() {
+//        return this.startingTaskCount;
+//    }
+//
+//    public int getEndingTaskCount() {
+//        return this.endingTaskCount;
+//    }
 }

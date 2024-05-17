@@ -1,6 +1,7 @@
 package com.backend.chmiel.service;
 
 import com.backend.chmiel.dao.TaskCommentRepository;
+import com.backend.chmiel.dao.UserRepository;
 import com.backend.chmiel.entity.TaskComment;
 import com.backend.chmiel.entity.User;
 import com.backend.chmiel.exception.TaskCommentNotFoundException;
@@ -16,10 +17,12 @@ import java.util.Optional;
 @Service
 public class TaskCommentServiceImpl implements TaskCommentService{
     private final TaskCommentRepository taskCommentRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public TaskCommentServiceImpl(TaskCommentRepository taskCommentRepository){
+    public TaskCommentServiceImpl(TaskCommentRepository taskCommentRepository, UserRepository userRepository){
         this.taskCommentRepository = taskCommentRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -45,8 +48,9 @@ public class TaskCommentServiceImpl implements TaskCommentService{
 
     @Override
     public TaskComment createTaskComment(PostTaskCommentRequest postTaskCommentRequest){
+        User author = userRepository.findById(postTaskCommentRequest.getAuthorId()).orElseThrow(() -> new UsernameNotFoundException("Author not found"));
         return taskCommentRepository.save(TaskComment.builder()
-                        .author(postTaskCommentRequest.getAuthorId())
+                        .author(author)
                         .message(postTaskCommentRequest.getMessage())
                         .taskId(postTaskCommentRequest.getTaskId())
                 .build());

@@ -16,14 +16,14 @@ Dominika:
 Mateusz:
 
 
-    contiune work on charts(
-    finish second chart,
-    implement backend logic to provide data
-    )
+    --contiune work on charts(
+    --finish second chart,
+    --implement backend logic to provide data
+    --)
 
     hotfix:
-        don't show user creds in api repsonses
-        show whole user data in api reposne for task comments
+        -backlog-don't show user creds in api repsonses
+        --show whole user data in api reposne for task comments
 
 
 Zuzia:
