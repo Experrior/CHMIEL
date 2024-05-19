@@ -171,6 +171,15 @@ export const Issues = () => {
         })
     }
 
+    const updateTaskComments = (commentId, updatedComment) => {
+        setTaskComments(taskComments.map(comment => comment.id === commentId ? updatedComment : comment))
+    };
+
+    const deleteTaskComment = async (commentId) => {
+        setTaskComments(taskComments.filter(comment => comment.id !== commentId))
+    };
+    
+
     // const deleteComment = async (commentId) => {
     //     await axios.delete(`/api/task-comment/delete/${commentId}`,
     //     {
@@ -479,6 +488,8 @@ export const Issues = () => {
                                                             key={comment.id} 
                                                             comment={comment}
                                                             user={user.id === comment.author.id ? user : null}
+                                                            updateTaskComment={updateTaskComments}
+                                                            deleteTaskComment={deleteTaskComment}
                                                         />
                                                     })
                                                 ) : <><p>No comments yet.</p></>

@@ -6,13 +6,30 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
 import {useState} from "react";
+import {ConfirmationModal} from "./ConfirmationModal";
 
-export const IssueComment = ({ comment, user }) => { 
+export const IssueComment = ({ comment, user, updateTaskComment, deleteTaskComment }) => { 
     const [cookies] = useCookies(["token"]);
 
     const [isEditing, setIsEditing] = useState(false);
     const [editedMessage, setEditedMessage] = useState(comment.message);
 
+    const [showConfirmation, setShowConfirmation] = useState(false);
+
+    // deletion
+    const handleDeleteClick = () => {
+        setShowConfirmation(true);
+    }
+
+    const handleConfirmDelete = () => {
+        deleteComment(comment.id);
+    }
+
+    const handleCancelDelete = () => {
+        setShowConfirmation(false);
+    }
+
+    // editing
     const handleEditClick = () => {
         setIsEditing(true);
     }
@@ -31,16 +48,19 @@ export const IssueComment = ({ comment, user }) => {
         setEditedMessage(comment.message);
         setIsEditing(false);
     }
-    
+
+    // API CALLS
     const deleteComment = async (commentId) => {
         await axios.delete(`/api/task-comment/delete/${commentId}`,
         {
             headers: {Authorization: `Bearer ${cookies.token}`}
         }).then(result => {
             console.log(result.data)
-            // setTaskComments(taskComments.filter(comment => comment.id !== commentId))
+            deleteTaskComment(commentId)
         }).catch(e => {
             console.error(e)
+        }).finally(() => {
+            setShowConfirmation(false);
         })
     }
 
@@ -53,8 +73,8 @@ export const IssueComment = ({ comment, user }) => {
             headers: {Authorization: `Bearer ${cookies.token}`}
         }).then(result => {
             console.log("new message:" + message)
-            console.log(result.data)
-            // setTaskComments(taskComments.map(comment => comment.id === commentId ? result.data : comment))
+            console.log(result.data.message)
+            updateTaskComment(comment.id, result.data)
         }).catch(e => {
             console.error(e)
         })
@@ -62,6 +82,13 @@ export const IssueComment = ({ comment, user }) => {
 
     return (
         <>
+        {showConfirmation && (
+                <ConfirmationModal
+                    message="Are you sure you want to delete this comment?"
+                    onConfirm={handleConfirmDelete}
+                    onCancel={handleCancelDelete}
+                />
+            )}
         <div className="commentBody">
             <div className="author">
                 <span> {comment.author?.firstName} {comment.author?.lastName} </span>
@@ -74,7 +101,7 @@ export const IssueComment = ({ comment, user }) => {
                         />
                          <FontAwesomeIcon icon={faTrash} 
                                          className='mod' 
-                                         onClick={() => { deleteComment(comment.id) }} 
+                                         onClick={() => { handleDeleteClick() }} 
                         />
                     </div> : null
                 }
