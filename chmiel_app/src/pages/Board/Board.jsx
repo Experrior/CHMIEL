@@ -53,23 +53,24 @@ export const Board = (props) => {
             }
         };
 
-        const getTasks = async () => {
-            try {
-                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
-                    {
-                        headers: {Authorization: `Bearer ${cookies.token}`}
-                    }
-                )
-                console.log(response.data)
-                setTasks(response.data);
-            } catch (error) {
-                console.log(error)
-            }
-        };
+        // const getTasks = async () => {
+        //     try {
+        //         const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
+        //             {
+        //                 headers: {Authorization: `Bearer ${cookies.token}`}
+        //             }
+        //         )
+        //         console.log('TASKS:')
+        //         console.log(response.data)
+        //         setTasks(response.data);
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        // };
 
         getProject()
         getSprints()
-        getTasks()
+        // getTasks()
 
         getProject()
         console.log(projectId)
@@ -77,11 +78,33 @@ export const Board = (props) => {
 
     useEffect(() => {
         setIsThereAStartedSprint(sprints.filter((sprint) => sprint.started === true).length > 0)
-        setStartedSprint(sprints.filter((sprint) => sprint.started === true))
-        console.log('STARTED SPRINT:')
-        console.log(startedSprint[0].sprintName)
-        setBoardName(startedSprint[0].sprintName + " Board")
+        console.log('IS THERE A STARTED SPRINT:')
+        console.log(isThereAStartedSprint)
+        try {
+            setStartedSprint(sprints.filter((sprint) => sprint.started === true))
+            console.log('STARTED SPRINT:')
+            console.log(startedSprint[0].sprintName)
+            setBoardName(startedSprint[0].sprintName + " Board")
+            getTasksBySprint(startedSprint[0].id)
+        } catch (error) {
+            console.log(error)
+        }
     }, [sprints]);
+
+    const getTasksBySprint = async (sprint_id) => {
+        try {
+            const response = await axios.get(`/api/task/getTasksBySprintId/${sprint_id}`,
+                {
+                    headers: {Authorization: `Bearer ${cookies.token}`}
+                }
+            )
+            console.log('TASKS:')
+            console.log(response.data)
+            setTasks(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     const [boardName, setBoardName] = useState('');
     const [isEditing, setIsEditing] = useState(false);
@@ -130,9 +153,9 @@ export const Board = (props) => {
     const [panels, setPanels] = useState([
         // ('backlog', 'open', 'in_progress', 'review', 'closed')
         {id: 1, name: "BACKLOG", status: "backlog"},
-        // {id: 2, name: "TO DO", status: "todo"},
+        {id: 2, name: "TO-DO", status: "todo"},
         {id: 3, name: "IN PROGRESS", status: "in_progress"},
-        // {id: 4, name: "REVIEW", status: "review"},
+        {id: 4, name: "REVIEW", status: "review"},
         {id: 5, name: "DONE", status: "closed"}
     ]);
 
@@ -141,7 +164,7 @@ export const Board = (props) => {
         <Navigation/>
         <div style={{display: "flex"}}>
             <SidebarMenu project={project} from={"board"}/>
-            <Container fluid={"md"} className="boardContainer" >
+            <div className="boardContainer" >
                 <div className="boardHeader">
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
@@ -190,11 +213,11 @@ export const Board = (props) => {
                 <div className="innerBoardContainer">
                     {
                         panels.map((panel) => {
-                            return <BoardComponent panel={panel} projectId={projectId}/>
+                            return <BoardComponent panel={panel} sprint_tasks={tasks}/>
                         })
                     }
                 </div>
-            </Container>
+            </div>
         </div>
             
         </>

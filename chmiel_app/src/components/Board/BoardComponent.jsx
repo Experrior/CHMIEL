@@ -3,29 +3,14 @@ import { TaskComponent } from "../../components/Task/TaskComponent";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-export const BoardComponent = ({panel, projectId}) => {
+export const BoardComponent = ({panel, sprint_tasks}) => {
 
-    const [tasks, setTasks] = useState([
-        {id: 1, name: "testTask1"},
-        {id: 2, name: "testTask2"},
-        {id: 3, name: "testTask3"},
-        {id: 4, name: "testTask4"}
-    ]);
+    const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`);
-                const filteredTasks = response.data.filter(task => task.status === panel.status);
-                setTasks(filteredTasks);
-                
-            } catch (error) {
-                console.log(error);
-            }
-        };
+        setTasks(sprint_tasks.filter(task => task.status === panel.status))
+    }, [sprint_tasks]);
 
-        fetchTasks();
-    }, [panel.name]);
 
     return(
         <div key={panel.id} className={"boardComponentContainer"}>
@@ -36,7 +21,7 @@ export const BoardComponent = ({panel, projectId}) => {
                     tasks.map((task) => {
                         return <TaskComponent task={task}/>
                     })
-                ) : <><p>You are free to go. No issues have been assigned to you!</p></>
+                ) : <><p></p></>
             }
         </div>
         </div>
