@@ -15,10 +15,14 @@ import {useParams} from "react-router-dom";
 
 export const Board = (props) => {
     let { projectId } = useParams();
-    const [project, setProject] = useState([])
     const [cookies] = useCookies(["token"]);
-    const screenSize = useScreenSize();
-    const [columnNum, setColumnNum] = useState(0);
+
+    const [project, setProject] = useState([]);
+    const [sprints, setSprints] = useState([]);
+    const [tasks, setTasks] = useState([])
+
+    const [isThereAStartedSprint, setIsThereAStartedSprint] = useState(false);
+    const [startedSprint, setStartedSprint] = useState([]);
 
     useEffect(() => {
         const getProject = async () => {
@@ -35,24 +39,74 @@ export const Board = (props) => {
             }
         };
 
+        const getSprints = async () => {
+            try {
+                const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
+                    {
+                        headers: {Authorization: `Bearer ${cookies.token}`}
+                    }
+                )
+                console.log(response.data)
+                setSprints(response.data);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
+        // const getTasks = async () => {
+        //     try {
+        //         const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
+        //             {
+        //                 headers: {Authorization: `Bearer ${cookies.token}`}
+        //             }
+        //         )
+        //         console.log('TASKS:')
+        //         console.log(response.data)
+        //         setTasks(response.data);
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        // };
+
+        getProject()
+        getSprints()
+        // getTasks()
+
         getProject()
         console.log(projectId)
-    }, [])
+    }, []);
 
     useEffect(() => {
-        if (screenSize.width < 840) {
-            setColumnNum(1)
-        } else if (screenSize.width < 992) {
-            setColumnNum(2)
-        } else setColumnNum(3)
-        console.log(columnNum)
-    }, [screenSize.width])
+        setIsThereAStartedSprint(sprints.filter((sprint) => sprint.started === true).length > 0)
+        console.log('IS THERE A STARTED SPRINT:')
+        console.log(isThereAStartedSprint)
+        try {
+            setStartedSprint(sprints.filter((sprint) => sprint.started === true))
+            console.log('STARTED SPRINT:')
+            console.log(startedSprint[0].sprintName)
+            setBoardName(startedSprint[0].sprintName + " Board")
+            getTasksBySprint(startedSprint[0].id)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [sprints]);
 
-    const [responseData, setResponseData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const getTasksBySprint = async (sprint_id) => {
+        try {
+            const response = await axios.get(`/api/task/getTasksBySprintId/${sprint_id}`,
+                {
+                    headers: {Authorization: `Bearer ${cookies.token}`}
+                }
+            )
+            console.log('TASKS:')
+            console.log(response.data)
+            setTasks(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
-    const [boardName, setBoardName] = useState('Board Name');
+    const [boardName, setBoardName] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [newBoardName, setNewBoardName] = useState('');
 
@@ -99,9 +153,9 @@ export const Board = (props) => {
     const [panels, setPanels] = useState([
         // ('backlog', 'open', 'in_progress', 'review', 'closed')
         {id: 1, name: "BACKLOG", status: "backlog"},
-        // {id: 2, name: "TO DO", status: "todo"},
+        {id: 2, name: "TO-DO", status: "todo"},
         {id: 3, name: "IN PROGRESS", status: "in_progress"},
-        // {id: 4, name: "REVIEW", status: "review"},
+        {id: 4, name: "REVIEW", status: "review"},
         {id: 5, name: "DONE", status: "closed"}
     ]);
 
@@ -110,7 +164,7 @@ export const Board = (props) => {
         <Navigation/>
         <div style={{display: "flex"}}>
             <SidebarMenu project={project} from={"board"}/>
-            <Container fluid={"md"} className="boardContainer" >
+            <div className="boardContainer" >
                 <div className="boardHeader">
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
@@ -159,11 +213,11 @@ export const Board = (props) => {
                 <div className="innerBoardContainer">
                     {
                         panels.map((panel) => {
-                            return <BoardComponent panel={panel} projectId={projectId}/>
+                            return <BoardComponent panel={panel} sprint_tasks={tasks}/>
                         })
                     }
                 </div>
-            </Container>
+            </div>
         </div>
             
         </>

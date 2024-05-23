@@ -171,6 +171,14 @@ export const Issues = () => {
         })
     }
 
+    const updateTaskComments = (commentId, updatedComment) => {
+        setTaskComments(taskComments.map(comment => comment.id === commentId ? updatedComment : comment))
+    };
+
+    const deleteTaskComment = async (commentId) => {
+        setTaskComments(taskComments.filter(comment => comment.id !== commentId))
+    };
+
     useEffect(() => {
 
         const getUser = async () => {
@@ -368,10 +376,14 @@ export const Issues = () => {
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu>
                                                 {statuses.map((status) =>
-                                                    (<Button variant={"custom-tertiary-small"}
-                                                            onClick={() => handleStatusChange(status)}>{
+                                                    (<Dropdown.Item
+                                                        as={Button}
+                                                        variant={"custom-tertiary-small"}
+                                                        onClick={() => handleStatusChange(status)}>
+                                                            {
                                                                 status === "in_progress" ? "IN PROGRESS" : status.toUpperCase()
-                                                                }</Button>)
+                                                            }
+                                                    </Dropdown.Item>)
                                                 )}
                                             </Dropdown.Menu>
                                         </Dropdown>
@@ -446,19 +458,23 @@ export const Issues = () => {
                                                         return <IssueComment
                                                             key={comment.id} 
                                                             comment={comment}
+                                                            user={user.id === comment.author.id ? user : null}
+                                                            updateTaskComment={updateTaskComments}
+                                                            deleteTaskComment={deleteTaskComment}
                                                         />
                                                     })
                                                 ) : <><p>No comments yet.</p></>
                                             }
                                         </div>
                                         <div className="createComment">
-                                            <span>
-                                                {/* TODO: get user profile picture */}
-                                                user profile picture
+                                            <span className="btn-custom-circle">
+                                                <p className="userLetters">
+                                                    {user.firstName[0]}{user.lastName[0]}
+                                                </p>
                                             </span>
                                             {isAdding ? (
                                                 <>
-                                                    <form onSubmit={handleCommentSubmit}>
+                                                    <form onSubmit={handleCommentSubmit} style={{ width: '100%', resize: 'vertical' }}>
                                                         <textarea
                                                             rows={3}
                                                             value={newComment}
@@ -481,7 +497,7 @@ export const Issues = () => {
                                                         </div>
                                                     </form>
                                                 </> ) : (
-                                                    <div onClick={handleAddClick} className="add-comment">
+                                                    <div onClick={handleAddClick} className="add-comment" style={{ width: '100%', resize: 'vertical' }}>
                                                         <p>Add a comment...</p>
                                                     </div>
                                                 )

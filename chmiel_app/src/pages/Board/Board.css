@@ -1,8 +1,10 @@
 .boardContainer {
     margin: 0;
-    max-width: 1440px;
+    /* max-width: 1440px; */
     height: calc(100vh - 75px);
     padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
     /* background-color: aqua; */
 }
 
@@ -72,7 +74,7 @@
     display: flex;
     max-width: 100%;
     gap: 16px;
-    /* overflow-x: scroll; */
+    overflow-x: scroll;
     /* box-shadow: inset 10px 0px 10px -10px rgba(0, 0, 0, 0.5),
                 inset -10px 0px 10px -10px rgba(0, 0, 0, 0.5); */
 }
