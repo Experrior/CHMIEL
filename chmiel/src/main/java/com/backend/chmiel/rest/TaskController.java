@@ -2,7 +2,7 @@ package com.backend.chmiel.rest;
 
 
 import com.backend.chmiel.config.JwtService;
-import com.backend.chmiel.entity.EpicsData;
+import com.backend.chmiel.entity.Status;
 import com.backend.chmiel.entity.Task;
 import com.backend.chmiel.exception.TaskNotFoundException;
 import com.backend.chmiel.payload.EditTaskRequest;
@@ -59,6 +59,12 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getEpicsData(project_id));
     }
 
+    @GetMapping("/getFilteredTasks")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<List<Task>> getFilteredTasks(@RequestParam(required = false) Status status, @RequestParam(required = false) Integer assigneeId, @RequestParam(required = false) Integer sprintId){
+        return ResponseEntity.ok(taskService.getFilteredTasks(status, assigneeId, sprintId));
+    }
+
     @PutMapping("/update")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<Optional<Task>> putTaskById(@RequestBody EditTaskRequest editTaskRequest){
@@ -87,7 +93,5 @@ public class TaskController {
                     .build();
         }
     }
-
-
 
 }
