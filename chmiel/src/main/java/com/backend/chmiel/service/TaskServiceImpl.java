@@ -10,6 +10,8 @@ import com.backend.chmiel.payload.EditTaskRequest;
 import com.backend.chmiel.payload.PostTaskRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -177,21 +179,59 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.save(newTask);
     }
 
-    @Override
+//    @Override
+//    public List<Task> getFilteredTasks(Status status, Integer assigneeId, Integer sprintId) {
+//        Task taskTemplate = new Task();
+//        if (status != null) {
+//            taskTemplate.setStatus(status);
+//        }
+//        if (assigneeId != null && assigneeId != -1) {
+//            User user = userRepository.findById(assigneeId).orElseThrow(() -> new RuntimeException("No user found in database"));
+//            taskTemplate.setAssignee(user);
+//        }
+//
+//        if (sprintId != null) {
+//            Sprint sprint = sprintRepository.findById(sprintId).orElseThrow(() -> new RuntimeException("No sprint found in database"));
+//            taskTemplate.setSprint(sprint);
+//        }
+//        return taskRepository.findAll(Example.of(taskTemplate));
+//    }
+
     public List<Task> getFilteredTasks(Status status, Integer assigneeId, Integer sprintId) {
-        Task taskTemplate = new Task();
+        Specification<Task> spec = Specification.where(null);
+
         if (status != null) {
-            taskTemplate.setStatus(status);
+            spec = spec.and(hasStatus(status));
         }
         if (assigneeId != null) {
-            User user = userRepository.findById(assigneeId).orElseThrow(() -> new RuntimeException("No user found in database"));
-            taskTemplate.setAssignee(user);
+            User user = assigneeId == -1 ? null : userRepository.findById(assigneeId).orElse(null);
+            spec = spec.and(hasAssignee(user));
         }
         if (sprintId != null) {
-            Sprint sprint = sprintRepository.findById(sprintId).orElseThrow(() -> new RuntimeException("No sprint found in database"));
-            taskTemplate.setSprint(sprint);
+            Sprint sprint = sprintRepository.findById(sprintId).orElse(null);
+            spec = spec.and(inSprint(sprint));
         }
-        return taskRepository.findAll(Example.of(taskTemplate));
 
+        return taskRepository.findAll(spec);
     }
+
+    public static Specification<Task> hasAssignee(User user) {
+        return (root, query, criteriaBuilder) -> {
+            if (user == null) {
+                return criteriaBuilder.isNull(root.get("assignee"));
+            } else {
+                return criteriaBuilder.equal(root.get("assignee"), user);
+            }
+        };
+    }
+
+    public static Specification<Task> hasStatus(Status status) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("status"), status);
+    }
+
+    public static Specification<Task> inSprint(Sprint sprint) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("sprint"), sprint);
+    }
+
+
 }
