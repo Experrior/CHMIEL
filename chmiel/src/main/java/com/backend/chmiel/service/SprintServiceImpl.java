@@ -65,8 +65,18 @@ public class SprintServiceImpl implements SprintService {
                 .sprintName("Temporary Name")
                 .projectId(postSprintRequest.getProjectId())
                 .build();
+
+        if (postSprintRequest.getSprintName() != null){
+            newSprint.setSprintName(postSprintRequest.getSprintName());
+        }
+        if (postSprintRequest.getSprintName() != null){
+            newSprint.setStartTime(postSprintRequest.getStartTime());
+        }
+        if (postSprintRequest.getSprintName() != null) {
+            newSprint.setStopTime(postSprintRequest.getStopTime());
+        }
         newSprint = sprintRepository.save(newSprint);
-        newSprint.setSprintName("Sprint " + newSprint.getId());
+
         return sprintRepository.save(newSprint);
     }
 
@@ -83,11 +93,11 @@ public class SprintServiceImpl implements SprintService {
 
         if (editSprintRequest.getStartTime() != null) {
             sprint.setStartTime(editSprintRequest.getStartTime());
-        } else sprint.setStartTime(null);
+        }
 
         if (editSprintRequest.getStopTime() != null) {
             sprint.setStopTime(editSprintRequest.getStopTime());
-        } else sprint.setStopTime(null);
+        }
 
         if (editSprintRequest.getIsStarted() != null) sprint.setStarted(editSprintRequest.getIsStarted());
         if (editSprintRequest.getIsFinished() != null) sprint.setFinished(editSprintRequest.getIsFinished());
@@ -127,6 +137,11 @@ public class SprintServiceImpl implements SprintService {
         sprintData.put("categories1", categories);
 
         return sprintData;
+    }
+
+    @Override
+    public Sprint getCurrentSprint(Integer projectId) {
+        return sprintRepository.findCurrentSprint(projectId);
     }
 
 }

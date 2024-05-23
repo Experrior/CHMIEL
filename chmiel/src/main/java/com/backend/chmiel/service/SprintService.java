@@ -23,4 +23,6 @@ public interface SprintService {
     Sprint updateSprintById(Integer id, EditSprintRequest editSprintRequest);
 
     Object getSprintsCompletionData(Integer projectId);
+
+    Sprint getCurrentSprint(Integer projectId);
 }
