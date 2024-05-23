@@ -125,7 +125,7 @@
     color: #696969 !important;
 }
 
-.btn-custom-circle {
+.btn-custom-circle-backlog {
     /*display: block !important;*/
     outline: 0 !important;
     border: none !important;
@@ -139,7 +139,7 @@
     padding: 0 !important;
 }
 
-.btn-custom-circle:hover {
+.btn-custom-circle-backlog:hover {
     filter: brightness(90%);
 }
 

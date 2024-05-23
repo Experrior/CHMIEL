@@ -13,7 +13,7 @@ import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPage
 import {DeleteAlert} from "../../components/Backlog/DeleteAlert";
 import {StartSprintModal} from "../../components/Backlog/StartSprintModal";
 import {StartSprintAlert} from "../../components/Backlog/StartSprintAlert";
-import {UserButton} from "../../components/Backlog/UserButton";
+import {UserButtonsContainer} from "../../components/Backlog/UserButtonContainer";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -22,6 +22,7 @@ export const BacklogPage = (props) => {
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
     const [isThereAStartedSprint, setIsThereAStartedSprint] = useState(false)
+    const [filteredUsers, setFilteredUsers] = useState([])
     const navigate = useNavigate();
 
     const formatDate = (dateString) => {
@@ -185,6 +186,35 @@ export const BacklogPage = (props) => {
         })
     }
 
+    const getTasksFilteredByAssigneeId = async (assigneeId) => {
+        console.log("id: ", assigneeId)
+        try {
+            const response = await axios.get(`/api/task/getFilteredTasks?assigneeId=${assigneeId}`,
+                {
+                    headers: {Authorization: `Bearer ${cookies.token}`}
+                }
+            )
+            console.log(response.data)
+            setTasks(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const getTasks = async () => {
+        try {
+            const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
+                {
+                    headers: {Authorization: `Bearer ${cookies.token}`}
+                }
+            )
+            console.log(response.data)
+            setTasks(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
     useEffect(() => {
 
         const getProject = async () => {
@@ -210,20 +240,6 @@ export const BacklogPage = (props) => {
                 )
                 console.log(response.data)
                 setSprints(response.data);
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
-        const getTasks = async () => {
-            try {
-                const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
-                    {
-                        headers: {Authorization: `Bearer ${cookies.token}`}
-                    }
-                )
-                console.log(response.data)
-                setTasks(response.data);
             } catch (error) {
                 console.log(error)
             }
@@ -260,14 +276,19 @@ export const BacklogPage = (props) => {
                         </h2>
                     </div>
 
-                    <div className={"backlogUserFilterContainer"}>
-                        {project.users?.map((user) => <UserButton user={user}/>)}
-                        <UserButton/>
-                        {/*<UserButton user={}/>*/}
-                        {/*{project.users?.map((user) => <Button variant="custom-circle-v2"><p*/}
-                        {/*    className={"assigneeLettersLarger"}>{user.firstName[0]}{user.lastName[0]}</p></Button>)}*/}
-                        {/*<Button variant="custom-circle-v2"><p>?</p></Button>*/}
-                    </div>
+
+                    <UserButtonsContainer users={project.users}
+                                          getTasksFilteredByAssigneeId={getTasksFilteredByAssigneeId}
+                                          getTasks={getTasks}/>
+                    {/*{project.users?.map((user) => <UserButton filteredUsers={filteredUsers}*/}
+                    {/*                                          setFilteredUsers={setFilteredUsers} user={user}/>)}*/}
+                    {/*<UserButton filteredUsers={filteredUsers} setFilteredUsers={setFilteredUsers}/>*/}
+
+
+                    {/*<UserButton user={}/>*/}
+                    {/*{project.users?.map((user) => <Button variant="custom-circle-v2"><p*/}
+                    {/*    className={"assigneeLettersLarger"}>{user.firstName[0]}{user.lastName[0]}</p></Button>)}*/}
+                    {/*<Button variant="custom-circle-v2"><p>?</p></Button>*/}
 
 
                     <div>

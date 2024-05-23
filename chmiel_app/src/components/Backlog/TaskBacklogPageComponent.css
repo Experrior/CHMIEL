@@ -50,7 +50,7 @@
     background-color: #696969;
 }
 
-.btn-custom-circle > p {
+.btn-custom-circle-backlog > p {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
@@ -61,7 +61,7 @@
     background-color: #696969;
 }
 
-.btn-custom-circle .assigneeLetters {
+.btn-custom-circle-backlog .assigneeLetters {
     font-size: 10px;
 }
 
