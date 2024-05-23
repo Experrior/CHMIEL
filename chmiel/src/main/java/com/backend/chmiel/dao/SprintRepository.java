@@ -26,6 +26,20 @@ public interface SprintRepository extends JpaRepository<Sprint, Integer> {
     @Transactional
     @Modifying
     @Query(value="  UPDATE Sprints  SET ending_task_count = (  SELECT COUNT(id)  FROM Tasks  WHERE Tasks.sprint_id = Sprints.id AND Tasks.status = 'closed'  )  WHERE stop_time < current_date  AND ending_task_count IS NULL;", nativeQuery = true)
-    void updateSPrintsEndingTaskCount();
+    void updateSprintsEndingTaskCount();
+
+    @Transactional
+    @Modifying
+    @Query(value="  UPDATE Sprints  SET ending_task_count = (  SELECT COUNT(id)  FROM Tasks  WHERE Tasks.sprint_id = Sprints.id AND Tasks.status = 'closed'  ) WHERE ending_task_count IS NULL;", nativeQuery = true)
+    void updatePregeneratedSprintsData();
+
+    @Query(value="SELECT * FROM Sprints WHERE stop_time > current_date AND start_time < current_date AND project_id = ?1 ", nativeQuery = true)
+    Sprint findCurrentSprint(Integer projectId);
+
+
+    @Transactional
+    @Modifying
+    @Query(value=" UPDATE Sprints  SET starting_task_count = (  SELECT COUNT(id) FROM Tasks  WHERE Tasks.sprint_id = Sprints.id ) WHERE starting_task_count IS NULL ", nativeQuery = true)
+    void hotfixCount();
 }
 
