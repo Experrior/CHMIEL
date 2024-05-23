@@ -143,6 +143,68 @@
     filter: brightness(90%);
 }
 
+.btn-custom-circle-v2 {
+    /*display: block !important;*/
+    outline: 0 !important;
+    border: none !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: #696969 !important;
+    padding: 0 !important;
+}
+
+.btn-custom-circle-v2:hover {
+    filter: brightness(90%);
+}
+
+.btn-custom-circle-v2 > p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FAFAFA;
+}
+
+.btn-custom-circle-v2 > .assigneeLettersLarger {
+    font-size: 16px;
+}
+
+
+.btn-custom-circle-v2-selected {
+    /*display: block !important;*/
+    /*outline: 0 !important;*/
+    border: none !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: #132F45 !important;
+    padding: 0 !important;
+    outline: white solid 3px !important;
+    box-shadow: 0 0 12px -2px #369ED1;
+}
+
+.btn-custom-circle-v2-selected > .assigneeLettersLarger {
+    font-size: 16px;
+    color: #369ED1;
+}
+
+.btn-custom-circle-v2-selected > p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #369ED1;
+}
+
+.btn-custom-circle-v2-selected:hover {
+    filter: brightness(90%);
+}
+
 
 /* ALERTS */
 .custom-centered-alert {

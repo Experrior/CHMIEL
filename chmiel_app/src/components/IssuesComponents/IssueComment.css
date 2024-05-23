@@ -10,10 +10,22 @@
 .author {
     font-weight: bold;
     color: rgb(39, 39, 39);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
 }
 
 .author:hover {
     color: black;
+}
+
+.mod {
+    color: rgb(37, 37, 37);
+    /* font-weight: normal !important; */
+    margin-left: 8px;
+    height: 14px;
+    cursor: pointer;
 }
 
 .message {

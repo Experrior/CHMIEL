@@ -1,8 +1,12 @@
 .boardComponentContainer {
     min-width: 282px;
     min-height: 372px;
-    background-color: rgb(240, 240, 240);
+    background-color: #dbefff;
     padding: 16px;
+    border-radius: 8px;
+    flex-direction: column;
+    display: flex;
+    gap: 4px;
 }
 
 .boardComponentContainer > h5 {

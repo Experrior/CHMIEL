@@ -23,11 +23,8 @@ export const SidebarMenu = (props) => {
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
-    useEffect(() => {
-        console.log("sidebar menu")
-        console.log(projectId);
-        console.log(project);
 
+    useEffect(() => {
         const getProject = async () => {
             try {
                 const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
@@ -35,7 +32,6 @@ export const SidebarMenu = (props) => {
                         headers: { Authorization: `Bearer ${cookies.token}` }
                     }
                 )
-                console.log(response.data)
                 setProject(response.data)
             } catch (error) {
                 console.log(error)
@@ -43,7 +39,7 @@ export const SidebarMenu = (props) => {
         };
         
         getProject()
-    }, []);
+    }, [projectId]);
 
     return (
         // TODO: make items of the sidebar fixed with remaining collapsable

@@ -13,6 +13,7 @@ import {TaskBacklogPageComponent} from "../../components/Backlog/TaskBacklogPage
 import {DeleteAlert} from "../../components/Backlog/DeleteAlert";
 import {StartSprintModal} from "../../components/Backlog/StartSprintModal";
 import {StartSprintAlert} from "../../components/Backlog/StartSprintAlert";
+import {UserButton} from "../../components/Backlog/UserButton";
 
 export const BacklogPage = (props) => {
     let {projectId} = useParams()
@@ -242,21 +243,33 @@ export const BacklogPage = (props) => {
         <>
             <Navigation sticky={"top"}/>
             <div style={{display: "flex"}}>
-                <SidebarMenu project={project} from={"backlog"}/>
+                <SidebarMenu from={"backlog"}/>
                 <div className={"projectPageContainer"}>
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>
                         <span style={{padding: '0px 8px'}}>/</span>
                         <Nav.Link href={`/board/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
                     </div>
+
+
                     <div className="backlogName">
                         <h2>
                             <span>
                                 Backlog
                             </span>
                         </h2>
-
                     </div>
+
+                    <div className={"backlogUserFilterContainer"}>
+                        {project.users?.map((user) => <UserButton user={user}/>)}
+                        <UserButton/>
+                        {/*<UserButton user={}/>*/}
+                        {/*{project.users?.map((user) => <Button variant="custom-circle-v2"><p*/}
+                        {/*    className={"assigneeLettersLarger"}>{user.firstName[0]}{user.lastName[0]}</p></Button>)}*/}
+                        {/*<Button variant="custom-circle-v2"><p>?</p></Button>*/}
+                    </div>
+
+
                     <div>
                         <div className={"sprintsContainer"}>
                             {sprints.length !== 0 ? sprints.filter((sprint) => sprint.finished === false).map((sprint) => (

@@ -49,8 +49,8 @@ const ChartsPage = () => {
     const [error, setError] = useState(null);
     const [epicsData, setEpicsData] = useState({});
     const [sprintsData, setSprintsData] = useState({});
-    const [selectedProject, setSelectedProject] = useState(useParams()); // State to hold the selected project
     const { projectId } = useParams();
+    const [selectedProject, setSelectedProject] = useState(projectId); // State to hold the selected project
     const [queryParameters] = useSearchParams()
     const navigate = useNavigate();
 
@@ -77,11 +77,13 @@ const ChartsPage = () => {
                 const response = await axios.get('/api/project/getProjectByProjectId/' + projectId, {
                     headers: { Authorization: `Bearer ${cookies.token}` }
                 });
-                const projectsData = response.data.map(project => ({
-                    id: project.id,
-                    name: project.projectName,
-                }));
-                setSelectedProject(projectId);
+                // const projectsData = response.data.map(project => ({
+                //     id: project.id,
+                //     name: project.projectName,
+                // }));
+                console.log(projectId)
+                console.log(response.data)
+                setSelectedProject(response.data.id);
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
@@ -121,10 +123,10 @@ const ChartsPage = () => {
 
     return (
         <>
-            <Navigation/>
+            <Navigation sticky={"top"}/>
 
             <div style={{display: "flex"}}>
-                <SidebarMenu project={1} from={"charts"}/>
+                <SidebarMenu from={"charts"}/>
                 <Container fluid={"md"}>
                 <Col>
                 <Row>
@@ -162,7 +164,7 @@ const ChartsPage = () => {
                                             value={project.id}
                                             onClick= {
                                             () => {
-                                                setSelectedProject(project)
+                                                setSelectedProject(project.id)
                                                 navigate('/charts/' + project.id)
                                             }
 

@@ -129,6 +129,9 @@
 
 .createComment {
     margin: 24px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }
 
 .createComment form {
@@ -156,6 +159,30 @@
 #dropdown-filter {
     background-color: gray !important;
     border: none !important;
+}
+
+.btn-custom-circle {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #001f38 !important;
+
+}
+
+.btn-custom-circle > p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #87caff !important;
+    
+}
+
+
+.btn-custom-circle .userLetters {
+    font-size: 16px;
 }
 
 /* to jest bez sensu ale zostawiam do stylowania inputu szukania */
