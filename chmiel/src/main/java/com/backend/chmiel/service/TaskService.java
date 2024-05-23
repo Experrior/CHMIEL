@@ -1,6 +1,7 @@
 package com.backend.chmiel.service;
 
 
+import com.backend.chmiel.entity.Status;
 import com.backend.chmiel.entity.Task;
 import com.backend.chmiel.exception.TaskNotFoundException;
 import com.backend.chmiel.payload.EditTaskRequest;
@@ -28,4 +29,6 @@ public interface TaskService {
     void removeById(Integer id);
 
     Task createTask(PostTaskRequest postTaskRequest, Integer reportedId) throws TaskNotFoundException;
+
+    List<Task> getFilteredTasks(Status status, Integer assigneeId, Integer sprintId);
 }

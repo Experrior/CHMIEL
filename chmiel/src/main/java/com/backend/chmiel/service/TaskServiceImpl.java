@@ -9,6 +9,7 @@ import com.backend.chmiel.exception.TaskNotFoundException;
 import com.backend.chmiel.payload.EditTaskRequest;
 import com.backend.chmiel.payload.PostTaskRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -60,15 +61,15 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Map<String, Map<Integer, Integer>> getEpicsData(Integer project_id) {
         List<Object[]> data = taskRepository.getEpicsData(project_id);
-        int minThird = -1;
-        int maxThird = -1;
+        int minThird = 0;
+        int maxThird = 0;
         for (Object[] item : data) {
             Integer third = (Integer) item[2];
             if (third != null) {
-                if (minThird == -1 || third < minThird) {
+                if (minThird == 0 || third < minThird) {
                     minThird = third;
                 }
-                if (maxThird == -1 || third > maxThird) {
+                if (maxThird == 0 || third > maxThird) {
                     maxThird = third;
                 }
             }
@@ -113,12 +114,12 @@ public class TaskServiceImpl implements TaskService {
         if (editTaskRequest.getAssigneeId() != null){
             User user = userRepository.findById(editTaskRequest.getAssigneeId()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
             task.setAssignee(user);
-        } else task.setAssignee(null);
+        }
 
         if (editTaskRequest.getSprintId() != null){
             Sprint sprint = sprintRepository.findById(editTaskRequest.getSprintId()).orElseThrow(() -> new UsernameNotFoundException(String.valueOf(editTaskRequest.getSprintId())));
             task.setSprint(sprint);
-        } else task.setSprint(null);
+        }
 
         if (editTaskRequest.getDescription() != null){
           task.setDescription(editTaskRequest.getDescription());
@@ -166,13 +167,31 @@ public class TaskServiceImpl implements TaskService {
             Task epic = taskRepository.findById(postTaskRequest.getInEpic()).orElseThrow(() -> new TaskNotFoundException(String.valueOf(postTaskRequest.getInEpic())));
             newTask.setInEpic(epic);
         }
-        if (assignee.isPresent()) {newTask.setAssignee(assignee.get());}
+        assignee.ifPresent(newTask::setAssignee);
         if (!postTaskRequest.isEpic()){
-            if (sprint.isPresent()) {newTask.setSprint(sprint.get());}
+            sprint.ifPresent(newTask::setSprint);
         }
 
         if (postTaskRequest.getTimeEstimate() != null) {newTask.setTimeEstimate(postTaskRequest.getTimeEstimate());}
 
         return taskRepository.save(newTask);
+    }
+
+    @Override
+    public List<Task> getFilteredTasks(Status status, Integer assigneeId, Integer sprintId) {
+        Task taskTemplate = new Task();
+        if (status != null) {
+            taskTemplate.setStatus(status);
+        }
+        if (assigneeId != null) {
+            User user = userRepository.findById(assigneeId).orElseThrow(() -> new RuntimeException("No user found in database"));
+            taskTemplate.setAssignee(user);
+        }
+        if (sprintId != null) {
+            Sprint sprint = sprintRepository.findById(sprintId).orElseThrow(() -> new RuntimeException("No sprint found in database"));
+            taskTemplate.setSprint(sprint);
+        }
+        return taskRepository.findAll(Example.of(taskTemplate));
+
     }
 }
