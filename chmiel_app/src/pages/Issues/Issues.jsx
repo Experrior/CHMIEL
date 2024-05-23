@@ -467,7 +467,7 @@ export const Issues = () => {
                                             }
                                         </div>
                                         <div className="createComment">
-                                            <span className="btn-custom-circle">
+                                            <span className="btn-custom-circle-backlog">
                                                 <p className="userLetters">
                                                     {user.firstName[0]}{user.lastName[0]}
                                                 </p>

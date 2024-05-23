@@ -31,7 +31,7 @@ export const TaskBacklogPageComponent = (props) => {
             {/*    /!*{props.task.assignee.firstName[0]}{props.task.assignee.lastName[0]}*!/*/}
             {/*</p></div> : <div className={"taskAssignee emptyAssignee"}><p>?</p></div>}*/}
             <Dropdown style={{gridColumn: "assignee"}}>
-                <Dropdown.Toggle variant="custom-circle" id="dropdown-basic" className={"noDropdown"}>
+                <Dropdown.Toggle variant="custom-circle-backlog" id="dropdown-basic" className={"noDropdown"}>
                     {props.task.assignee ?
                         <p className={"assigneeLetters"}>{props.task.assignee.firstName[0]}{props.task.assignee.lastName[0]}</p> :
                         <p>?</p>}
