@@ -243,7 +243,7 @@ export const BacklogPage = (props) => {
         <>
             <Navigation sticky={"top"}/>
             <div style={{display: "flex"}}>
-                <SidebarMenu project={project} from={"backlog"}/>
+                <SidebarMenu from={"backlog"}/>
                 <div className={"projectPageContainer"}>
                     <div className="projectLocation">
                         <Nav.Link href="" className="nav-link">Projects</Nav.Link>

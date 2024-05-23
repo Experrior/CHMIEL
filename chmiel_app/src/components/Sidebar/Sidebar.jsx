@@ -25,10 +25,6 @@ export const SidebarMenu = (props) => {
     };
 
     useEffect(() => {
-        console.log("sidebar menu")
-        console.log(projectId);
-        // console.log(project);
-
         const getProject = async () => {
             try {
                 const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
@@ -36,8 +32,6 @@ export const SidebarMenu = (props) => {
                         headers: { Authorization: `Bearer ${cookies.token}` }
                     }
                 )
-                console.log("function called")
-                console.log(response.data)
                 setProject(response.data)
             } catch (error) {
                 console.log(error)
