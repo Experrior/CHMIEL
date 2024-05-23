@@ -137,7 +137,7 @@ const ChartsPage = () => {
                             alignItems: 'center',
                             height: '100%'
                         }}>
-                            <h1 style={{ margin: '0'}}>{selectedProject}</h1>
+                            <h1 style={{ margin: '0'}}>Analytic charts</h1>
                             <h3 style={{ margin: '0'}}>Here are displayed charts with various measures, for given scrum project.</h3>
                         </div>
                     </Col>
