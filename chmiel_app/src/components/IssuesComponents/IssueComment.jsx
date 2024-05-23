@@ -65,19 +65,25 @@ export const IssueComment = ({ comment, user, updateTaskComment, deleteTaskComme
     }
 
     const editComment = async (message) => {
-        await axios.put(`/api/task-comment/update/${comment.id}`,
-        {
-            message: message
-        },
-        {
-            headers: {Authorization: `Bearer ${cookies.token}`}
-        }).then(result => {
+
+        console.log(message)
+        const result = await axios.put(
+            `/api/task-comment/update/${comment.id}`, // Endpoint URL
+            message, // Message sent as plain text
+            {
+                headers: {
+                    'Authorization': `Bearer ${cookies.token}`, // Authorization header with token
+                    'Content-Type': 'text/plain' // Set content type to plain text
+                }
+            }
+        );
+        try {
             console.log("new message:" + message)
             console.log(result.data.message)
             updateTaskComment(comment.id, result.data)
-        }).catch(e => {
+        } catch(e) {
             console.error(e)
-        })
+        }
     }
 
     return (
