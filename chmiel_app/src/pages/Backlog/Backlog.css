@@ -140,3 +140,13 @@
 /*.dropdown button:hover {*/
 /*    background-color: #f0f0f0;*/
 /*}*/
+
+
+/* USER FILTERING */
+.backlogUserFilterContainer {
+    display: flex;
+}
+
+.backlogUserFilterContainer > button{
+    /*margin-left: -6px;*/
+}
