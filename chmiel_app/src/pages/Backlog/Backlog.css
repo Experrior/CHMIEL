@@ -145,6 +145,8 @@
 /* USER FILTERING */
 .backlogUserFilterContainer {
     display: flex;
+    gap: 5px;
+    margin-bottom: 16px;
 }
 
 .backlogUserFilterContainer > button{

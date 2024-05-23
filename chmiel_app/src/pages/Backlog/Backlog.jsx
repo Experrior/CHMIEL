@@ -22,6 +22,7 @@ export const BacklogPage = (props) => {
     const [sprints, setSprints] = useState([])
     const [tasks, setTasks] = useState([])
     const [isThereAStartedSprint, setIsThereAStartedSprint] = useState(false)
+    const [filteredUsers, setFilteredUsers] = useState([])
     const navigate = useNavigate();
 
     const formatDate = (dateString) => {
@@ -261,8 +262,9 @@ export const BacklogPage = (props) => {
                     </div>
 
                     <div className={"backlogUserFilterContainer"}>
-                        {project.users?.map((user) => <UserButton user={user}/>)}
-                        <UserButton/>
+                        {project.users?.map((user) => <UserButton filteredUsers={filteredUsers}
+                                                                  setFilteredUsers={setFilteredUsers} user={user}/>)}
+                        <UserButton filteredUsers={filteredUsers} setFilteredUsers={setFilteredUsers}/>
                         {/*<UserButton user={}/>*/}
                         {/*{project.users?.map((user) => <Button variant="custom-circle-v2"><p*/}
                         {/*    className={"assigneeLettersLarger"}>{user.firstName[0]}{user.lastName[0]}</p></Button>)}*/}
@@ -345,7 +347,7 @@ export const BacklogPage = (props) => {
                                                                          editTaskAssignee={editTaskAssignee}
                                                                          sprints={sprints}
                                                                          editTaskSprintId={editTaskSprintId}/>
-                                    }) : <></>}
+                                    })  : <></>}
                                     <CreateIssueModal addIssue={addIssue} user={project.users}/>
                                 </Accordion.Body>
                             </Accordion.Item>
