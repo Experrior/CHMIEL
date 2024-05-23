@@ -113,8 +113,8 @@ const ChartsPage = () => {
         };
 
         fetchData();
-        fetchEpicsData();
         fetchChosenProject();
+        fetchEpicsData();
         fetchSprintsData();
 
 

@@ -6,7 +6,6 @@ import com.backend.chmiel.payload.PutProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProjectService {
 
@@ -16,10 +15,11 @@ public interface ProjectService {
 
     List<Project> getAllByUserId(Integer user_id);
 
-    Integer removeById(Integer id);
+    Boolean removeById(Integer id);
 
     Project createProject(PostProjectRequest postProjectRequest);
 
     Project editName(PutProjectRequest putProjectRequest);
+
     String addUser(PutProjectUserRequest putProjectUserRequest);
 }

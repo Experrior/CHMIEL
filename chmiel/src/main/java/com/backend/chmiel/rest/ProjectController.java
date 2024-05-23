@@ -6,13 +6,6 @@ import com.backend.chmiel.payload.PostProjectRequest;
 import com.backend.chmiel.payload.PutProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
 import com.backend.chmiel.service.ProjectService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -74,13 +67,8 @@ public class ProjectController {
 
     @DeleteMapping("/remove/{id}")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<Integer> removeProject(@PathVariable Integer id){
-        Integer output = projectService.removeById(id);
-        if (output == 0) {
-            return (ResponseEntity<Integer>) ResponseEntity.notFound();
-        }else{
-            return ResponseEntity.ok(output);
-        }
+    public Boolean removeProject(@PathVariable Integer id){
+        return projectService.removeById(id);
     }
 
 

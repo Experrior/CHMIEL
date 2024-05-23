@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.backend</groupId>
 	<artifactId>chmiel</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>chmiel</name>
 	<description>Backend for CHMIEL</description>
 	<properties>
@@ -20,7 +20,9 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>3.2.5</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -40,11 +42,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
@@ -52,14 +49,16 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>3.2.5</version>
+		</dependency>
+		<dependency>
 			<groupId>me.paulschwarz</groupId>
 			<artifactId>spring-dotenv</artifactId>
 			<version>4.0.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -92,8 +91,40 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.4.4.Final</version>
         </dependency>
-    </dependencies>
 
+
+<!--Spock testing-->
+		<dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-core</artifactId>
+			<version>2.4-M4-groovy-4.0</version>
+
+		</dependency>
+
+		<dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-spring</artifactId>
+			<version>2.4-M4-groovy-4.0</version>
+
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<version>4.0.18</version>
+
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>3.2.1</version>
+
+
+		</dependency>
+		<!--Spock testing-->
+    </dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -106,6 +137,19 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.2.5</version>
+				<configuration>
+					<groups>com.backend.chmiel.tests</groups>
+					<includes>
+						<include>**/*Spec.java</include>
+						<include>**/*Spec.groovy</include>
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>

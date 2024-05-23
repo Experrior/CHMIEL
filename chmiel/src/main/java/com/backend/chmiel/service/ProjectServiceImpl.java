@@ -8,12 +8,10 @@ import com.backend.chmiel.payload.PostProjectRequest;
 import com.backend.chmiel.payload.PutProjectRequest;
 import com.backend.chmiel.payload.PutProjectUserRequest;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -24,13 +22,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
-//    @PersistenceContext
-//    private final EntityManager em;
+
     @Autowired
-    public ProjectServiceImpl(ProjectRepository projectRepository, UserRepository userRepository, EntityManager em) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, UserRepository userRepository) {
         this.projectRepository = projectRepository;
         this.userRepository = userRepository;
-//        this.em = em;
     }
 
     @Override
@@ -40,12 +36,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project findById(Integer project_id) {
-        return projectRepository.findById(project_id).orElseThrow();
+        return projectRepository.findById(project_id).orElseThrow(() -> new EntityNotFoundException("No project with given id found in database."));
     }
 
     @Override
-    public Integer removeById(Integer id) {
-        return projectRepository.removeProjectById(id);
+    public Boolean removeById(Integer id) {
+        projectRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No project with given id found in database."));
+        projectRepository.removeProjectById(id);
+        return true;
     }
 
     @Override
@@ -77,9 +75,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 
         if (user.isPresent() && project.isPresent()){
-//            Query q =  em.createNativeQuery("INSERT INTO Projects_Users(project_id, user_id) VALUES(:projectId, :userId)");
-//            BigInteger biid = (BigInteger) q.getSingleResult();
-//            long id = biid.longValue();
+
             Optional<Project> proj1 = projectRepository.findById(putProjectUserRequest.getProjectID());
             Set<User> users = proj1.get().getUsers();
             users.add(user.get());

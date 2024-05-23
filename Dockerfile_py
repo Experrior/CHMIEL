@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.12.3
 
 COPY py_init/db_fill.py .
 COPY py_init/requirements.txt .

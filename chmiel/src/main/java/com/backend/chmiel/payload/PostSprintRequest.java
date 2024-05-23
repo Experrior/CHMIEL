@@ -1,6 +1,5 @@
 package com.backend.chmiel.payload;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +14,9 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class PostSprintRequest {
 
-//    private String sprintName;
+    private String sprintName;
     private Integer projectId;
-//    private Timestamp startTime;
-//    private Timestamp stopTime;
+    private Timestamp startTime;
+    private Timestamp stopTime;
 
 }

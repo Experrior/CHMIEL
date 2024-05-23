@@ -47,7 +47,7 @@ base_tasks = [
     {
         "reporterId": 1,
         "projectId": "1",
-        "sprintId": 0,
+        "sprintId": 4,
         "name": "Develop User Authentication System",
         "description": "Implement a robust user authentication system to ensure secure access to the platform.\nUtilize industry-standard encryption algorithms and best practices.\nFor more information on user authentication, refer to [this Wikipedia article](https://en.wikipedia.org/wiki/Authentication).",
         "timeEstimate": 0,
@@ -57,7 +57,7 @@ base_tasks = [
     {
         "reporterId": 1,
         "projectId": "1",
-        "sprintId": 0,
+        "sprintId": 4,
         "name": "Deploy Working and Scalable Database System",
         "description": "Create an efficient and scalable database schema to store user data, application settings, and other relevant information.\nConsider the specific requirements of the project and choose appropriate data structures.\nLearn more about database design principles [here](https://en.wikipedia.org/wiki/Database_design).",
         "timeEstimate": 0,
@@ -66,7 +66,7 @@ base_tasks = [
     {
         "reporterId": 1,
         "projectId": "1",
-        "sprintId": 0,
+        "sprintId": 4,
         "name": "Setup Development Environment",
         "description": "Configure the development environment with the necessary tools and libraries for efficient software development.\nInstall IDEs, version control systems, and other required software components.\nCheck out this guide on setting up a development environment [here](https://en.wikipedia.org/wiki/Integrated_development_environment).",
         "timeEstimate": 0,
@@ -76,7 +76,7 @@ base_tasks = [
     {
         "reporterId": 1,
         "projectId": "1",
-        "sprintId": 0,
+        "sprintId": 4,
         "name": "Create Homepage Layout",
         "description": "Design an attractive and user-friendly layout for the homepage of the application.\nUse modern design principles and responsive design techniques to ensure compatibility across different devices.\nExplore the basics of web design [here](https://en.wikipedia.org/wiki/Web_design).",
         "timeEstimate": 0,
@@ -87,7 +87,7 @@ base_tasks = [
         "assigneeId": 1,
         "reporterId": 1,
         "projectId": "1",
-        "sprintId": 0,
+        "sprintId": 4,
         "name": "Implement Core Functionality",
         "description": "Develop the core features and functionality of the application according to the project requirements.\nFocus on essential tasks such as user registration, profile management, and data manipulation.\nLearn about software development methodologies [here](https://en.wikipedia.org/wiki/Software_development_process).",
         "timeEstimate": 0,
@@ -340,7 +340,8 @@ for project_id in projects:
                                 headers={'Authorization': 'Bearer '+ jwts[project_id]})
         if response.status_code == 200:
             print(
-                f"Sprint '{sprint_data['sprintName']}' created successfully for project '{projects_to_make[project_id - 1]['name']}'.")
+                f"Sprint '{sprint_data['sprintName']}' created successfully for project '{projects_to_make[project_id - 1]['name']}'."
+                f"With time duration: {start_time} till {stop_time}")
         else:
             print(f"Failed to create sprint for project '{projects_to_make[project_id - 1]['name']}'.")
 # fill tasks
@@ -354,8 +355,9 @@ print("\n","#"*40, "\n")
 print("Edit tasks")
 print("\n","#"*40, "\n")
 # set tasks as done
+
 for i, task_json in enumerate(all_tasks):
-    if 'epic' in task_json and task_json['epic'] == 'false' and task_json and random.random() > 0.33:
+    if 'epic' in task_json and task_json['epic'] == 'false' and task_json and random.random() > 0.22:
         response = session.put(api + '/api/task/update',
                 json={
                     "id": i+1,
@@ -364,6 +366,7 @@ for i, task_json in enumerate(all_tasks):
         headers={'Authorization': 'Bearer '+ jwts[int(task_json['reporterId'])]}
         )
         print(response.status_code)
+        print(f"updated task with id: {i+1}")
 
 print(f"Send all tasks: {len(all_tasks)}")
 print(f"Example cookie: \n\t{jwts[0]}")

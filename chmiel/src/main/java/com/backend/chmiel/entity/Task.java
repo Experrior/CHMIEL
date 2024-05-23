@@ -30,7 +30,7 @@ public class Task {
     @Column(name = "project_id")
     private Integer projectId;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "sprint_id")
     private Sprint sprint;
 

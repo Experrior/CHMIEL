@@ -1,6 +1,7 @@
 package com.backend.chmiel.config;
 
 import com.backend.chmiel.dao.SprintRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +13,20 @@ public class SprintTaskCountComponent{
         this.sprintRepository = sprintRepository;
     }
 
-    @Scheduled(fixedRate=1000*60*1) // runs every 1 minute
+    @Scheduled(fixedRate=1000*60*60*12) // runs every 12 hours
     public void SprintTaskCountComponent() {
         System.out.println("Updating task count - " + System.currentTimeMillis() / 1000);
 
         sprintRepository.updateSprintsStartingTaskCount();
 
-        sprintRepository.updateSPrintsEndingTaskCount();
+        sprintRepository.updateSprintsEndingTaskCount();
+
     }
 
-
+    @PostConstruct
+    public void initCountDBFix() {
+        sprintRepository.updatePregeneratedSprintsData();
+        sprintRepository.hotfixCount();
+    }
 
 }
