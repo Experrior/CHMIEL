@@ -25,6 +25,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-cookie": "^7.1.0",
     "react-dom": "^18.2.0",
+    "react-linkify": "^1.0.0-alpha",
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
