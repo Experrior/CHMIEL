@@ -54,7 +54,7 @@ export const SprintChartsComponent = ({inputData}) => {
                         <p style={{margin: '0', marginTop: '0px'}}>Chart showing how many tasks from sprints were
                             finished in given sprint.</p>
                         <p style={{margin: '0', marginTop: '0px'}}>Helps to keep track of workload in given project.</p>
-                        <div style={{width: '750px', height: '400px', marginTop: '20px'}}>
+                        <div style={{width: '720px', height: '400px', marginTop: '20px'}}>
                             <Bar data={data} options={options}/>
                         </div>
                     </div>

@@ -67,7 +67,7 @@ export const EpicsChartsComponent = ({inputData} ) => {
                     finished in given sprint.</p>
                 <p style={{ margin: '0', marginTop: '0px'}}>Helps to keep track if epics are progressing
                     according to plans.</p>
-                <div style={{width: '750px', height: '400px', marginTop: '20px'}}>
+                <div style={{width: '720px', height: '400px', marginTop: '20px'}}>
                     <Chart type="line" data={data} options={options}/>
                 </div>
             </div>

@@ -127,73 +127,42 @@ const ChartsPage = () => {
 
             <div style={{display: "flex"}}>
                 <SidebarMenu from={"charts"}/>
-                <Container fluid={"md"}>
-                <Col>
-                <Row>
-                    <Col>
-                        <div className="text-center" style={{
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: '100%'
-                        }}>
-                            <h1 style={{ margin: '0'}}>Analytic charts</h1>
-                            <h3 style={{ margin: '0'}}>Here are displayed charts with various measures, for given scrum project.</h3>
-                        </div>
-                    </Col>
-                </Row>
-                    <Row>
+                <Container fluid="md" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+                    <Row className="text-center" style={{ marginBottom: '20px' }}>
                         <Col>
-                            <div>
-                                <br/>
-                                <div>
-                                </div>
-                                <br/>
-                                <br/>
-                            </div>
+                            <h1 style={{ margin: '0' }}>Analytic charts</h1>
+                            <h3 style={{ margin: '0' }}>Here are displayed charts with various measures, for given scrum project.</h3>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                        <div style={{marginLeft: '100px'}}>
-                                <DropdownButton id="dropdown-basic-button"
-                                                title={selectedProject ? selectedProject.name : "Project"}>
+                    <Row className="my-4">
+                        <Col className="text-center">
+                            <DropdownButton
+                                id="dropdown-basic-button"
+                                title={selectedProject ? selectedProject.name : "Project"}
+                            >
                                 {projects.map(project => (
-                                        <Dropdown.Item
-                                            key={project.id}
-                                            value={project.id}
-                                            onClick= {
-                                            () => {
-                                                setSelectedProject(project.id)
-                                                navigate('/charts/' + project.id)
-                                            }
-
-                                        }
-                                        >
-                                            {project.name}
-                                        </Dropdown.Item>
-                                    ))}
-                                </DropdownButton>
-                            </div>
-                            <div>
-                                <br/>
-                                <br/>
-                                <br/>
-                            </div>
+                                    <Dropdown.Item
+                                        key={project.id}
+                                        value={project.id}
+                                        onClick={() => {
+                                            setSelectedProject(project.id);
+                                            navigate('/charts/' + project.id);
+                                        }}
+                                    >
+                                        {project.name}
+                                    </Dropdown.Item>
+                                ))}
+                            </DropdownButton>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                            <EpicsChartsComponent inputData={epicsData}/>
+                    <Row className="mt-4">
+                        <Col md={5} style={{ marginRight: '16%' }}>
+                            <EpicsChartsComponent inputData={epicsData} />
                         </Col>
-                        {/*<Col>*/}
-                        {/*    <SprintChartsComponent2 inputData={sprintsData}/>*/}
-                        {/*</Col>*/}
-                        <Col>
-                            <SprintChartsComponent inputData={sprintsData}/>
+                        <Col md={5}>
+                            <SprintChartsComponent inputData={sprintsData} />
                         </Col>
                     </Row>
-                </Col>
                 </Container>
                 
             </div>
