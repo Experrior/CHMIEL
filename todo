@@ -29,7 +29,7 @@ CHOOSE FROM THOSE:
 
 
     front:
-        add separete page for projects:
+        add separate page for projects:
             [] display all projects
             [] add project
             [] edit project
@@ -41,7 +41,7 @@ CHOOSE FROM THOSE:
             [] remove backlog,
             [] show sprint name
 
-       hotifx:
+       hotfix:
            [] remove charts from nav bar
            [] button on charts page (to look like page nav bar, show current project)
 
