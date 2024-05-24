@@ -63,15 +63,15 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Map<String, Map<Integer, Integer>> getEpicsData(Integer project_id) {
         List<Object[]> data = taskRepository.getEpicsData(project_id);
-        int minThird = 0;
-        int maxThird = 0;
+        int minThird = 100000;
+        int maxThird = -1;
         for (Object[] item : data) {
             Integer third = (Integer) item[2];
             if (third != null) {
-                if (minThird == 0 || third < minThird) {
+                if (third < minThird) {
                     minThird = third;
                 }
-                if (maxThird == 0 || third > maxThird) {
+                if (third > maxThird) {
                     maxThird = third;
                 }
             }
@@ -86,13 +86,13 @@ public class TaskServiceImpl implements TaskService {
                 groupedData.put(name, new HashMap<>()); // Initialize map if name doesn't exist
             }
             Map<Integer, Integer> mapping = groupedData.get(name);
-            for (int i = minThird; i <= maxThird; i++) {
+            for (int i = minThird; i < maxThird; i++) {
                 if (!mapping.containsKey(i)) {
                     mapping.put(i, 0); // Initialize inner map if number doesn't exist
                 }
 
                 if (item[1].equals("closed") && item[2] != null && (Integer) item[2] == i){
-                    mapping.replace(i, mapping.get(i)+1);
+                    mapping.replace(i,mapping.get(i)+1);
                 }
 
             }
