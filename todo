@@ -1,37 +1,19 @@
 Dominika:
-    board:
-        [] logic for looking for users, filter by user, on icon click
-        [] update users icons to show firstname & lastname letters
-
-    [] fix routing for charts, after clicking button, projectId only changes locally
 
 
     [] make filters on issues page, depends on endpoints [STRECH GOAL]
 
 Mateusz:
 
-    [x] add endpoint for current sprint (board page)
-    [moved_to_backlog] add is_started, is_finished update on backend , periodical
-    [x] add endpoints for tasks filtering
-
-    make charts graphics better:
-        [] fill more data
-        [] make them stand next to one another
+    tests:
+        fix maven to run all groovy tests
+        fix locust to run performance test
 
 
-    [] add filter endpoints for tasks [STRECH GOAL] ????SKIP OR NOT TO SKIP????
-    [] bkaclog think over backlog page status issues [STRECH GOAL]
+    [] backlog think over backlog page status issues [STRECH GOAL]
 
+    [] force logic either backlog or in sprint [STRETCH GOAL]
 Zuzia:
-
-
-    finish issues:
-        [] edit comments
-        [] delete comments
-
-    board:
-        [] change name: Board - $Sprint_name
-        [] show tasks filter by status, depends on endpoint
 
 
 
@@ -40,3 +22,30 @@ backlog:
     --add global cors to all endpoints, not to each method!
     handle exceptions in more graceful way for api
     don't show user creds in api repsonses
+    add is_started, is_finished update on backend , periodical
+
+
+CHOOSE FROM THOSE:
+
+
+    front:
+        add separete page for projects:
+            [] display all projects
+            [] add project
+            [] edit project
+            [] delete project
+            [] add/remove people from project
+
+        board:
+            [] filter by users
+            [] remove backlog,
+            [] show sprint name
+
+       hotifx:
+           [] remove charts from nav bar
+           [] button on charts page (to look like page nav bar, show current project)
+
+
+14 = no class
+12.06 - 9:15
+
