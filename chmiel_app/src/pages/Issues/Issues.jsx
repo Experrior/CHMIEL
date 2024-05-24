@@ -13,7 +13,7 @@ import { IssueComment } from "../../components/IssuesComponents/IssueComment";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-
+import Linkify from 'react-linkify';
 // TOOD
 // add an edit button for descritpion and name
 // add filtering by status, assignee, sprint
@@ -399,7 +399,7 @@ export const Issues = () => {
                                             ) : (
                                                 <FontAwesomeIcon 
                                                 icon={faEdit} 
-                                                style={{ marginLeft: "8px", cursor: "pointer" }} 
+                                                style={{ marginLeft: "8px", cursor: "pointer" }}
                                                 onClick={handleEditDescriptionClick} 
                                             />
                                             )
@@ -436,7 +436,12 @@ export const Issues = () => {
                                                 <div className="description-preview">
                                                     {getSelectedTask().description ? (
                                                     <>
-                                                        <p onClick={handleEditDescriptionClick}>{getSelectedTask().description}</p>
+                                                    <Linkify>
+                                                        <p onClick={handleEditDescriptionClick}>
+
+                                                            {getSelectedTask().description}
+                                                        </p>
+                                                        </Linkify>
                                                     </>
                                                     ) : (
                                                         <p onClick={handleEditDescriptionClick} className="add-description">
