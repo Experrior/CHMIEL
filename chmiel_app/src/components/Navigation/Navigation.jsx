@@ -25,7 +25,7 @@ export const Navigation = ({ sticky, fixed }) => {
                     <Nav>
                         <Container className={"tabs-container"} >
                             <Nav.Link  style={{ color: fontcolor }} href={"/"}>Work</Nav.Link>
-                            <Nav.Link  style={{ color: fontcolor }}>Projects</Nav.Link>
+                            <Nav.Link  style={{ color: fontcolor }} href={"/projects"}>Projects</Nav.Link>
                             <Nav.Link  style={{ color: fontcolor }} href={"/charts"}>Charts</Nav.Link>
                         </Container>
                     </Nav>

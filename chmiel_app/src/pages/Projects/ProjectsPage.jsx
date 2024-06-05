@@ -1,6 +1,6 @@
 import {Col, Row, Stack, Container} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
-import "./HomePage.css"
+import "./ProjectsPage.css"
 import {useEffect, useState} from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,11 +11,12 @@ import {useCookies} from "react-cookie";
 import { CreateProjectModal } from "../../components/Projects/CreateProjectModal";
 
 
-export const HomePage = () => {
+export const ProjectsPage = () => {
     const [cookies] = useCookies(["token"]);
     const screenSize = useScreenSize();
     const [columnNum, setColumnNum] = useState(0);
-    const [projects, setProjects] = useState([])
+    const [projects, setProjects] = useState([]);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         if (screenSize.width < 840) {
@@ -28,7 +29,38 @@ export const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const addProject = async (projectName) => {
+        console.log("Adding project")
+        console.log(projectName)
+        console.log(user.id)
+        await axios.post(`/api/project/createProject`, {
+            name: projectName,
+            projectOwner: user.id
+        }, {
+            headers: { Authorization: `Bearer ${cookies.token}` }
+        }).then(response => {
+            console.log(response)
+            setProjects([...projects, {id: response.data.id, name: response.data.projectName}])
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
     useEffect(() => {
+
+        const getUser = async () => {
+            try {
+                const response = await axios.get("/api/user",
+                    { headers: { Authorization: `Bearer ${cookies.token}` } }
+                );
+                console.log("Current user: ");
+                console.log(response.data);
+                setUser(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
         const fetchProjects = async () => {
             try {
                 const response = await axios.get('/api/project/getByUserId',
@@ -48,41 +80,28 @@ export const HomePage = () => {
             }
         };
 
+        getUser();
         fetchProjects();
     }, []);
 
     return (
         <>
-            <Navigation />
+            <Navigation sticky={"top"}/>
             <Container fluid={"md"}>
-                <div className={"homeContainer"}> 
                     <Stack gap={3}>
-                        <h2>Your work</h2>
+                        <h2>Projects</h2>
+                        <CreateProjectModal addProject={addProject}/>
                         <div className={"recentProjectsContainer"}>
-                            <div className={"projectsHeaderRow"}>
-                                <div className={"projectsHeader"}>
-                                    <h3>Recent Projects</h3>
-                                </div>
-                                <div className={"projectsLink"}>
-                                        <a href="#">View all projects</a>
-                                </div>
-                            </div>
-                            <div>
                                 {projects.length !== 0 ? <Row sm={5}>
                                     {
                                         projects.map((project) => {
                                             return <Col><ProjectComponent project={project}/></Col>
                                         })
                                     }
-                                </Row> : <>You don't have any projects yet.</>}
-                            </div>
+                                </Row> : <>You don't have any projects yet. <a style={{fontWeight: 'bold'}}href="#">Create your first project.</a></>}
 
                         </div>
                     </Stack>
-                    
-                    
-                    
-                </div>
             </Container>
         </>
     )

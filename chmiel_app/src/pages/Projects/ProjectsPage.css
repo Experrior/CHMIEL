@@ -1,7 +1,8 @@
-.homeContainer {
-    max-width: 100%;
-    height: calc(100vh - 175px);
-    padding-top: 16px;
+h2 {
+    padding: 12px;
+    margin-top: 32px;
+    /* margin-bottom: 16px; */
+
 }
 
 .recentProjectsContainer {
@@ -9,18 +10,6 @@
     padding-bottom: 32px;
     display: flex;
     flex-direction: column;
-}
-
-.projectsHeaderRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between; 
-}
-
-.projectsHeader {
-    margin-right: auto;
-    margin-bottom: 16px;
 }
 
 .projectsLink {
@@ -34,48 +23,4 @@
 
 .projectsLink > a:hover {
     color:blue;
-}
-
-.summaryContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.tabs {
-    display: flex;
-    flex-direction: row;
-    align-items: left;
-}
-
-.tab {
-    cursor: pointer;
-    padding: 10px 20px 10px 0px;
-    font-weight: 600;
-    transition: color 0.3s ease !important;
-}
-
-.tab:hover {
-    color:gray;
-}
-
-.tab.active {
-    color: #FF6B35;
-}
-
-.tab-content {
-    padding-top: 5px;
-}
-  
-.tab-line {
-    margin: 10px 0px 0px 0px;
-    width: 100%;
-    background-color: gray;
-    height: 2px;
-    position: relative;
-    bottom: 0;
-}
-
-.tab.active .tab-line {
-    background-color: #FF6B35;
 }

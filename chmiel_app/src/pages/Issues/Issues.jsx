@@ -278,7 +278,7 @@ export const Issues = () => {
                 <SidebarMenu from={"issues"}/>
                 <div className="issuesContainer">
                     <div className="projectLocation">
-                        <Nav.Link href="" className="nav-link">Projects</Nav.Link>
+                        <Nav.Link href="/projects" className="nav-link">Projects</Nav.Link>
                         <span style={{padding: '0px 8px'}}>/</span>
                         <Nav.Link href={`/issues/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
                     </div>

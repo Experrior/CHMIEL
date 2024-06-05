@@ -74,18 +74,18 @@ export const HomePage = () => {
 
     return (
         <>
-            <Navigation />
+            <Navigation sticky={"top"}/>
             <Container fluid={"md"}>
-                <div className={"homeContainer"}> 
+                {/* <div className={"homeContainer"}>  */}
                     <Stack gap={3}>
-                        <h2>Your work</h2>
+                        <h1>Your work</h1>
                         <div className={"recentProjectsContainer"}>
                             <div className={"projectsHeaderRow"}>
                                 <div className={"projectsHeader"}>
                                     <h3>Recent Projects</h3>
                                 </div>
                                 <div className={"projectsLink"}>
-                                        <a href="#">View all projects</a>
+                                        <a href="/projects">View all projects</a>
                                 </div>
                             </div>
                             <div>
@@ -128,10 +128,10 @@ export const HomePage = () => {
                             </div>
                         </div>
                     </Stack>
+
                     
                     
-                    
-                </div>
+                {/* </div> */}
             </Container>
         </>
     )

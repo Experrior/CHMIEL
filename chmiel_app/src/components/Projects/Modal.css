@@ -1,0 +1,8 @@
+.menuItemContent {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 30px;
+}

@@ -1,11 +1,16 @@
 import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import './Modal.css';
+import { MenuItem } from 'react-pro-sidebar';
 
-export const CreateProjectModal = (props) => {
+
+export const EditProjectModal = ({editProjectName}) => {
     const [modalShow, setModalShow] = useState(false);
     const [validated, setValidated] = useState(false);
 
-    const [projectName, setProjectName] = useState("");
+    const [projectName, setProjectName] = useState({});
 
 
     const [errors, setErrors] = useState({})
@@ -28,7 +33,7 @@ export const CreateProjectModal = (props) => {
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
         } else {
-            props.addProject(projectName);
+            editProjectName(projectName);
             setModalShow(false);
             setErrors({})
         }
@@ -36,7 +41,16 @@ export const CreateProjectModal = (props) => {
 
     return (
         <>
-            <Button variant={"custom-tertiary"} onClick={() => setModalShow(true)}>+ Create Project</Button>
+            {/* <Button variant={"custom-tertiary"} onClick={() => setModalShow(true)}>+ Create Project</Button> */}
+            <MenuItem
+                        onClick={() => setModalShow(true)}>
+                        <div className="menuItemContent">
+                            <div className={"icon"}>
+                                <FontAwesomeIcon icon={faEdit}/>
+                            </div>
+                            <div className="text">Edit Name</div>
+                        </div>
+                    </MenuItem>
             <Modal
                 show={modalShow}
                 onHide={() => {
@@ -51,7 +65,7 @@ export const CreateProjectModal = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Create New Project
+                        Edit project name
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -59,7 +73,7 @@ export const CreateProjectModal = (props) => {
                         <Row>
                             <Col>
                                 <Form.Group className={"mb-3"} controlId={"formGroupProjectName"}>
-                                    <Form.Label>Project Name</Form.Label>
+                                    <Form.Label>New name</Form.Label>
                                     <Form.Control required
                                                   type={"text"}
                                                   value={projectName}
