@@ -11,6 +11,8 @@ if [[ $# -ge 1 ]] ; then
 	docker build -f Dockerfile_db . -t chmiel_db
 	docker build -f Dockerfile_back . -t chmiel_back
 	docker build -f Dockerfile_py . -t chmiel_py
+	docker build -f Dockerfile_locust . -t chmiel_stress_test
+
 fi
 
 
@@ -18,6 +20,7 @@ docker rm -f chmiel_back
 docker rm -f chmiel_front
 docker rm -f chmiel_db
 docker rm -f chmiel_py
+docker rm -f chmiel_stress_test
 # Build compose
 docker compose -f compose.yaml build
 
@@ -30,4 +33,4 @@ sleep 5
 
 
 set +e
-docker ps
+watch -n 1 docker ps

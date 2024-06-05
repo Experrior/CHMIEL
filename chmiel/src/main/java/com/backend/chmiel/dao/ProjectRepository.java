@@ -14,7 +14,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     @Query(value = "SELECT p.* FROM Projects_Users pu RIGHT JOIN Projects p ON pu.project_id =p.id WHERE user_id = ?1", nativeQuery = true)
     List<Project> getAllByUserId(Integer user_id);
 
-    void removeProjectById(Integer id);
+    Integer removeProjectById(Integer id);
 
 
 }

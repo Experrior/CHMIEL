@@ -1,11 +1,9 @@
 package com.backend.chmiel.rest;
 
-import com.backend.chmiel.auth.RegisterRequest;
 import com.backend.chmiel.config.JwtService;
 import com.backend.chmiel.entity.User;
-import com.backend.chmiel.payload.EditUserDetailsRequest;
-import com.backend.chmiel.payload.PostPremadeUserRequest;
-import com.backend.chmiel.payload.UserDetailsResponse;
+import com.backend.chmiel.dto.EditUserDetailsRequest;
+import com.backend.chmiel.dto.UserDetailsResponse;
 import com.backend.chmiel.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

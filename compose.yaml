@@ -2,9 +2,6 @@ services:
   chmiel_db:
     container_name: chmiel_db
     image: chmiel_db
-#    build:
- #     context: .
-  #    dockerfile: Dockerfile_db
     ports:
       - "5432:5432"
     environment:
@@ -23,10 +20,7 @@ services:
 
   chmiel_back:
     container_name: chmiel_back
-#    build:
     image: chmiel_back
-   #   context: .
-   #   dockerfile: Dockerfile_back
     ports:
       - "8084:8084"
     healthcheck:
@@ -49,9 +43,6 @@ services:
   chmiel_front:
     container_name: chmiel_front
     image: chmiel_front
-#    build:
- #     context: .
-  #    dockerfile: Dockerfile_front
     ports:
       - "3000:80"
     depends_on:
@@ -62,12 +53,23 @@ services:
   chmiel_py:
     container_name: chmiel_py
     image: chmiel_py
-#    command: dockerize -wait 172.22.0.1:8084/api/auth
     depends_on:
       chmiel_back:
         condition: service_healthy
     networks:
       - my_network
+
+  chmiel_stress_test:
+    container_name: chmiel_stress_test
+    image: chmiel_stress_test
+    ports:
+      - "8089:8089"
+    depends_on:
+      chmiel_db:
+        condition: service_healthy
+    networks:
+      - my_network
+
 
 networks:
   my_network:

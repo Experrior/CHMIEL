@@ -1,4 +1,4 @@
-package com.backend.chmiel.payload;
+package com.backend.chmiel.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PutProjectRequest {
-    Integer id;
-    String name;
+public class PutProjectUserRequest {
+
+    public Integer projectID;
+    public Integer userId;
 }

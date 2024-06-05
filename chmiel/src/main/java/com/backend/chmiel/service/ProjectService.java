@@ -1,9 +1,9 @@
 package com.backend.chmiel.service;
 
 import com.backend.chmiel.entity.Project;
-import com.backend.chmiel.payload.PostProjectRequest;
-import com.backend.chmiel.payload.PutProjectRequest;
-import com.backend.chmiel.payload.PutProjectUserRequest;
+import com.backend.chmiel.dto.PostProjectRequest;
+import com.backend.chmiel.dto.PutProjectRequest;
+import com.backend.chmiel.dto.PutProjectUserRequest;
 
 import java.util.List;
 

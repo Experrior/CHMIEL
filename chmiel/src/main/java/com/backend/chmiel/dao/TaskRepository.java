@@ -1,8 +1,6 @@
 package com.backend.chmiel.dao;
 
-import com.backend.chmiel.entity.EpicsData;
 import com.backend.chmiel.entity.Task;
-import com.backend.chmiel.entity.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -12,9 +10,6 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Integer>, JpaSpecificationExecutor<Task> {
 
-    List<Task> findByAssignee(User assignee);
-
-//   
     List<Task> findTasksByProjectId(Integer project_id);
 
     @Query(value="SELECT * FROM Tasks WHERE assignee_id = ?1", nativeQuery = true)
