@@ -13,20 +13,16 @@ public class SprintTaskCountComponent{
         this.sprintRepository = sprintRepository;
     }
 
-    @Scheduled(fixedRate=1000*60*60*12) // runs every 12 hours
+    @Scheduled(fixedRate=1000* 30) // runs every 30  sec
     public void SprintTaskCountComponent() {
         System.out.println("Updating task count - " + System.currentTimeMillis() / 1000);
 
         sprintRepository.updateSprintsStartingTaskCount();
 
         sprintRepository.updateSprintsEndingTaskCount();
-
-    }
-
-    @PostConstruct
-    public void initCountDBFix() {
         sprintRepository.updatePregeneratedSprintsData();
         sprintRepository.hotfixCount();
     }
+
 
 }

@@ -1,8 +1,8 @@
 package com.backend.chmiel.rest;
 
 import com.backend.chmiel.entity.Sprint;
-import com.backend.chmiel.payload.EditSprintRequest;
-import com.backend.chmiel.payload.PostSprintRequest;
+import com.backend.chmiel.dto.EditSprintRequest;
+import com.backend.chmiel.dto.PostSprintRequest;
 import com.backend.chmiel.service.SprintService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

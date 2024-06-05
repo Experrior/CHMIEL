@@ -2,9 +2,9 @@ package com.backend.chmiel.rest;
 
 import com.backend.chmiel.config.JwtService;
 import com.backend.chmiel.entity.Project;
-import com.backend.chmiel.payload.PostProjectRequest;
-import com.backend.chmiel.payload.PutProjectRequest;
-import com.backend.chmiel.payload.PutProjectUserRequest;
+import com.backend.chmiel.dto.PostProjectRequest;
+import com.backend.chmiel.dto.PutProjectRequest;
+import com.backend.chmiel.dto.PutProjectUserRequest;
 import com.backend.chmiel.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/project")
 @RequiredArgsConstructor
-
-
 public class ProjectController {
 
     private final ProjectService projectService;

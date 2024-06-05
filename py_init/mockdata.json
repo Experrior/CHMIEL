@@ -1,0 +1,67 @@
+{
+  "connection": "postgresql+psycopg2://admin:test@172.17.0.1:5432/ChmielDB",
+  "tables": {
+      "Users": {
+        "id": "PK serial",
+        "first_name": "first_name",
+        "last_name": "last_name",
+        "email": "email UNIQUE",
+        "password": "password",
+        "role": "OPTION IN (USER, ADMIN)",
+        "address": "address",
+        "birth_date": "timestamp",
+        "phone_number": "phone"
+      },
+      "Projects":{
+        "id": "PK serial",
+        "project_name": "first_name",
+        "project_owner": "FK Users.id"
+      },
+      "IntermediaryTable: Projects_Users": {
+        "project_id": "FK Projects.id",
+        "user_id": "FK Users.id"
+      },
+      "Sprints": {
+        "id": "PK serial",
+        "sprint_name": "first_name UNIQUE",
+        "project_id": "FK Projects.id",
+        "start_time": "timestamp",
+        "stop_time": "timestamp",
+        "is_started": "bool",
+        "is_finished": "bool",
+        "starting_task_count": "integer CONST None",
+        "ending_task_count": "integer CONST None"
+      },
+      "SelfReferential(70%): Tasks": {
+        "id": "PK serial",
+        "assignee_id": "FK Users.id",
+        "reporter_id": "FK Users.id",
+        "project_id": "FK Projects.id",
+        "sprint_id": "FK Sprints.id",
+        "name": "first_name",
+        "description": "long_text",
+        "logged_hours": "float",
+        "time_estimate": "float",
+        "status": "OPTION IN (backlog, in_progress, closed)",
+        "is_epic": "bool",
+        "in_epic": "FK Tasks.id"
+      },
+      "Task_Comments": {
+        "id": "PK serial",
+        "task_id": "FK Tasks.id",
+        "message": "long_text",
+        "author_id": "FK Users.id",
+        "logged": "bool"
+      }
+    },
+  "objects_count": {
+    "Users": 20,
+    "Projects": 10,
+    "Projects_Users": 200,
+    "Sprints": 100,
+    "Tasks": 1000,
+    "Task_Comments": 100
+  }
+
+
+}

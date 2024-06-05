@@ -4,8 +4,8 @@ package com.backend.chmiel.service;
 import com.backend.chmiel.entity.Status;
 import com.backend.chmiel.entity.Task;
 import com.backend.chmiel.exception.TaskNotFoundException;
-import com.backend.chmiel.payload.EditTaskRequest;
-import com.backend.chmiel.payload.PostTaskRequest;
+import com.backend.chmiel.dto.EditTaskRequest;
+import com.backend.chmiel.dto.PostTaskRequest;
 
 import java.util.List;
 import java.util.Map;
