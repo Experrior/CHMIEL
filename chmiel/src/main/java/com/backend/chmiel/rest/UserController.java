@@ -28,8 +28,14 @@ public class UserController {
 
     @GetMapping("getAll")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<List<User>> getConnections() {
+    public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAll());
+    }
+
+    @GetMapping("getByEmail")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<List<User>> getByEmail(String regex) {
+        return ResponseEntity.ok(userService.getByEmail(regex));
     }
 
     @GetMapping("getConnections")

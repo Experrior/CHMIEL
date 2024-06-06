@@ -23,4 +23,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value="SELECT DISTINCT u.* FROM users u JOIN projects_users pu ON u.id = pu.user_id JOIN projects p ON pu.project_id = p.id WHERE p.id IN ( SELECT user_id FROM projects_users WHERE user_id = 1)", nativeQuery = true)
     List<User> getConnections(Integer id);
 
+    List<User> findByEmailContains(String regex);
 }
