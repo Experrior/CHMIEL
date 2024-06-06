@@ -14,4 +14,5 @@ public interface UserService {
     List<User> getConnections(Integer id);
     User changeUserPassword(Integer id, String password);
 
+    List<User> getByEmail(String regex);
 }
