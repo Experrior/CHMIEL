@@ -5,28 +5,58 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import './Modal.css';
 import { MenuItem } from 'react-pro-sidebar';
 import {useCookies} from "react-cookie";
+import axios from "../../api/axios";
 
 
 export const AddUsersModal = (props) => {
     const [modalShow, setModalShow] = useState(false);
-    const [userId, setUserId] = useState({});
-    const [errors, setErrors] = useState({})
+    const [userEmail, setUserEmail] = useState({});
+    const [errors, setErrors] = useState({});
+    const [validated, setValidated] = useState(false);
+    const [cookies] = useCookies(["token"]);
 
-    useEffect(() => {
-        setUserId("")
-    }, [modalShow])
+    const [users, setUsers] = useState([]);
+
+
+    const findUser = (email) => {
+        return users.find(user => user.email === email)
+    }
 
     const findFormErrors = () => {
         const newErrors = {}
-        if (!userId || userId === '') newErrors.userId = 'User id is required!'
+        if (!findUser(userEmail)) newErrors.userEmail = 'No user with such email'
         return newErrors
     }
+
+    useEffect(() => {
+        const getAllUsers = async () => {
+            await axios.get(`/api/user/getAll`, {
+                headers: { Authorization: `Bearer ${cookies.token}` }
+            }).then(response => {
+                setUsers(response.data)
+            }).catch(error => {
+                console.log(error)
+            })
+        };
+        getAllUsers();
+    })
+
+    useEffect(() => {
+        setUserEmail("")
+    }, [modalShow])
 
     const onConfirm = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        props.addUsersToProject(userId);
-        setModalShow(false);
+        const newErrors = findFormErrors()
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors)
+        } else {
+            const user = findUser(userEmail)
+            props.addUsersToProject(user.id);
+            setModalShow(false);
+            setErrors({})
+        }
     }
 
     return (
@@ -45,6 +75,7 @@ export const AddUsersModal = (props) => {
                 show={modalShow}
                 onHide={() => {
                     setModalShow(false)
+                    setErrors({})
                 }}
                 backdrop={"static"}
                 centered
@@ -56,20 +87,27 @@ export const AddUsersModal = (props) => {
                 <Modal.Title>Add users</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <Form id={"addUserForm"} onSubmit={onConfirm}>
+            <Form id={"addUserForm"} noValidate validated={validated} onSubmit={onConfirm}>
                         <Row>
                             <Col>
-                                <Form.Group className={"mb-3"} controlId={"formGroupUserId"}>
-                                    <Form.Label>Enter user id:</Form.Label>
+                                <Form.Group className={"mb-3"} controlId={"formGroupUserEmail"}>
+                                    <Form.Label>Enter user email:</Form.Label>
                                     <Form.Control required
                                                   type={"text"}
-                                                  value={userId}
+                                                  value={userEmail}
                                                   onChange={(e) => {
-                                                      setUserId(e.target.value)
+                                                      setUserEmail(e.target.value)
+                                                      if (!!errors["userEmail"]) setErrors({
+                                                        ...errors,
+                                                        ["userEmail"]: null
+                                                    }) 
                                                   }}
+                                                  isInvalid={!!errors.userEmail}
                                     />
                                 </Form.Group>
-
+                                <Form.Control.Feedback type='invalid'>
+                                        {errors.userEmail}
+                                    </Form.Control.Feedback>
                             </Col>
                         </Row>
                     </Form>

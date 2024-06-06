@@ -26,6 +26,18 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserDetailsById(id));
     }
 
+    @GetMapping("getAll")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAll());
+    }
+
+    @GetMapping("getByEmail")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<List<User>> getByEmail(String regex) {
+        return ResponseEntity.ok(userService.getByEmail(regex));
+    }
+
     @GetMapping("getConnections")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<List<User>> getConnections(@RequestHeader("Authorization") String token) {
