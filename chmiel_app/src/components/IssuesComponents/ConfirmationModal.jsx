@@ -9,10 +9,10 @@ export const ConfirmationModal = ({ message, onConfirm, onCancel }) => {
             </Modal.Header>
             <Modal.Body>{message}</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onCancel}>
+                <Button variant="custom-secondary" onClick={onCancel}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={onConfirm}>
+                <Button variant="custom-primary" onClick={onConfirm}>
                     Confirm
                 </Button>
             </Modal.Footer>

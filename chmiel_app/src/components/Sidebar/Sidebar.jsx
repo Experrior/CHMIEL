@@ -9,6 +9,7 @@ import {useCookies} from "react-cookie";
 import {useNavigate, useParams} from "react-router-dom";
 import { EditProjectModal } from "../../components/Projects/EditProjectModal";
 import { DeleteProjectModal } from "../../components/Projects/DeleteProjectModal";
+import { AddUsersModal } from "../../components/Projects/AddUsersModal";
 
 export const SidebarMenu = (props) => {
     let {projectId} = useParams()
@@ -43,7 +44,7 @@ export const SidebarMenu = (props) => {
     };
 
     const addUsersToProject = async (userId) => {
-        await axios.post(`/api/project/addUser`, {
+        await axios.put(`/api/project/addUser`, {
             projectID: projectId,
             userId: userId
         }, {
@@ -197,6 +198,7 @@ export const SidebarMenu = (props) => {
                                 },
                         }}>
                         
+                            <AddUsersModal addUsersToProject={addUsersToProject}/>
                             <EditProjectModal editProjectName={editProjectName}/>
                             <DeleteProjectModal deleteProject={removeProject}/>
                             </Menu>
