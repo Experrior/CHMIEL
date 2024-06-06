@@ -20,7 +20,8 @@ Zuzia:
             [x] add project
             [x] edit project
             [x] delete project
-            [] add/remove people from project
+            [x] add people from project
+            [] remove people from project
         board:
             [x] filter by users
             [x] remove backlog,
