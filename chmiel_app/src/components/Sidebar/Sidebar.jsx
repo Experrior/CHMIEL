@@ -3,10 +3,12 @@ import "./Sidebar.css";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import {Link, useLocation} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight, faChartSimple } from '@fortawesome/free-solid-svg-icons';
+import { faTasks, faClipboardList, faExclamationCircle, faArrowLeft, faArrowRight, faChartSimple, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import { EditProjectModal } from "../../components/Projects/EditProjectModal";
+import { DeleteProjectModal } from "../../components/Projects/DeleteProjectModal";
 
 export const SidebarMenu = (props) => {
     let {projectId} = useParams()
@@ -15,6 +17,7 @@ export const SidebarMenu = (props) => {
     const [sidebarVisible, setSidebarVisible] = useState(true);
     const sidebarClass = sidebarVisible ? "sidebar open" : "sidebar";
     const [cookies] = useCookies(["token"]);
+    const navigate = useNavigate();
 
     const handleItemClick = (item) => {
         setActiveItem(item);
@@ -24,6 +27,44 @@ export const SidebarMenu = (props) => {
         setSidebarVisible(!sidebarVisible);
     };
 
+    const editProjectName = async (name) => {
+        await axios.put(`/api/project/editName`, {
+            id: projectId,
+            name: name
+        }, {
+            headers: { Authorization: `Bearer ${cookies.token}` }
+        }).then(response => {
+            console.log(response)
+            setProject({...project, projectName: response.data.projectName})
+        }).catch(error => {
+            console.log(error)
+        })
+    };
+
+    const addUsersToProject = async (userId) => {
+        await axios.post(`/api/project/addUser`, {
+            projectID: projectId,
+            userId: userId
+        }, {
+            headers: { Authorization: `Bearer ${cookies.token}` }
+        }).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        })
+    };
+
+    const removeProject = async () => {
+        await axios.delete(`/api/project/remove/${projectId}`, {
+            headers: { Authorization: `Bearer ${cookies.token}` }
+        }).then(response => {
+            console.log(response)
+            if (response.status === 200) navigate(`/`);
+        }).catch(error => {
+            console.log(error)
+        })
+    };
+        
     useEffect(() => {
         const getProject = async () => {
             try {
@@ -42,7 +83,6 @@ export const SidebarMenu = (props) => {
     }, [projectId]);
 
     return (
-        // TODO: make items of the sidebar fixed with remaining collapsable
         <>
             <Sidebar className={sidebarClass} collapsed={!sidebarVisible} >
                 <Menu 
@@ -58,7 +98,7 @@ export const SidebarMenu = (props) => {
                             '&:hover': {
                                 backgroundColor: '#def0ff',
                             },
-                            width: sidebarVisible ? '120%' : '0%',
+                            width: sidebarVisible ? '100%' : '0%',
                             transition: 'width 0.3s ease',
                         };
                     },
@@ -116,6 +156,8 @@ export const SidebarMenu = (props) => {
                             <div className="text">Charts</div>
                         </div>
                     </MenuItem>
+                    <EditProjectModal editProjectName={editProjectName}/>
+                    <DeleteProjectModal deleteProject={removeProject}/>
                 </Menu>
                 
             </Sidebar>

@@ -1,9 +1,7 @@
-.homeContainer {
-    max-width: 100%;
-    height: calc(100vh - 175px);
-    padding-top: 16px;
+h1 {
+    font-size: 2em;
+    margin-top: 32px;
 }
-
 .recentProjectsContainer {
     height: auto;
     padding-bottom: 32px;

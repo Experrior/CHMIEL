@@ -1,0 +1,26 @@
+h2 {
+    padding: 12px;
+    margin-top: 32px;
+    /* margin-bottom: 16px; */
+
+}
+
+.recentProjectsContainer {
+    height: auto;
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.projectsLink {
+    margin-left: auto;
+    margin-bottom: 16px;
+}
+
+.projectsLink > a {
+    font-weight: bold;
+}
+
+.projectsLink > a:hover {
+    color:blue;
+}
