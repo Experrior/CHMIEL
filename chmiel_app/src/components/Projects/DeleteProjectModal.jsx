@@ -13,6 +13,11 @@ export const DeleteProjectModal = ({deleteProject}) => {
         setModalShow(false)
     }
 
+    const onConfirm = () => {
+        deleteProject()
+        setModalShow(false)
+    }
+
     return (
         <>
             {/* <Button variant={"custom-tertiary"} onClick={() => setModalShow(true)}>+ Create Project</Button> */}
@@ -44,7 +49,7 @@ export const DeleteProjectModal = ({deleteProject}) => {
                 <Button variant="secondary" onClick={onCancel}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={deleteProject}>
+                <Button variant="primary" onClick={onConfirm}>
                     Confirm
                 </Button>
             </Modal.Footer>

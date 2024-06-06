@@ -48,7 +48,7 @@ export const EditProjectModal = ({editProjectName}) => {
                             <div className={"icon"}>
                                 <FontAwesomeIcon icon={faEdit}/>
                             </div>
-                            <div className="text">Edit Name</div>
+                            <div className="text">Edit name</div>
                         </div>
                     </MenuItem>
             <Modal

@@ -98,7 +98,7 @@ export const SidebarMenu = (props) => {
                             '&:hover': {
                                 backgroundColor: '#def0ff',
                             },
-                            width: sidebarVisible ? '120%' : '0%',
+                            width: sidebarVisible ? '100%' : '0%',
                             transition: 'width 0.3s ease',
                         };
                     },
@@ -158,16 +158,6 @@ export const SidebarMenu = (props) => {
                     </MenuItem>
                     <EditProjectModal editProjectName={editProjectName}/>
                     <DeleteProjectModal deleteProject={removeProject}/>
-                    {/*
-                    <MenuItem
-                        onClick={() => handleItemClick("edit")}>
-                        <div className="menuItemContent">
-                            <div className={"icon"}>
-                                <FontAwesomeIcon icon={faEdit}/>
-                            </div>
-                            <div className="text">Edit</div>
-                        </div>
-                    </MenuItem> */}
                 </Menu>
                 
             </Sidebar>
