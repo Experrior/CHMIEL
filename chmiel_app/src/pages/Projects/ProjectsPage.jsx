@@ -33,11 +33,12 @@ export const ProjectsPage = () => {
         console.log("Adding project")
         console.log(projectName)
         console.log(user.id)
-        await axios.post(`/api/project/createProject`, {
-            name: projectName,
-            projectOwner: user.id
-        }, {
-            headers: { Authorization: `Bearer ${cookies.token}` }
+        await axios.post(`/api/project/createProject`, projectName,
+        {
+            headers: {
+                Authorization: `Bearer ${cookies.token}`,
+                'Content-Type': 'text/plain'
+            }
         }).then(response => {
             console.log(response)
             setProjects([...projects, {id: response.data.id, name: response.data.projectName}])

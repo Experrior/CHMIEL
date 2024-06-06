@@ -161,10 +161,14 @@ export const Board = (props) => {
 
     return (
         <>
-        <Navigation/>
+        <Navigation sticky={"top"}/>
+       
+
+
         <div style={{display: "flex"}}>
             <SidebarMenu project={project} from={"board"}/>
             <div className="boardContainer" >
+            { boardName ? ( <>
                 <div className="boardHeader">
                     <div className="projectLocation">
                         <Nav.Link href="/projects" className="nav-link">Projects</Nav.Link>
@@ -217,9 +221,14 @@ export const Board = (props) => {
                         })
                     }
                 </div>
+                </>) : (
+                <h1>There's no started sprint yet.</h1>
+            )
+            }
             </div>
+
         </div>
-            
+        
         </>
     )
 }

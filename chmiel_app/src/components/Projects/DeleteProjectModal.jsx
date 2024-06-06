@@ -21,7 +21,7 @@ export const DeleteProjectModal = ({deleteProject}) => {
     return (
         <>
             {/* <Button variant={"custom-tertiary"} onClick={() => setModalShow(true)}>+ Create Project</Button> */}
-            <MenuItem
+            <MenuItem active={false}
                         onClick={() => setModalShow(true)}>
                         <div className="menuItemContent">
                             <div className={"icon"}>
