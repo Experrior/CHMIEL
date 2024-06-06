@@ -431,7 +431,7 @@ export const Issues = () => {
                                         <Nav.Link href={`/issues/${projectId}`}
                                                   className="nav-link">{project.projectName}</Nav.Link>
                                         <span style={{padding: '0px 8px'}}>/</span>
-                                        <Nav.Link href={""} className="nav-link">SPRINT NAME</Nav.Link>
+                                        <Nav.Link href={""} className="nav-link">{getSelectedTask().sprint ? getSelectedTask().sprint.sprintName : "NO SPRINT"}</Nav.Link>
                                     </div>
                                     <div className="issueDetails">
                                         <div style={{
