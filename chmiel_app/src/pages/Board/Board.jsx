@@ -39,6 +39,21 @@ export const Board = (props) => {
         }
     };
 
+    const getTasksBySprint = async () => {
+        try {
+            const response = await axios.get(`/api/task/getTasksBySprintId/${sprint.id}`,
+                {
+                    headers: {Authorization: `Bearer ${cookies.token}`}
+                }
+            )
+            console.log('TASKS:')
+            console.log(response.data)
+            setTasks(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
 
     useEffect(() => {
         const getProject = async () => {
@@ -72,24 +87,11 @@ export const Board = (props) => {
 
         getProject()
         getSprint()
+        getTasksBySprint()
 
         console.log(projectId)
     }, []);
 
-    const getTasksBySprint = async () => {
-        try {
-            const response = await axios.get(`/api/task/getTasksBySprintId/${sprint.id}`,
-                {
-                    headers: {Authorization: `Bearer ${cookies.token}`}
-                }
-            )
-            console.log('TASKS:')
-            console.log(response.data)
-            setTasks(response.data);
-        } catch (error) {
-            console.log(error)
-        }
-    };
 
     const [boardName, setBoardName] = useState('');
     const [isEditing, setIsEditing] = useState(false);
