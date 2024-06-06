@@ -189,7 +189,7 @@ export const BacklogPage = (props) => {
     const getTasksFilteredByAssigneeId = async (assigneeId) => {
         console.log("id: ", assigneeId)
         try {
-            const response = await axios.get(`/api/task/getFilteredTasks?assigneeId=${assigneeId}`,
+            const response = await axios.get(`/api/task/getFilteredTasks?projectId=${projectId}&assigneeId=${assigneeId}`,
                 {
                     headers: {Authorization: `Bearer ${cookies.token}`}
                 }

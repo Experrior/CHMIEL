@@ -195,9 +195,12 @@ public class TaskServiceImpl implements TaskService {
 //        return taskRepository.findAll(Example.of(taskTemplate));
 //    }
 
-    public List<Task> getFilteredTasks(Status status, Integer assigneeId, Integer sprintId) {
+    public List<Task> getFilteredTasks(Integer projectId, Status status, Integer assigneeId, Integer sprintId) {
         Specification<Task> spec = Specification.where(null);
 
+        if (projectId != null) {
+            spec = spec.and(inProject(projectId));
+        }
         if (status != null) {
             spec = spec.and(hasStatus(status));
         }
@@ -229,6 +232,10 @@ public class TaskServiceImpl implements TaskService {
 
     public static Specification<Task> inSprint(Sprint sprint) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("sprint"), sprint);
+    }
+
+    public static Specification<Task> inProject(Integer projectId) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("projectId"), projectId);
     }
 
 
