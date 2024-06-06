@@ -10,6 +10,7 @@ public interface UserService {
     UserDetailsResponse getUserDetailsById(Integer id);
     UserDetailsResponse editUserDetailsById(Integer id, EditUserDetailsRequest request);
 
+    List<User> getAll();
     List<User> getConnections(Integer id);
     User changeUserPassword(Integer id, String password);
 

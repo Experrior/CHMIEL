@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public List<User> getConnections(Integer id) {
         User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         List<User> users =userRepository.getConnections(id);

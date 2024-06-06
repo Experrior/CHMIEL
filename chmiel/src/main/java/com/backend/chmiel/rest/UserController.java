@@ -26,6 +26,12 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserDetailsById(id));
     }
 
+    @GetMapping("getAll")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public ResponseEntity<List<User>> getConnections() {
+        return ResponseEntity.ok(userService.getAll());
+    }
+
     @GetMapping("getConnections")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<List<User>> getConnections(@RequestHeader("Authorization") String token) {
