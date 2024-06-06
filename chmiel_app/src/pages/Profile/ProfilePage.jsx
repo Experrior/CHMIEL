@@ -29,6 +29,7 @@ export const ProfilePage = () => {
         // {id: 2, name: "testProject2"},
         // {id: 3, name: "testProject3"}
     ])
+
     const [userConnections, setUserConnections] = useState([
         {id: 1},
         {id: 2},
