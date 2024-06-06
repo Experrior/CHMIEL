@@ -30,16 +30,16 @@ CHOOSE FROM THOSE:
 
     front:
         add separate page for projects:
-            [] display all projects
-            [] add project
-            [] edit project
-            [] delete project
+            [x] display all projects
+            [x] add project
+            [x] edit project
+            [x] delete project
             [] add/remove people from project
 
         board:
-            [] filter by users
-            [] remove backlog,
-            [] show sprint name
+            [x] filter by users
+            [x] remove backlog,
+            [x] show sprint name
 
        hotfix:
            [] remove charts from nav bar
