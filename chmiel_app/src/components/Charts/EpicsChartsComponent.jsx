@@ -62,17 +62,26 @@ export const EpicsChartsComponent = ({inputData}) => {
         <div style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             alignItems: 'center',
+            height: "100%"
         }}>
-            <h3>Epics activity chart</h3>
-            <p style={{margin: '0', marginTop: '0px', textAlign: "center"}}>Chart showing how many tasks from epics were
-                finished in given sprint.</p>
-            <p style={{margin: '0', marginTop: '0px', textAlign: "center"}}>Helps to keep track if epics are progressing
-                according to plans.</p>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: "100%"
+            }}>
+                <h3>Epics activity chart</h3>
+                <p style={{margin: '0', marginTop: '0px', textAlign: "center"}}>Chart showing how many tasks from epics were
+                    finished in given sprint.</p>
+                <p style={{margin: '0', marginTop: '0px', textAlign: "center"}}>Helps to keep track if epics are progressing
+                    according to plans.</p>
+            </div>
             <div style={{
                 width: '100%',
-                height: '100%',
+                // height: '100%',
                 marginTop: '20px',
                 display: "flex",
                 alignItems: "center",

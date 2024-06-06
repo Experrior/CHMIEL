@@ -15,7 +15,6 @@ import axios from "../../api/axios";
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
-import './Charts.css';
 import {
     Routes,
     Route,
@@ -51,7 +50,7 @@ const ChartsPage = () => {
     const [epicsData, setEpicsData] = useState({});
     const [sprintsData, setSprintsData] = useState({});
     const { projectId } = useParams();
-    const [selectedProject, setSelectedProject] = useState(""); // State to hold the selected project
+    const [selectedProject, setSelectedProject] = useState(projectId); // State to hold the selected project
     const [queryParameters] = useSearchParams()
     const navigate = useNavigate();
 
@@ -84,7 +83,7 @@ const ChartsPage = () => {
                 // }));
                 console.log(projectId)
                 console.log(response.data)
-                setSelectedProject(response.data);
+                setSelectedProject(response.data.id);
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
@@ -125,9 +124,10 @@ const ChartsPage = () => {
     return (
         <>
             <Navigation sticky={"top"}/>
+
             <div style={{display: "flex"}}>
                 <SidebarMenu from={"charts"}/>
-                <Container className="chartsContainer" fluid="md">
+                <Container fluid="md" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
                     <Row className="text-center" style={{ marginBottom: '20px' }}>
                         <Col>
                             <h1 style={{ margin: '0' }}>Analytic charts</h1>
@@ -138,7 +138,7 @@ const ChartsPage = () => {
                         <Col className="text-center">
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={selectedProject ? selectedProject.projectName : "Project"}
+                                title={selectedProject ? selectedProject.name : "Project"}
                             >
                                 {projects.map(project => (
                                     <Dropdown.Item
@@ -155,16 +155,16 @@ const ChartsPage = () => {
                             </DropdownButton>
                         </Col>
                     </Row>
-                    <Row className="mt-4">
-                        <Row md={5} style={{ marginRight: '16%' }}>
+                    <Row className="mt-4" style={{display: "flex", gap: 60, justifyContent: "center"}}>
+                        <Col md={5}>
                             <EpicsChartsComponent inputData={epicsData} />
-                        </Row>
-                        <Row md={5}>
+                        </Col>
+                        <Col md={5}>
                             <SprintChartsComponent inputData={sprintsData} />
-                        </Row>
+                        </Col>
                     </Row>
                 </Container>
-                
+
             </div>
         </>
     );
