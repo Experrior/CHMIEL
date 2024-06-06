@@ -14,6 +14,7 @@ try:
 except ConnectTimeout:
     api = "http://172.22.0.1:8084"
 
+
 users = [
     {"firstName": "John", "lastName": "Doe", "email": "john.doe@example.com", "password": "password"},
     {"firstName": "Alice", "lastName": "Smith", "email": "alice.smith@example.com", "password": "password"},

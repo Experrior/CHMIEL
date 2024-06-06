@@ -1,27 +1,27 @@
-import {Col, Row} from 'react-bootstrap';
-import {
-    BarController,
-    BarElement,
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    LineController,
-    LineElement,
-    PointElement,
-    Tooltip
-} from 'chart.js';
+import { Container, Nav, Col, Row } from 'react-bootstrap';
+import { Chart as ChartJS, LinearScale, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip, LineController, BarController } from 'chart.js';
+import { Chart } from 'react-chartjs-2';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import default_profile_picture from "../../assets/default_profile_picture.jpg";
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Navigation} from "../../components/Navigation/Navigation";
 import {EpicsChartsComponent} from "../../components/Charts/EpicsChartsComponent";
 import {SprintChartsComponent} from "../../components/Charts/SprintChartsComponent";
+import {SprintChartsComponent2} from "../../components/Charts/SprintChartsComponent2";
 import {useCookies} from "react-cookie";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
-import React, {useEffect, useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "../../api/axios";
-import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import './Charts.css';
+import {
+    Routes,
+    Route,
+    useSearchParams,
+    BrowserRouter
+} from "react-router-dom"
 
 ChartJS.register(
     LinearScale,
@@ -50,8 +50,8 @@ const ChartsPage = () => {
     const [error, setError] = useState(null);
     const [epicsData, setEpicsData] = useState({});
     const [sprintsData, setSprintsData] = useState({});
-    const {projectId} = useParams();
-    const [selectedProject, setSelectedProject] = useState(projectId); // State to hold the selected project
+    const { projectId } = useParams();
+    const [selectedProject, setSelectedProject] = useState(""); // State to hold the selected project
     const [queryParameters] = useSearchParams()
     const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ const ChartsPage = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('/api/project/getByUserId', {
-                    headers: {Authorization: `Bearer ${cookies.token}`}
+                    headers: { Authorization: `Bearer ${cookies.token}` }
                 });
                 const projectsData = response.data.map(project => ({
                     id: project.id,
@@ -76,7 +76,7 @@ const ChartsPage = () => {
         const fetchChosenProject = async () => {
             try {
                 const response = await axios.get('/api/project/getProjectByProjectId/' + projectId, {
-                    headers: {Authorization: `Bearer ${cookies.token}`}
+                    headers: { Authorization: `Bearer ${cookies.token}` }
                 });
                 // const projectsData = response.data.map(project => ({
                 //     id: project.id,
@@ -84,7 +84,7 @@ const ChartsPage = () => {
                 // }));
                 console.log(projectId)
                 console.log(response.data)
-                setSelectedProject(response.data.id);
+                setSelectedProject(response.data);
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
@@ -94,7 +94,7 @@ const ChartsPage = () => {
         const fetchEpicsData = async () => {
             try {
                 const response = await axios.get('/api/task/getEpicsData/' + projectId, {
-                    headers: {Authorization: "Bearer " + cookies.token}
+                    headers: { Authorization: "Bearer " + cookies.token }
                 });
                 setEpicsData(response.data);
             } catch (error) {
@@ -102,10 +102,10 @@ const ChartsPage = () => {
             }
         };
 
-        const fetchSprintsData = async () => {
+        const fetchSprintsData = async() =>{
             try {
                 const response = await axios.get('/api/sprint/getSprintsCompletionData/' + projectId, {
-                    headers: {Authorization: "Bearer " + cookies.token}
+                    headers: { Authorization: "Bearer " + cookies.token }
                 });
                 setSprintsData(response.data);
             } catch (error) {
@@ -125,23 +125,20 @@ const ChartsPage = () => {
     return (
         <>
             <Navigation sticky={"top"}/>
-
             <div style={{display: "flex"}}>
                 <SidebarMenu from={"charts"}/>
-                {/*Container fluid="md" style={{ paddingTop: '20px', paddingBottom: '20px' }}*/}
-                <div className={"chartContainer"}>
-                    <Row className="text-center" style={{marginBottom: '20px'}}>
+                <Container className="chartsContainer" fluid="md">
+                    <Row className="text-center" style={{ marginBottom: '20px' }}>
                         <Col>
-                            <h1 style={{margin: '0'}}>Analytic charts</h1>
-                            <h3 style={{margin: '0'}}>Here are displayed charts with various measures, for given scrum
-                                project.</h3>
+                            <h1 style={{ margin: '0' }}>Analytic charts</h1>
+                            <h3 style={{ margin: '0' }}>Here are displayed charts with various measures, for given scrum project.</h3>
                         </Col>
                     </Row>
                     <Row className="my-4">
                         <Col className="text-center">
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={selectedProject ? selectedProject.name : "Project"}
+                                title={selectedProject ? selectedProject.projectName : "Project"}
                             >
                                 {projects.map(project => (
                                     <Dropdown.Item
@@ -158,49 +155,16 @@ const ChartsPage = () => {
                             </DropdownButton>
                         </Col>
                     </Row>
-
-                    <Row>
-                        <Col md={12} xl={6}>
-                            <EpicsChartsComponent inputData={epicsData}/>
-                        </Col>
-                        <Col md={12} xl={6}>
-                            <SprintChartsComponent inputData={sprintsData}/>
-                        </Col>
+                    <Row className="mt-4">
+                        <Row md={5} style={{ marginRight: '16%' }}>
+                            <EpicsChartsComponent inputData={epicsData} />
+                        </Row>
+                        <Row md={5}>
+                            <SprintChartsComponent inputData={sprintsData} />
+                        </Row>
                     </Row>
-
-
-
-                    {/*<Row className="my-4">*/}
-                    {/*    <Col className="text-center">*/}
-                    {/*        <DropdownButton*/}
-                    {/*            id="dropdown-basic-button"*/}
-                    {/*            title={selectedProject ? selectedProject.name : "Project"}*/}
-                    {/*        >*/}
-                    {/*            {projects.map(project => (*/}
-                    {/*                <Dropdown.Item*/}
-                    {/*                    key={project.id}*/}
-                    {/*                    value={project.id}*/}
-                    {/*                    onClick={() => {*/}
-                    {/*                        setSelectedProject(project.id);*/}
-                    {/*                        navigate('/charts/' + project.id);*/}
-                    {/*                    }}*/}
-                    {/*                >*/}
-                    {/*                    {project.name}*/}
-                    {/*                </Dropdown.Item>*/}
-                    {/*            ))}*/}
-                    {/*        </DropdownButton>*/}
-                    {/*    </Col>*/}
-                    {/*</Row>*/}
-                    {/*<Row className="mt-4">*/}
-                    {/*    <Col md={5} style={{marginRight: '16%'}}>*/}
-                    {/*        <EpicsChartsComponent inputData={epicsData}/>*/}
-                    {/*    </Col>*/}
-                    {/*    <Col md={5}>*/}
-                    {/*        <SprintChartsComponent inputData={sprintsData}/>*/}
-                    {/*    </Col>*/}
-                    {/*</Row>*/}
-                </div>
-
+                </Container>
+                
             </div>
         </>
     );

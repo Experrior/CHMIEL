@@ -2,9 +2,9 @@ package com.backend.chmiel.rest;
 
 import com.backend.chmiel.config.JwtService;
 import com.backend.chmiel.entity.Project;
-import com.backend.chmiel.payload.PostProjectRequest;
-import com.backend.chmiel.payload.PutProjectRequest;
-import com.backend.chmiel.payload.PutProjectUserRequest;
+import com.backend.chmiel.dto.PostProjectRequest;
+import com.backend.chmiel.dto.PutProjectRequest;
+import com.backend.chmiel.dto.PutProjectUserRequest;
 import com.backend.chmiel.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/project")
 @RequiredArgsConstructor
-
-
 public class ProjectController {
 
     private final ProjectService projectService;
@@ -61,8 +59,10 @@ public class ProjectController {
 
     @PostMapping("/createProject")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<Project> getSprintsByUserId(@RequestBody PostProjectRequest postProjectRequest){
-        return ResponseEntity.ok(projectService.createProject(postProjectRequest));
+    public ResponseEntity<Project> getSprintsByUserId(@RequestHeader("Authorization") String token,@RequestBody String projectName){
+        System.out.println(token);
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(projectService.createProject(id, projectName));
     }
 
     @DeleteMapping("/remove/{id}")

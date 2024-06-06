@@ -25,7 +25,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                                 authorizeRequests
-                                        .requestMatchers("/swagger-ui/*", "/v3/api-docs", "/v3/api-docs/swagger-config", "/api/auth/*").permitAll() // Allow access without authentication
+                                        .requestMatchers("/swagger-ui/*", "/v3/api-docs", "/v3/api-docs/swagger-config", "/api/auth/*", "/actuator/health").permitAll() // Allow access without authentication
                                         .anyRequest().authenticated()
                         // Require authentication for all other requests
                 )

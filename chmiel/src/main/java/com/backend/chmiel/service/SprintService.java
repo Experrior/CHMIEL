@@ -1,8 +1,8 @@
 package com.backend.chmiel.service;
 
 import com.backend.chmiel.entity.Sprint;
-import com.backend.chmiel.payload.EditSprintRequest;
-import com.backend.chmiel.payload.PostSprintRequest;
+import com.backend.chmiel.dto.EditSprintRequest;
+import com.backend.chmiel.dto.PostSprintRequest;
 
 import java.util.List;
 

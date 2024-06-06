@@ -11,6 +11,7 @@ import useScreenSize from "../../other/useScreenSize";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
 import { BoardComponent } from "../../components/Board/BoardComponent";
+import {UserButtonsContainer} from "../../components/Board/UserButtonContainer";
 import {useParams} from "react-router-dom";
 
 export const Board = (props) => {
@@ -18,11 +19,26 @@ export const Board = (props) => {
     const [cookies] = useCookies(["token"]);
 
     const [project, setProject] = useState([]);
-    const [sprints, setSprints] = useState([]);
+    const [sprint, setSprint] = useState([]);
     const [tasks, setTasks] = useState([])
 
-    const [isThereAStartedSprint, setIsThereAStartedSprint] = useState(false);
-    const [startedSprint, setStartedSprint] = useState([]);
+
+    const getTasksFilteredByAssigneeId = async (assigneeId) => {
+        console.log("id: ", assigneeId)
+        console.log("sprintId: ", sprint.id)
+        try {
+            const response = await axios.get(`/api/task/getFilteredTasks?assigneeId=${assigneeId}&sprintId=${sprint.id}`,
+                {
+                    headers: {Authorization: `Bearer ${cookies.token}`}
+                }
+            )
+            console.log(response.data)
+            setTasks(response.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
 
     useEffect(() => {
         const getProject = async () => {
@@ -39,61 +55,30 @@ export const Board = (props) => {
             }
         };
 
-        const getSprints = async () => {
+        const getSprint = async () => {
             try {
-                const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
+                const response = await axios.get(`/api/sprint/getCurrentSprint/${projectId}`,
                     {
                         headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
                 console.log(response.data)
-                setSprints(response.data);
+                setSprint(response.data);
+                setBoardName(response.data.sprintName + " Board")
             } catch (error) {
                 console.log(error)
             }
         };
 
-        // const getTasks = async () => {
-        //     try {
-        //         const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
-        //             {
-        //                 headers: {Authorization: `Bearer ${cookies.token}`}
-        //             }
-        //         )
-        //         console.log('TASKS:')
-        //         console.log(response.data)
-        //         setTasks(response.data);
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        // };
-
         getProject()
-        getSprints()
-        // getTasks()
+        getSprint()
 
-        getProject()
         console.log(projectId)
     }, []);
 
-    useEffect(() => {
-        setIsThereAStartedSprint(sprints.filter((sprint) => sprint.started === true).length > 0)
-        console.log('IS THERE A STARTED SPRINT:')
-        console.log(isThereAStartedSprint)
+    const getTasksBySprint = async () => {
         try {
-            setStartedSprint(sprints.filter((sprint) => sprint.started === true))
-            console.log('STARTED SPRINT:')
-            console.log(startedSprint[0].sprintName)
-            setBoardName(startedSprint[0].sprintName + " Board")
-            getTasksBySprint(startedSprint[0].id)
-        } catch (error) {
-            console.log(error)
-        }
-    }, [sprints]);
-
-    const getTasksBySprint = async (sprint_id) => {
-        try {
-            const response = await axios.get(`/api/task/getTasksBySprintId/${sprint_id}`,
+            const response = await axios.get(`/api/task/getTasksBySprintId/${sprint.id}`,
                 {
                     headers: {Authorization: `Bearer ${cookies.token}`}
                 }
@@ -133,15 +118,6 @@ export const Board = (props) => {
         setIsEditing(false);
     };
 
-    const [groupMembers, setGroupMembers] = useState([
-        {id: 1},
-        {id: 2},
-        {id: 3},
-        {id: 4},
-        {id: 5},
-        {id: 6}
-    ]);
-
     const [showAllMembers, setShowAllMembers] = useState(false);
     const maxDisplayedMembers = 5;
     const maxTotalMembers = 10;
@@ -152,7 +128,7 @@ export const Board = (props) => {
 
     const [panels, setPanels] = useState([
         // ('backlog', 'open', 'in_progress', 'review', 'closed')
-        {id: 1, name: "BACKLOG", status: "backlog"},
+        // {id: 1, name: "BACKLOG", status: "backlog"},
         {id: 2, name: "TO-DO", status: "todo"},
         {id: 3, name: "IN PROGRESS", status: "in_progress"},
         {id: 4, name: "REVIEW", status: "review"},
@@ -161,13 +137,14 @@ export const Board = (props) => {
 
     return (
         <>
-        <Navigation/>
+        <Navigation sticky={"top"}/>
         <div style={{display: "flex"}}>
             <SidebarMenu project={project} from={"board"}/>
             <div className="boardContainer" >
+            { sprint ? ( <>
                 <div className="boardHeader">
                     <div className="projectLocation">
-                        <Nav.Link href="" className="nav-link">Projects</Nav.Link>
+                        <Nav.Link href="/projects" className="nav-link">Projects</Nav.Link>
                         <span style={{padding: '0px 8px'}}>/</span>
                         <Nav.Link href={`/board/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
                     </div>
@@ -197,15 +174,11 @@ export const Board = (props) => {
                         </div>
                         <div className="members">
                             <Row>
-                                {groupMembers.slice(0, showAllMembers ? maxTotalMembers : maxDisplayedMembers).map((groupMember, index) => (
-                                    <Col key={index} xs={2} md={3} lg={2} xxxl={1} className="custom-col">
-                                        <img
-                                            className="custom-image"
-                                            src={groupMember.profilePicture || default_profile_picture}
-                                            alt={`Profile picture of ${groupMember.name}`}
-                                        />
-                                    </Col>
-                                ))}
+                                        <UserButtonsContainer 
+                                          users={project.users}
+                                          getTasksFilteredByAssigneeId={getTasksFilteredByAssigneeId}
+                                          getTasks={getTasksBySprint}/>
+
                             </Row>
                         </div>
                     </div>
@@ -217,9 +190,14 @@ export const Board = (props) => {
                         })
                     }
                 </div>
+                </>) : (
+                <h1>There's no started sprint yet.</h1>
+            )
+            }
             </div>
+
         </div>
-            
+        
         </>
     )
 }

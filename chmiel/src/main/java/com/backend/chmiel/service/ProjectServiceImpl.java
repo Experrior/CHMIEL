@@ -4,10 +4,9 @@ import com.backend.chmiel.dao.ProjectRepository;
 import com.backend.chmiel.dao.UserRepository;
 import com.backend.chmiel.entity.Project;
 import com.backend.chmiel.entity.User;
-import com.backend.chmiel.payload.PostProjectRequest;
-import com.backend.chmiel.payload.PutProjectRequest;
-import com.backend.chmiel.payload.PutProjectUserRequest;
-import jakarta.persistence.EntityManager;
+import com.backend.chmiel.dto.PostProjectRequest;
+import com.backend.chmiel.dto.PutProjectRequest;
+import com.backend.chmiel.dto.PutProjectUserRequest;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,13 +46,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project createProject(PostProjectRequest postProjectRequest) {
-        Set<User> users = new HashSet<>();
-        userRepository.findById(postProjectRequest.getProjectOwner()).ifPresent(users::add);
+    public Project createProject(Integer id, String projectName) {
         return projectRepository.save(Project.builder()
-                .projectOwner(postProjectRequest.getProjectOwner())
-                .projectName(postProjectRequest.getName())
-                .users(users)
+                .projectOwner(id)
+                .projectName(projectName)
                 .build());
     }
 

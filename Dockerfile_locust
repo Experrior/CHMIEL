@@ -1,0 +1,8 @@
+FROM python:3.12.3
+# change to python:alpine3.20
+COPY locust/main.py locust.py
+COPY locust/requirements.txt .
+
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
+
+CMD locust -f locust.py --host 'http://172.22.0.1:8084'

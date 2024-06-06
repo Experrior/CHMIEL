@@ -1,7 +1,7 @@
 package com.backend.chmiel.rest;
 
 import com.backend.chmiel.entity.TaskComment;
-import com.backend.chmiel.payload.PostTaskCommentRequest;
+import com.backend.chmiel.dto.PostTaskCommentRequest;
 import com.backend.chmiel.service.TaskCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

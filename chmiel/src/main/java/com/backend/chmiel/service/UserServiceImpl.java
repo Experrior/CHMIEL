@@ -1,19 +1,14 @@
 package com.backend.chmiel.service;
 
-import com.backend.chmiel.auth.AuthenticationResponse;
-import com.backend.chmiel.auth.RegisterRequest;
 import com.backend.chmiel.dao.UserRepository;
-import com.backend.chmiel.entity.Role;
 import com.backend.chmiel.entity.User;
-import com.backend.chmiel.payload.EditUserDetailsRequest;
-import com.backend.chmiel.payload.UserDetailsResponse;
+import com.backend.chmiel.dto.EditUserDetailsRequest;
+import com.backend.chmiel.dto.UserDetailsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService{

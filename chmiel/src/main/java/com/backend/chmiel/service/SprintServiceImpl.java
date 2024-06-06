@@ -2,8 +2,8 @@ package com.backend.chmiel.service;
 
 import com.backend.chmiel.dao.SprintRepository;
 import com.backend.chmiel.entity.Sprint;
-import com.backend.chmiel.payload.EditSprintRequest;
-import com.backend.chmiel.payload.PostSprintRequest;
+import com.backend.chmiel.dto.EditSprintRequest;
+import com.backend.chmiel.dto.PostSprintRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

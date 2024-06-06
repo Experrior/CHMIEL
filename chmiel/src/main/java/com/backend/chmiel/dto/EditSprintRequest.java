@@ -1,4 +1,4 @@
-package com.backend.chmiel.payload;
+package com.backend.chmiel.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,16 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostSprintRequest {
-
+public class EditSprintRequest {
     private String sprintName;
-    private Integer projectId;
     private Timestamp startTime;
     private Timestamp stopTime;
-
+    private Boolean isStarted;
+    private Boolean isFinished;
 }

@@ -3,7 +3,6 @@ package com.backend.chmiel.dao;
 
 import com.backend.chmiel.entity.Role;
 import com.backend.chmiel.entity.User;
-import org.hibernate.annotations.processing.SQL;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
