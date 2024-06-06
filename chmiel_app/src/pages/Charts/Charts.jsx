@@ -156,12 +156,12 @@ const ChartsPage = () => {
                         </Col>
                     </Row>
                     <Row className="mt-4">
-                        <Row md={5} style={{ marginRight: '16%' }}>
+                        <Col md={5} style={{ marginRight: '16%' }}>
                             <EpicsChartsComponent inputData={epicsData} />
-                        </Row>
-                        <Row md={5}>
+                        </Col>
+                        <Col md={5}>
                             <SprintChartsComponent inputData={sprintsData} />
-                        </Row>
+                        </Col>
                     </Row>
                 </Container>
                 
