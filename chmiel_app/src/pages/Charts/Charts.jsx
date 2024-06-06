@@ -155,8 +155,8 @@ const ChartsPage = () => {
                             </DropdownButton>
                         </Col>
                     </Row>
-                    <Row className="mt-4">
-                        <Col md={5} style={{ marginRight: '16%' }}>
+                    <Row className="mt-4" style={{display: "flex", gap: 60, justifyContent: "center"}}>
+                        <Col md={5}>
                             <EpicsChartsComponent inputData={epicsData} />
                         </Col>
                         <Col md={5}>
@@ -164,7 +164,7 @@ const ChartsPage = () => {
                         </Col>
                     </Row>
                 </Container>
-                
+
             </div>
         </>
     );

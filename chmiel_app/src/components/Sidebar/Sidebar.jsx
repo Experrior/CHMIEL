@@ -9,11 +9,13 @@ import {useCookies} from "react-cookie";
 import {useNavigate, useParams} from "react-router-dom";
 import { EditProjectModal } from "../../components/Projects/EditProjectModal";
 import { DeleteProjectModal } from "../../components/Projects/DeleteProjectModal";
+import { AddUsersModal } from "../../components/Projects/AddUsersModal";
 
 export const SidebarMenu = (props) => {
     let {projectId} = useParams()
     const [activeItem, setActiveItem] = useState(props.from);
     const [project, setProject] = useState({});
+    const [user, setUser] = useState({});
     const [sidebarVisible, setSidebarVisible] = useState(true);
     const sidebarClass = sidebarVisible ? "sidebar open" : "sidebar";
     const [cookies] = useCookies(["token"]);
@@ -42,7 +44,7 @@ export const SidebarMenu = (props) => {
     };
 
     const addUsersToProject = async (userId) => {
-        await axios.post(`/api/project/addUser`, {
+        await axios.put(`/api/project/addUser`, {
             projectID: projectId,
             userId: userId
         }, {
@@ -72,21 +74,42 @@ export const SidebarMenu = (props) => {
                     {
                         headers: { Authorization: `Bearer ${cookies.token}` }
                     }
-                )
+                );
+                console.log("Current project: ");
+                console.log(response.data);
+                console.log("Project owner:");
+                console.log(response.data.projectOwner);
                 setProject(response.data)
             } catch (error) {
                 console.log(error)
             }
         };
-        
-        getProject()
+
+        const getUser = async () => {
+            try {
+                const response = await axios.get("/api/user",
+                    { headers: { Authorization: "Bearer " + cookies.token } }
+                );
+                console.log("Current user: ");
+                console.log(response.data);
+                console.log(response.data.id);
+                setUser(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        getUser();
+        getProject();
+
     }, [projectId]);
 
     return (
         <>
             <Sidebar className={sidebarClass} collapsed={!sidebarVisible} >
                 <Menu 
-                    style={{position: sidebarVisible ? "fixed" : "relative"}}
+                    style={{position: sidebarVisible ? "fixed" : "relative"
+                    }}
                     menuItemStyles={{ button: ({ active }) => {
                         return {
                             backgroundColor: active ? '#def0ff' : undefined,
@@ -98,7 +121,7 @@ export const SidebarMenu = (props) => {
                             '&:hover': {
                                 backgroundColor: '#def0ff',
                             },
-                            width: sidebarVisible ? '100%' : '0%',
+                            width: sidebarVisible ? '120%' : '0%',
                             transition: 'width 0.3s ease',
                         };
                     },
@@ -156,10 +179,31 @@ export const SidebarMenu = (props) => {
                             <div className="text">Charts</div>
                         </div>
                     </MenuItem>
-                    <EditProjectModal editProjectName={editProjectName}/>
-                    <DeleteProjectModal deleteProject={removeProject}/>
-                </Menu>
-                
+                    </Menu>
+                    { user.id === project.projectOwner && (
+                        <Menu   style={{position: sidebarVisible ? "fixed" : "relative", bottom: '16px'}}
+                                menuItemStyles={{ button: ({active}) => {
+                                    return {
+                                        borderColor: 'transparent',
+                                        borderRadius: '4px',
+                                        borderWidth: '2px',
+                                        borderStyle: 'solid',
+                                        margin: 'auto 16px',
+                                        '&:hover': {
+                                            backgroundColor: active ? '#d8edd9' : '#ffcccc',
+                                        },
+                                        width: sidebarVisible ? '100%' : '0%',
+                                        transition: 'width 0.3s ease',
+                                    };
+                                },
+                        }}>
+                        
+                            <AddUsersModal addUsersToProject={addUsersToProject}/>
+                            <EditProjectModal editProjectName={editProjectName}/>
+                            <DeleteProjectModal deleteProject={removeProject}/>
+                            </Menu>
+                    )}
+
             </Sidebar>
             <div className="toggleButton" onClick={toggleSidebar} style={{position: "fixed"}}>
                 <FontAwesomeIcon icon={sidebarVisible ? faArrowLeft : faArrowRight} />

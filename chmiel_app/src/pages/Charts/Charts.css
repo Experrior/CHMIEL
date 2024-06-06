@@ -1,9 +1,8 @@
-.boardContainer {
-    margin: 0;
-    max-width: 1440px;
-    height: calc(100vh - 175px);
-    padding: 24px 32px;
-    /* background-color: aqua; */
+.chartsContainer {
+    width: 100%;
+    height: calc(100vh - 75px);
+    margin: 24px 32px;
+    flex-grow: 1;
 }
 
 .projectLocation {

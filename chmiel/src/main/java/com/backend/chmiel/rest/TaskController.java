@@ -61,8 +61,8 @@ public class TaskController {
 
     @GetMapping("/getFilteredTasks")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<List<Task>> getFilteredTasks(@RequestParam(required = false) Status status, @RequestParam(required = false) Integer assigneeId, @RequestParam(required = false) Integer sprintId){
-        return ResponseEntity.ok(taskService.getFilteredTasks(status, assigneeId, sprintId));
+    public ResponseEntity<List<Task>> getFilteredTasks(@RequestParam(required = false) Integer projectId, @RequestParam(required = false) Status status, @RequestParam(required = false) Integer assigneeId, @RequestParam(required = false) Integer sprintId){
+        return ResponseEntity.ok(taskService.getFilteredTasks(projectId, status, assigneeId, sprintId));
     }
 
     @PutMapping("/update")

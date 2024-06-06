@@ -73,8 +73,6 @@ export const RegisterPage = () => {
             }
             setErrors({})
         }
-
-
     }
 
 

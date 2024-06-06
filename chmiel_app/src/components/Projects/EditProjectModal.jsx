@@ -43,6 +43,7 @@ export const EditProjectModal = ({editProjectName}) => {
         <>
             {/* <Button variant={"custom-tertiary"} onClick={() => setModalShow(true)}>+ Create Project</Button> */}
             <MenuItem
+                active={true}
                         onClick={() => setModalShow(true)}>
                         <div className="menuItemContent">
                             <div className={"icon"}>
