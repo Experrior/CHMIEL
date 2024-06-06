@@ -59,8 +59,10 @@ public class ProjectController {
 
     @PostMapping("/createProject")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public ResponseEntity<Project> getSprintsByUserId(@RequestBody PostProjectRequest postProjectRequest){
-        return ResponseEntity.ok(projectService.createProject(postProjectRequest));
+    public ResponseEntity<Project> getSprintsByUserId(@RequestHeader("Authorization") String token,@RequestBody String projectName){
+        System.out.println(token);
+        Integer id = jwtService.extractClaim(token.substring(7), (claims) -> claims.get("userId", Integer.class));
+        return ResponseEntity.ok(projectService.createProject(id, projectName));
     }
 
     @DeleteMapping("/remove/{id}")

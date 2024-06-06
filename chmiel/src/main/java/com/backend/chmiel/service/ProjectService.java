@@ -19,7 +19,7 @@ public interface ProjectService {
     @Transactional
     Boolean removeById(Integer id);
 
-    Project createProject(PostProjectRequest postProjectRequest);
+    Project createProject(Integer userId, String projectName);
 
     Project editName(PutProjectRequest putProjectRequest);
 

@@ -46,13 +46,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project createProject(PostProjectRequest postProjectRequest) {
-        Set<User> users = new HashSet<>();
-        userRepository.findById(postProjectRequest.getProjectOwner()).ifPresent(users::add);
+    public Project createProject(Integer id, String projectName) {
         return projectRepository.save(Project.builder()
-                .projectOwner(postProjectRequest.getProjectOwner())
-                .projectName(postProjectRequest.getName())
-                .users(users)
+                .projectOwner(id)
+                .projectName(projectName)
                 .build());
     }
 
