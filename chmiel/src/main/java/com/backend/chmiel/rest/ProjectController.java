@@ -5,6 +5,7 @@ import com.backend.chmiel.entity.Project;
 import com.backend.chmiel.dto.PostProjectRequest;
 import com.backend.chmiel.dto.PutProjectRequest;
 import com.backend.chmiel.dto.PutProjectUserRequest;
+import com.backend.chmiel.entity.User;
 import com.backend.chmiel.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,12 @@ public class ProjectController {
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
     public ResponseEntity<Project> getProjectById(@PathVariable Integer project_id){
         return ResponseEntity.ok(projectService.findById(project_id));
+    }
+
+    @GetMapping("/getAllUsers/{project_id}")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public List<User> getAllUsers(@PathVariable Integer project_id){
+        return projectService.getAllUsers(project_id);
     }
 
 
@@ -71,6 +78,12 @@ public class ProjectController {
         return projectService.removeById(id);
     }
 
+
+    @DeleteMapping("/removeUser")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
+    public Project removeProject(@RequestBody Integer projectId, @RequestBody Integer userId){
+        return projectService.removeUserById(projectId, userId);
+    }
 
 
 
