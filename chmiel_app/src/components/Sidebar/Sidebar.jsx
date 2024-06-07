@@ -69,10 +69,7 @@ export const SidebarMenu = (props) => {
     };
 
     const removeUserFromProject = async (userId) => {
-        await axios.delete(`/api/project/removeUser`, {
-            projectId: projectId,
-            userId: userId
-        }, {
+        await axios.delete(`/api/project/removeUser?projectId=${projectId}&userId=${userId}`, {
             headers: { Authorization: `Bearer ${cookies.token}` }
         }).then(response => {
             console.log(response)
