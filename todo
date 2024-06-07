@@ -6,13 +6,14 @@ Dominika:
 Mateusz:
 
     tests:
-        fix maven to run all groovy tests
-        fix locust to run performance test
+        [x]fix maven to run all groovy tests
+        [x]fix locust to run performance test
 
+    [x] added endpoints for all project's users, removing project's user, finding all users matching by part of email
 
     [] backlog think over backlog page status issues [STRECH GOAL]
-
     [] force logic either backlog or in sprint [STRETCH GOAL]
+
 Zuzia:
     front:
         add separate page for projects:
@@ -31,15 +32,12 @@ Zuzia:
 backlog:
     add option to creat project
     --add global cors to all endpoints, not to each method!
-    handle exceptions in more graceful way for api
+    [x]handle exceptions in more graceful way for api
     don't show user creds in api repsonses
     add is_started, is_finished update on backend , periodical
 
 
 CHOOSE FROM THOSE:
-
-
-
 
        hotfix:
            [x] remove charts and settings from nav bar
