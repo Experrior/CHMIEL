@@ -26,19 +26,19 @@ export const Navigation = ({ sticky, fixed }) => {
                         <Container className={"tabs-container"} >
                             <Nav.Link  style={{ color: fontcolor }} href={"/"}>Work</Nav.Link>
                             <Nav.Link  style={{ color: fontcolor }} href={"/projects"}>Projects</Nav.Link>
-                            <Nav.Link  style={{ color: fontcolor }} href={"/charts"}>Charts</Nav.Link>
+                            {/*<Nav.Link  style={{ color: fontcolor }} href={"/charts"}>Charts</Nav.Link>*/}
                         </Container>
                     </Nav>
                 </Navbar.Collapse>
 
                 <a className={"navbar-brand brand-name-small"} href={"/"}>CHMIEL</a>
                 <Nav className={"account-links-container"}>
-                    <Nav.Link href={"/settings"} className={"account-link"}  style={{ color: fontcolor }}>
-                        <div className={"cartIcon"}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                        <p className={"link-text"}>Settings</p>
-                    </Nav.Link>
+                    {/*<Nav.Link href={"/settings"} className={"account-link"}  style={{ color: fontcolor }}>*/}
+                    {/*    <div className={"cartIcon"}>*/}
+                    {/*        <FontAwesomeIcon icon={faGear} />*/}
+                    {/*    </div>*/}
+                    {/*    <p className={"link-text"}>Settings</p>*/}
+                    {/*</Nav.Link>*/}
 
                     <Nav.Link href={"/profile"} className={"account-link"}  style={{ color: fontcolor }}>
                         <FontAwesomeIcon icon={faCircleUser} />

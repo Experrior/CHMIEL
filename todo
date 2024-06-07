@@ -42,7 +42,7 @@ CHOOSE FROM THOSE:
 
 
        hotfix:
-           [] remove charts from nav bar
+           [x] remove charts and settings from nav bar
            [] button on charts page (to look like page nav bar, show current project)
 
 
