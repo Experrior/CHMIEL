@@ -6,3 +6,7 @@
 .icon {
     width: 30px;
 }
+
+.icon:hover {
+    cursor: pointer;
+}
