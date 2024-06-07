@@ -64,6 +64,7 @@ const ChartsPage = () => {
                     id: project.id,
                     name: project.projectName,
                 }));
+                console.log("CH: FetchData: ", projectsData)
                 setProjects(projectsData);
                 setLoading(false);
             } catch (error) {
@@ -77,12 +78,9 @@ const ChartsPage = () => {
                 const response = await axios.get('/api/project/getProjectByProjectId/' + projectId, {
                     headers: { Authorization: `Bearer ${cookies.token}` }
                 });
-                // const projectsData = response.data.map(project => ({
-                //     id: project.id,
-                //     name: project.projectName,
-                // }));
                 console.log(projectId)
                 console.log(response.data)
+                console.log("CH: FetchChosenProject: ", response.data)
                 setSelectedProject(response.data);
             } catch (error) {
                 setError(error.message);
@@ -95,6 +93,7 @@ const ChartsPage = () => {
                 const response = await axios.get('/api/task/getEpicsData/' + projectId, {
                     headers: { Authorization: "Bearer " + cookies.token }
                 });
+                console.log("CH: FetchEpicsData: ", response.data)
                 setEpicsData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -106,6 +105,7 @@ const ChartsPage = () => {
                 const response = await axios.get('/api/sprint/getSprintsCompletionData/' + projectId, {
                     headers: { Authorization: "Bearer " + cookies.token }
                 });
+                console.log("CH: FetchSprintsData: ", response.data)
                 setSprintsData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);

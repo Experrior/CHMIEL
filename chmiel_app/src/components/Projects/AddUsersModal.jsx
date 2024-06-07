@@ -39,7 +39,7 @@ export const AddUsersModal = (props) => {
             })
         };
         getAllUsers();
-    })
+    }, [])
 
     useEffect(() => {
         setUserEmail("")
