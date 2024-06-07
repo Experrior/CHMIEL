@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {IssueComment} from "../../components/IssuesComponents/IssueComment";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -22,7 +22,7 @@ import Linkify from 'react-linkify';
 export const Issues = () => {
     let {projectId} = useParams();
     const [cookies] = useCookies(["token"]);
-
+    const location = useLocation();
     // setters
     const [user, setUser] = useState({});
     const [project, setProject] = useState([]);
@@ -234,8 +234,15 @@ export const Issues = () => {
                 console.log("UE4: Tasks: ", response.data);
                 // console.log();
                 setTasks(response.data);
-                const id = response.data.length === 0 ? null : response.data[0].id;
+                let id;
+                if (location.state?.task){
+                    id = location.state.task.id
+                } else {
+                    id = response.data.length === 0 ? null : response.data[0].id;
+                }
+                // const id = response.data.length === 0 ? null : response.data[0].id;
                 setSelectedIssueId(id)
+
                 if (id) {
                     await getTaskComments(id)
                 }

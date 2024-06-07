@@ -121,9 +121,9 @@ export const IssueComment = ({ comment, user, updateTaskComment, deleteTaskComme
                             onChange={handleCommentChange}
                             autoFocus
                             className="form-control" />
-                        <div className="editButtons">
-                            <Button type="submit">Save</Button>
-                            <Button onClick={handleCancelClick}>Cancel</Button>
+                        <div className="editButtons" style={{display: "flex", gap: 20, padding: 20}}>
+                            <Button variant={"success"} type="submit">Save</Button>
+                            <Button variant={"danger"} onClick={handleCancelClick}>Cancel</Button>
                         </div>
                     </form> : comment.message
                 }
