@@ -8,6 +8,10 @@ import com.backend.chmiel.entity.*;
 import com.backend.chmiel.exception.TaskNotFoundException;
 import com.backend.chmiel.dto.EditTaskRequest;
 import com.backend.chmiel.dto.PostTaskRequest;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -195,8 +199,15 @@ public class TaskServiceImpl implements TaskService {
 //        return taskRepository.findAll(Example.of(taskTemplate));
 //    }
 
-    public List<Task> getFilteredTasks(Integer projectId, Status status, Integer assigneeId, Integer sprintId) {
-        Specification<Task> spec = Specification.where(null);
+    public List<Task> getFilteredTasks(Integer projectId, Status status, Integer assigneeId, Integer sprintId, String nameRegex) {
+
+        Specification<Task> spec  = new Specification<Task>() {
+
+            @Override
+            public Predicate toPredicate(Root<Task> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                return criteriaBuilder.like(root.get("name"), nameRegex);
+            }
+        };
 
         if (projectId != null) {
             spec = spec.and(inProject(projectId));
@@ -212,6 +223,7 @@ public class TaskServiceImpl implements TaskService {
             Sprint sprint = sprintRepository.findById(sprintId).orElse(null);
             spec = spec.and(inSprint(sprint));
         }
+
 
         return taskRepository.findAll(spec);
     }
