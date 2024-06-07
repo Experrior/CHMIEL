@@ -11,10 +11,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -86,6 +83,21 @@ public class ProjectServiceImpl implements ProjectService {
             return "Either project or user was not found.";
         }
 
+    }
+
+    @Override
+    public Project removeUserById(Integer projectId, Integer userId) {
+        Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        project.getUsers().remove(user);
+        return projectRepository.save(project);
+    }
+
+    @Override
+    public List<User> getAllUsers(Integer projectId) {
+        Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException("Project not found."));
+        List<User> usersList = new ArrayList<User>(project.getUsers());
+        return usersList;
     }
 
     @Override
