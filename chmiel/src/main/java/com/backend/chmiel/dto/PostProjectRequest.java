@@ -13,6 +13,5 @@ import lombok.NoArgsConstructor;
 public class PostProjectRequest {
 
     private String name;
-    private Integer projectOwner;
 
 }

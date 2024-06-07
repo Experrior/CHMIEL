@@ -14,7 +14,7 @@ export const IssueComponent = ({ task, isSelected, onClick }) => {
             className={`issueComponentContainer ${isSelected ? "selected" : ""}`}
             onClick={onClick}>
             <div className="task">{task.name}</div>
-            <div className="sprint">SPRINT NAME</div>
+            <div className="sprint">{task.sprint ? task.sprint.sprintName : "No Sprint"}</div>
             {/* <p>{task.sprint.sprintName}</p> */}
             {/* <p>{task.assignee}</p> */}
         </div>
