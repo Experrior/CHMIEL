@@ -83,7 +83,7 @@ const ChartsPage = () => {
                 // }));
                 console.log(projectId)
                 console.log(response.data)
-                setSelectedProject(response.data.id);
+                setSelectedProject(response.data);
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
@@ -138,7 +138,7 @@ const ChartsPage = () => {
                         <Col className="text-center">
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={selectedProject ? selectedProject.name : "Project"}
+                                title={selectedProject ? selectedProject.projectName : "Project"}
                             >
                                 {projects.map(project => (
                                     <Dropdown.Item
