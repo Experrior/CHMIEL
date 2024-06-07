@@ -39,7 +39,8 @@ export const Board = (props) => {
         }
     };
 
-    const getTasksBySprint = async () => {
+    const getTasks = async () => {
+        console.log("Sprint: ", sprint)
         try {
             const response = await axios.get(`/api/task/getTasksBySprintId/${sprint.id}`,
                 {
@@ -65,6 +66,7 @@ export const Board = (props) => {
                 )
                 console.log(response.data)
                 setProject(response.data);
+                await getSprint()
             } catch (error) {
                 console.log(error)
             }
@@ -77,18 +79,32 @@ export const Board = (props) => {
                         headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
-                console.log(response.data)
+                console.log("GetSprint: ", response.data)
                 setSprint(response.data);
                 setBoardName(response.data.sprintName + " Board")
+                await getTasksBySprint(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
+        const getTasksBySprint = async (sprintData) => {
+            console.log("Sprint: ", sprint)
+            try {
+                const response = await axios.get(`/api/task/getTasksBySprintId/${sprintData.id}`,
+                    {
+                        headers: {Authorization: `Bearer ${cookies.token}`}
+                    }
+                )
+                console.log('TASKS:')
+                console.log(response.data)
+                setTasks(response.data);
             } catch (error) {
                 console.log(error)
             }
         };
 
         getProject()
-        getSprint()
-        getTasksBySprint()
-
         console.log(projectId)
     }, []);
 
@@ -179,7 +195,7 @@ export const Board = (props) => {
                                         <UserButtonsContainer 
                                           users={project.users}
                                           getTasksFilteredByAssigneeId={getTasksFilteredByAssigneeId}
-                                          getTasks={getTasksBySprint}/>
+                                          getTasks={getTasks}/>
 
                             </Row>
                         </div>

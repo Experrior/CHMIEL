@@ -1,14 +1,21 @@
 .taskComponentContainer {
     background-color: #fafafa;
-    padding: 8px;
+    /*padding: 8px;*/
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left; 
+    text-align: left;
     transition: background-color 0.3s ease;
     margin: 10px 0px;
     display: flex;
-    justify-content: left center;
+    /*justify-content: left center;*/
+    padding: 6px 12px;
     cursor: pointer;
+    flex-direction: column;
+}
+
+.taskComponentContainer  p {
+    margin: 0;
+    padding: 0;
 }
 
 .taskComponentContainer:hover {
@@ -17,6 +24,6 @@
 
 @media only screen and (max-width: 1200px) {
     .taskComponentContainer {
-        height: auto; 
+        height: auto;
     }
 }

@@ -1,7 +1,7 @@
-import {Container, Nav, Button, Dropdown} from "react-bootstrap";
+import {Button, Dropdown, Nav} from "react-bootstrap";
 import {Navigation} from "../../components/Navigation/Navigation";
 import {SidebarMenu} from "../../components/Sidebar/Sidebar";
-import { IssueComponent } from "../../components/IssuesComponents/IssueComponent";
+import {IssueComponent} from "../../components/IssuesComponents/IssueComponent";
 import "./Issues.css"
 import {useEffect, useState} from "react";
 import "slick-carousel/slick/slick.css";
@@ -9,10 +9,10 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from "../../api/axios";
 import {useCookies} from "react-cookie";
 import {useParams} from "react-router-dom";
-import { IssueComment } from "../../components/IssuesComponents/IssueComment";
+import {IssueComment} from "../../components/IssuesComponents/IssueComment";
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import Linkify from 'react-linkify';
 // TOOD
 // add an edit button for descritpion and name
@@ -20,7 +20,7 @@ import Linkify from 'react-linkify';
 // add status edition
 
 export const Issues = () => {
-    let { projectId } = useParams();
+    let {projectId} = useParams();
     const [cookies] = useCookies(["token"]);
 
     // setters
@@ -36,10 +36,9 @@ export const Issues = () => {
     const [sprintFilter, setSprintFilter] = useState('');
 
 
-
     // helper
     const statuses = ["backlog", "todo", "in_progress", "review", "closed"]
-    const [selectedIssueId, setSelectedIssueId] = useState(null);    
+    const [selectedIssueId, setSelectedIssueId] = useState(null);
     const getSelectedTask = () => {
         return tasks.find(task => task.id === selectedIssueId);
     };
@@ -101,7 +100,7 @@ export const Issues = () => {
     // SETTING DESCRIPTION
     const [isEditingDescription, setIsEditingDescription] = useState(false);
     const [newIssueDescription, setNewIssueDescription] = useState('');
-    
+
     const handleEditDescriptionClick = () => {
         setIsEditingDescription(true);
         setNewIssueDescription(getSelectedTask().description);
@@ -132,20 +131,20 @@ export const Issues = () => {
     // API CALL TO EDIT TASK
     const editTask = async (name, description, status) => {
         await axios.put("/api/task/update",
-        {
-            id: getSelectedTask().id,
-            assigneeId: getSelectedTask().assigneeId,
-            sprintId: getSelectedTask().sprintId,
-            name: name,
-            description: description,
-            loggedHours: getSelectedTask().loggedHours,
-            timeEstimate: getSelectedTask().timeEstimate,
-            status: status,
-            inEpic: getSelectedTask().inEpic,
-        },
-        {
-            headers: {Authorization:  `Bearer ${cookies.token}`}
-        }).then(result => {
+            {
+                id: getSelectedTask().id,
+                assigneeId: getSelectedTask().assigneeId,
+                sprintId: getSelectedTask().sprintId,
+                name: name,
+                description: description,
+                loggedHours: getSelectedTask().loggedHours,
+                timeEstimate: getSelectedTask().timeEstimate,
+                status: status,
+                inEpic: getSelectedTask().inEpic,
+            },
+            {
+                headers: {Authorization: `Bearer ${cookies.token}`}
+            }).then(result => {
             console.log(result.data)
             setTasks(tasks.map(task => task.id === selectedIssueId ? result.data : task));
         }).catch(e => {
@@ -156,14 +155,14 @@ export const Issues = () => {
     // API CALL ADD COMMENT
     const addComment = async (message) => {
         await axios.post(`/api/task-comment/create`,
-        {
-            taskId: selectedIssueId,
-            message: message,
-            authorId: user.id,
-        },
-        {
-            headers: {Authorization: `Bearer ${cookies.token}`}   
-        }).then(result => {
+            {
+                taskId: selectedIssueId,
+                message: message,
+                authorId: user.id,
+            },
+            {
+                headers: {Authorization: `Bearer ${cookies.token}`}
+            }).then(result => {
             console.log(result.data)
             setTaskComments([...taskComments, result.data])
         }).catch(e => {
@@ -184,11 +183,11 @@ export const Issues = () => {
         const getUser = async () => {
             try {
                 const response = await axios.get("/api/user",
-                    { headers: { Authorization: "Bearer " + cookies.token } }
+                    {headers: {Authorization: "Bearer " + cookies.token}}
                 );
-                console.log("Current user: ");
-                console.log(response.data);
+                console.log("UE1: Current user: ", response.data);
                 setUser(response.data);
+                getProject();
             } catch (error) {
                 console.log(error);
             }
@@ -198,12 +197,12 @@ export const Issues = () => {
             try {
                 const response = await axios.get(`/api/project/getProjectByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: "Bearer " + cookies.token }
+                        headers: {Authorization: "Bearer " + cookies.token}
                     }
                 );
-                console.log("Current project: ");
-                console.log(response.data)
+                console.log("UE2: Current project: ", response.data);
                 setProject(response.data);
+                getSprints();
             } catch (error) {
                 console.log(error)
             }
@@ -213,50 +212,52 @@ export const Issues = () => {
             try {
                 const response = await axios.get(`/api/sprint/getByProjectId/${projectId}`,
                     {
-                        headers: { Authorization: `Bearer ${cookies.token}` }
+                        headers: {Authorization: `Bearer ${cookies.token}`}
                     }
                 )
-                console.log("Sprints: ");
-                console.log(response.data)
+                console.log("UE3: Sprints: ", response.data);
+
                 setSprints(response.data);
+                getTasks();
+
             } catch (error) {
                 console.log(error)
             }
         };
 
         const getTasks = async () => {
-            // TODO: change it so it retrieves tasks from each sprint
             try {
                 const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
-                {
-                    headers: { Authorization: "Bearer " + cookies.token }
-                });
-                console.log("Tasks: ");
-                console.log(response.data);
+                    {
+                        headers: {Authorization: "Bearer " + cookies.token}
+                    });
+                console.log("UE4: Tasks: ", response.data);
+                // console.log();
                 setTasks(response.data);
-                setSelectedIssueId(response.data[0].id);
-                getTaskComments(response.data[0].id);
+                const id = response.data.length === 0 ? null : response.data[0].id;
+                setSelectedIssueId(id)
+                if (id) {
+                    await getTaskComments(id)
+                }
             } catch (error) {
                 console.log(error);
             }
-          };
-        
+        };
+
         getUser();
-        getProject();
-        getSprints();
-        getTasks();
+
     }, []);
 
     const getTaskComments = async (taskId) => {
-        try  {
+        try {
             const response = await axios.get(`/api/task-comment/getByTaskId/${taskId}`,
                 {
-                    headers: { Authorization: "Bearer " + cookies.token }
+                    headers: {Authorization: "Bearer " + cookies.token}
                 });
-                console.log(response.data);
-                setTaskComments(response.data);
+            console.log(response.data);
+            setTaskComments(response.data);
         } catch (error) {
-                console.log(error);
+            console.log(error);
         }
 
     };
@@ -268,7 +269,79 @@ export const Issues = () => {
         console.log("New selected issue: " + taskId);
     };
 
+    // useEffect(() => {
+    //     let base_url = `/api/task/getFilteredTasks?projectId=${projectId}`
+    //     if (statusFilter !== "Status") {
+    //         base_url = base_url + `&status=${statusFilter}`
+    //         getTasksFiltered(base_url)
+    //     } else {
+    //         getTasks()
+    //     }
+    // }, [statusFilter])
 
+    const getTasksFiltered = async (url) => {
+        try {
+            const response = await axios.get(url,
+                {
+                    headers: {Authorization: `Bearer ${cookies.token}`}
+                }
+            )
+            console.log(response.data)
+            setTasks(response.data);
+            const id = response.data.length === 0 ? null : response.data[0].id;
+            setSelectedIssueId(id)
+            if (id) {
+                await getTaskComments(id)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const getTasks = async () => {
+        try {
+            const response = await axios.get(`/api/task/getTasksByProjectId/${projectId}`,
+                {
+                    headers: {Authorization: "Bearer " + cookies.token}
+                });
+            console.log("Test: ", response.data)
+            setTasks(response.data);
+            const id = response.data.length === 0 ? null : response.data[0].id;
+            setSelectedIssueId(id)
+            if (id) {
+                await getTaskComments(id)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleStatusFilterClick = (status) => {
+        let filter_base_url = `/api/task/getFilteredTasks?projectId=${projectId}&status=${status}`
+        if (status === "Status"){
+            getTasks()
+        } else {
+            getTasksFiltered(filter_base_url)
+        }
+    }
+
+    const handleAssigneeFilterClick = (assigneeId) => {
+        let filter_base_url = `/api/task/getFilteredTasks?projectId=${projectId}&assigneeId=${assigneeId}`
+        if (assigneeId === "All"){
+            getTasks()
+        } else {
+            getTasksFiltered(filter_base_url)
+        }
+    }
+
+    const handleSprintFilterClick = (sprintId) => {
+        let filter_base_url = `/api/task/getFilteredTasks?projectId=${projectId}&sprintId=${sprintId}`
+        if (sprintId === "All"){
+            getTasks()
+        } else {
+            getTasksFiltered(filter_base_url)
+        }
+    }
 
 
     return (
@@ -283,7 +356,7 @@ export const Issues = () => {
                         <Nav.Link href={`/issues/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
                     </div>
                     {/* <Container fluid={"md"}> */}
-                    
+
                     <div className="issuesHeader">
                         <h2>
                             <span>
@@ -291,125 +364,165 @@ export const Issues = () => {
                             </span>
                         </h2>
                     </div>
-                    <div style={{display: "flex",
-                                flexDirection:'row',
-                                marginBottom: "16px",
-                                marginRight: "16px",
-                                justifyContent: 'space-between',
-                                alignItems: 'center'}}>
-                        <div className="searchBar"><input type="text" placeholder="Search issues" /></div>
-                        <div style={{display: "flex",
-                                flexDirection:'row',
-                                gap: '16px',
-                                alignItems: 'center'}}>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: 'row',
+                        marginBottom: "16px",
+                        marginRight: "16px",
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                    }}>
+                        <div className="searchBar"><input type="text" placeholder="Search issues"/></div>
+                        <div style={{
+                            display: "flex",
+                            flexDirection: 'row',
+                            gap: '16px',
+                            alignItems: 'center'
+                        }}>
                             <span>Filter by:</span>
                             <DropdownButton id="dropdown-filter" title={statusFilter}>
-                                <Dropdown.Item onClick={() => setStatusFilter('Status')}>All</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('backlog')}>Backlog</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('todo')}>To Do</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('in_progress')}>In Progress</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('review')}>Review</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStatusFilter('closed')}>Closed</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleStatusFilterClick("Status")}>All</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleStatusFilterClick("backlog")}>Backlog</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleStatusFilterClick('todo')}>To Do</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleStatusFilterClick('in_progress')}>In
+                                    Progress</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleStatusFilterClick('review')}>Review</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleStatusFilterClick('closed')}>Closed</Dropdown.Item>
                             </DropdownButton>
-                            <DropdownButton id="dropdown-filter" title="Assignee"></DropdownButton>
-                            <DropdownButton id="dropdown-filter" title="Sprint"></DropdownButton>
+                            <DropdownButton id="dropdown-filter" title="Assignee">
+                                <Dropdown.Item onClick={() => handleAssigneeFilterClick("All")}>All</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleAssigneeFilterClick(-1)}>Not assigned</Dropdown.Item>
+
+                                {project.users?.map((user) => {
+                                    return <Dropdown.Item onClick={() => handleAssigneeFilterClick(user.id)}>{user.firstName} {user.lastName}</Dropdown.Item>
+                                })}
+                            </DropdownButton>
+                            <DropdownButton id="dropdown-filter" title="Sprint">
+                                <Dropdown.Item onClick={() => handleSprintFilterClick("All")}>All</Dropdown.Item>
+
+                                {sprints?.map((sprint) => {
+                                    return <Dropdown.Item onClick={() => handleSprintFilterClick(sprint.id)}>{sprint.sprintName}</Dropdown.Item>
+
+                                })}
+                            </DropdownButton>
                         </div>
                     </div>
-                    
+
                     <div className="contentContainer">
                         <div className="issuesListContainer">
-                            { tasks.length !== 0 ? 
+                            {tasks.length !== 0 ?
                                 (
-                                    tasks.map((task) => {
+                                    tasks?.map((task) => {
                                         return <IssueComponent
-                                            key={task.id} 
+                                            key={task.id}
                                             task={task}
                                             isSelected={selectedIssueId === task.id}
                                             onClick={() => handleIssueClick(task.id)}/>
                                     })
-                                ) : <><p>You haven't worked on any anything yet. <a href="#">View all projects.</a></p></>
+                                ) : <><p>You haven't worked on any anything yet. <a href="#">View all projects.</a>
+                                </p></>
                             }
 
                         </div>
                         <div className="issueDetailsContainer">
-                        { selectedIssueId && tasks.length !== 0 ? (
-                            <>    
-                                <div className="issueLocation">
-                                    <Nav.Link href={`/issues/${projectId}`} className="nav-link">{project.projectName}</Nav.Link>
-                                    <span style={{padding: '0px 8px'}}>/</span>
-                                    <Nav.Link href={""} className="nav-link">SPRINT NAME</Nav.Link>
-                                </div>
-                                <div className="issueDetails">
-                                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px'}}>
-                                        
+                            {selectedIssueId && tasks.length !== 0 ? (
+                                <>
+                                    <div className="issueLocation">
+                                        <Nav.Link href={`/issues/${projectId}`}
+                                                  className="nav-link">{project.projectName}</Nav.Link>
+                                        <span style={{padding: '0px 8px'}}>/</span>
+                                        <Nav.Link href={""} className="nav-link">{getSelectedTask().sprint ? getSelectedTask().sprint.sprintName : "NO SPRINT"}</Nav.Link>
+                                    </div>
+                                    <div className="issueDetails">
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            marginBottom: '8px'
+                                        }}>
+
                                             <div className="issueName">
                                                 {isEditing ? (
-                                                        <input
-                                                            type="text"
-                                                            value={newIssueName}
-                                                            onChange={handleInputChange}
-                                                            onKeyDown={handleKeyDown}
-                                                            onBlur={handleBlur}
-                                                            autoFocus
-                                                            />
-                                                    ) : (
-                                                        <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginBottom: '4px'}}>
+                                                    <input
+                                                        type="text"
+                                                        value={newIssueName}
+                                                        onChange={handleInputChange}
+                                                        onKeyDown={handleKeyDown}
+                                                        onBlur={handleBlur}
+                                                        autoFocus
+                                                    />
+                                                ) : (
+                                                    <div style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'flex-start',
+                                                        alignItems: 'center',
+                                                        marginBottom: '4px'
+                                                    }}>
                                                             <span onClick={handleEditClick}>
                                                                 {getSelectedTask().name}
                                                             </span>
-                                                            <FontAwesomeIcon 
-                                                                icon={faEdit} 
-                                                                style={{ marginLeft: "8px", cursor: "pointer", height: '16px' }} 
-                                                                onClick={handleEditClick} 
-                                                            />
-                                                        </div>
-                                                    )
+                                                        <FontAwesomeIcon
+                                                            icon={faEdit}
+                                                            style={{
+                                                                marginLeft: "8px",
+                                                                cursor: "pointer",
+                                                                height: '16px'
+                                                            }}
+                                                            onClick={handleEditClick}
+                                                        />
+                                                    </div>
+                                                )
                                                 }
                                             </div>
-                                            
-                                        
-                                        
-                                        <div>
-                                        <Dropdown className={"status"}>
-                                            <Dropdown.Toggle variant="custom-tertiary-small-v2" id="dropdown-basic">
-                                                {getSelectedTask().status === "in_progress" ? "IN PROGRESS" : getSelectedTask().status.toUpperCase()}
-                                            </Dropdown.Toggle>
-                                            <Dropdown.Menu>
-                                                {statuses.map((status) =>
-                                                    (<Dropdown.Item
-                                                        as={Button}
-                                                        variant={"custom-tertiary-small"}
-                                                        onClick={() => handleStatusChange(status)}>
-                                                            {
-                                                                status === "in_progress" ? "IN PROGRESS" : status.toUpperCase()
-                                                            }
-                                                    </Dropdown.Item>)
-                                                )}
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                        </div>
-                                    </div>
 
-                                    <div className="issueDescription">
-                                        <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginBottom: '4px'}}>
-                                        <span style={{fontWeight: "500", paddingLeft: "4px"}}>Description</span>
-                                        {
-                                            isEditingDescription ? (
-                                                <></>
-                                            ) : (
-                                                <FontAwesomeIcon 
-                                                icon={faEdit} 
-                                                style={{ marginLeft: "8px", cursor: "pointer" }}
-                                                onClick={handleEditDescriptionClick} 
-                                            />
-                                            )
-                                        }
-                                        
+
+                                            <div>
+                                                <Dropdown className={"status"}>
+                                                    <Dropdown.Toggle variant="custom-tertiary-small-v2"
+                                                                     id="dropdown-basic">
+                                                        {getSelectedTask().status === "in_progress" ? "IN PROGRESS" : getSelectedTask().status.toUpperCase()}
+                                                    </Dropdown.Toggle>
+                                                    <Dropdown.Menu>
+                                                        {statuses?.map((status) =>
+                                                            (<Dropdown.Item
+                                                                as={Button}
+                                                                variant={"custom-tertiary-small"}
+                                                                onClick={() => handleStatusChange(status)}>
+                                                                {
+                                                                    status === "in_progress" ? "IN PROGRESS" : status.toUpperCase()
+                                                                }
+                                                            </Dropdown.Item>)
+                                                        )}
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </div>
                                         </div>
-                                        
-                                        <div>
-                                            {isEditingDescription ? (
-                                                <>
+
+                                        <div className="issueDescription">
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'flex-start',
+                                                alignItems: 'center',
+                                                marginBottom: '4px'
+                                            }}>
+                                                <span style={{fontWeight: "500", paddingLeft: "4px"}}>Description</span>
+                                                {
+                                                    isEditingDescription ? (
+                                                        <></>
+                                                    ) : (
+                                                        <FontAwesomeIcon
+                                                            icon={faEdit}
+                                                            style={{marginLeft: "8px", cursor: "pointer"}}
+                                                            onClick={handleEditDescriptionClick}
+                                                        />
+                                                    )
+                                                }
+
+                                            </div>
+
+                                            <div>
+                                                {isEditingDescription ? (
+                                                    <>
                                                     <textarea
                                                         rows={3}
                                                         value={newIssueDescription}
@@ -417,69 +530,72 @@ export const Issues = () => {
                                                         autoFocus
                                                         className="form-control edit-textarea"
                                                     />
-                                                    <div
-                                                        style={{
+                                                        <div
+                                                            style={{
                                                                 display: 'flex',
                                                                 flexDirection: 'row',
                                                                 gap: '4px'
                                                             }}>
-                                                        <Button onClick={saveDescriptionChanges} className="btn btn-primary">
-                                                            Save
-                                                        </Button>
-                                                        <Button onClick={cancelChanges} className="btn btn-light">
-                                                            Cancel
-                                                        </Button>
-                                                    </div>
-                                                    
-                                                </>
-                                            ) : (
-                                                <div className="description-preview">
-                                                    {getSelectedTask().description ? (
-                                                    <>
-                                                    <Linkify>
-                                                        <p onClick={handleEditDescriptionClick}>
+                                                            <Button onClick={saveDescriptionChanges}
+                                                                    className="btn btn-primary">
+                                                                Save
+                                                            </Button>
+                                                            <Button onClick={cancelChanges} className="btn btn-light">
+                                                                Cancel
+                                                            </Button>
+                                                        </div>
 
-                                                            {getSelectedTask().description}
-                                                        </p>
-                                                        </Linkify>
                                                     </>
-                                                    ) : (
-                                                        <p onClick={handleEditDescriptionClick} className="add-description">
-                                                            Add a description
-                                                        </p>
-                                                    )}
-                                                </div>
-                                            )}
+                                                ) : (
+                                                    <div className="description-preview">
+                                                        {getSelectedTask().description ? (
+                                                            <>
+                                                                <Linkify>
+                                                                    <p onClick={handleEditDescriptionClick}>
+
+                                                                        {getSelectedTask().description}
+                                                                    </p>
+                                                                </Linkify>
+                                                            </>
+                                                        ) : (
+                                                            <p onClick={handleEditDescriptionClick}
+                                                               className="add-description">
+                                                                Add a description
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
+
                                         </div>
 
-                                    </div>
-
-                                    <div className="issueCommentsContainer">
-                                        <p style={{fontWeight: "500"}}>Comments</p>
-                                        <div className="issueComments">
-                                            { taskComments.length !== 0 ? 
-                                                (
-                                                    taskComments.map((comment) => {
-                                                        return <IssueComment
-                                                            key={comment.id} 
-                                                            comment={comment}
-                                                            user={user.id === comment.author.id ? user : null}
-                                                            updateTaskComment={updateTaskComments}
-                                                            deleteTaskComment={deleteTaskComment}
-                                                        />
-                                                    })
-                                                ) : <><p>No comments yet.</p></>
-                                            }
-                                        </div>
-                                        <div className="createComment">
+                                        <div className="issueCommentsContainer">
+                                            <p style={{fontWeight: "500"}}>Comments</p>
+                                            <div className="issueComments">
+                                                {taskComments.length !== 0 ?
+                                                    (
+                                                        taskComments.map((comment) => {
+                                                            return <IssueComment
+                                                                key={comment.id}
+                                                                comment={comment}
+                                                                user={user.id === comment.author.id ? user : null}
+                                                                updateTaskComment={updateTaskComments}
+                                                                deleteTaskComment={deleteTaskComment}
+                                                            />
+                                                        })
+                                                    ) : <><p>No comments yet.</p></>
+                                                }
+                                            </div>
+                                            <div className="createComment">
                                             <span className="btn-custom-circle">
                                                 <p className="userLetters">
                                                     {user.firstName[0]}{user.lastName[0]}
                                                 </p>
                                             </span>
-                                            {isAdding ? (
-                                                <>
-                                                    <form onSubmit={handleCommentSubmit} style={{ width: '100%', resize: 'vertical' }}>
+                                                {isAdding ? (
+                                                    <>
+                                                        <form onSubmit={handleCommentSubmit}
+                                                              style={{width: '100%', resize: 'vertical'}}>
                                                         <textarea
                                                             rows={3}
                                                             value={newComment}
@@ -488,31 +604,33 @@ export const Issues = () => {
                                                             className="form-control"
                                                             placeholder="Start typing..."
                                                         />
-                                                        <div style={{
-                                                                        display: 'flex',
-                                                                        flexDirection: 'row',
-                                                                        gap: '4px'
-                                                                    }}>
-                                                            <Button type="submit" className="btn btn-primary">
-                                                                Add Comment
-                                                            </Button>
-                                                            <Button onClick={cancelComment} className="btn btn-light">
-                                                                Cancel
-                                                            </Button>
-                                                        </div>
-                                                    </form>
-                                                </> ) : (
-                                                    <div onClick={handleAddClick} className="add-comment" style={{ width: '100%', resize: 'vertical' }}>
+                                                            <div style={{
+                                                                display: 'flex',
+                                                                flexDirection: 'row',
+                                                                gap: '4px'
+                                                            }}>
+                                                                <Button type="submit" className="btn btn-primary">
+                                                                    Add Comment
+                                                                </Button>
+                                                                <Button onClick={cancelComment}
+                                                                        className="btn btn-light">
+                                                                    Cancel
+                                                                </Button>
+                                                            </div>
+                                                        </form>
+                                                    </>) : (
+                                                    <div onClick={handleAddClick} className="add-comment"
+                                                         style={{width: '100%', resize: 'vertical'}}>
                                                         <p>Add a comment...</p>
                                                     </div>
                                                 )
-                                        }
-                                            
+                                                }
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </>
-                        ) : (<p>No issue selected</p>)}
+                                </>
+                            ) : (<p>No issue selected</p>)}
                         </div>
                     </div>
                     {/* </Container> */}

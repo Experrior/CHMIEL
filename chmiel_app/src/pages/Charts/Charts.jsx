@@ -83,7 +83,7 @@ const ChartsPage = () => {
                 // }));
                 console.log(projectId)
                 console.log(response.data)
-                setSelectedProject(response.data.id);
+                setSelectedProject(response.data);
             } catch (error) {
                 setError(error.message);
                 setLoading(false);
@@ -124,48 +124,69 @@ const ChartsPage = () => {
     return (
         <>
             <Navigation sticky={"top"}/>
-
             <div style={{display: "flex"}}>
                 <SidebarMenu from={"charts"}/>
-                <Container fluid="md" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
-                    <Row className="text-center" style={{ marginBottom: '20px' }}>
-                        <Col>
-                            <h1 style={{ margin: '0' }}>Analytic charts</h1>
-                            <h3 style={{ margin: '0' }}>Here are displayed charts with various measures, for given scrum project.</h3>
-                        </Col>
-                    </Row>
-                    <Row className="my-4">
-                        <Col className="text-center">
-                            <DropdownButton
-                                id="dropdown-basic-button"
-                                title={selectedProject ? selectedProject.name : "Project"}
-                            >
-                                {projects.map(project => (
-                                    <Dropdown.Item
-                                        key={project.id}
-                                        value={project.id}
-                                        onClick={() => {
-                                            setSelectedProject(project.id);
-                                            navigate('/charts/' + project.id);
-                                        }}
-                                    >
-                                        {project.name}
-                                    </Dropdown.Item>
-                                ))}
-                            </DropdownButton>
-                        </Col>
-                    </Row>
-                    <Row className="mt-4" style={{display: "flex", gap: 60, justifyContent: "center"}}>
-                        <Col md={5}>
-                            <EpicsChartsComponent inputData={epicsData} />
-                        </Col>
-                        <Col md={5}>
-                            <SprintChartsComponent inputData={sprintsData} />
-                        </Col>
-                    </Row>
-                </Container>
-
-            </div>
+                {/*<div style={{width: "100%"}}>*/}
+                {/*    <div style={{padding: 15, width: "100%", display: "flex", alignItems: "baseline", justifyContent: "center", gap: 20}}>*/}
+                {/*        <p style={{margin: 0, padding: 0, fontWeight: "bold"}}>Current Project:</p>*/}
+                {/*        <DropdownButton style={{width: "fit-content"}} variant="custom-tertiary-v2"*/}
+                {/*                        id="dropdown-basic-button"*/}
+                {/*                        title={selectedProject ? selectedProject.projectName : "Project"}*/}
+                {/*        >*/}
+                {/*            {projects.map(project => (*/}
+                {/*                <Dropdown.Item*/}
+                {/*                    key={project.id}*/}
+                {/*                    value={project.id}*/}
+                {/*                    onClick={() => {*/}
+                {/*                        setSelectedProject(project.id);*/}
+                {/*                        navigate('/charts/' + project.id);*/}
+                {/*                    }}*/}
+                {/*                >*/}
+                {/*                    {project.name}*/}
+                {/*                </Dropdown.Item>*/}
+                {/*            ))}*/}
+                {/*        </DropdownButton>*/}
+                {/*    </div>*/}
+                    <Container fluid="md" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+                        <Row className="text-center" style={{ marginBottom: '20px' }}>
+                            <Col>
+                                <h1 style={{ margin: '0' }}>Analytic charts</h1>
+                                <h3 style={{ margin: '0' }}>Here are displayed charts with various measures, for given scrum project.</h3>
+                            </Col>
+                        </Row>
+                        <Row className="my-4" >
+                            <Col className="text-center" style={{display: "flex", alignItems: "baseline", justifyContent: "center", gap: 20}}>
+                                <p style={{margin: 0, padding: 0, fontWeight: "bold"}}>Current Project:</p>
+                                <DropdownButton style={{width: "fit-content"}} variant="custom-tertiary-v2"
+                                                id="dropdown-basic-button"
+                                                title={selectedProject ? selectedProject.projectName : "Project"}
+                                >
+                                    {projects.map(project => (
+                                        <Dropdown.Item
+                                            key={project.id}
+                                            value={project.id}
+                                            onClick={() => {
+                                                setSelectedProject(project.id);
+                                                navigate('/charts/' + project.id);
+                                            }}
+                                        >
+                                            {project.name}
+                                        </Dropdown.Item>
+                                    ))}
+                                </DropdownButton>
+                            </Col>
+                        </Row>
+                        <Row className="mt-4" style={{display: "flex", gap: 60, justifyContent: "center"}}>
+                            <Col md={5}>
+                                <EpicsChartsComponent inputData={epicsData} />
+                            </Col>
+                            <Col md={5}>
+                                <SprintChartsComponent inputData={sprintsData} />
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+            {/*</div>*/}
         </>
     );
 };

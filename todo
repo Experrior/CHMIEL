@@ -1,7 +1,7 @@
 Dominika:
 
 
-    [] make filters on issues page, depends on endpoints [STRECH GOAL]
+    [x] make filters on issues page, depends on endpoints [STRECH GOAL]
 
 Mateusz:
 
@@ -42,8 +42,8 @@ CHOOSE FROM THOSE:
 
 
        hotfix:
-           [] remove charts from nav bar
-           [] button on charts page (to look like page nav bar, show current project)
+           [x] remove charts and settings from nav bar
+           [?] button on charts page (to look like page nav bar, show current project)
 
 
 14 = no class
