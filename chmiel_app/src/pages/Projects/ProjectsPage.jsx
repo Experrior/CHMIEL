@@ -90,7 +90,7 @@ export const ProjectsPage = () => {
             <Navigation sticky={"top"}/>
             <Container fluid={"md"}>
                     <Stack gap={3}>
-                        <h2>Projects</h2>
+                        <h2 className={"projectsHeader"}>Projects</h2>
                         <CreateProjectModal addProject={addProject}/>
                         <div className={"recentProjectsContainer"}>
                                 {projects.length !== 0 ? <Row sm={5}>
