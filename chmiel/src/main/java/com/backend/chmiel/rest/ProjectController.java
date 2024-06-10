@@ -81,7 +81,7 @@ public class ProjectController {
 
     @DeleteMapping("/removeUser")
     @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8084"})
-    public Project removeProject(@RequestBody Integer projectId, @RequestBody Integer userId){
+    public Project removeProject(@RequestParam Integer projectId, @RequestParam Integer userId){
         return projectService.removeUserById(projectId, userId);
     }
 

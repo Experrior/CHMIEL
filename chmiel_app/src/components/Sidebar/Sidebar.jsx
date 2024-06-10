@@ -10,6 +10,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import { EditProjectModal } from "../../components/Projects/EditProjectModal";
 import { DeleteProjectModal } from "../../components/Projects/DeleteProjectModal";
 import { AddUsersModal } from "../../components/Projects/AddUsersModal";
+import { RemoveUserModal } from "../../components/Projects/RemoveUserModal";
 
 export const SidebarMenu = (props) => {
     let {projectId} = useParams()
@@ -62,6 +63,16 @@ export const SidebarMenu = (props) => {
         }).then(response => {
             console.log(response)
             if (response.status === 200) navigate(`/`);
+        }).catch(error => {
+            console.log(error)
+        })
+    };
+
+    const removeUserFromProject = async (userId) => {
+        await axios.delete(`/api/project/removeUser?projectId=${projectId}&userId=${userId}`, {
+            headers: { Authorization: `Bearer ${cookies.token}` }
+        }).then(response => {
+            console.log(response)
         }).catch(error => {
             console.log(error)
         })
@@ -199,6 +210,7 @@ export const SidebarMenu = (props) => {
                         }}>
                         
                             <AddUsersModal addUsersToProject={addUsersToProject}/>
+                            <RemoveUserModal removeUserFromProject={removeUserFromProject}/>
                             <EditProjectModal editProjectName={editProjectName}/>
                             <DeleteProjectModal deleteProject={removeProject}/>
                             </Menu>

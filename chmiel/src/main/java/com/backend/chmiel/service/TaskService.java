@@ -30,5 +30,5 @@ public interface TaskService {
 
     Task createTask(PostTaskRequest postTaskRequest, Integer reportedId) throws TaskNotFoundException;
 
-    List<Task> getFilteredTasks(Integer projectId, Status status, Integer assigneeId, Integer sprintId);
+    List<Task> getFilteredTasks(Integer projectId, Status status, Integer assigneeId, Integer sprintId, String nameRegex);
 }

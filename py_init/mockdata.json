@@ -55,12 +55,12 @@
       }
     },
   "objects_count": {
-    "Users": 20,
+    "Users": 25,
     "Projects": 10,
-    "Projects_Users": 200,
-    "Sprints": 100,
-    "Tasks": 1000,
-    "Task_Comments": 100
+    "Projects_Users": 250,
+    "Sprints": 1000,
+    "Tasks": 2000,
+    "Task_Comments": 1000
   }
 
 
