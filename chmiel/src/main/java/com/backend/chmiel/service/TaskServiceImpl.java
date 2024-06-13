@@ -201,13 +201,7 @@ public class TaskServiceImpl implements TaskService {
 
     public List<Task> getFilteredTasks(Integer projectId, Status status, Integer assigneeId, Integer sprintId, String nameRegex) {
 
-        Specification<Task> spec  = new Specification<Task>() {
-
-            @Override
-            public Predicate toPredicate(Root<Task> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.like(root.get("name"), nameRegex);
-            }
-        };
+        Specification<Task> spec = Specification.where(null);
 
         if (projectId != null) {
             spec = spec.and(inProject(projectId));
@@ -224,6 +218,9 @@ public class TaskServiceImpl implements TaskService {
             spec = spec.and(inSprint(sprint));
         }
 
+        if (nameRegex != null) {
+            spec = spec.and(hasTaskName(nameRegex));
+        }
 
         return taskRepository.findAll(spec);
     }
@@ -248,6 +245,10 @@ public class TaskServiceImpl implements TaskService {
 
     public static Specification<Task> inProject(Integer projectId) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("projectId"), projectId);
+    }
+
+    public static Specification<Task> hasTaskName(String nameRegex) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("name"), nameRegex);
     }
 
 
