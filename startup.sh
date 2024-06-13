@@ -27,10 +27,6 @@ docker compose -f compose.yaml build
 # Run compose
 docker compose -f compose.yaml up -d --remove-orphans
 
-# Check if Docker Compose was successful
-echo "Waiting for docker to start.."
-sleep 5
-
 
 set +e
 watch -n 1 docker ps

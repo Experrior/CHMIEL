@@ -93,8 +93,8 @@ class ProjectTest extends Specification {
 
     def "test delete project"() {
         given:
-         Project project = new Project(projectName: "Test Project")
-           projectRepository.save(project)
+            Project project = new Project(projectName: "Test Project")
+            projectRepository.save(project)
 
         when:
            projectRepository.deleteById(project.id)
