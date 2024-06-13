@@ -23,7 +23,6 @@ class ProjectTest extends Specification {
     private UserRepository userRepository
 
     def "create a new project"() {
-
         given:
             Project project = new Project(projectName: "Test Book", projectOwner: 1)
             User user = new User(firstName: 'test', lastName: 'test', email: 'a@a.com', password: 'test')
@@ -39,21 +38,22 @@ class ProjectTest extends Specification {
         cleanup:
             projectRepository.delete(project)
             userRepository.delete(user)
-
     }
 
     def "test find all projects"() {
         given:
+
+            Integer projectsCount = projectRepository.findAll().size()
+
+        when:
             Project project1 = new Project(projectName: "Test Project")
             Project project2 = new Project(projectName: "Test Project")
             projectRepository.save(project1)
             projectRepository.save(project2)
-
-        when:
             List<Project> projects = projectRepository.findAll()
 
         then:
-            projects.size() == 2
+            projects.size()  == projectsCount + 2
             projects.stream().anyMatch {o -> project1.getId() == o.getId()}
             projects.stream().anyMatch {o -> project2.getId() == o.getId()}
         cleanup:
