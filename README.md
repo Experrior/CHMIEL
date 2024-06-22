@@ -70,7 +70,7 @@ for Relational Datbase Managment system
 
 Make sure you have the following software installed:
 
-- [Docker](https://www.docker.com)
+[![](https://github.com/Experrior/CHMIEL/assets/73387931/f496b663-e3e5-4367-a21a-bb51e16a2883) **Docker**](https://react.dev/)
 
 ## License
 
