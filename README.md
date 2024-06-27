@@ -6,7 +6,7 @@ Brief description of your project and its purpose.
 
 - [Project Title](#CHMIEL)
 - [Table of Contents](##Table-of-Contents)
-- [Technologies](##technologies)
+- [Technologies](#technologies)
 - [Features](##features)
 - [Screenshots](#screenshots)
 - [Setup](#setup)
