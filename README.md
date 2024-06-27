@@ -21,10 +21,10 @@ to create the backend server
 [![](https://github.com/Experrior/CHMIEL/assets/73387931/520bd416-7c6a-490b-8a8d-eadb2804c3ac) **React.js**](https://react.dev/)
 for frontend, website interface
 
-[![](https://github.com/Experrior/CHMIEL/assets/73387931/f496b663-e3e5-4367-a21a-bb51e16a2883) **Docker**](https://react.dev/)
+[![](https://github.com/Experrior/CHMIEL/assets/73387931/f496b663-e3e5-4367-a21a-bb51e16a2883) **Docker**](https://www.docker.com/)
 as a contenerization tool
 
-[![](https://github.com/Experrior/CHMIEL/assets/73387931/e0b0f258-ca0e-42ae-896e-321afc3ad70b) **PostgreSQL**](https://react.dev/)
+[![](https://github.com/Experrior/CHMIEL/assets/73387931/e0b0f258-ca0e-42ae-896e-321afc3ad70b) **PostgreSQL**](https://www.postgresql.org/)
 for Relational Datbase Managment system
 
 ## Features
@@ -70,7 +70,7 @@ for Relational Datbase Managment system
 
 Make sure you have the following software installed:
 
-[![](https://github.com/Experrior/CHMIEL/assets/73387931/f496b663-e3e5-4367-a21a-bb51e16a2883) **Docker**](https://react.dev/)
+[![](https://github.com/Experrior/CHMIEL/assets/73387931/f496b663-e3e5-4367-a21a-bb51e16a2883) **Docker**](https://www.docker.com/)
 
 ## License
 
