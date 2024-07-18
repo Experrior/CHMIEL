@@ -1,17 +1,17 @@
 #  CHMIEL
 
-Brief description of your project and its purpose.
+This is Jira inspired project for managing SCRUM projects. It gives you option for splitting work between projects. Each project have an owner which can add/remove members.
+Projects have sprints, where each sprint can have multiple tasks. Additionally there's a backlog for each project which helps hold issues/tasks not assigned to any sprint yet.
+
 
 ## Table of Contents
 
-- [Project Title](#CHMIEL)
-- [Table of Contents](##Table-of-Contents)
 - [Technologies](#technologies)
-- [Features](##features)
 - [Screenshots](#screenshots)
 - [Setup](#setup)
+- [Disclaimer](#disclaimer)
 - [License](#license)
-- [Contact](#contact)
+
 
 ## Technologies
 
@@ -27,25 +27,32 @@ as a contenerization tool
 [![](https://github.com/Experrior/CHMIEL/assets/73387931/e0b0f258-ca0e-42ae-896e-321afc3ad70b) **PostgreSQL**](https://www.postgresql.org/)
 for Relational Datbase Managment system
 
-## Features
+[![](https://github.com/user-attachments/assets/4b7aed33-ead9-4b4d-a0c3-64c84fb2b0bf) **Groovy**](https://groovy-lang.org/)
+for testing using Spock framework
 
-- Feature 1: Description
-- Feature 2: Description
-- Feature 3: Description
 
 ## Screenshots
 
+### Login Page
+
+![login_page](https://github.com/user-attachments/assets/8f894510-0130-437b-bbfd-6063f4e87533)
+
 ### Home Page
 
-![Home Page](https://via.placeholder.com/800x400)
+![Screenshot_20240718_222425](https://github.com/user-attachments/assets/223c6c30-6702-43f5-af9a-85524a9d70f9)
 
-### Dashboard
+### Issues Page
 
-![Dashboard](https://via.placeholder.com/800x400)
+![Screenshot_20240718_222514](https://github.com/user-attachments/assets/fdfe5908-2eb5-41a8-8585-a6fbf991e2c2)
 
-### Other Feature
+### Graphs
 
-![Other Feature](https://via.placeholder.com/800x400)
+![Screenshot_20240718_232905](https://github.com/user-attachments/assets/937b3beb-bed4-473f-8b1c-78d6a273f999)
+
+### User Page
+
+![Screenshot_20240718_222425](https://github.com/user-attachments/assets/df1b127a-33f0-4ab5-aa77-69acadc6828b)
+
 
 ## Setup
 
@@ -71,6 +78,12 @@ for Relational Datbase Managment system
 Make sure you have the following software installed:
 
 [![](https://github.com/Experrior/CHMIEL/assets/73387931/f496b663-e3e5-4367-a21a-bb51e16a2883) **Docker**](https://www.docker.com/)
+
+
+## Disclaimer
+
+This is not the complete project, but contains a lot of usefull features and solution which could help with inspiring and helping with your own projects.
+
 
 ## License
 
