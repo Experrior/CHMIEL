@@ -1,6 +1,6 @@
 #  CHMIEL
 
-This is Jira inspired project for managing SCRUM projects. It gives you option for splitting work between projects. Each project have an owner which can add/remove members.
+This is Jira inspired project for managing Scrum projects. It gives you option for splitting work between projects. Each project have an owner which can add/remove members.
 Projects have sprints, where each sprint can have multiple tasks. Additionally there's a backlog for each project which helps hold issues/tasks not assigned to any sprint yet.
 
 
