@@ -2,7 +2,6 @@ FROM python:alpine3.20
 
 COPY py_init/* .
 
-
 RUN python3 -m pip install -r requirements.txt
 
-CMD python3 db_mock_data.py && python3 db_fill2.py
+CMD python3 -m db_mockdata.main -f mockdata.json && (python3 db_fill2.py || echo "Didn't creat user John Doe")

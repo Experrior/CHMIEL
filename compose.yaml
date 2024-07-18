@@ -56,6 +56,8 @@ services:
     depends_on:
       chmiel_back:
         condition: service_healthy
+      chmiel_db:
+        condition: service_healthy
     networks:
       - my_network
 

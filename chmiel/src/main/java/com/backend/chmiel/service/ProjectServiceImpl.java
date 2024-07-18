@@ -66,23 +66,16 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public String addUser(PutProjectUserRequest putProjectUserRequest) {
         //check if user exists
-        Optional<User> user = userRepository.findById(putProjectUserRequest.userId);
+        User user = userRepository.findById(putProjectUserRequest.userId).orElseThrow(() -> new EntityNotFoundException("No user with given id found in database."));
         //check if project exists
-        Optional<Project> project = projectRepository.findById(putProjectUserRequest.projectID);
-
-
-        if (user.isPresent() && project.isPresent()){
+        Project project = projectRepository.findById(putProjectUserRequest.projectID).orElseThrow(() -> new EntityNotFoundException("No project with given id found in database."));
 
             Optional<Project> proj1 = projectRepository.findById(putProjectUserRequest.getProjectID());
             Set<User> users = proj1.get().getUsers();
-            users.add(user.get());
+            users.add(user);
             proj1.get().setUsers(users);
             projectRepository.save(proj1.get());
             return "Correctly added user to project";
-        }else{
-            return "Either project or user was not found.";
-        }
-
     }
 
     @Override

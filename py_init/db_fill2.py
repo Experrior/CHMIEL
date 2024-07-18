@@ -26,16 +26,17 @@ users = [
 jwts = []
 for user_json in users:
     response = session.post(api + "/api/auth/register", json=user_json)
+    print(f"register request repsonse: {response.status_code}")
     jwts.append(response.json()['token'])
-    print(f"User {user_json['firstName']} created with status code {response.status_code}")
+    print(f"User {user_json['firstName']} created")
     print(response.text)
 
 response = session.get(api+'/api/user', headers={'Authorization': 'Bearer ' + jwts[0]})
 user_id = response.json()['id']
-
-response_code = ""
+print(user_id)
+response_code = 200
 project_id = 1
-while response_code != "Either project or user was not found.":
+while response_code == 200:
     response = session.put(api + "/api/project/addUser",
                         json={
                             "projectID": project_id,
@@ -43,5 +44,5 @@ while response_code != "Either project or user was not found.":
                         }, headers={'Authorization': 'Bearer ' + jwts[0]})
     print(response.status_code)
     print(response.text)
-    response_code = response.text
+    response_code = response.status_code
     project_id += 1

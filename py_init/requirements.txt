@@ -1,6 +1,5 @@
 requests
-faker
 tqdm
 sqlalchemy
 psycopg2-binary
-
+db_mockdata==0.1.7

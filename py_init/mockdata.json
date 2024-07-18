@@ -1,7 +1,7 @@
 {
   "connection": "postgresql+psycopg2://admin:test@172.17.0.1:5432/ChmielDB",
   "tables": {
-      "Users": {
+      "users": {
         "id": "PK serial",
         "first_name": "first_name",
         "last_name": "last_name",
@@ -12,19 +12,19 @@
         "birth_date": "timestamp",
         "phone_number": "phone"
       },
-      "Projects":{
+      "projects":{
         "id": "PK serial",
         "project_name": "first_name",
-        "project_owner": "FK Users.id"
+        "project_owner": "FK users.id"
       },
-      "IntermediaryTable: Projects_Users": {
-        "project_id": "FK Projects.id",
-        "user_id": "FK Users.id"
+      "IntermediaryTable: projects_users": {
+        "project_id": "FK projects.id",
+        "user_id": "FK users.id"
       },
-      "Sprints": {
+      "sprints": {
         "id": "PK serial",
-        "sprint_name": "first_name UNIQUE",
-        "project_id": "FK Projects.id",
+        "sprint_name": "password UNIQUE",
+        "project_id": "FK projects.id",
         "start_time": "timestamp",
         "stop_time": "timestamp",
         "is_started": "bool",
@@ -32,36 +32,34 @@
         "starting_task_count": "integer CONST None",
         "ending_task_count": "integer CONST None"
       },
-      "SelfReferential(70%): Tasks": {
+      "SelfReferential(70%): tasks": {
         "id": "PK serial",
-        "assignee_id": "FK Users.id",
-        "reporter_id": "FK Users.id",
-        "project_id": "FK Projects.id",
-        "sprint_id": "FK Sprints.id",
+        "assignee_id": "FK users.id",
+        "reporter_id": "FK users.id",
+        "project_id": "FK projects.id",
+        "sprint_id": "FK sprints.id",
         "name": "first_name",
         "description": "long_text",
         "logged_hours": "float",
         "time_estimate": "float",
         "status": "OPTION IN (backlog, in_progress, closed)",
         "is_epic": "bool",
-        "in_epic": "FK Tasks.id"
+        "in_epic": "FK tasks.id"
       },
-      "Task_Comments": {
+      "task_comments": {
         "id": "PK serial",
-        "task_id": "FK Tasks.id",
+        "task_id": "FK tasks.id",
         "message": "long_text",
-        "author_id": "FK Users.id",
+        "author_id": "FK users.id",
         "logged": "bool"
       }
     },
   "objects_count": {
-    "Users": 25,
-    "Projects": 10,
-    "Projects_Users": 250,
-    "Sprints": 1000,
-    "Tasks": 2000,
-    "Task_Comments": 1000
+    "users": 25,
+    "projects": 10,
+    "projects_users": 250,
+    "sprints": 1000,
+    "tasks": 2000,
+    "task_comments": 1000
   }
-
-
 }
